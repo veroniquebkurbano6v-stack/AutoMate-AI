@@ -1,0 +1,54 @@
+{
+  "sop_id": "9c67e79d2b17de96",
+  "original_task_name": "百度地图导航从这到大雁塔的骑行路线。",
+  "task_name": "百度地图导航从出发地到目的地的骑行路线。",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "导航",
+    "出发地",
+    "目的地",
+    "骑行"
+  ],
+  "steps": [
+    {
+      "goal": "点击百度地图应用图标",
+      "expected": "打开百度地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击地图中间区域，进入详细导航界面",
+      "expected": "进入百度地图的详细导航界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "确认搜索结果并查看附近地点信息",
+      "expected": "搜索结果页面显示多个与\"目的地\"相关的地点条目，包括景点、停车场和交通信息，满足用户查找附近地点的需求。",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击目的地景区位置以查看详细信息",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择骑行出行方式",
+      "expected": "界面显示骑行模式已选中，路线规划更新为骑行方案",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

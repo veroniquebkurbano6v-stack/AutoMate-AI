@@ -1,0 +1,47 @@
+{
+  "sop_id": "d3366be8eccd3a95",
+  "original_task_name": "通过高德地图查找汉阳陵并启动导航",
+  "task_name": "通过高德地图查找目的地并启动导航",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "导航",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，可输入地点信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击目的地的名称以进入详情页",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击底部导航栏中的'导航'按钮",
+      "expected": "进入导航功能界面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

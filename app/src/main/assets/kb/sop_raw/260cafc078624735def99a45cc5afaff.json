@@ -1,0 +1,53 @@
+{
+  "sop_id": "260cafc078624735",
+  "original_task_name": "用哔哩哔哩播放“教父”的影评视频。",
+  "task_name": "用哔哩哔哩播放特定影视的影评视频",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定影视",
+    "影评视频",
+    "播放"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的哔哩哔哩应用图标",
+      "expected": "打开哔哩哔哩应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'教父影评'",
+      "expected": "搜索栏中显示'教父影评'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果页面显示多个相关视频",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的影评视频条目",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击视频播放界面中的播放按钮",
+      "expected": "视频开始播放",
+      "action_type": "click"
+    }
+  ]
+}

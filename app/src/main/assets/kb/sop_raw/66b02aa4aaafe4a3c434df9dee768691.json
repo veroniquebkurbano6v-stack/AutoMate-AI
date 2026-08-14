@@ -1,0 +1,47 @@
+{
+  "sop_id": "66b02aa4aaafe4a3",
+  "original_task_name": "用微信给朋友李雷打视频电话。",
+  "task_name": "用微信给联系人打视频电话。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "视频通话",
+    "通话"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "微信应用图标被选中，界面进入微信应用状态",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "与联系人对话进行交互",
+      "expected": "进入联系人的聊天对话界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "发送消息",
+      "expected": "聊天界面保持不变，底部消息输入区域显示红色箭头指向的按钮",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "进入视频通话功能以发起或参与视频聊天",
+      "expected": "界面显示视频通话选项，用户可选择开启或结束视频通话",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择视频通话方式",
+      "expected": "弹出的对话选择菜单已显示",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

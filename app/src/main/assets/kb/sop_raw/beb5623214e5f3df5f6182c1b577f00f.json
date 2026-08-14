@@ -1,0 +1,23 @@
+{
+  "sop_id": "beb5623214e5f3df",
+  "original_task_name": "关闭腾讯会议的声音以确保会议过程不受干扰。",
+  "task_name": "关闭腾讯会议的声音以确保会议过程不受干扰。",
+  "app_name": "腾讯会议",
+  "source": "cagui_auto",
+  "difficulty": "L1",
+  "domain": "工具",
+  "keywords": [
+    "腾讯会议",
+    "声音",
+    "关闭",
+    "会议"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标以打开应用",
+      "expected": "微信应用图标被选中，界面进入微信应用状态",
+      "action_type": "click",
+      "step_order": 1
+    }
+  ]
+}

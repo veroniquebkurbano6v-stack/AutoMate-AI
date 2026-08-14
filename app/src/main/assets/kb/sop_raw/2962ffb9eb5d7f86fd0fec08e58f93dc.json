@@ -1,0 +1,53 @@
+{
+  "sop_id": "2962ffb9eb5d7f86",
+  "original_task_name": "微信好友曾子轩发给我的最新的图片转发给好友Isabella",
+  "task_name": "微信联系人发给我的最新图片转发给另一联系人",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "图片",
+    "转发"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，进入微信应用界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击与曾子轩的聊天对话",
+      "expected": "进入与曾子轩的聊天界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击曾子轩发送的最新图片",
+      "expected": "图片放大显示",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击图片下方的转发按钮",
+      "expected": "弹出转发菜单",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击Isabella的联系人",
+      "expected": "选择Isabella作为转发目标",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击转发确认按钮",
+      "expected": "图片成功转发给Isabella",
+      "action_type": "click"
+    }
+  ]
+}

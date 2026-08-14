@@ -1,0 +1,59 @@
+{
+  "sop_id": "6250e9c48e24e1e6",
+  "original_task_name": "在高德地图上查找从高新路到曲江新区的开车路线",
+  "task_name": "在高德地图上查找从出发地到目的地的开车路线",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "出发地",
+    "目的地",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，应用启动并显示其界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "界面显示'目的地'作为搜索结果，包含多个地点选项",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击起点位置字段以修改出发地",
+      "expected": "界面将显示输入框，用户可输入新的出发地点",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "选择'出发地'作为起点地址",
+      "expected": "界面显示'出发地'为已选起点",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

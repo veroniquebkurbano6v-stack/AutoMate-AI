@@ -1,0 +1,77 @@
+{
+  "sop_id": "cb2845b2ed4f2f72",
+  "original_task_name": "高德把西安外国语大学长安校区增加到常去地点，改备注成景点",
+  "task_name": "高德把目的地增加到常去地点，改备注成景点",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "常去地点",
+    "备注"
+  ],
+  "steps": [
+    {
+      "goal": "点击地图应用图标以打开应用",
+      "expected": "打开地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击“打车”服务图标",
+      "expected": "打车服务功能入口被激活，可选择打车服务",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "添加常去地点",
+      "expected": "界面显示添加常去地点的选项，用户可选择目的地并设置为常用位置",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "添加常去地点",
+      "expected": "进入添加常去地点界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'目的地'条目以选择该位置",
+      "expected": "界面显示该位置的详细信息",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'目的地'条目右侧的三点菜单按钮",
+      "expected": "展开该地点的更多操作选项",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击修改地点选项以进入地点编辑界面",
+      "expected": "弹出修改地点的模态对话框",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "在文本输入框中输入'景点'",
+      "expected": "文本输入框中显示'景点'",
+      "action_type": "type",
+      "step_order": 9
+    },
+    {
+      "goal": "确认修改备注名并保存设置",
+      "expected": "界面返回到上一级，备注名修改完成",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

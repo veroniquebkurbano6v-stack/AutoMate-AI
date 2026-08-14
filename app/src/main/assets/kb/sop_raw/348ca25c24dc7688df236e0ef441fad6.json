@@ -1,0 +1,42 @@
+{
+  "sop_id": "348ca25c24dc7688",
+  "original_task_name": "导航从枣园苏工业园开车到西安建筑科技大学东校区",
+  "task_name": "导航从出发地开车到目的地",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "出发地",
+    "目的地",
+    "导航",
+    "驾车"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'路线'按钮进入路线规划界面",
+      "expected": "进入路线规划功能页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'我的位置'按钮设置出发地",
+      "expected": "界面中'我的位置'按钮被选中，显示为高亮状态",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "step_order": 4
+    }
+  ]
+}

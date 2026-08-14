@@ -1,0 +1,71 @@
+{
+  "sop_id": "8e00a79be8f5bead",
+  "original_task_name": "腾讯视频搜综艺哈哈哈哈哈第1季，从第5集开始播放",
+  "task_name": "腾讯视频搜特定影视第1季，从第5集开始播放",
+  "app_name": "腾讯视频",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "腾讯视频",
+    "特定影视",
+    "综艺",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开腾讯视频应用",
+      "expected": "应用启动并显示其界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域",
+      "expected": "激活搜索功能",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定影视'",
+      "expected": "文本输入框中显示'特定影视'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'特定影视 第2季'条目",
+      "expected": "进入该综艺节目的详情页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'特定影视 第1季'条目以进入详情页",
+      "expected": "进入《特定影视 第1季》的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'一起看'按钮",
+      "expected": "进入视频播放界面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击特定影视第11期上对应的视频条目",
+      "expected": "进入该期视频播放页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击特定影视第8期上对应的视频条目",
+      "expected": "进入该期视频的播放页面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击第5期视频条目以进入该期内容",
+      "expected": "进入《特定影视》第5期视频播放页面",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

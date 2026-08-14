@@ -1,0 +1,65 @@
+{
+  "sop_id": "343b0772795d3b60",
+  "original_task_name": "通过高德地图查找并导航至当前位置附近最近的水族馆  ",
+  "task_name": "通过高德地图查找并导航至当前位置附近最近的水族馆",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "水族馆",
+    "导航",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'水族馆'",
+      "expected": "文本输入框中显示'水族馆'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序按钮调整搜索结果的排序方式",
+      "expected": "点击排序后，搜索结果的排序方式将从推荐排序改为其他预设排序",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "排序菜单中“距离优先”选项被选中",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'目的地'的名称以进入详情页",
+      "expected": "进入该景点的详细信息页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击导航按钮进入路线规划界面",
+      "expected": "进入路线规划页面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

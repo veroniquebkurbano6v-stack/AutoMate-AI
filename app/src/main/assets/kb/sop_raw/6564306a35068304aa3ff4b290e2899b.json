@@ -1,0 +1,42 @@
+{
+  "sop_id": "6564306a35068304",
+  "original_task_name": "高德把西安交通大学兴庆校区设置成家庭住址，并保存至我的收藏夹 ",
+  "task_name": "高德把目的地设置成家庭住址，并保存至我的收藏夹",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "家庭住址",
+    "收藏夹",
+    "目的地",
+    "设置"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'去设置'按钮",
+      "expected": "进入应用设置界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "选择目的地作为家庭住址",
+      "expected": "界面显示已选择目的地作为家庭住址",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

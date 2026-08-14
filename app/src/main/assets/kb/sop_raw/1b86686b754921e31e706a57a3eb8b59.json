@@ -1,0 +1,47 @@
+{
+  "sop_id": "1b86686b754921e3",
+  "original_task_name": "使用百度地图从当前位置导航至大明宫国家遗址公园  ",
+  "task_name": "使用百度地图从当前位置导航至目的地",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "目的地",
+    "导航",
+    "当前位置"
+  ],
+  "steps": [
+    {
+      "goal": "点击百度地图应用图标",
+      "expected": "打开百度地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的文本区域",
+      "expected": "搜索栏内容被选中，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索框内的文本区域",
+      "expected": "激活搜索框，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击导航按钮进入导航设置界面",
+      "expected": "进入导航设置界面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

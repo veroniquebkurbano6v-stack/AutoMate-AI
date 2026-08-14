@@ -1,0 +1,71 @@
+{
+  "sop_id": "926938341a6b449a",
+  "original_task_name": "美团上点迈德思客的一份香辣鸡腿中国堡送到家",
+  "task_name": "美团上点特定商家的一份特定菜品送到家",
+  "app_name": "美团",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "购物",
+  "keywords": [
+    "美团",
+    "特定商家",
+    "特定菜品",
+    "购物车"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击美团应用图标以打开应用",
+      "expected": "应用启动并进入主界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击搜索栏中的'特定商家'文字区域",
+      "expected": "搜索栏内容被选中，准备进行输入或编辑",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在文本输入框中输入'特定商家'",
+      "expected": "文本输入框中显示用户指定的商家名称",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "执行搜索操作，获取特定商家相关店铺列表",
+      "expected": "搜索结果页面显示多个候选店铺",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击店铺名称进入店铺详情页",
+      "expected": "进入店铺详情页面，查看该店铺的详细信息和商品",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击顶部搜索图标进入搜索界面",
+      "expected": "页面切换至搜索界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "在文本输入框中输入'特定菜品'",
+      "expected": "文本输入框中显示用户指定的菜品名称",
+      "action_type": "type"
+    },
+    {
+      "step_order": 8,
+      "goal": "点击搜索栏右侧的'搜索'按钮",
+      "expected": "搜索结果页面加载完成，显示所有相关商品",
+      "action_type": "click"
+    },
+    {
+      "step_order": 9,
+      "goal": "点击'特定菜品'商品右侧的加号按钮",
+      "expected": "商品已成功加入购物车（加号变红表示已加购）",
+      "action_type": "click"
+    }
+  ]
+}

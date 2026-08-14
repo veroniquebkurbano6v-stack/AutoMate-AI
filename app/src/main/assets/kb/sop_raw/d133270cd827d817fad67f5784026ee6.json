@@ -1,0 +1,47 @@
+{
+  "sop_id": "d133270cd827d817",
+  "original_task_name": "用哔哩哔哩播放老友记 第三季",
+  "task_name": "用哔哩哔哩播放特定影视",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定影视",
+    "搜索",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "点击哔哩哔哩应用图标",
+      "expected": "打开哔哩哔哩应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'特定影视'文字区域",
+      "expected": "搜索栏内容被选中，准备进行输入或搜索",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定影视'",
+      "expected": "文本输入框中显示'特定影视'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "确认搜索结果列表已正确显示，准备选择具体内容",
+      "expected": "搜索结果列表已展开，显示多个与“特定影视”相关的选项",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'特定影视'的视频缩略图以进入该视频页面",
+      "expected": "进入'特定影视'的视频播放页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

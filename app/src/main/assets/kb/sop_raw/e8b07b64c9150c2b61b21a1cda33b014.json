@@ -1,0 +1,40 @@
+{
+  "sop_id": "e8b07b64c9150c2b",
+  "original_task_name": "上京东中搜索阿迪达斯的运动鞋。",
+  "task_name": "上京东中搜索特定商品。",
+  "app_name": "京东",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "购物",
+  "keywords": [
+    "京东",
+    "特定商品",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "步骤目标：打开京东App",
+      "expected": "操作后界面状态：京东App启动界面显示",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'特定商品'",
+      "expected": "文本输入框中显示'特定商品'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏右侧的红色'搜索'按钮",
+      "expected": "搜索结果页面加载完成，显示特定商品的搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

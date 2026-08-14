@@ -1,0 +1,41 @@
+{
+  "sop_id": "5cf36b2f8e11c869",
+  "original_task_name": "用百度搜一下最近的天气情况。",
+  "task_name": "用百度搜一下最近的天气情况。",
+  "app_name": "百度",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "工具",
+  "keywords": [
+    "百度",
+    "天气",
+    "搜索",
+    "查询"
+  ],
+  "steps": [
+    {
+      "goal": "打开百度App",
+      "expected": "百度App图标被选中，应用已启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的文本区域",
+      "expected": "搜索栏处于可编辑状态，用户可输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'最近的天气情况'",
+      "expected": "文本输入框中显示'最近的天气情况'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行天气查询",
+      "expected": "触发天气查询并显示搜索结果列表",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

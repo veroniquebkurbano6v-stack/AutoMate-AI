@@ -1,0 +1,59 @@
+{
+  "sop_id": "d7e05b6e3c05c95f",
+  "original_task_name": "用微信给刘洋打个视频电话吧。",
+  "task_name": "用微信给联系人打个视频电话吧。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "视频电话",
+    "通话"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "微信应用图标被选中，进入微信应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入聊天列表页面",
+      "expected": "微信应用的聊天列表页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "进入聊天列表界面",
+      "expected": "操作后界面状态为微信聊天列表页面，显示了多个聊天对象和群聊，当前选中的是“群组”聊天条目。",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "发送消息",
+      "expected": "操作后界面状态：消息输入框处于可输入状态，准备接收用户输入的消息内容。",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "发送消息",
+      "expected": "操作后界面状态：消息输入框处于可编辑状态，准备输入新消息内容",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择视频通话功能",
+      "expected": "视频通话按钮被选中，界面显示视频通话选项",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择视频通话方式",
+      "expected": "弹出窗口显示视频通话选项",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

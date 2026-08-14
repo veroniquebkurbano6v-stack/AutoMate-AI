@@ -1,0 +1,78 @@
+{
+  "sop_id": "58d91e60bf4cf8ea",
+  "original_task_name": "在小红书上搜索视频剪辑的笔记，然后给前5篇笔记点个赞。",
+  "task_name": "在小红书上搜索视频剪辑的笔记，然后给前5篇笔记点个赞。",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "小红书",
+    "视频剪辑",
+    "笔记",
+    "点赞",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，应用启动并显示其界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击屏幕右上角的搜索图标",
+      "expected": "进入搜索界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'视频剪辑'",
+      "expected": "文本输入框中显示'视频剪辑'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索结果页面加载完成，显示与'视频剪辑'相关的搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击视频标题进入详情页",
+      "expected": "进入该视频的详细播放页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击视频内容卡片以查看详细信息",
+      "expected": "进入该视频的详情页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击视频缩略图进入教程详情页",
+      "expected": "进入一个包含剪辑教程内容的详情页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击标题为'特定视频'的视频内容",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击视频剪辑教程标题进入详情页",
+      "expected": "进入该视频教程的详细页面",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击视频下方的点赞按钮",
+      "expected": "视频下方的点赞按钮变为已点赞状态，显示数字1645",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

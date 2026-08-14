@@ -1,0 +1,47 @@
+{
+  "sop_id": "971a94b470dcfde6",
+  "original_task_name": "在淘宝上找一件价格低于200元的外套。",
+  "task_name": "在淘宝上找一件价格低于200元的外套。",
+  "app_name": "淘宝",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "购物",
+  "keywords": [
+    "淘宝",
+    "外套",
+    "价格",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'运动鞋'文字区域",
+      "expected": "搜索栏处于可编辑状态，用户可输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'外套'",
+      "expected": "文本输入框中显示'外套'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面加载",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击商品列表中的'特定商品'商品卡片",
+      "expected": "进入该商品的详情页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

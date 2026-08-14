@@ -1,0 +1,59 @@
+{
+  "sop_id": "b6425feba70ddece",
+  "original_task_name": "朋友圈分享酷狗音乐的某年某月某日。",
+  "task_name": "朋友圈分享酷狗音乐的特定歌曲。",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "酷狗音乐",
+    "特定歌曲",
+    "朋友圈",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "打开酷狗音乐应用",
+      "expected": "应用图标被选中，进入酷狗音乐主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击顶部导航栏中的'K歌'选项",
+      "expected": "导航栏中的'K歌'选项被选中，界面切换至K歌功能页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索建议中的'特定歌曲'条目",
+      "expected": "搜索建议列表中选中'特定歌曲'条目",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击歌曲《特定歌曲》右侧的三点菜单按钮",
+      "expected": "歌曲信息区域右侧出现交互菜单",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击歌曲信息下方的分享按钮",
+      "expected": "弹出分享菜单",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择分享方式并确认操作",
+      "expected": "分享菜单关闭，返回主界面",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

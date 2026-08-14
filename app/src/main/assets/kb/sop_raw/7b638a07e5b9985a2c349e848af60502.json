@@ -1,0 +1,48 @@
+{
+  "sop_id": "7b638a07e5b9985a",
+  "original_task_name": "酷狗音乐播放许冠杰的浪子心声",
+  "task_name": "酷狗音乐播放联系人的特定歌曲",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "酷狗音乐",
+    "特定歌曲",
+    "联系人",
+    "搜索",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "点击酷狗音乐应用图标",
+      "expected": "打开酷狗音乐应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索建议中的'特定歌曲 联系人'条目",
+      "expected": "搜索结果列表中显示'特定歌曲 联系人'条目被选中",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击联系人的歌曲《特定歌曲》的原唱标签",
+      "expected": "歌曲进入详情页",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

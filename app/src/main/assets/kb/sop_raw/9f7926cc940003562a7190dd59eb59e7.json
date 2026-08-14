@@ -1,0 +1,47 @@
+{
+  "sop_id": "9f7926cc94000356",
+  "original_task_name": "使用高德地图从当前位置导航至龙首原人人乐超市  ",
+  "task_name": "使用高德地图从当前位置导航至目的地",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "超市"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "激活搜索栏以输入目的地",
+      "expected": "搜索栏获得焦点，准备输入目的地信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "进入该商场的详细信息页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击导航按钮进入路线规划界面",
+      "expected": "进入路线规划页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

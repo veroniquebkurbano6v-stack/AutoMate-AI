@@ -1,0 +1,108 @@
+{
+  "sop_id": "096bc2b663bd8064",
+  "original_task_name": "高德地图导航到最近的音乐厅并分享给我的微信好友Daniel",
+  "task_name": "高德地图导航到最近的音乐厅并分享给我的微信好友联系人",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "音乐厅",
+    "微信",
+    "联系人"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击地图上的'特定地点'位置",
+      "expected": "高德地图界面显示'特定地点'的详细位置信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'音乐厅'",
+      "expected": "文本输入框中显示'音乐厅'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行音乐厅搜索",
+      "expected": "搜索结果页面显示多个音乐厅位置",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序选项以调整音乐厅列表的排序方式",
+      "expected": "进入排序设置界面，可选择不同的排序依据",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "筛选出距离当前位置最近的音乐厅",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "进入该音乐场所的详情页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击分享按钮",
+      "expected": "分享按钮处于可点击状态",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击分享面板中的微信图标",
+      "expected": "分享面板消失，返回到目的地详情页",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "选择聊天列表中的一个聊天对象",
+      "expected": "进入该聊天对象的详情页面",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "action_type": "type",
+      "step_order": 11
+    },
+    {
+      "goal": "选择联系人",
+      "expected": "界面显示联系人的详细信息",
+      "action_type": "click",
+      "step_order": 12
+    },
+    {
+      "goal": "确认分享链接给联系人",
+      "expected": "确认分享链接已成功发送给联系人",
+      "action_type": "click",
+      "step_order": 13
+    },
+    {
+      "goal": "确认发送操作并选择返回高德地图",
+      "expected": "点击确认后，系统弹出对话框显示已发送并带有绿色对勾，下方提供返回高德地图和留在微信两个选项。",
+      "action_type": "click",
+      "step_order": 14
+    },
+    {
+      "goal": "点击导航按钮进入路线规划功能",
+      "expected": "进入路线规划界面",
+      "action_type": "click",
+      "step_order": 15
+    }
+  ]
+}

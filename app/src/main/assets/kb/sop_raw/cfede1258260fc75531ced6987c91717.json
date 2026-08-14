@@ -1,0 +1,47 @@
+{
+  "sop_id": "cfede1258260fc75",
+  "original_task_name": "使用高德导航从当前位置到陕西省人民医院。",
+  "task_name": "使用高德导航从当前位置到目的地。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "导航",
+    "医院"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击目的地的搜索结果条目",
+      "expected": "界面显示目的地的详细信息，包括地址、交通方式和距离等",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'导航'按钮以启动目的地位置的导航功能",
+      "expected": "页面显示导航界面，包含出发地设置、目的地选择、导航路线规划等选项",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

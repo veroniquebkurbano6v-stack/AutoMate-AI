@@ -1,0 +1,47 @@
+{
+  "sop_id": "37a6905755ec0dc3",
+  "original_task_name": "使用微信向小李发送一条消息，内容是“今天晚上一起吃饭吧，怎么样？”",
+  "task_name": "使用微信向联系人发送一条消息，内容是“今天晚上一起吃饭吧，怎么样？”",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "消息",
+    "发送"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，进入微信主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信界面右上角的搜索图标",
+      "expected": "界面进入搜索功能页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "发送消息“周末我们一起去公园吧！”，点击聊天输入框以激活文本输入功能。",
+      "expected": "聊天界面底部的输入框被激活，显示为可输入状态，准备接收用户输入的消息内容。",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'今天晚上一起吃饭吧，怎么样？'",
+      "expected": "文本输入框中显示'今天晚上一起吃饭吧，怎么样？'",
+      "step_order": 4
+    },
+    {
+      "goal": "发送消息“今天晚上一起吃饭吧，怎么样？”",
+      "expected": "聊天界面底部的输入框中显示已输入的消息内容",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

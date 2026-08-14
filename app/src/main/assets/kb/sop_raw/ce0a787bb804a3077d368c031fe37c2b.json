@@ -1,0 +1,53 @@
+{
+  "sop_id": "ce0a787bb804a307",
+  "original_task_name": "使用百度地图从这导航到保利曲江春天里",
+  "task_name": "使用百度地图从这导航到目的地",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "目的地",
+    "导航",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击百度地图应用图标",
+      "expected": "打开百度地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'笔记分享'区域",
+      "expected": "搜索栏内容被选中，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "界面显示该目的地的详细信息，包括位置、评分、门禁选择和周边设施等",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'到这去'按钮，进入目的地详情页",
+      "expected": "进入目的地详情页",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'开始导航'按钮",
+      "expected": "启动导航流程",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

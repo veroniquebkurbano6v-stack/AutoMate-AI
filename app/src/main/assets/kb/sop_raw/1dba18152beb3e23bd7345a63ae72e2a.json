@@ -1,0 +1,60 @@
+{
+  "sop_id": "1dba18152beb3e23",
+  "original_task_name": "饿了么上选择沪上阿姨的10份芒芒椰汁血糯米，送到公司。",
+  "task_name": "饿了么上选择特定店铺的10份特定菜品，送到公司。",
+  "app_name": "饿了么",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "购物",
+  "keywords": [
+    "饿了么",
+    "特定店铺",
+    "特定菜品",
+    "外卖",
+    "下单"
+  ],
+  "steps": [
+    {
+      "goal": "打开饿了么应用",
+      "expected": "应用图标被点击，进入饿了么应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定店铺'",
+      "expected": "文本输入框中显示'特定店铺'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏右侧的'搜索'按钮",
+      "expected": "搜索结果页面加载完成，显示多个与'特定店铺'相关的店铺列表",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定店铺商品的'立即领取'按钮",
+      "expected": "弹出优惠活动详情",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击页面顶部的搜索图标",
+      "expected": "页面顶部的搜索图标被激活，可能显示搜索输入框或搜索建议",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "在文本输入框中输入'特定菜品'",
+      "expected": "文本输入框中显示'特定菜品'",
+      "action_type": "type",
+      "step_order": 7
+    }
+  ]
+}

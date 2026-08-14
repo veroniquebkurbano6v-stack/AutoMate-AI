@@ -1,0 +1,95 @@
+{
+  "sop_id": "51456765a10c3068",
+  "original_task_name": "导航到西安大雁塔附近最近的经济型酒店",
+  "task_name": "导航到目的地附近最近的经济型酒店",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "小红书",
+    "目的地",
+    "经济型酒店",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，准备进入应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击目的地景点信息区域，进入详情页面",
+      "expected": "进入目的地景点详情页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击底部导航栏中的'周边'按钮",
+      "expected": "进入周边功能页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击顶部搜索栏区域",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "在文本输入框中输入'经济型酒店'",
+      "expected": "文本输入框中显示'经济型酒店'",
+      "action_type": "type",
+      "step_order": 8
+    },
+    {
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索界面进入，显示搜索结果",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击'推荐排序'选项以展开排序菜单",
+      "expected": "展开推荐排序下拉菜单",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "排序下拉菜单中显示“距离优先”选项已被选中",
+      "action_type": "click",
+      "step_order": 11
+    },
+    {
+      "goal": "点击酒店名称进入详情页",
+      "expected": "进入特定酒店的详细预订页面",
+      "action_type": "click",
+      "step_order": 12
+    },
+    {
+      "goal": "点击'导航'按钮，进入路线规划界面",
+      "expected": "进入路线规划页面",
+      "action_type": "click",
+      "step_order": 13
+    }
+  ]
+}

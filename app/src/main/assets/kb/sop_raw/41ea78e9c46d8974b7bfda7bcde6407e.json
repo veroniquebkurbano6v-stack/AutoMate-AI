@@ -1,0 +1,78 @@
+{
+  "sop_id": "41ea78e9c46d8974",
+  "original_task_name": "搜 up 主影视飓风，播放他最新发布的视频，并分享给微信好友李华",
+  "task_name": "搜up主联系人，播放他最新发布的视频，并分享给微信好友联系人",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "微信",
+    "联系人",
+    "视频",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "点击哔哩哔哩应用图标",
+      "expected": "打开哔哩哔哩应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的文本区域",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'联系人'账号头像进入个人主页",
+      "expected": "进入'联系人'账号的个人主页",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击视频列表中的第3期视频",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击视频下方互动按钮区域的指定位置",
+      "expected": "视频下方互动按钮区域处于可点击状态",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择微信分享选项",
+      "expected": "分享菜单已展开，微信分享按钮被选中",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "选择最近聊天中的联系人进行操作",
+      "expected": "界面显示联系人的聊天选项已被选中",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "确认发送视频给联系人",
+      "expected": "确认发送对话框关闭，返回选择一个聊天界面",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

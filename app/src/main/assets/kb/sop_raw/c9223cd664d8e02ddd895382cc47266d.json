@@ -1,0 +1,53 @@
+{
+  "sop_id": "c9223cd664d8e02d",
+  "original_task_name": "查看微信好友许宇航发给我地址，导航过去",
+  "task_name": "查看微信联系人发给我地址，导航过去",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "地址",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用启动界面显示",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部的'点击'按钮",
+      "expected": "微信顶部的'点击'按钮被选中",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击操作以查看详细路线信息",
+      "expected": "查看该地点的详细路线规划",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击导航按钮进入导航界面",
+      "expected": "进入导航界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择百度地图作为导航应用",
+      "expected": "界面切换至百度地图的主界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认点击'开始导航'按钮以启动路线规划",
+      "expected": "点击'开始导航'按钮后，系统将开始按照规划路线引导用户。",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

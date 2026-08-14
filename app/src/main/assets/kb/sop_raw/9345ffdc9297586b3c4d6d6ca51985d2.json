@@ -1,0 +1,47 @@
+{
+  "sop_id": "9345ffdc9297586b",
+  "original_task_name": "高德导航指引从这里到上拓驾校大门口的路径。",
+  "task_name": "高德导航指引从这里到目的地的路径。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "路径"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏中的文本区域",
+      "expected": "激活搜索栏，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'路线'按钮",
+      "expected": "进入路线规划界面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "sop_id": "a467bced0182b95b",
+  "original_task_name": "使用高德地图查找从西安博物院去唐都医院的打车路线并导航。",
+  "task_name": "使用高德地图查找从出发地去目的地的打车路线并导航。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "出发地",
+    "目的地",
+    "导航",
+    "打车"
+  ],
+  "steps": [
+    {
+      "goal": "点击地图应用图标以打开应用",
+      "expected": "打开地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏右侧的关闭按钮",
+      "expected": "搜索栏被关闭，界面返回到上一级",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认起点和终点位置信息",
+      "expected": "确认起点为'我的位置'，终点为'目的地'，并查看途经提示和拥堵信息",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "点击搜索结果中的出发地条目",
+      "expected": "界面显示出发地的详细信息页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择出行方式为打车",
+      "expected": "界面显示打车选项已被选中",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "sop_id": "bf7fed7e332c2aaa",
+  "original_task_name": "从当前位置使用高德地图导航到最近的乐器店",
+  "task_name": "从当前位置使用高德地图导航到最近的乐器店",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "乐器店",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'乐器店'",
+      "expected": "文本输入框中显示'乐器店'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "确认搜索结果并查看店铺详情",
+      "expected": "显示所有搜索结果及店铺位置信息",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序选项以调整店铺列表的排序方式",
+      "expected": "进入排序设置界面，可选择不同的排序依据",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "界面弹出的排序菜单中，'距离优先'选项被选中",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'目的地'店铺条目",
+      "expected": "进入目的地店铺详情页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击底部导航栏中的'导航'按钮",
+      "expected": "进入导航功能界面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sop_id": "da0d63600689d28d",
+  "original_task_name": "在微信上给好友小张分享当前位置吧。",
+  "task_name": "在微信上给好友联系人分享当前位置吧。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "位置",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，进入微信主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部右上角的加号图标",
+      "expected": "打开添加联系人或群聊的界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击底部右下角带有加号的圆形按钮",
+      "expected": "界面底部右下角出现添加新内容的按钮",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击'位置'按钮以添加或确认位置信息",
+      "expected": "界面显示位置选择或确认选项",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认发送位置选项",
+      "expected": "位置发送菜单弹窗保持打开状态",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认已选择的地点并进入下一步操作",
+      "expected": "界面保持当前选择状态，等待下一步指令",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

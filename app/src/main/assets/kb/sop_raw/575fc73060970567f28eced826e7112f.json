@@ -1,0 +1,47 @@
+{
+  "sop_id": "575fc73060970567",
+  "original_task_name": "哔哩哔哩看美食制作",
+  "task_name": "哔哩哔哩看美食制作",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "美食制作",
+    "视频",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击哔哩哔哩应用图标",
+      "expected": "打开哔哩哔哩应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的内容区域",
+      "expected": "激活搜索栏，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'美食制作'",
+      "expected": "文本输入框中显示'美食制作'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看'美食制作'相关结果",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索结果中的视频条目以查看内容",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

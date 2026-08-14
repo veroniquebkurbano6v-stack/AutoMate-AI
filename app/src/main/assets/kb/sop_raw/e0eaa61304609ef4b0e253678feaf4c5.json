@@ -1,0 +1,47 @@
+{
+  "sop_id": "e0eaa61304609ef4",
+  "original_task_name": " QQ 音乐搜迷迭香并播放",
+  "task_name": "QQ 音乐搜特定歌曲并播放",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定歌曲",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击QQ音乐应用图标以启动应用",
+      "expected": "QQ音乐应用启动，进入其主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "跳过广告弹窗",
+      "expected": "广告弹窗消失，返回QQ音乐主界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'点击'按钮，触发AI助手功能",
+      "expected": "界面中出现AI助手交互区域",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索结果中的单曲条目",
+      "expected": "进入单曲详情页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

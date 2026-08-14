@@ -1,0 +1,47 @@
+{
+  "sop_id": "f75f21650b8e6d95",
+  "original_task_name": "通过百度地图，从我现在的位置导航至陕西省中医医院。",
+  "task_name": "通过百度地图，从我现在的位置导航至目的地。",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "导航",
+    "目的地",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "打开百度地图应用",
+      "expected": "百度地图应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击目的地-门诊条目",
+      "expected": "界面显示目的地-门诊的详细信息",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认并选择推荐路线",
+      "expected": "界面显示推荐的驾车路线选项",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

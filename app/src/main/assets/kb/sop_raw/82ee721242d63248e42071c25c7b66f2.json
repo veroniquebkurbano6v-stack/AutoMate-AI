@@ -1,0 +1,78 @@
+{
+  "sop_id": "82ee721242d63248",
+  "original_task_name": "搜 up 主小潮院长，播放他最新发布的视频，并分享给微信好友魏雨欣",
+  "task_name": "搜 up 主联系人，播放他最新发布的视频，并分享给微信好友联系人",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "微信",
+    "联系人",
+    "视频",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "打开哔哩哔哩App",
+      "expected": "屏幕显示哔哩哔哩应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'特定视频'文字区域",
+      "expected": "搜索栏内容被选中，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看“联系人”相关结果",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击用户头像进入个人主页",
+      "expected": "进入“联系人”的个人主页",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击视频列表中的'特定视频'视频条目",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击视频下方的分享按钮",
+      "expected": "分享按钮被激活，弹出分享选项菜单",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择分享方式，将视频内容通过微信分享出去",
+      "expected": "分享菜单已展开，包含多个可选的分享选项",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "选择聊天对象",
+      "expected": "选择聊天列表中的一个联系人",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "确认分享给联系人的视频内容",
+      "expected": "分享对话框关闭，返回选择一个聊天页面",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

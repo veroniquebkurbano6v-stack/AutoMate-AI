@@ -1,0 +1,59 @@
+{
+  "sop_id": "c08bac7b5a7ea1eb",
+  "original_task_name": "把当前位置发送给微信好友周杰",
+  "task_name": "把当前位置发送给微信联系人",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "位置",
+    "发送"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "打开微信应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部的搜索图标",
+      "expected": "搜索图标被激活，界面进入搜索状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "确认位置信息并发送消息",
+      "expected": "操作后界面状态：位置信息已确认并成功发送",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击位置共享的发送按钮",
+      "expected": "位置共享的发送按钮被激活，准备发送位置信息",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "发送位置信息",
+      "expected": "操作后界面状态：位置功能已激活，准备将当前位置发送给联系人",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认发送位置的确认操作",
+      "expected": "确认发送位置操作已完成",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "确认位置选择并发送请求",
+      "expected": "界面显示位置已确认，可继续进行下一步操作",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

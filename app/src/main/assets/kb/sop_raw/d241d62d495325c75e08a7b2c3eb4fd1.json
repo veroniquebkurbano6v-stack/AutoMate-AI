@@ -1,0 +1,53 @@
+{
+  "sop_id": "d241d62d495325c7",
+  "original_task_name": "导航到微信好友周琳最后发的位置",
+  "task_name": "导航到微信好友联系人最后发的位置",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "微信",
+    "联系人",
+    "导航",
+    "位置"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备进入应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信聊天列表中的'文件传输助手'对话条目",
+      "expected": "进入'文件传输助手'的聊天界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击地图上的位置标记以查看详细信息",
+      "expected": "查看该位置的详细信息",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击导航按钮进入导航界面",
+      "expected": "进入导航界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择高德地图作为地图应用",
+      "expected": "高德地图应用界面弹出",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'开始导航'按钮，启动路线规划并进入导航流程",
+      "expected": "点击'开始导航'按钮后，系统将进入导航流程，开始按照规划路线引导用户。",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

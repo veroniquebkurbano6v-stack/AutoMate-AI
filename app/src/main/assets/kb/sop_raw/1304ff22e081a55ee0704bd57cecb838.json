@@ -1,0 +1,53 @@
+{
+  "sop_id": "1304ff22e081a55e",
+  "original_task_name": "QQ 音乐播放成都",
+  "task_name": "QQ 音乐播放特定歌曲",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定歌曲",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的QQ音乐应用图标",
+      "expected": "QQ音乐应用图标被选中，应用启动并加载",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏获得焦点，可输入搜索内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'成都'",
+      "expected": "搜索栏中显示'成都'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果页面显示多个相关歌曲",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的歌曲条目",
+      "expected": "进入歌曲详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击歌曲详情页面中的播放按钮",
+      "expected": "歌曲开始播放",
+      "action_type": "click"
+    }
+  ]
+}

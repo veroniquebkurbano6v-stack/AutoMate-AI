@@ -1,0 +1,48 @@
+{
+  "sop_id": "eb115db137885f70",
+  "original_task_name": "把酷狗音乐当前播放的歌曲分享给微信联系人赵军",
+  "task_name": "把酷狗音乐当前播放的歌曲分享给微信联系人",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "酷狗音乐",
+    "微信",
+    "联系人",
+    "分享",
+    "歌曲"
+  ],
+  "steps": [
+    {
+      "goal": "打开酷狗音乐应用",
+      "expected": "应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击屏幕右上角的分享图标",
+      "expected": "分享功能入口弹出",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "选择微信朋友圈作为分享方式",
+      "expected": "分享歌曲至微信朋友圈",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择聊天对象，进入与联系人的对话界面",
+      "expected": "进入与联系人的对话界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认分享给指定联系人",
+      "expected": "确认分享操作已完成",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

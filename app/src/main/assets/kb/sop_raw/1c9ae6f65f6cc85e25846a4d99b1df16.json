@@ -1,0 +1,47 @@
+{
+  "sop_id": "1c9ae6f65f6cc85e",
+  "original_task_name": "使用微信给小明发送一条消息说“今天晚上一起吃饭吧”。",
+  "task_name": "使用微信给联系人发送一条消息说“今天晚上一起吃饭吧”。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "消息",
+    "聊天"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，界面进入微信应用状态",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击聊天列表中的联系人“小明”",
+      "expected": "进入与“小明”的聊天界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击消息输入框",
+      "expected": "输入框获得焦点，准备输入新消息",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "在消息输入框中输入“今天晚上一起吃饭吧”",
+      "expected": "输入框中显示“今天晚上一起吃饭吧”",
+      "action_type": "type"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击输入框右侧的发送按钮",
+      "expected": "消息被发送到聊天界面",
+      "action_type": "click"
+    }
+  ]
+}

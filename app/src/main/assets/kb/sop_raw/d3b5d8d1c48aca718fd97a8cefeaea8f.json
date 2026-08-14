@@ -1,0 +1,77 @@
+{
+  "sop_id": "d3b5d8d1c48aca71",
+  "original_task_name": "在淘宝里找找vivo S10的128GB手机，选两款不同颜色的加入购物车。",
+  "task_name": "在淘宝里找找特定商品，选两款不同颜色的加入购物车。",
+  "app_name": "淘宝",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "购物",
+  "keywords": [
+    "淘宝",
+    "特定商品",
+    "购物车",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击淘宝应用图标以打开应用",
+      "expected": "打开淘宝应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'跑步鞋'文字区域",
+      "expected": "激活搜索栏，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定商品'",
+      "expected": "文本输入框中显示'特定商品'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行点击操作以提交搜索",
+      "expected": "搜索界面进入搜索结果页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定商品卡片进入详情页",
+      "expected": "进入特定商品详情页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击购物车图标进入购物车页面",
+      "expected": "进入购物车页面，显示商品列表和结算选项",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择特定存储容量并点击加入购物车",
+      "expected": "选择特定存储容量后，点击加入购物车按钮",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "确认商品已成功加入购物车",
+      "expected": "页面顶部弹出“加购成功”提示",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "选择手机颜色选项",
+      "expected": "选择'特定颜色'作为手机颜色",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "选择存储容量选项",
+      "expected": "选择'特定容量'存储选项",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sop_id": "26b0877dcd7f444c",
+  "original_task_name": "微信里Joseph发给我的最后一条消息转发到群\"工作会议通知\"",
+  "task_name": "微信里联系人发给我的最后一条消息转发到群组",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "群组",
+    "转发"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，准备进入应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击微信聊天列表中的Joseph对话条目",
+      "expected": "进入与Joseph的聊天对话界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "长按Joseph的最后一条消息",
+      "expected": "消息出现可编辑状态，显示操作菜单",
+      "action_type": "long_press"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击操作菜单中的'转发'选项",
+      "expected": "进入消息转发界面，显示群组列表",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击群组列表中的'工作会议通知'群组",
+      "expected": "选中该群组，准备转发消息",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击转发确认按钮",
+      "expected": "消息转发成功，返回聊天界面",
+      "action_type": "click"
+    }
+  ]
+}

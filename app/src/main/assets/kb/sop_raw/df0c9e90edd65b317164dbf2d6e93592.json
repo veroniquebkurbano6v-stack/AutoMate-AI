@@ -1,0 +1,71 @@
+{
+  "sop_id": "df0c9e90edd65b31",
+  "original_task_name": "QQ 音乐搜许嵩的雅俗共赏，并分享给Anthony",
+  "task_name": "QQ 音乐搜联系人的特定歌曲，并分享给联系人",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定歌曲",
+    "联系人",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "跳过推广弹窗",
+      "expected": "关闭推广弹窗，返回主界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击搜索栏区域以激活搜索功能",
+      "expected": "搜索栏获得焦点，可输入搜索关键词",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲 联系人'",
+      "expected": "文本输入框中显示'特定歌曲 联系人'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索结果右侧的三点菜单按钮",
+      "expected": "打开包含更多操作选项的菜单",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击分享按钮",
+      "expected": "分享菜单弹出",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择分享到微信好友",
+      "expected": "分享菜单已展开，包含多个分享选项",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择联系人作为聊天对象",
+      "expected": "界面显示联系人已选中",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "确认分享给联系人",
+      "expected": "分享对话框关闭，返回选择一个聊天页面",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "sop_id": "b805d983f8da5253",
+  "original_task_name": "到五环集团的开车路线",
+  "task_name": "到目的地的开车路线",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，应用已启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

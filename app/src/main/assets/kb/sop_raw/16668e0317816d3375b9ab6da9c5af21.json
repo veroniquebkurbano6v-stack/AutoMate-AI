@@ -1,0 +1,53 @@
+{
+  "sop_id": "16668e0317816d33",
+  "original_task_name": "高德把木塔新街加入收藏夹",
+  "task_name": "高德把目的地加入收藏夹",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "收藏",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'木塔新街'",
+      "expected": "搜索栏中显示'木塔新街'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果页面显示多个相关地点",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的木塔新街条目",
+      "expected": "进入该地点详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击地点详情页面中的'收藏'按钮",
+      "expected": "木塔新街被添加到收藏夹",
+      "action_type": "click"
+    }
+  ]
+}

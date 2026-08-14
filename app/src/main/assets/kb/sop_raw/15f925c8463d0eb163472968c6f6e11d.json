@@ -1,0 +1,60 @@
+{
+  "sop_id": "15f925c8463d0eb1",
+  "original_task_name": "腾讯视频搜电视剧人民警察并从第5集开始播放",
+  "task_name": "腾讯视频搜电视剧特定影视并从第5集开始播放",
+  "app_name": "腾讯视频",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "media",
+  "keywords": [
+    "腾讯视频",
+    "特定影视",
+    "电视剧",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的腾讯视频应用图标",
+      "expected": "打开腾讯视频应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'人民警察'",
+      "expected": "搜索栏中显示'人民警察'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果列表显示多个相关电视剧",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的电视剧条目",
+      "expected": "进入该电视剧的详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击剧集列表中的第5集",
+      "expected": "进入第5集的播放页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击视频播放界面中的播放按钮",
+      "expected": "第5集开始播放",
+      "action_type": "click"
+    }
+  ]
+}

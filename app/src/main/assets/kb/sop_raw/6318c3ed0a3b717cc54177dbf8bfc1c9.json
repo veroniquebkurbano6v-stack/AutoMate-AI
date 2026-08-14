@@ -1,0 +1,59 @@
+{
+  "sop_id": "6318c3ed0a3b717c",
+  "original_task_name": "在知乎上讨论生物科技",
+  "task_name": "在知乎上讨论生物科技",
+  "app_name": "知乎",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "知乎",
+    "讨论",
+    "生物科技",
+    "发布"
+  ],
+  "steps": [
+    {
+      "goal": "打开知乎App",
+      "expected": "知乎应用图标被选中，准备启动应用程序",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入主界面添加新内容",
+      "expected": "操作后界面状态为进入主界面，可添加新内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "进入想法功能模块",
+      "expected": "界面显示包含'提个问题'和'回答问题'选项的创作入口",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击文本输入区域以激活编辑状态",
+      "expected": "界面进入可输入标题的编辑模式",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "在文本输入框中输入'讨论生物科技'",
+      "expected": "文本输入框中显示'讨论生物科技'",
+      "action_type": "type",
+      "step_order": 5
+    },
+    {
+      "goal": "进入创作编辑界面，准备输入内容",
+      "expected": "界面进入编辑状态，键盘显示，可输入标题和内容",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "关闭创作者奖励弹窗",
+      "expected": "界面弹窗消失，返回关注页面",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "sop_id": "0b627ce4244bf4ea",
+  "original_task_name": "美团上点附近的鲍师傅的2份椰丝脆脆奶酥送到家",
+  "task_name": "美团上点附近的特定店铺的2份特定菜品送到家",
+  "app_name": "美团",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "购物",
+  "keywords": [
+    "美团",
+    "特定店铺",
+    "特定菜品",
+    "外卖",
+    "购物车"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的美团应用图标",
+      "expected": "应用图标被点击，进入美团应用界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在文本输入框中输入'特定店铺'",
+      "expected": "文本输入框中显示用户指定的店铺名称",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索按钮被激活，界面进入搜索结果页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击外卖标签页以进入外卖服务部分",
+      "expected": "进入外卖服务页面，显示可配送的店铺列表",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击店铺名称进入店铺详情页",
+      "expected": "进入店铺详情页面，查看该店铺的详细信息和商品",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击搜索图标进入搜索界面",
+      "expected": "页面切换至搜索界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 8,
+      "goal": "在文本输入框中输入'特定菜品'",
+      "expected": "文本输入框中显示用户指定的菜品名称",
+      "action_type": "type"
+    },
+    {
+      "step_order": 9,
+      "goal": "点击搜索栏右侧的'搜索'按钮",
+      "expected": "搜索结果页面加载完成，显示相关商品列表",
+      "action_type": "click"
+    },
+    {
+      "step_order": 10,
+      "goal": "点击'特定菜品'商品右侧的加号按钮",
+      "expected": "商品已成功加入购物车（加号变红表示已加购）",
+      "action_type": "click"
+    }
+  ]
+}

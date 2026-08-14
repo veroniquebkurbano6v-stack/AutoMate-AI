@@ -1,0 +1,66 @@
+{
+  "sop_id": "97e30540e37d0bb1",
+  "original_task_name": "高德地图查找大明宫国家遗址公园并分享给我的微信好友高思琪",
+  "task_name": "高德地图查找目的地并分享给我的微信好友联系人",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "微信",
+    "目的地",
+    "联系人",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "进入该景点详情页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击底部导航栏中的分享按钮",
+      "expected": "分享按钮处于可点击状态",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击分享按钮，打开分享选项菜单",
+      "expected": "分享选项菜单弹出",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择聊天对象",
+      "expected": "选择联系人的聊天",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "确认发送链接给联系人",
+      "expected": "确认对话选择并完成链接发送",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

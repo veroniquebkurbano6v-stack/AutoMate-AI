@@ -1,0 +1,65 @@
+{
+  "sop_id": "c3128c787f0fd55f",
+  "original_task_name": "从QQ音乐的经典歌曲的歌单中，选取第一个歌单来欣赏。",
+  "task_name": "从QQ音乐的经典歌曲的歌单中，选取第一个歌单来欣赏。",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "歌单",
+    "经典歌曲",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用已启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "跳过广告页面",
+      "expected": "广告页面消失，返回到QQ音乐主界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击顶部导航栏中的'乐馆'标签",
+      "expected": "进入乐馆页面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击歌单功能入口",
+      "expected": "进入歌单相关功能页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击分类歌单顶部导航栏的'说'标签",
+      "expected": "进入说分类歌单页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击特定主题分类按钮",
+      "expected": "进入特定主题分类页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击粤语经典视频内容区域",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击'全部播放'按钮开始播放所有歌曲",
+      "expected": "歌曲列表开始播放",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

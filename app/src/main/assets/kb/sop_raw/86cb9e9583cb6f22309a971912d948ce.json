@@ -1,0 +1,47 @@
+{
+  "sop_id": "86cb9e9583cb6f22",
+  "original_task_name": "高德地图查找杜邑遗址公园并导航过去",
+  "task_name": "高德地图查找目的地并导航过去",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "导航",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的第一个条目“目的地”，以进入该地点的详细信息页面。",
+      "expected": "进入“目的地”的详细信息页面，显示包括地址、交通方式和距离等具体信息。",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击底部导航栏中的'导航'按钮",
+      "expected": "进入导航界面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

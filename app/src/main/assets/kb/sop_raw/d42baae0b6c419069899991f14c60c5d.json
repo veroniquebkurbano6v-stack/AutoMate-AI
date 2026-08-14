@@ -1,0 +1,34 @@
+{
+  "sop_id": "d42baae0b6c41906",
+  "original_task_name": "在腾讯会议中开启屏幕共享，展示的内容。",
+  "task_name": "在腾讯会议中开启屏幕共享，展示的内容。",
+  "app_name": "腾讯会议",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "腾讯会议",
+    "屏幕共享",
+    "共享"
+  ],
+  "steps": [
+    {
+      "goal": "打开地图App",
+      "expected": "应用图标被选中，进入地图界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击底部功能栏中的“共享屏幕”按钮",
+      "expected": "进入屏幕共享界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'共享屏幕'按钮",
+      "expected": "弹出包含'共享屏幕'、'共享白板'和'取消'三个选项的菜单",
+      "action_type": "click",
+      "step_order": 3
+    }
+  ]
+}

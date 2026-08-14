@@ -1,0 +1,54 @@
+{
+  "sop_id": "895e803dba7620ae",
+  "original_task_name": "微信里程宇航发给我的最后一条消息转发到群“家园美满”",
+  "task_name": "微信联系人发给我的最后一条消息转发到群组",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "群组",
+    "转发",
+    "消息"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "打开微信应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入聊天列表界面",
+      "expected": "操作后界面状态为微信聊天列表页面，显示了所有已保存的联系人和群聊",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "长按聊天消息以触发操作",
+      "expected": "消息被选中，可进行删除或复制等操作",
+      "action_type": "long_press",
+      "step_order": 3
+    },
+    {
+      "goal": "选择消息中的“已取消”选项进行转发",
+      "expected": "弹出菜单中显示转发选项",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'创建新的聊天'按钮",
+      "expected": "进入新建聊天界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "发送留言给选定的聊天对象",
+      "expected": "确认留言已成功发送",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "sop_id": "3dbe87c1431d86fd",
+  "original_task_name": "腾讯视频，找心理健康节目",
+  "task_name": "腾讯视频，找心理健康节目",
+  "app_name": "腾讯视频",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "媒体",
+  "keywords": [
+    "腾讯视频",
+    "心理健康节目",
+    "节目",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击腾讯视频应用图标",
+      "expected": "打开腾讯视频应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'心理健康节目'",
+      "expected": "文本输入框中显示'心理健康节目'",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看“心理健康节目”的相关结果",
+      "expected": "搜索界面应显示与“心理健康节目”相关的节目列表",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

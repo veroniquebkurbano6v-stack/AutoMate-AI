@@ -1,0 +1,77 @@
+{
+  "sop_id": "446d2c2c57e4da37",
+  "original_task_name": "在点评上搜金龙咖喱，导航过去",
+  "task_name": "在点评上搜特定餐厅，导航过去",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定餐厅",
+    "导航",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开大众点评应用",
+      "expected": "应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击顶部搜索栏区域",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'特定餐厅'",
+      "expected": "文本输入框中显示'特定餐厅'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏中的搜索区域",
+      "expected": "搜索栏内出现输入状态",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击店铺名称进入详情页",
+      "expected": "进入特定餐厅店铺详情页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击店铺信息区域，查看店铺详情",
+      "expected": "进入店铺详细信息页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择使用其他地图导航服务",
+      "expected": "进入其他地图应用的界面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择地图服务提供商",
+      "expected": "弹出窗口中显示“百度地图”选项已被选中",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "选择高德地图作为导航应用",
+      "expected": "界面弹出地图选择对话框，用户可选择腾讯地图、百度地图或取消",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "确认导航开始按钮状态",
+      "expected": "点击后界面保持导航准备状态",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

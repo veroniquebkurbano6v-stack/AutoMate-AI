@@ -1,0 +1,53 @@
+{
+  "sop_id": "5e4c0ebcd94c7e44",
+  "original_task_name": "在 b 站播放转生成为了只有乙女游戏破灭Flag的邪恶大小姐的最新一集",
+  "task_name": "在 b 站播放特定影视的最新一集",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定影视",
+    "播放",
+    "最新一集"
+  ],
+  "steps": [
+    {
+      "goal": "打开哔哩哔哩应用",
+      "expected": "应用图标被选中，进入哔哩哔哩主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定影视'",
+      "expected": "文本输入框中显示'特定影视'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击第2集的标题区域",
+      "expected": "进入该集的播放或信息页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击第13个选项",
+      "expected": "界面显示第13个选项的详细信息",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

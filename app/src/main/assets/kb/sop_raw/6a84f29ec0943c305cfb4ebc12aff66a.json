@@ -1,0 +1,47 @@
+{
+  "sop_id": "6a84f29ec0943c30",
+  "original_task_name": "高德导航从这到西安植物园的公交线路。",
+  "task_name": "高德导航从这到目的地的公交线路。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "公交"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击'目的地'导航选项，进入目的地详情页面",
+      "expected": "进入目的地详情页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择公共交通出行方式",
+      "expected": "界面切换至公共交通路线规划页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "sop_id": "ce805f4cdfce28df",
+  "original_task_name": "百度地图指引从这里到桃花潭站的路径。",
+  "task_name": "百度地图指引从这里到目的地的路径。",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "目的地",
+    "路径",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "点击百度地图应用图标",
+      "expected": "打开百度地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索框区域以激活输入功能",
+      "expected": "搜索框获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "确认搜索结果并查看详细信息",
+      "expected": "显示多个与“目的地”相关的地点选项",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'到这去'按钮，获取该地点的导航路线",
+      "expected": "页面显示导航路线规划界面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

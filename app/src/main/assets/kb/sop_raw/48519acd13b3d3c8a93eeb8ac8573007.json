@@ -1,0 +1,65 @@
+{
+  "sop_id": "48519acd13b3d3c8",
+  "original_task_name": "用酷狗音乐分享花田错到朋友圈",
+  "task_name": "用酷狗音乐分享特定歌曲到朋友圈",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "酷狗音乐",
+    "特定歌曲",
+    "朋友圈",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "打开K歌App",
+      "expected": "K歌App应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击顶部导航栏中的'会员'选项",
+      "expected": "导航栏中的'会员'选项被选中并高亮显示",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看“特定歌曲”相关结果",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击联系人的《特定歌曲》歌曲条目右侧的心形图标",
+      "expected": "歌曲条目右侧的心形图标变为实心红色，表示该歌曲已收藏",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击歌曲详情页的评论按钮",
+      "expected": "弹出评论区",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择微信朋友圈作为分享方式",
+      "expected": "分享按钮区域显示微信朋友圈选项已被选中",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "发布当前内容",
+      "expected": "进入微信发布界面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

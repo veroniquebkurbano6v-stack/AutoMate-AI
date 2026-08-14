@@ -1,0 +1,53 @@
+{
+  "sop_id": "ad603bf233d1fd1d",
+  "original_task_name": "大众点评找附近的陶艺工坊",
+  "task_name": "大众点评找附近的陶艺工坊",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "陶艺工坊",
+    "搜索",
+    "附近"
+  ],
+  "steps": [
+    {
+      "goal": "点击大众点评应用图标",
+      "expected": "打开大众点评应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'陶艺工坊'",
+      "expected": "文本输入框中显示'陶艺工坊'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'综合'标签以查看综合排序结果",
+      "expected": "筛选后显示综合排序的陶艺工坊列表",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择附近区域筛选商家",
+      "expected": "界面显示附近区域筛选选项，用户可选择距离范围",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

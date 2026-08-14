@@ -1,0 +1,40 @@
+{
+  "sop_id": "6608296b2cc661c4",
+  "original_task_name": "高德地图查找长安大剧院餐厅",
+  "task_name": "高德地图查找特定餐厅",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "生活服务",
+  "keywords": [
+    "高德地图",
+    "特定餐厅",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏激活输入功能",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定餐厅'",
+      "expected": "文本输入框中显示'特定餐厅'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "清除搜索栏内容，准备输入新搜索词",
+      "expected": "搜索栏显示为空，键盘处于待输入状态",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

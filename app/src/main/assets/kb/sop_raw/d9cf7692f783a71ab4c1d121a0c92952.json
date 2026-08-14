@@ -1,0 +1,41 @@
+{
+  "sop_id": "d9cf7692f783a71a",
+  "original_task_name": "搜西安北郊附近的洗衣店",
+  "task_name": "搜出发地附近的洗衣店",
+  "app_name": "地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "生活服务",
+  "keywords": [
+    "地图",
+    "洗衣店",
+    "出发地",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开地图应用",
+      "expected": "应用启动并显示其界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'出发地附近的洗衣店'",
+      "expected": "文本输入框中显示'出发地附近的洗衣店'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "确认搜索结果页面已正确加载，准备进行下一步操作",
+      "expected": "搜索结果列表已显示，包含多个洗衣店选项",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

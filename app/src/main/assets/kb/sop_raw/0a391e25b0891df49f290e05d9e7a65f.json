@@ -1,0 +1,77 @@
+{
+  "sop_id": "0a391e25b0891df4",
+  "original_task_name": "大众点评上找飞鹿餐饮·陕南菜（洒金桥店），预订一个明晚八点的8人桌",
+  "task_name": "大众点评上找特定餐厅，预订一个明晚八点的8人桌",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定餐厅",
+    "预订",
+    "8人桌"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的大众点评应用图标",
+      "expected": "应用图标被点击，进入大众点评应用界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在文本输入框中输入'特定餐厅'",
+      "expected": "文本输入框中显示'特定餐厅'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果列表显示",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的餐厅名称条目",
+      "expected": "进入特定餐厅的详细页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击餐厅详情页中的'订座'按钮",
+      "expected": "进入餐厅预订页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击日期选择器中的11月25日",
+      "expected": "界面显示11月25日的可用时间段",
+      "action_type": "click"
+    },
+    {
+      "step_order": 8,
+      "goal": "点击时间选择器中的20:00时段",
+      "expected": "界面显示已选择20:00作为预订时间",
+      "action_type": "click"
+    },
+    {
+      "step_order": 9,
+      "goal": "点击8人桌预订选项",
+      "expected": "界面显示8人桌的预订选项",
+      "action_type": "click"
+    },
+    {
+      "step_order": 10,
+      "goal": "点击确认预订按钮",
+      "expected": "预订成功",
+      "action_type": "click"
+    }
+  ]
+}

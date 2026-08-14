@@ -1,0 +1,29 @@
+{
+  "sop_id": "0f4bf31cc20d938a",
+  "original_task_name": "使用腾讯会议参与下午3点的会议。",
+  "task_name": "使用腾讯会议参与下午3点的会议。",
+  "app_name": "腾讯会议",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "工具",
+  "keywords": [
+    "腾讯会议",
+    "会议",
+    "参与",
+    "联系人"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的腾讯会议应用图标",
+      "expected": "打开腾讯会议应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击首页中的会议条目",
+      "expected": "进入会议详情页面",
+      "action_type": "click"
+    }
+  ]
+}

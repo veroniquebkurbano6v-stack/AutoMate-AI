@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 用户头像：深灰圆形 + 细边框，参考 HTML 中的 .msg.me .avatar 样式 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#1E293B" />
+    <stroke
+        android:width="1dp"
+        android:color="#E5E7EB" />
+</shape>

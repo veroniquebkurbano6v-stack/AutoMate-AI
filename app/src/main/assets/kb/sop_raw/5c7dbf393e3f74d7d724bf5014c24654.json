@@ -1,0 +1,47 @@
+{
+  "sop_id": "5c7dbf393e3f74d7",
+  "original_task_name": "查看从当前位置到西安火车站沿途的实时路况。  ",
+  "task_name": "查看从当前位置到目的地沿途的实时路况",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "路况"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击'目的地'地铁直达入口，进入地铁站详细信息页面",
+      "expected": "进入目的地地铁直达入口详情页",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择目的地为指定入口",
+      "expected": "目的地选择界面已显示指定入口选项",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

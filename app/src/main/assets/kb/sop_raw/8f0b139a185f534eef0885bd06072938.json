@@ -1,0 +1,53 @@
+{
+  "sop_id": "8f0b139a185f534e",
+  "original_task_name": "搜周杰伦的歌曲，并从第3个开始播放",
+  "task_name": "搜联系人的歌曲，并从第3个开始播放",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "联系人",
+    "歌曲",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "跳过音乐推荐卡片的展示",
+      "expected": "返回到上一个界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'听书'标签页",
+      "expected": "进入听书功能页面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索建议中的'特定歌曲'选项",
+      "expected": "进入该歌曲的播放页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击歌曲'特定歌曲'的标题进入详情页",
+      "expected": "进入歌曲'特定歌曲'的详情页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "sop_id": "0aa272c618c598e7",
+  "original_task_name": "在淘宝上逛逛，找到'优衣库'店铺，然后把'黑色修身牛仔裤'加入购物车。",
+  "task_name": "在淘宝上逛逛，找到特定店铺，然后把特定商品加入购物车。",
+  "app_name": "淘宝",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "购物",
+  "keywords": [
+    "淘宝",
+    "特定店铺",
+    "特定商品",
+    "购物车"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的淘宝应用图标",
+      "expected": "打开淘宝应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "激活搜索栏，准备输入新的搜索内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在文本输入框中输入'特定店铺'",
+      "expected": "文本输入框中显示'特定店铺'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面加载完成，显示与'特定店铺'相关的商品列表",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击页面右上角的搜索图标",
+      "expected": "进入搜索界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "在文本输入框中输入'特定商品'",
+      "expected": "文本输入框中显示'特定商品'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索界面提交查询并进入搜索结果页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 8,
+      "goal": "点击页面右上角的分类按钮",
+      "expected": "进入商品分类筛选界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 9,
+      "goal": "点击商品详情页中的'加入购物车'按钮",
+      "expected": "操作后界面状态：商品价格和销量信息显示，页面底部显示'加入购物车'和'立即购买'按钮，红色箭头指向'加入购物车'按钮。",
+      "action_type": "click"
+    },
+    {
+      "step_order": 10,
+      "goal": "选择160/64A尺码",
+      "expected": "选择160/64A尺码后，该尺码选项会高亮显示",
+      "action_type": "click"
+    }
+  ]
+}

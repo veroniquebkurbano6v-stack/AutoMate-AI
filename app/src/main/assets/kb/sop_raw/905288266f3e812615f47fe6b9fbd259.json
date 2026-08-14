@@ -1,0 +1,47 @@
+{
+  "sop_id": "905288266f3e8126",
+  "original_task_name": "高德导航从这到大雁塔的驾车路线。",
+  "task_name": "高德导航从这到目的地的驾车路线。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "驾车路线"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索框以激活输入功能",
+      "expected": "搜索框获得焦点，准备输入地点信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏中的'目的地'文字区域",
+      "expected": "激活搜索栏，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'导航'按钮以启动导航功能",
+      "expected": "进入导航界面，显示目的地位置及可选路线",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

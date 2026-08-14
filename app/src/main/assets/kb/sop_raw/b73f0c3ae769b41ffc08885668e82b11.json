@@ -1,0 +1,42 @@
+{
+  "sop_id": "b73f0c3ae769b41f",
+  "original_task_name": "导航到浐灞酒吧街，如果要排号，帮我先约个号。",
+  "task_name": "导航到目的地，如果要排号，帮我先约个号。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "搜索",
+    "排号"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "确认搜索结果页面已正确加载，准备进行下一步操作",
+      "expected": "搜索结果列表已完整显示，包含多个地点选项",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

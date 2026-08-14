@@ -1,0 +1,59 @@
+{
+  "sop_id": "7da65fe08b45f1e2",
+  "original_task_name": "高德把陕西自然博物馆设置成家庭住址，并保存至我的收藏夹 ",
+  "task_name": "高德把目的地设置成家庭住址，并保存至我的收藏夹",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "家庭住址",
+    "收藏夹"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，应用已启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入'我的'页面查看个人中心信息",
+      "expected": "进入'我的'页面，显示用户头像、昵称、等级、积分等信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击收藏夹图标进入收藏夹页面",
+      "expected": "进入收藏夹页面，显示收藏内容",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "进入常去地点设置页面",
+      "expected": "进入常去地点的设置界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "输入位置信息以设置应用位置",
+      "expected": "界面显示位置搜索输入框和键盘，用户可输入位置名称",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "点击搜索框内的文本区域",
+      "expected": "搜索框内显示输入的文本内容",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

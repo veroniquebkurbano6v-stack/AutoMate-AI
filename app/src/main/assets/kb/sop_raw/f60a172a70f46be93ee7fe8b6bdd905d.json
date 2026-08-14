@@ -1,0 +1,54 @@
+{
+  "sop_id": "f60a172a70f46be9",
+  "original_task_name": "小红书搜相机测评的视频，并播放",
+  "task_name": "小红书搜相机测评的视频，并播放",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "小红书",
+    "相机测评",
+    "视频",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，准备进入应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索图标进入搜索界面",
+      "expected": "点击搜索图标后，界面进入搜索功能页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击屏幕右上角的搜索图标",
+      "expected": "进入搜索界面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'相机测评视频'",
+      "expected": "文本输入框中显示'相机测评视频'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索栏右侧的'搜索'按钮",
+      "expected": "搜索结果页面加载完成，显示与'相机测评视频'相关的搜索结果",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击特定视频内容",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

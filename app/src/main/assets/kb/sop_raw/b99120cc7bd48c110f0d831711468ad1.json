@@ -1,0 +1,53 @@
+{
+  "sop_id": "b99120cc7bd48c11",
+  "original_task_name": "能否在优酷视频上从第5集开始播放秦时明月4？",
+  "task_name": "能否在优酷视频上从第5集开始播放特定影视？",
+  "app_name": "优酷视频",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "优酷视频",
+    "特定影视",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开优酷视频应用",
+      "expected": "优酷视频应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定影视'",
+      "expected": "文本输入框中显示'特定影视'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击剧集编号'36'以进入该集播放页面",
+      "expected": "进入特定影视的第36集播放页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击日期5号",
+      "expected": "选择5号日期",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

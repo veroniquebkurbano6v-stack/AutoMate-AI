@@ -1,0 +1,59 @@
+{
+  "sop_id": "e72cd04932126c7f",
+  "original_task_name": "高德把唐沣国际广场设置成公司地址",
+  "task_name": "高德把特定地点设置成公司地址",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "特定地点",
+    "公司地址",
+    "设置"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击顺风车服务图标",
+      "expected": "进入顺风车服务页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "设置常去地点",
+      "expected": "点击后可添加或编辑常去地点",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "添加家庭或公司地点",
+      "expected": "进入添加地点的界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'特定地点'",
+      "expected": "文本输入框中显示'特定地点'",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'地图选点'按钮，进入地图查看该位置详情",
+      "expected": "进入地图界面，显示该位置的详细地图视图",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'设为公司地址'按钮",
+      "expected": "地址信息已成功保存并显示在地图上",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

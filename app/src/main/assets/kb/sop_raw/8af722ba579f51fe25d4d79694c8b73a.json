@@ -1,0 +1,84 @@
+{
+  "sop_id": "8af722ba579f51fe",
+  "original_task_name": "高德，导航下大雁塔到回民街的驾车路线。",
+  "task_name": "高德，导航下出发地到目的地的驾车路线。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "出发地",
+    "目的地",
+    "驾车"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，可输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "进入该地点详情页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击底部导航栏的'路线'按钮",
+      "expected": "进入路线规划界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认起点位置是否为“我的位置”",
+      "expected": "界面中显示出发地为“我的位置”",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 7
+    },
+    {
+      "goal": "选择特定地点作为目的地",
+      "expected": "界面显示特定地点的详细信息",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击公交地铁标签页",
+      "expected": "进入公交地铁出行模式",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "选择驾车出行方式",
+      "expected": "界面切换至驾车模式，显示驾车路线选项",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "点击'开始导航'按钮",
+      "expected": "点击后进入导航流程，准备进行路线确认或设置操作",
+      "action_type": "click",
+      "step_order": 11
+    }
+  ]
+}

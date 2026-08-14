@@ -1,0 +1,48 @@
+{
+  "sop_id": "ff976b896041d361",
+  "original_task_name": "把QQ音乐当前播放的歌曲分享给微信联系人Mark",
+  "task_name": "把QQ音乐当前播放的歌曲分享给微信联系人",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "微信",
+    "联系人",
+    "歌曲",
+    "分享"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的QQ音乐应用图标",
+      "expected": "QQ音乐应用启动并显示其主界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击播放界面右上角的返回按钮",
+      "expected": "返回到上一级界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击分享按钮，选择微信好友分享",
+      "expected": "分享菜单弹出，提供微信好友、朋友圈、微信状态、抖音、新浪微博等分享选项",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击微信聊天列表中的联系人",
+      "expected": "界面切换至联系人的聊天详情页",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击发送按钮确认分享",
+      "expected": "确认分享对话框已关闭，返回选择一个聊天界面",
+      "action_type": "click"
+    }
+  ]
+}

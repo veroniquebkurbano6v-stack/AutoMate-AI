@@ -1,0 +1,47 @@
+{
+  "sop_id": "a974487028f55ce8",
+  "original_task_name": "我需要百度地图导航到东长安街地铁站，从这里开始。",
+  "task_name": "我需要百度地图导航到目的地，从这里开始。",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "目的地",
+    "导航",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "点击百度地图应用图标",
+      "expected": "打开百度地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'特定搜索内容'文字区域",
+      "expected": "搜索栏内容被选中，准备进行输入或修改",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "界面进入搜索结果页面，显示多个与'目的地'相关的位置选项",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认点击'开始导航'按钮以启动路线规划",
+      "expected": "点击'开始导航'按钮后，系统将开始按照选定路线进行实时导航引导",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

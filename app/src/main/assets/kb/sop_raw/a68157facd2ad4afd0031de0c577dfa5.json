@@ -1,0 +1,47 @@
+{
+  "sop_id": "a68157facd2ad4af",
+  "original_task_name": "给微信群“公司项目组”发条消息“谁有空能帮忙看看这个问题吗？”",
+  "task_name": "给微信群组发条消息“谁有空能帮忙看看这个问题吗？”",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "群组",
+    "联系人",
+    "消息"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "微信应用图标被选中，界面进入微信应用状态",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入与联系人的聊天对话",
+      "expected": "界面切换至联系人的聊天对话",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击群聊名称修改按钮",
+      "expected": "进入群聊名称修改界面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'谁有空能帮忙看看这个问题吗？'",
+      "expected": "文本输入框中显示'谁有空能帮忙看看这个问题吗？'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "发送消息",
+      "expected": "消息已成功发送到群聊",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

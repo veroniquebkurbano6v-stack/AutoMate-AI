@@ -1,0 +1,34 @@
+# 强制锁定换行符（根除 Windows + core.autocrlf=true 导致的 CRLF 污染）
+#
+# 背景：仓库中所有源文件均以 LF 存储，但 Windows 用户在 core.autocrlf=true 配置下
+# checkout 时会被强制转为 CRLF，导致 git status 报"modified"但 git diff 无内容差异。
+# 锁定 text eol 后，checkout 保持 LF 原样，不再产生"幽灵改动"。
+#
+# 规则：
+# - *.kt / *.java / *.gradle 等代码/构建文件：强制 LF（Unix 惯例，跨平台一致）
+# - *.md / *.bat / *.cmd：保留 CRLF（Markdown 在 Windows 渲染更稳，bat 必须 CRLF）
+# - 其它文本：autocrlf 自然处理
+
+# Kotlin 源码
+*.kt             text eol=lf
+# Java 源码
+*.java           text eol=lf
+# Kotlin/Java 构建脚本
+*.gradle         text eol=lf
+*.gradle.kts     text eol=lf
+gradlew          text eol=lf
+gradlew.bat      text eol=crlf
+# 属性文件
+*.properties     text eol=lf
+# 配置文件
+.gitignore       text eol=lf
+.editorconfig    text eol=lf
+# XML / JSON
+*.xml            text eol=lf
+*.json           text eol=lf
+# Windows 脚本（保持 CRLF）
+*.bat            text eol=crlf
+*.cmd            text eol=crlf
+*.ps1            text eol=crlf
+# Shell 脚本（LF）
+*.sh             text eol=lf

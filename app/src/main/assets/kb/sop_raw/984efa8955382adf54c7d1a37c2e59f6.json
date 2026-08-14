@@ -1,0 +1,41 @@
+{
+  "sop_id": "984efa8955382adf",
+  "original_task_name": "在 QQ 音乐播独上西楼",
+  "task_name": "在QQ 音乐播特定歌曲",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定歌曲",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击QQ音乐应用图标",
+      "expected": "QQ音乐应用图标被选中，进入QQ音乐应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入搜索界面以查找内容",
+      "expected": "搜索栏被激活，用户可输入关键词搜索",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索框中的文本区域",
+      "expected": "搜索框内显示的文本被选中",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "sop_id": "4c595bac9ed718e4",
+  "original_task_name": "在手机的备忘录里记录下明天下午2点要开会的事情。",
+  "task_name": "在手机的备忘录里记录下明天下午2点要开会的事情。",
+  "app_name": "备忘录",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "工具",
+  "keywords": [
+    "备忘录",
+    "待办",
+    "记录",
+    "提醒"
+  ],
+  "steps": [
+    {
+      "goal": "打开便签应用",
+      "expected": "应用图标被选中，进入便签应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击底部导航栏中的待办标签",
+      "expected": "界面切换至待办页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "添加新待办事项",
+      "expected": "界面底部出现黄色圆形添加按钮",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'明天下午两点要开会'",
+      "expected": "文本输入框中显示'明天下午两点要开会'",
+      "step_order": 4
+    },
+    {
+      "goal": "保存新建待办事项",
+      "expected": "待办列表中新增一条待办事项",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

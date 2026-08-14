@@ -1,0 +1,59 @@
+{
+  "sop_id": "29ada3b5f3c6d2e2",
+  "original_task_name": "前往B站订阅carolehuyaya的魔法食谱系列视频。",
+  "task_name": "前往B站订阅特定UP主的特定影视系列视频",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定UP主",
+    "特定影视",
+    "订阅"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的B站应用图标",
+      "expected": "应用启动并进入主界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'carolehuyaya'",
+      "expected": "搜索栏中显示'carolehuyaya'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果页面显示UP主和视频内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的UP主头像",
+      "expected": "进入该UP主的主页",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击UP主主页中的'魔法食谱'系列视频",
+      "expected": "进入该系列视频的合集页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击合集页面中的'订阅'按钮",
+      "expected": "完成订阅该系列视频",
+      "action_type": "click"
+    }
+  ]
+}

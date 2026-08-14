@@ -1,0 +1,60 @@
+{
+  "sop_id": "5f37964f75c8cdde",
+  "original_task_name": "规划回民街到大唐芙蓉园的自驾路线  ",
+  "task_name": "规划出发地到目的地的自驾路线",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "出发地",
+    "目的地",
+    "自驾"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，应用界面即将加载",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择目的地为指定入口",
+      "expected": "目的地选择界面已更新，显示指定入口作为可选目的地",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "选择搜索结果中的'出发地'地点",
+      "expected": "界面显示已选择'出发地'作为出发地",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

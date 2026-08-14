@@ -1,0 +1,48 @@
+{
+  "sop_id": "fdbc0ba216c90c03",
+  "original_task_name": "查看微信好友Charles发给我的地址，导航过去",
+  "task_name": "查看微信好友联系人发给我的地址，导航过去",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "微信",
+    "高德地图",
+    "联系人",
+    "目的地",
+    "导航"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，界面进入微信应用状态",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击微信聊天列表中的联系人对话条目",
+      "expected": "进入联系人的聊天对话界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击操作以查看目的地位置详情",
+      "expected": "查看目的地位置的详细信息",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击'去高德导航'按钮开始导航设置",
+      "expected": "进入导航界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击'开始导航'按钮",
+      "expected": "进入导航界面，开始引导用户进行路线选择和导航操作",
+      "action_type": "click"
+    }
+  ]
+}

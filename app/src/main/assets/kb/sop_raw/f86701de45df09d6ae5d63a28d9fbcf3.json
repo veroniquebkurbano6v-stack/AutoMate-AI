@@ -1,0 +1,66 @@
+{
+  "sop_id": "f86701de45df09d6",
+  "original_task_name": "规划西安灞桥生态湿地公园到昆明石林的自驾路线  ",
+  "task_name": "规划从出发地到目的地的自驾路线",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "自驾路线",
+    "出发地",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'特定地点'文字区域",
+      "expected": "搜索栏内容被选中，准备输入新的搜索词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击目的地风景区下的停车场选项",
+      "expected": "进入停车场信息页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'路线'按钮以进入路线规划界面",
+      "expected": "进入路线规划页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认起点位置是否为“我的位置”",
+      "expected": "确认起点已设置为“我的位置”",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 7
+    },
+    {
+      "goal": "点击地图选按钮进入地图选择界面",
+      "expected": "进入地图选择界面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

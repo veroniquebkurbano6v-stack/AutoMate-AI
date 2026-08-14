@@ -1,0 +1,53 @@
+{
+  "sop_id": "5569047d509faa4d",
+  "original_task_name": "给微信群“朋友圈子”发条消息，内容是“大家今晚聚个餐吧，好久没见了！”",
+  "task_name": "给微信群组发条消息，内容是“大家今晚聚个餐吧，好久没见了！”",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "群组",
+    "消息",
+    "聚餐"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入群聊界面",
+      "expected": "进入群聊详情页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "进入聊天输入界面",
+      "expected": "底部输入区域处于可输入状态",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'大家今晚聚个餐吧，好久没见了！'",
+      "expected": "文本输入框中显示'大家今晚聚个餐吧，好久没见了！'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "发送消息",
+      "expected": "消息已成功发送到朋友圈",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "发送消息",
+      "expected": "消息已成功发送到朋友圈",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  PalmAgent 主界面（对话页）布局
+  - 参考 palmagent-ui/index.html 的设计语言进行视觉优化
+  - 保留所有原有 ID 与逻辑结构（btnSettings/btnCancelTask/btnViewLogs/recyclerChat/etInput/btnSend/chipModeSwitch 等）
+  - 新增：Logo + 副标题、欢迎语卡片、胶囊式输入栏、麦克风按钮（不绑定事件，仅展示）
+  - 新增的日志图标按钮（btnLogIcon）不绑定事件，仅作视觉占位
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <!-- ============ 顶部应用栏 ============ -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:minHeight="60dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <!-- 左侧：Logo + 标题 + 副标题 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Logo 圆角方块（青色渐变） -->
+            <FrameLayout
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_send_button_circle"
+                android:clickable="false">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_app_logo" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="#1A1A1A"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="本地 Agent · 已就绪"
+                    android:textColor="#9CA3AF"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 右侧：结束任务 + 日志文字按钮 + 设置 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancelTask"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#E53935"
+                android:minWidth="0dp"
+                android:paddingHorizontal="12dp"
+                android:text="⏹ 结束"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <!-- 【改动】日志文字按钮：从原权限管理栏移到顶部栏右上角，改为 TextView 文字按钮 -->
+
+            <TextView
+                android:id="@+id/btnLogIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_icon_button"
+                android:gravity="center"
+                android:paddingHorizontal="12dp"
+                android:text="日志"
+                android:textColor="#333333"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_icon_button"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="⚙"
+                android:textColor="#6B7280"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- ============ 欢迎语卡片 ============ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_welcome_banner"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你好 👋"
+            android:textColor="#0F3460"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:lineSpacingExtra="2dp"
+            android:text="告诉我你想在手机上完成什么，我来替你操作。"
+            android:textColor="#4B5563"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- 【改动】任务进度卡片：从原权限管理容器内移出，独立放置，默认隐藏仅任务运行时显示 -->
+
+    <LinearLayout
+        android:id="@+id/cardTaskProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_blockage_panel"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressTask"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="10dp"
+                android:indeterminateTint="#4CAF50" />
+
+            <TextView
+                android:id="@+id/tvTaskRound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:textColor="#4CAF50"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvTaskText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="#1A1A1A"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ============ 聊天消息区（独立滚动） ============ -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:padding="@dimen/spacing_md" />
+
+    <!-- ============ 底部输入栏（胶囊式） ============ -->
+    <LinearLayout
+        android:id="@+id/bottomInputBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- 【改动】模式切换：从 ToggleButton 改为药丸+圆点指示器（与悬浮窗同设计），保留 ID chipModeSwitch -->
+
+        <LinearLayout
+            android:id="@+id/chipModeSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="6dp">
+
+            <View
+                android:id="@+id/modeDot"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/bg_dot_cyan" />
+
+            <TextView
+                android:id="@+id/tvModeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="简单"
+                android:textColor="#555555"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 胶囊式输入容器：仅输入框（支持多行换行，最多 4 行自适应高度） -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chat_input_field"
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <!-- 【改动】输入框修复：gravity=top|start 防止提示文字遮挡光标，textMultiLine+maxLines=4 支持长文本自动换行 -->
+            <EditText
+                android:id="@+id/etInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="top|start"
+                android:hint="描述你的任务..."
+                android:inputType="textMultiLine"
+                android:maxLines="4"
+                android:minHeight="36dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp"
+                android:textColor="#333333"
+                android:textColorHint="#BBBBBB"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- 发送按钮：圆形 + 青色渐变 + 纸飞机图标 -->
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_send_button_circle"
+            android:drawableStart="@drawable/ic_send_plane"
+            android:drawableTint="@android:color/white"
+            android:minWidth="0dp"
+            android:padding="0dp"
+            android:paddingStart="10dp"
+            android:text="" />
+    </LinearLayout>
+</LinearLayout>

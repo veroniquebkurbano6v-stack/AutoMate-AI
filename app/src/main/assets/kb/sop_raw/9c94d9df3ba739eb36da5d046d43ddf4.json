@@ -1,0 +1,83 @@
+{
+  "sop_id": "9c94d9df3ba739eb",
+  "original_task_name": "点评上搜锦里火锅MOMOPARK店，导航过去",
+  "task_name": "点评上搜特定餐厅，导航过去",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定餐厅",
+    "导航",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击大众点评应用图标以打开应用",
+      "expected": "应用启动并进入其主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定餐厅'",
+      "expected": "文本输入框中显示'特定餐厅'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索结果页面加载完成，显示与\"特定餐厅\"相关的店铺列表",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序按钮展开排序选项",
+      "expected": "展开排序菜单，显示不同排序方式",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "进入优惠信息页面",
+      "expected": "查看餐厅的优惠活动详情",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'开始导航'按钮",
+      "expected": "点击后进入导航界面，开始引导用户前往目的地",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择地图应用",
+      "expected": "弹出窗口中显示地图应用列表，用户可选择腾讯地图或百度地图",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "选择高德地图作为导航应用",
+      "expected": "界面弹出选择地图应用的对话框，用户可点击高德地图选项进行选择",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "允许大众点评启动高德地图应用",
+      "expected": "高德地图应用权限请求弹窗关闭，返回主界面",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "点击'开始导航'按钮",
+      "expected": "界面进入导航模式，显示实时路线和预计到达时间",
+      "action_type": "click",
+      "step_order": 11
+    }
+  ]
+}

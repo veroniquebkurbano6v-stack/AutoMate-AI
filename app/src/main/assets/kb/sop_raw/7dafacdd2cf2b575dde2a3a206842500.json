@@ -1,0 +1,60 @@
+{
+  "sop_id": "7dafacdd2cf2b575",
+  "original_task_name": "给微信好友Zoe的第2条朋友圈点赞",
+  "task_name": "给微信好友联系人的第2条朋友圈点赞",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "朋友圈",
+    "联系人",
+    "点赞",
+    "特定动态"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用启动界面出现",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入通讯录页面",
+      "expected": "微信应用的通讯录界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "选择通讯录中的联系人",
+      "expected": "联系人的详细信息页面打开",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "查看该用户的朋友圈动态",
+      "expected": "进入朋友圈页面，查看该用户发布的动态",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击2022年10月26日发布的'特定动态'",
+      "expected": "进入该动态的详细内容页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击消息内容区域以查看详细信息",
+      "expected": "进入消息详情页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击点赞按钮",
+      "expected": "点赞按钮状态变为已点亮",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

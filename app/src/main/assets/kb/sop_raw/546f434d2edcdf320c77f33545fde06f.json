@@ -1,0 +1,52 @@
+{
+  "sop_id": "546f434d2edcdf32",
+  "original_task_name": "百度地图导航服务：从当前位置到西长安街。",
+  "task_name": "百度地图导航服务：从当前位置到目的地。",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "导航",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "打开百度地图应用",
+      "expected": "百度地图应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的位置文本区域",
+      "expected": "搜索栏内容被选中，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认目的地位置详情",
+      "expected": "查看目的地的详细信息和周边设施",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击导航按钮进入路线规划界面",
+      "expected": "进入路线规划页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

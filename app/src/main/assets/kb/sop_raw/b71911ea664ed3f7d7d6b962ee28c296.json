@@ -1,0 +1,47 @@
+{
+  "sop_id": "b71911ea664ed3f7",
+  "original_task_name": "给微信群“异地恋交流”发条消息“请大家注意，明天有重要事项要处理。”",
+  "task_name": "给微信群组发条消息“请大家注意，明天有重要事项要处理。”",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "群组",
+    "消息",
+    "发送"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "微信应用图标被选中，界面进入微信应用状态",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部区域，进入聊天列表或搜索界面",
+      "expected": "微信顶部区域被选中，显示红色箭头指示的点击位置",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "进入聊天输入界面",
+      "expected": "底部输入区域变为可输入状态",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'请大家注意，明天有重要事项要处理'",
+      "expected": "文本输入框中显示'请大家注意，明天有重要事项要处理'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "发送消息",
+      "expected": "消息已成功发送",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

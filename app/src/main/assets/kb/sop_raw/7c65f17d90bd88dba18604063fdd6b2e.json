@@ -1,0 +1,66 @@
+{
+  "sop_id": "7c65f17d90bd88db",
+  "original_task_name": "高德请导航到最近的咖啡店。",
+  "task_name": "高德请导航到最近的咖啡店。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "咖啡店",
+    "目的地",
+    "距离优先"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，应用启动并显示其界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索框以激活输入功能",
+      "expected": "搜索框获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'咖啡店'",
+      "expected": "文本输入框中显示'咖啡店'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面加载完成，显示咖啡店相关搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序选项以查看不同排序方式",
+      "expected": "进入排序选择界面，可选择不同排序条件",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择推荐排序中的距离优先选项",
+      "expected": "筛选出距离用户最近的咖啡店",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击特定店铺的店铺条目",
+      "expected": "进入该店铺详情页",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击底部导航栏中的'导航'按钮",
+      "expected": "进入导航功能界面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

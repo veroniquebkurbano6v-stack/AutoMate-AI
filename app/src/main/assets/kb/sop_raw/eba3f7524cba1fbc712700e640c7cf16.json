@@ -1,0 +1,35 @@
+{
+  "sop_id": "eba3f7524cba1fbc",
+  "original_task_name": "播放微信群“学习小组精进群”的最新一条语音消息",
+  "task_name": "播放微信群组的最新一条语音消息",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "群组",
+    "语音消息",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "微信应用图标被选中，进入微信应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入聊天列表界面",
+      "expected": "操作后界面状态为微信聊天列表页面，显示了多个聊天对象和群聊，包括群组等条目。",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击视频播放区域以进入视频播放界面",
+      "expected": "进入视频播放界面",
+      "action_type": "click",
+      "step_order": 3
+    }
+  ]
+}

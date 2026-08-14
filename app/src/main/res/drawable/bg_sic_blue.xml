@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置页菜单项图标背景：蓝色圆角方块 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#3B82F6" />
+    <corners android:radius="8dp" />
+</shape>

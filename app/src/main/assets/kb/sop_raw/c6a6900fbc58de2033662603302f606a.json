@@ -1,0 +1,48 @@
+{
+  "sop_id": "c6a6900fbc58de20",
+  "original_task_name": "把网易云当前播放的歌曲分享给微信联系人Mark",
+  "task_name": "把网易云当前播放的歌曲分享给微信联系人",
+  "app_name": "网易云音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "网易云音乐",
+    "微信",
+    "联系人",
+    "分享",
+    "歌曲"
+  ],
+  "steps": [
+    {
+      "goal": "打开网易云音乐应用",
+      "expected": "应用图标被选中，进入网易云音乐主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击屏幕右上角的刷新按钮",
+      "expected": "界面状态未发生明显变化",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击微信分享选项",
+      "expected": "分享界面停留在微信分享选项页面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击最近聊天中的联系人头像以选择该聊天",
+      "expected": "界面切换至联系人的聊天详情页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认分享给联系人的对话框操作",
+      "expected": "分享对话框关闭，返回选择一个聊天页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

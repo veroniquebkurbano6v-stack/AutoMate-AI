@@ -1,0 +1,47 @@
+{
+  "sop_id": "94e2db17a948b2e4",
+  "original_task_name": "与微信好友黄军共享位置",
+  "task_name": "与微信好友联系人共享位置",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "共享位置",
+    "好友"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "微信应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部的搜索图标",
+      "expected": "搜索界面弹出",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击底部右侧的加号按钮",
+      "expected": "界面状态未发生明显变化",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择位置功能进行添加",
+      "expected": "界面显示位置功能已激活，可进行位置信息添加",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择发送位置选项",
+      "expected": "位置发送菜单已弹出",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

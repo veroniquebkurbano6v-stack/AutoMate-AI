@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">PalmAgent</string>
+    <string name="accessibility_service_description">GUI 智能助手需要使用无障碍服务来分析屏幕内容和执行自动化操作，以帮助您完成手机操作任务。</string>
+
+    <!-- 引导页 -->
+    <string name="guide_skip">跳过</string>
+    <string name="guide_start">开始使用</string>
+    <string name="guide_page_title">欢迎使用 AutoMate AI</string>
+    <string name="guide_page_subtitle">使用前请开启以下必要权限</string>
+    <string name="guide_title_accessibility">无障碍服务</string>
+    <string name="guide_desc_accessibility">用于读取屏幕内容和执行自动化操作</string>
+    <string name="guide_title_notification">常驻通知</string>
+    <string name="guide_desc_notification">保持后台运行，防止被系统清理</string>
+    <string name="guide_title_overlay">悬浮窗</string>
+    <string name="guide_desc_overlay">在其他应用上方显示操作界面</string>
+    <string name="guide_title_battery">电池白名单</string>
+    <string name="guide_desc_battery">关闭电池优化，防止后台被限制</string>
+    <string name="guide_title_storage">文件访问</string>
+    <string name="guide_desc_storage">用于读取和保存应用数据</string>
+    <string name="guide_title_location">位置信息</string>
+    <string name="guide_desc_location">高德地图 MCP 需要获取设备位置以提供周边服务</string>
+
+    <!-- 主页 -->
+    <string name="home_card_accessibility_title">无障碍服务</string>
+    <string name="home_card_accessibility_subtitle">需要开启以读取屏幕和执行操作</string>
+    <string name="home_card_notification_title">常驻通知</string>
+    <string name="home_card_notification_subtitle">保持后台运行，防止系统回收</string>
+    <string name="home_card_system_window_title">悬浮窗权限</string>
+    <string name="home_card_system_window_subtitle">在其他应用上方显示操作界面</string>
+    <string name="home_card_battery_title">电池优化</string>
+    <string name="home_card_battery_subtitle">关闭电池优化以保持后台运行</string>
+    <string name="home_card_storage_title">文件访问</string>
+    <string name="home_card_storage_subtitle">读取和保存应用数据</string>
+    <string name="home_cancel_task">结束当前会话</string>
+    <string name="home_cancel_task_success">会话已结束</string>
+    <string name="home_no_task_running">当前没有运行中的任务</string>
+    <string name="home_view_logs">查看模型日志</string>
+    <string name="home_enable_accessibility">请在列表中找到 AutoMate AI 并开启无障碍服务</string>
+    <string name="home_accessibility_enabled">无障碍服务已开启</string>
+    <string name="home_enable_storage">请开启「所有文件访问」权限</string>
+    <string name="home_storage_enabled">文件访问权限已开启</string>
+    <string name="home_need_notification_permission">需要通知权限才能保持后台运行</string>
+    <string name="home_notification_enabled">常驻通知已开启</string>
+    <string name="home_overlay_enabled">悬浮窗权限已开启</string>
+    <string name="home_battery_ignored">已在电池白名单中</string>
+
+    <!-- 设置 -->
+    <string name="settings_title">设置</string>
+    <string name="settings_group_channel">通道配置</string>
+    <string name="settings_group_model">模型配置</string>
+    <string name="menu_wechat">微信</string>
+    <string name="menu_llm_config">大模型配置</string>
+
+    <!-- 通道消息 -->
+    <string name="channel_msg_no_accessibility">无法执行：无障碍服务未开启，请在系统设置中开启 AutoMate AI 无障碍服务</string>
+    <string name="channel_msg_task_in_progress">请等待当前任务完成后再发送新任务</string>
+    <string name="channel_msg_task_cancelled">任务已取消</string>
+    <string name="channel_msg_task_error">任务执行出错：%s</string>
+    <string name="channel_msg_service_not_ready">服务未就绪，请先在应用中配置 LLM</string>
+
+    <!-- 无障碍操作描述 -->
+    <string name="notification_channel_name">AutoMate AI 后台服务</string>
+    <string name="notification_channel_description">保持 AutoMate AI 在后台运行</string>
+    <string name="notification_content_title">AutoMate AI 运行中</string>
+    <string name="notification_content_text">正在监听任务…</string>
+
+    <!-- 悬浮窗 -->
+    <string name="blockage_title">AI 操作受阻</string>
+    <string name="severity_info">ℹ 提示</string>
+    <string name="severity_warning">⚠ 警告</string>
+    <string name="severity_error">✗ 错误</string>
+    <string name="step_number_format">%d</string>
+    <string name="floating_bubble_label">AI</string>
+
+    <!-- 微信通道 -->
+    <string name="channel_wechat">微信</string>
+    <string name="channel_wechat_desc">通过 WeChat Bot 接收和执行任务</string>
+    <string name="channel_wechat_login">扫码登录</string>
+    <string name="channel_wechat_logout">退出登录</string>
+    <string name="channel_wechat_connected">已连接</string>
+    <string name="channel_wechat_disconnected">未连接</string>
+    <string name="channel_wechat_processing">处理中…</string>
+</resources>

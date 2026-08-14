@@ -1,0 +1,66 @@
+{
+  "sop_id": "14ce105bc85d7e01",
+  "original_task_name": "酷狗音乐搜短发分享到朋友圈",
+  "task_name": "酷狗音乐搜特定歌曲分享到朋友圈",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "酷狗音乐",
+    "特定歌曲",
+    "分享",
+    "朋友圈",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的酷狗音乐应用图标",
+      "expected": "应用图标被选中，进入酷狗音乐界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'短发'",
+      "expected": "搜索栏中显示'短发'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果页面加载",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的歌曲条目",
+      "expected": "进入歌曲详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击歌曲详情页面中的分享按钮",
+      "expected": "分享界面显示多个社交平台选项",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击分享界面中的微信朋友圈选项",
+      "expected": "进入微信分享界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 8,
+      "goal": "点击微信朋友圈中的发布按钮",
+      "expected": "歌曲分享到朋友圈",
+      "action_type": "click"
+    }
+  ]
+}

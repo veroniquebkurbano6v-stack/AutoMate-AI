@@ -1,0 +1,53 @@
+{
+  "sop_id": "8694bc3eb09a95d7",
+  "original_task_name": "在B站搜索张惠妹的音乐，并播放",
+  "task_name": "在B站搜索联系人的音乐，并播放",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "联系人",
+    "音乐",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开bilibili应用",
+      "expected": "bilibili应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的文字区域",
+      "expected": "搜索栏内容被选中，准备进行新的搜索输入",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看联系人的搜索结果",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击联系人的歌曲合集视频条目",
+      "expected": "进入该视频播放页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击视频播放按钮开始播放视频",
+      "expected": "视频开始播放",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sop_id": "eb268a972ccda1c0",
+  "original_task_name": "导航到华清宫的快递点",
+  "task_name": "导航到目的地的快递点",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "快递点"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'目的地的快递点'",
+      "expected": "文本输入框中显示'目的地的快递点'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击目的地的店铺条目",
+      "expected": "进入该店铺的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击导航按钮进入路线规划界面",
+      "expected": "进入路线规划页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

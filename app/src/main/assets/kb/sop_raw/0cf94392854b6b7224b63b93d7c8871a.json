@@ -1,0 +1,54 @@
+{
+  "sop_id": "0cf94392854b6b72",
+  "original_task_name": "高德把浐灞国家湿地公园加入收藏夹",
+  "task_name": "高德把目的地加入收藏夹",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "收藏",
+    "地图",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并加载",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，可输入地点信息",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面显示",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的目的地条目",
+      "expected": "进入该地点的详细信息页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击详情页中的收藏按钮，将地点添加到收藏夹",
+      "expected": "收藏按钮状态变为已收藏",
+      "action_type": "click"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sop_id": "61ac6b5b70bd1778",
+  "original_task_name": "打开百度地图，设定从当前位置到陕西师范大学附属中学的导航。",
+  "task_name": "打开百度地图，设定从当前位置到目的地的导航。",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "导航",
+    "目的地",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "打开百度地图应用",
+      "expected": "百度地图应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "界面显示该地点详细信息，包括地址、评分、评论数及交通方式和距离",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'目的地'的'到这去'按钮",
+      "expected": "地图中心点移动至该地点位置",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'开始导航'按钮启动路线导航",
+      "expected": "导航系统开始运行，显示实时路线指引",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

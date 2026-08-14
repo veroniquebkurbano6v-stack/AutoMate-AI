@@ -1,0 +1,54 @@
+{
+  "sop_id": "13b0551098971a91",
+  "original_task_name": "高德地图找附近的免费停车场导航过去",
+  "task_name": "高德地图找附近的免费停车场导航过去",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "停车场",
+    "导航",
+    "目的地",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，界面进入高德地图应用状态",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "选择驾车出行模式",
+      "expected": "界面显示驾车选项已被选中",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'输入终点'输入框",
+      "expected": "激活输入框，准备输入目的地",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'免费的停车场'",
+      "expected": "文本输入框中显示'免费的停车场'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "选择列表中的第一个停车地点",
+      "expected": "界面显示已选择第一个停车地点",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认导航开始按钮状态",
+      "expected": "点击后导航功能已激活，界面底部显示蓝色的“开始导航”按钮",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

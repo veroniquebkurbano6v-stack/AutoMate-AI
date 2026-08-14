@@ -1,0 +1,71 @@
+{
+  "sop_id": "af3ec5c91f6bd1cd",
+  "original_task_name": "创建一个面对面群，群密码6470",
+  "task_name": "创建一个面对面群，输入群密码",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "面对面群",
+    "群密码",
+    "建群"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信App",
+      "expected": "微信App启动并显示主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击右上角的加号按钮",
+      "expected": "进入添加联系人或新建聊天界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击右上角的加号按钮",
+      "expected": "界面弹出包含发起群聊、添加朋友、扫一扫和收付款的菜单",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择“面对面建群”功能进行群聊创建",
+      "expected": "进入群聊创建界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "输入群密码的第一位数字以继续验证流程",
+      "expected": "界面显示已输入群密码的第一位数字，等待用户输入下一位数字",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "输入群密码的第二位数字以继续创建群聊",
+      "expected": "数字输入序列累积群密码的前两位数字",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "输入群密码的第三位数字以完成建群验证码",
+      "expected": "界面显示群密码的前三位数字，输入框被点亮",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "在数字键盘上输入群密码的最后一位数字",
+      "expected": "数字键盘显示完整的群密码",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "进入群聊界面",
+      "expected": "进入群聊",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "sop_id": "b91e595d9af0ffab",
+  "original_task_name": "打开qq音乐，能否播放琅琊榜中的一首插曲给我听？",
+  "task_name": "打开qq音乐，能否播放特定影视中的一首插曲给我听？",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定影视",
+    "特定歌曲",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用启动并显示其主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'乐馆'标签进入乐馆页面",
+      "expected": "导航至乐馆页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定影视插曲'",
+      "expected": "文本输入框中显示'特定影视插曲'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看“特定影视插曲”的相关结果",
+      "expected": "搜索界面显示“特定影视插曲”的搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击歌曲《特定歌曲》的标题区域",
+      "expected": "进入歌曲详情页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "sop_id": "c8dead7808439964",
+  "original_task_name": "通过高德地图查找秦岭终南山并启动导航",
+  "task_name": "通过高德地图查找目的地并启动导航",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "查找",
+    "目的地",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏中的'点击'位置，以激活搜索输入框",
+      "expected": "搜索栏被激活，显示红色箭头指示的点击位置",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击底部导航栏中的'导航'按钮",
+      "expected": "进入导航功能界面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

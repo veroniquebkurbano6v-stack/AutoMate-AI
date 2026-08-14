@@ -1,0 +1,41 @@
+{
+  "sop_id": "a0c0505dd247d54b",
+  "original_task_name": "搜西安南门附近的汽车维修店",
+  "task_name": "搜目的地附近的汽车维修店",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "汽车维修",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击地图界面中的'建'按钮",
+      "expected": "进入地图编辑或添加地点功能",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地附近的汽车维修点'",
+      "expected": "文本输入框中显示'目的地附近的汽车维修点'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

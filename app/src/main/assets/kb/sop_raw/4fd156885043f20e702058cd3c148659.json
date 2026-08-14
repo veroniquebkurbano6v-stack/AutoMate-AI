@@ -1,0 +1,59 @@
+{
+  "sop_id": "4fd156885043f20e",
+  "original_task_name": "在京东中搜索SK-II的神仙水加入购物车",
+  "task_name": "在京东中搜索特定商品加入购物车",
+  "app_name": "京东",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "购物",
+  "keywords": [
+    "京东",
+    "特定商品",
+    "搜索",
+    "购物车"
+  ],
+  "steps": [
+    {
+      "goal": "点击京东应用图标以打开应用",
+      "expected": "应用启动界面加载完成",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'特定商品'文字区域",
+      "expected": "搜索栏处于可编辑状态，用户可输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定商品'",
+      "expected": "文本输入框中显示'特定商品'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看相关结果",
+      "expected": "搜索结果列表出现",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定商品的商品图片区域",
+      "expected": "进入商品详情页",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "将商品添加到购物车",
+      "expected": "操作后界面状态：商品信息和价格信息显示在页面上，底部有加入购物车按钮，点击后可将商品加入购物车",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "确认商品选择并进入结算流程",
+      "expected": "操作后界面进入结算页面",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

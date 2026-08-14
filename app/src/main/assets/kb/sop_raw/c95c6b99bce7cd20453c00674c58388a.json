@@ -1,0 +1,53 @@
+{
+  "sop_id": "c95c6b99bce7cd20",
+  "original_task_name": "把我的当前位置发给微信好友李华",
+  "task_name": "把我的当前位置发给微信联系人",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "位置",
+    "发送"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，进入微信主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部右上角的搜索图标",
+      "expected": "搜索界面弹出",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击底部右下角的加号按钮",
+      "expected": "底部右下角的加号按钮被激活，显示为红色圆圈，旁边有“点击”文字提示",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "添加位置信息到聊天消息",
+      "expected": "操作后界面状态：在聊天界面底部的发送按钮上方，出现一个带有位置图标的按钮，点击该按钮可将当前位置添加到聊天消息中。",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认位置发送选项",
+      "expected": "弹出菜单显示两个选项：发送位置和共享实时位置",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认已选择的地点并提交",
+      "expected": "界面显示已选择的地点信息",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

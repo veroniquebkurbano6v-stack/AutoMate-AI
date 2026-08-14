@@ -1,0 +1,54 @@
+{
+  "sop_id": "7253757b1dc4c6ab",
+  "original_task_name": "把QQ音乐当前播放的歌曲分享给微信联系人赵芳",
+  "task_name": "把QQ音乐当前播放的歌曲分享给微信联系人",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "QQ音乐",
+    "微信",
+    "歌曲",
+    "分享",
+    "联系人"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用启动并显示其界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击屏幕右上角的返回按钮",
+      "expected": "返回到上一级界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "选择微信好友进行分享",
+      "expected": "分享菜单界面保持不变，微信好友选项被选中",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "确认微信作为分享目标应用",
+      "expected": "确认当前分享流程已定位至微信应用",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择聊天对象",
+      "expected": "选择'群组'作为聊天对象",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认分享当前内容给联系人",
+      "expected": "分享对话框关闭，返回选择一个聊天页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

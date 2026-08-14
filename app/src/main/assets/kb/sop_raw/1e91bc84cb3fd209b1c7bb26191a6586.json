@@ -1,0 +1,35 @@
+{
+  "sop_id": "1e91bc84cb3fd209",
+  "original_task_name": "播放微信好友Ava的最新一条语音消息",
+  "task_name": "播放微信联系人的最新一条语音消息",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "语音",
+    "消息"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，准备进入应用界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击联系人列表中的联系人头像",
+      "expected": "打开联系人的聊天对话",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击聊天界面中的最新语音消息",
+      "expected": "语音消息开始播放",
+      "action_type": "click"
+    }
+  ]
+}

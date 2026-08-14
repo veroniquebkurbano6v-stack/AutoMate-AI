@@ -1,0 +1,47 @@
+{
+  "sop_id": "eb4bad9072cdfba2",
+  "original_task_name": "在哔哩哔哩看浑元Rysn的最新视频",
+  "task_name": "在哔哩哔哩看联系人的最新视频",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "联系人",
+    "最新视频",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开哔哩哔哩App",
+      "expected": "屏幕显示哔哩哔哩App的主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看与“联系人”相关的搜索结果",
+      "expected": "搜索结果列表显示与“联系人”相关的搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击联系人的头像进入个人主页",
+      "expected": "进入联系人的个人主页",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "sop_id": "cd7136c12606b5e1",
+  "original_task_name": "小红书搜居家健身的视频，播放并分享给微信好友吴敏",
+  "task_name": "小红书搜特定视频，播放并分享给微信联系人",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "小红书",
+    "微信",
+    "特定视频",
+    "播放",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击屏幕右上角的搜索图标",
+      "expected": "进入搜索界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定视频'",
+      "expected": "文本输入框中显示'特定视频'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索框右侧的搜索按钮被激活，界面进入搜索状态",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定视频缩略图进入详情页",
+      "expected": "进入该特定视频的详细播放页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击右上角的分享图标",
+      "expected": "分享当前视频",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择微信好友分享选项",
+      "expected": "分享菜单中微信好友选项被选中",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择最近聊天中的联系人进行操作",
+      "expected": "进入联系人的聊天界面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "确认分享给联系人的操作",
+      "expected": "分享对话框关闭，返回选择一个聊天页面",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

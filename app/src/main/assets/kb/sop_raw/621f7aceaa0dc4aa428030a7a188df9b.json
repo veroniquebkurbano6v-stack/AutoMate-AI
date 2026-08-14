@@ -1,0 +1,41 @@
+{
+  "sop_id": "621f7aceaa0dc4aa",
+  "original_task_name": "记录一个重要的会议纪要，把今天的下午三点到四点的重要会议内容整理好，存入备忘录中。",
+  "task_name": "记录一个重要的会议纪要，把今天的下午三点到四点的重要会议内容整理好，存入备忘录中。",
+  "app_name": "便签",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "工具",
+  "keywords": [
+    "便签",
+    "备忘录",
+    "会议纪要",
+    "记录"
+  ],
+  "steps": [
+    {
+      "goal": "点击便签应用图标以打开应用",
+      "expected": "打开便签应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击底部右下角带有加号的圆形按钮",
+      "expected": "进入新建笔记界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'重要的会议纪要，今天的下午三点到四点的重要会议内容整理好，存入备忘录中。'",
+      "expected": "文本输入框中显示'重要的会议纪要，今天的下午三点到四点的重要会议内容整理好，存入备忘录中。'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "确认操作后界面状态",
+      "expected": "操作后界面状态",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

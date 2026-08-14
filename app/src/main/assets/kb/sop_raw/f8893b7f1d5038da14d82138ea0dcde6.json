@@ -1,0 +1,54 @@
+{
+  "sop_id": "f8893b7f1d5038da",
+  "original_task_name": "打开微信，打开与韩磊的聊天，点击他发我的导航链接，并导航过去。",
+  "task_name": "打开微信，打开与联系人的聊天，点击他发我的导航链接，并导航过去。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "微信",
+    "高德地图",
+    "联系人",
+    "导航",
+    "聊天"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备进入应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部的搜索图标",
+      "expected": "搜索图标被激活，界面进入搜索状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击高德地图中的路线详情按钮",
+      "expected": "进入路线规划详情页面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "确认路线规划详情并开始导航",
+      "expected": "点击'跟走此路线'按钮后，系统将开始按照规划好的路线进行实时导航",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认高德地图应用权限请求，允许其在离开微信前继续运行",
+      "expected": "弹窗中“允许”按钮被激活，用户点击后高德地图应用将启动并接管当前界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击底部蓝色的“开始导航”按钮",
+      "expected": "导航开始运行，屏幕显示路线信息和实时导航指引",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "sop_id": "a1944f1462821f43",
+  "original_task_name": "在小红书上搜索巴黎的旅行攻略，然后把看到的第五篇笔记收藏起来。",
+  "task_name": "在小红书上搜索目的地的旅行攻略，然后把看到的第五篇笔记收藏起来。",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "生活服务",
+  "keywords": [
+    "小红书",
+    "旅行攻略",
+    "目的地",
+    "收藏"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击屏幕右上角的搜索图标",
+      "expected": "进入搜索界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地旅游攻略'",
+      "expected": "文本输入框中显示'目的地旅游攻略'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作",
+      "expected": "搜索结果页面加载完成",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击目的地旅游攻略内容卡片",
+      "expected": "进入该旅游攻略详情页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击目的地自由行City walk路线卡片",
+      "expected": "进入详细路线规划页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击收藏按钮以保存该内容",
+      "expected": "收藏按钮状态变为已收藏",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

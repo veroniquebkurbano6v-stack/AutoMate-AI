@@ -1,0 +1,65 @@
+{
+  "sop_id": "c5b53690d49e421d",
+  "original_task_name": "从当前位置使用高德地图导航到最近的建筑事务所",
+  "task_name": "从当前位置使用高德地图导航到最近的建筑事务所",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "建筑事务所",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'建筑事务所'",
+      "expected": "文本输入框中显示'建筑事务所'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序选项以查看排序方式",
+      "expected": "进入排序设置界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择推荐排序作为筛选条件",
+      "expected": "筛选出按推荐程度排序的建筑事务所列表",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击特定公司条目以查看详细信息",
+      "expected": "进入该公司的详细信息页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击底部导航栏中的'导航'按钮",
+      "expected": "进入导航功能界面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

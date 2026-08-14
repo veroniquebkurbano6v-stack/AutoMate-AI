@@ -1,0 +1,60 @@
+{
+  "sop_id": "afcc3ed62c5717f1",
+  "original_task_name": "QQ音乐播放阿杜的“坚持到底”专辑中的第3首歌",
+  "task_name": "QQ音乐播放联系人的特定专辑中的第3首歌",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "联系人",
+    "特定专辑",
+    "特定歌曲",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，进入QQ音乐应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击顶部的'跳过'按钮",
+      "expected": "关闭推广弹窗，返回主界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'联系人 特定专辑'",
+      "expected": "文本输入框中显示'联系人 特定专辑'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索栏中的'联系人 特定专辑'文字区域",
+      "expected": "搜索栏内容被选中，准备进行编辑或删除操作",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击专辑《特定专辑》进入详情页",
+      "expected": "进入专辑《特定专辑》的详情页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击歌曲《特定歌曲》开始播放",
+      "expected": "歌曲《特定歌曲》开始播放",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

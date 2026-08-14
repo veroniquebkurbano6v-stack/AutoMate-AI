@@ -1,0 +1,59 @@
+{
+  "sop_id": "51af04b4e33d643f",
+  "original_task_name": "请通过高德导航确认从当前位置到兴庆宫公园的驾车路线。",
+  "task_name": "请通过高德导航确认从当前位置到目的地的驾车路线。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "驾车路线"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'驾车'按钮进入导航设置界面",
+      "expected": "进入导航设置界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击起点输入框以设置出发地点",
+      "expected": "界面进入输入终点的编辑状态",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "界面显示'目的地'的详细信息，包括地址、距离等",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择目的地为特定目的地，点击'去接送'按钮确认选择",
+      "expected": "界面显示目的地选择确认弹窗，包含多个可选的特定目的地入口，用户可点击'去接送'按钮确认目的地",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "确认导航开始按钮功能",
+      "expected": "点击'开始导航'按钮后，系统将启动路线规划并开始实时导航",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

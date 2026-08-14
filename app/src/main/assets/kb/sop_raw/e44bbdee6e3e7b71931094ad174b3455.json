@@ -1,0 +1,60 @@
+{
+  "sop_id": "e44bbdee6e3e7b71",
+  "original_task_name": "规划华清池到钟楼的自驾路线  ",
+  "task_name": "规划出发地到目的地的自驾路线",
+  "app_name": "地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "地图",
+    "自驾",
+    "出发地",
+    "目的地",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "点击地图应用图标以打开应用",
+      "expected": "打开地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索框以激活输入功能",
+      "expected": "搜索框获得焦点，准备输入地点信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的目的地条目",
+      "expected": "界面显示目的地位置详情",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认起点位置是否已正确设置",
+      "expected": "确认起点已设置为“我的位置”",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "选择出发地作为路线规划的起点",
+      "expected": "界面显示出发地为已选起点",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

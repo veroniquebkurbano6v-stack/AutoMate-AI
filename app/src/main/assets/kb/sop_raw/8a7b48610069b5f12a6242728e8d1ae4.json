@@ -1,0 +1,40 @@
+{
+  "sop_id": "8a7b48610069b5f1",
+  "original_task_name": "浏览器查一下2024年最值得关注的全球健康问题",
+  "task_name": "浏览器查一下2024年最值得关注的全球健康问题",
+  "app_name": "浏览器",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "工具",
+  "keywords": [
+    "浏览器",
+    "搜索",
+    "健康问题"
+  ],
+  "steps": [
+    {
+      "goal": "打开浏览器应用",
+      "expected": "浏览器应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索框内的文本区域",
+      "expected": "搜索框内显示的文本内容被选中",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'2024年最值得关注的全球健康问题'",
+      "expected": "文本输入框中显示'2024年最值得关注的全球健康问题'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索界面提交请求，进入搜索结果页面",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

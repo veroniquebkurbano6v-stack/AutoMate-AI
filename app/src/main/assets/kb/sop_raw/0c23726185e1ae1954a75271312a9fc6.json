@@ -1,0 +1,54 @@
+{
+  "sop_id": "0c23726185e1ae19",
+  "original_task_name": "微信里小明发给我的最后一条视频转发给小红",
+  "task_name": "微信里联系人发给我的最后一条视频转发给联系人",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "视频",
+    "转发",
+    "消息"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，准备启动应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击微信聊天列表中的联系人对话条目",
+      "expected": "界面切换至联系人的聊天对话页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "长按视频消息以触发操作菜单",
+      "expected": "视频消息区域出现可编辑或播放的交互选项",
+      "action_type": "long_press"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击弹出的菜单中的转发选项",
+      "expected": "弹出包含转发、收藏、删除、多选和引用等功能的菜单",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击微信聊天列表中的联系人对话条目",
+      "expected": "界面显示已选择'联系人'的聊天选项",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击发送按钮确认转发",
+      "expected": "发送对话框关闭，返回选择一个聊天页面",
+      "action_type": "click"
+    }
+  ]
+}

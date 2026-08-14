@@ -1,0 +1,65 @@
+{
+  "sop_id": "0bdfbcd295b87ab2",
+  "original_task_name": "饿了么上点盒马鲜生的三盒无菌蛋送到家",
+  "task_name": "饿了么上点特定店铺的三盒特定菜品送到家",
+  "app_name": "饿了么",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "购物",
+  "keywords": [
+    "饿了么",
+    "特定店铺",
+    "特定菜品",
+    "外卖"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的饿了么应用图标",
+      "expected": "饿了么应用图标被选中，准备启动应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在文本输入框中输入'特定店铺'",
+      "expected": "文本输入框中显示'特定店铺'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面加载完成，显示多个相关店铺",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击筛选排序按钮以展开排序选项",
+      "expected": "展开排序菜单，显示包括销量优先、速度优先在内的排序选项",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "进入搜索界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "在文本输入框中输入'特定菜品'",
+      "expected": "文本输入框中显示'特定菜品'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 8,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索栏右侧的搜索按钮被点击，触发搜索操作",
+      "action_type": "click"
+    }
+  ]
+}

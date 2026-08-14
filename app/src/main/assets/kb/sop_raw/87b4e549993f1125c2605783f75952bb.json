@@ -1,0 +1,41 @@
+{
+  "sop_id": "87b4e549993f1125",
+  "original_task_name": "在哔哩哔哩上播放“向往的生活”第5集。",
+  "task_name": "在哔哩哔哩上播放特定影视第5集。",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定影视",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开bilibili应用",
+      "expected": "bilibili应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的文本区域",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定影视'",
+      "expected": "文本输入框中显示'特定影视'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看“特定影视”相关内容",
+      "expected": "搜索结果列表显示，包含多个与“特定影视”相关的条目",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

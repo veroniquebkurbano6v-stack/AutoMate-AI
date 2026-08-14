@@ -1,0 +1,65 @@
+{
+  "sop_id": "2777a3bec59d82cf",
+  "original_task_name": "在大众点评上找汉阳馆韩国料理高新中大国际店，导航过去",
+  "task_name": "在大众点评上找特定餐厅，导航过去",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定餐厅",
+    "导航",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的大众点评应用图标",
+      "expected": "打开大众点评应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏内容被选中，准备输入新的搜索关键词",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'汉阳馆韩国料理高新中大国际店'",
+      "expected": "文本输入框中显示'汉阳馆韩国料理高新中大国际店'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果页面加载",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的餐厅条目",
+      "expected": "进入该餐厅的详细信息页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击餐厅详情页面中的'导航'按钮",
+      "expected": "进入路线规划页面，显示多种出行方式",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击驾车方案选项",
+      "expected": "选择驾车出行方式",
+      "action_type": "click"
+    },
+    {
+      "step_order": 8,
+      "goal": "点击'开始导航'按钮",
+      "expected": "导航开始运行",
+      "action_type": "click"
+    }
+  ]
+}

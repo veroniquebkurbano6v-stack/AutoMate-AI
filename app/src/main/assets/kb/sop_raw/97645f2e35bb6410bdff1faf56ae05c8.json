@@ -1,0 +1,41 @@
+{
+  "sop_id": "97645f2e35bb6410",
+  "original_task_name": "在备忘录里记录一下明天上午10点的团队会议。",
+  "task_name": "在备忘录里记录一下明天上午10点的团队会议。",
+  "app_name": "备忘录",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "工具",
+  "keywords": [
+    "备忘录",
+    "待办事项",
+    "团队会议",
+    "保存"
+  ],
+  "steps": [
+    {
+      "goal": "打开便签应用",
+      "expected": "应用图标被选中，进入便签应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入待办列表页面",
+      "expected": "查看待办事项",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'明天上午10点团队会议'",
+      "expected": "文本输入框中显示'明天上午10点团队会议'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "保存待办事项",
+      "expected": "待办列表中新增一条待办事项",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

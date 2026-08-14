@@ -1,0 +1,77 @@
+{
+  "sop_id": "541fdee7ca9b9b4e",
+  "original_task_name": "在小红书上搜索烘焙教程，然后给前五篇笔记点赞。",
+  "task_name": "在小红书上搜索烘焙教程，然后给前五篇笔记点赞。",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "小红书",
+    "烘焙教程",
+    "笔记",
+    "点赞"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击屏幕右上角的搜索图标",
+      "expected": "进入搜索界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'烘焙教程'",
+      "expected": "文本输入框中显示'烘焙教程'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索界面右上角的'搜索'按钮",
+      "expected": "搜索结果页面加载",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击用户发布的烘焙教程内容",
+      "expected": "进入该用户发布的详细烘焙教程页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击特定联系人发布的特定笔记内容卡片",
+      "expected": "进入该用户发布的详细内容页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击特定笔记帖子以查看详细内容",
+      "expected": "进入帖子详情页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击特定联系人发布的特定笔记内容卡片",
+      "expected": "进入该用户发布的详细内容页面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击特定联系人发布的特定笔记帖子，进入详情页",
+      "expected": "进入该笔记帖子的详情页面",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击特定笔记帖子的点赞按钮",
+      "expected": "点赞按钮状态变为已点赞",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

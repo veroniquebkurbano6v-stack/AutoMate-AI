@@ -1,0 +1,40 @@
+{
+  "sop_id": "c947ce35189590e0",
+  "original_task_name": "搜索一下“如何制作巧克力蛋糕”。",
+  "task_name": "搜索一下“如何制作巧克力蛋糕”。",
+  "app_name": "浏览器",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "工具",
+  "keywords": [
+    "浏览器",
+    "搜索",
+    "巧克力蛋糕"
+  ],
+  "steps": [
+    {
+      "goal": "打开浏览器应用",
+      "expected": "浏览器应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的商品图标",
+      "expected": "搜索栏区域显示商品图标",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'如何制作巧克力蛋糕'",
+      "expected": "文本输入框中显示'如何制作巧克力蛋糕'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索",
+      "expected": "搜索结果页面加载",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

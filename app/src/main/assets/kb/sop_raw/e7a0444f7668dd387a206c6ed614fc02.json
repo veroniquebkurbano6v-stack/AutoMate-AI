@@ -1,0 +1,72 @@
+{
+  "sop_id": "e7a0444f7668dd38",
+  "original_task_name": "携程上搜北京东城区五星级酒店的第一家酒店分享给微信杨辉",
+  "task_name": "携程上搜特定地点的五星级酒店，将第一家酒店分享给微信联系人",
+  "app_name": "携程",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "携程",
+    "微信",
+    "五星级酒店",
+    "联系人",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "打开携程App",
+      "expected": "应用图标被选中，进入携程应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'特定地点五星级酒店'",
+      "expected": "文本输入框中显示'特定地点五星级酒店'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行酒店搜索",
+      "expected": "搜索结果页面显示多个酒店列表",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认入住日期信息",
+      "expected": "弹出提示用户确认入住日期是否正确的对话框",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击顶部导航栏的相册图标",
+      "expected": "进入相册页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择微信作为分享目标应用",
+      "expected": "分享菜单界面保持不变，仅确认微信应用被选中",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择最近聊天中的联系人对话",
+      "expected": "进入联系人的聊天界面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "确认发送操作，完成消息发送流程",
+      "expected": "发送对话框关闭，返回选择一个聊天页面",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

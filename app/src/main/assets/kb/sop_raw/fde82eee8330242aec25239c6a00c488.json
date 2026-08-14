@@ -1,0 +1,36 @@
+{
+  "sop_id": "fde82eee8330242a",
+  "original_task_name": "在微信中，播放王强发来的最近一条语音。",
+  "task_name": "在微信中，播放联系人发来的最近一条语音。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "语音",
+    "播放",
+    "消息"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，进入微信主界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击微信聊天列表中的联系人对话条目",
+      "expected": "进入该联系人的聊天详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击消息列表中的语音消息进行播放",
+      "expected": "语音消息开始播放",
+      "action_type": "click"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "sop_id": "c6c13ce878a67471",
+  "original_task_name": "在大众点评中搜索小寨附近热门的咖啡店，导航过去",
+  "task_name": "在大众点评中搜索目的地附近热门的咖啡店，导航过去",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "咖啡店",
+    "目的地",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "点击大众点评应用图标",
+      "expected": "打开大众点评应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'咖啡店'",
+      "expected": "文本输入框中显示'咖啡店'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看咖啡店相关结果",
+      "expected": "搜索界面显示搜索结果列表",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击筛选按钮以打开筛选菜单",
+      "expected": "打开筛选菜单，用户可以在此选择不同的筛选条件来缩小搜索范围",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择指定地点筛选咖啡店",
+      "expected": "筛选出指定地点的咖啡店",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入位置名称",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 8
+    },
+    {
+      "goal": "选择第一个搜索结果“目的地”，将其添加到位置列表中",
+      "expected": "位置列表中新增了“目的地”条目",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "确认选择'目的地'作为目的地",
+      "expected": "点击'选择此地点'按钮后，系统将确认'目的地'为目的地，并可能进入下一步路线规划流程。",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "点击排序筛选按钮展开排序选项",
+      "expected": "筛选菜单弹出，显示不同排序方式",
+      "action_type": "click",
+      "step_order": 11
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "界面显示排序选项中已选中“距离优先”",
+      "action_type": "click",
+      "step_order": 12
+    },
+    {
+      "goal": "点击特定咖啡馆店铺条目",
+      "expected": "进入该店铺详情页面",
+      "action_type": "click",
+      "step_order": 13
+    },
+    {
+      "goal": "点击营业时间信息区域",
+      "expected": "进入该咖啡厅的营业时间详情页面",
+      "action_type": "click",
+      "step_order": 14
+    },
+    {
+      "goal": "选择推荐的驾车路线方案",
+      "expected": "界面显示推荐的驾车路线方案，包含总距离、预计时间、路线图和终点信息",
+      "action_type": "click",
+      "step_order": 15
+    },
+    {
+      "goal": "选择地图服务类型",
+      "expected": "选择百度地图作为导航地图",
+      "action_type": "click",
+      "step_order": 16
+    },
+    {
+      "goal": "点击'开始导航'按钮，启动路线规划后的导航流程",
+      "expected": "导航界面开始运行，显示实时导航路线和预计到达时间",
+      "action_type": "click",
+      "step_order": 17
+    }
+  ]
+}

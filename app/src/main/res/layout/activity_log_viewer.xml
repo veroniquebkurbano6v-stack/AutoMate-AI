@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  模型日志页面布局
+  - 参考 palmagent-ui/index.html 中的 .drawer#logDrawer 设计语言
+  - 暗色主题 + 青色 LIVE 指示器 + 图标按钮
+  - 保留所有原有 ID（btnBack/btnCopyLog/btnClearLog/logScrollView/logTextView/tvLogStatus/tvLogPath/btnOpenLogDir/btnShareLog）
+  - 按钮由 Button 改为 ImageButton（图标按钮），LogViewerActivity.kt 同步调整类型声明
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0F1A"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- ============ 顶部栏 ============ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#16213E"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <!-- 返回按钮 -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_log_icon_button"
+            android:contentDescription="返回"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_back" />
+
+        <!-- 标题 + LIVE 指示器 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="模型日志"
+                android:textColor="#E6ECF7"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- LIVE 指示器：青色呼吸点 + LIVE 文字 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/viewLiveDot"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:background="@drawable/bg_live_dot" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="LIVE"
+                    android:textColor="#22D3EE"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 复制按钮 -->
+        <ImageButton
+            android:id="@+id/btnCopyLog"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_log_icon_button"
+            android:contentDescription="复制日志"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_copy" />
+
+        <!-- 清空按钮 -->
+        <ImageButton
+            android:id="@+id/btnClearLog"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_log_icon_button"
+            android:contentDescription="清空日志"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_clear" />
+    </LinearLayout>
+
+    <!-- ============ 日志内容区（卡片式） ============ -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="12dp">
+
+        <ScrollView
+            android:id="@+id/logScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_log_card"
+            android:fillViewport="true"
+            android:padding="12dp"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:id="@+id/logTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:lineSpacingExtra="4dp"
+                android:text="等待模型活动..."
+                android:textColor="#8B96AC"
+                android:textIsSelectable="true"
+                android:textSize="11sp" />
+        </ScrollView>
+    </FrameLayout>
+
+    <!-- ============ 实时监控状态条 ============ -->
+    <TextView
+        android:id="@+id/tvLogStatus"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:background="#16213E"
+        android:gravity="center"
+        android:text="● 实时监控中..."
+        android:textColor="#34D399"
+        android:textSize="11sp" />
+
+    <!-- ============ 底部操作栏：路径 + 打开目录 + 分享 ============ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0F3460"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvLogPath"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:paddingHorizontal="6dp"
+            android:singleLine="true"
+            android:text="无任务日志（请先执行任务）"
+            android:textColor="#A8B5CC"
+            android:textSize="10sp" />
+
+        <!-- 打开目录按钮 -->
+        <ImageButton
+            android:id="@+id/btnOpenLogDir"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/bg_log_icon_button"
+            android:contentDescription="打开目录"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_folder" />
+
+        <!-- 分享按钮 -->
+        <ImageButton
+            android:id="@+id/btnShareLog"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/bg_log_icon_button"
+            android:contentDescription="分享日志"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_share" />
+    </LinearLayout>
+</LinearLayout>

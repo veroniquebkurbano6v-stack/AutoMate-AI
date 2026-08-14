@@ -1,0 +1,53 @@
+{
+  "sop_id": "3e44a0d702cd086f",
+  "original_task_name": "给微信好友Grace发送韩若溪发给我的最新那个视频",
+  "task_name": "给微信好友联系人发送联系人发给我的最新那个视频",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "视频",
+    "转发"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入联系人的聊天对话",
+      "expected": "打开联系人的聊天对话",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "长按视频消息以触发操作菜单",
+      "expected": "视频消息区域出现可点击的菜单选项",
+      "action_type": "long_press",
+      "step_order": 3
+    },
+    {
+      "goal": "点击'转发'按钮，将该位置信息分享给他人",
+      "expected": "弹出包含转发、收藏、删除、多选、引用和提醒等操作选项的菜单",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择联系人的聊天进行操作",
+      "expected": "进入联系人的聊天详情",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认发送消息给联系人",
+      "expected": "发送对话框关闭，返回选择一个聊天页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

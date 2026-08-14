@@ -1,0 +1,48 @@
+{
+  "sop_id": "f1168413a47c836e",
+  "original_task_name": "酷狗音乐搜李荣浩的歌曲，并从第4个开始播放",
+  "task_name": "酷狗音乐搜联系人的歌曲，并从第4个开始播放",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "酷狗音乐",
+    "联系人",
+    "歌曲",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开酷狗音乐应用",
+      "expected": "应用图标被选中，进入酷狗音乐主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击顶部搜索栏区域",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击联系人的头像进入其个人主页",
+      "expected": "进入联系人的个人主页",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定歌曲",
+      "expected": "特定歌曲进入播放界面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

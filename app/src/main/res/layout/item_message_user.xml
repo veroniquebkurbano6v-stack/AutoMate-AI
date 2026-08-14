@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  用户消息条目布局
+  - 参考 palmagent-ui/index.html 中的 .msg.me 样式
+  - 头像在右（深灰圆形 + "我" 字样）
+  - 气泡为青色渐变浅底 + 不对称圆角（右上小圆角模拟尾巴）+ 青色细边框
+  - 保留 textMessage ID 供 ChatAdapter 使用
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="end"
+    android:orientation="horizontal"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="6dp">
+
+    <!-- 用户消息气泡：青色渐变浅底 + 不对称圆角 -->
+    <TextView
+        android:id="@+id/textMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_user_bubble_modern"
+        android:elevation="1dp"
+        android:lineSpacingExtra="3dp"
+        android:maxWidth="280dp"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp"
+        android:textColor="#0F3460"
+        android:textSize="14sp" />
+
+    <!-- 用户头像：深灰圆形 -->
+    <TextView
+        android:id="@+id/textUserAvatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bg_user_avatar"
+        android:gravity="center"
+        android:text="我"
+        android:textColor="#E6ECF7"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+</LinearLayout>

@@ -1,0 +1,35 @@
+{
+  "sop_id": "c607174b1da88ce7",
+  "original_task_name": "播放微信好友张婷的最新一条语音消息",
+  "task_name": "播放微信联系人的最新一条语音消息",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "语音消息",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部搜索图标",
+      "expected": "界面显示搜索输入框",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "操作点击了聊天界面底部的语音消息按钮",
+      "expected": "激活语音消息功能",
+      "action_type": "click",
+      "step_order": 3
+    }
+  ]
+}

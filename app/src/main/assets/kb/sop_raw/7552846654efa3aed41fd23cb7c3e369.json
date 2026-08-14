@@ -1,0 +1,41 @@
+{
+  "sop_id": "7552846654efa3ae",
+  "original_task_name": "打开百度地图，设定从当前位置到西安朱雀广场的导航。",
+  "task_name": "打开百度地图，设定从当前位置到目的地的导航。",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "导航",
+    "目的地",
+    "当前位置"
+  ],
+  "steps": [
+    {
+      "goal": "打开百度地图应用",
+      "expected": "百度地图应用图标被选中，应用启动并加载界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "界面进入搜索结果页面，显示多个目的地选项",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

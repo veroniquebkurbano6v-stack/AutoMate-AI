@@ -1,0 +1,54 @@
+{
+  "sop_id": "4271d22d1f4c258d",
+  "original_task_name": "在微信中，将好友小明发给我的最后一条消息转发到“工作群”。",
+  "task_name": "在微信中，将联系人发给我的最后一条消息转发到群组。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "群组",
+    "转发",
+    "消息"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备进入应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击聊天列表中的'联系人'对话条目",
+      "expected": "进入与联系人的聊天界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "长按消息气泡以触发操作菜单",
+      "expected": "消息气泡变为可交互状态，弹出操作选项",
+      "action_type": "long_press",
+      "step_order": 3
+    },
+    {
+      "goal": "选择消息的转发选项",
+      "expected": "弹出包含转发、收藏、删除等操作按钮的菜单",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择群组聊天",
+      "expected": "选择群组作为聊天对象",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认发送消息给群组",
+      "expected": "确认消息已成功发送给群组",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

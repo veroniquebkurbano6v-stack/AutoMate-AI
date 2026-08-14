@@ -1,0 +1,53 @@
+{
+  "sop_id": "e6a095eab1e04f67",
+  "original_task_name": "高德导航从这到西安唐乐宫的驾车路线。",
+  "task_name": "高德导航从出发地到目的地的驾车路线。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "出发地",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏，准备输入目的地",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索结果页面显示多个与“目的地”相关的地点",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击目的地的特色景点条目，进入详情页面查看路线信息",
+      "expected": "进入目的地详情页面，显示路线规划选项",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击导航按钮进入路线规划功能",
+      "expected": "进入路线规划界面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sop_id": "de4af7374270ffa7",
+  "original_task_name": "腾讯视频播放电影肖申克的救赎",
+  "task_name": "腾讯视频播放特定影视",
+  "app_name": "腾讯视频",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "腾讯视频",
+    "特定影视",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开腾讯视频App",
+      "expected": "应用图标被点击，启动腾讯视频应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "跳过广告",
+      "expected": "广告弹窗消失，返回腾讯视频主界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击搜索栏区域",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'特定影视'",
+      "expected": "文本输入框中显示'特定影视'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索栏右侧的'搜索'按钮",
+      "expected": "搜索结果页面加载完成，显示与特定影视相关的搜索结果",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击特定影视的'立即播放'按钮",
+      "expected": "进入该特定影视的播放页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

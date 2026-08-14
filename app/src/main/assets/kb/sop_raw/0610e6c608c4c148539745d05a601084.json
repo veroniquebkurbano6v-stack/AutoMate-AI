@@ -1,0 +1,41 @@
+{
+  "sop_id": "0610e6c608c4c148",
+  "original_task_name": "高德搜索附近有没有电影院",
+  "task_name": "高德搜索附近有没有电影院",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "搜索",
+    "电影院",
+    "附近"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用启动",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在文本输入框中输入'附近电影院'",
+      "expected": "文本输入框中显示'附近电影院'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面加载完成，显示附近电影院的列表",
+      "action_type": "click"
+    }
+  ]
+}

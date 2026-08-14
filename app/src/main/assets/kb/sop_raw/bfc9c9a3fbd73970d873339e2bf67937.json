@@ -1,0 +1,89 @@
+{
+  "sop_id": "bfc9c9a3fbd73970",
+  "original_task_name": "大众点评上查看小吃快餐必吃榜，查看第2名的商户，导航过去",
+  "task_name": "大众点评上查看特定榜单，查看第2名的特定餐厅，导航过去",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定榜单",
+    "特定餐厅",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "点击屏幕右上角的'点击'按钮",
+      "expected": "屏幕右上角出现可点击的按钮",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'美食排行'功能入口，进入美食排行榜页面",
+      "expected": "进入美食排行详情页",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'特定榜单'入口，进入特定榜单页面",
+      "expected": "进入特定榜单详情页",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击筛选条件中的'美食'选项",
+      "expected": "筛选出美食类商家",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择美食分类中的“全部美食”选项",
+      "expected": "展开美食分类列表，显示所有可用的美食分类",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'特定餐厅'条目以查看详细信息",
+      "expected": "进入该餐厅的详情页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击餐厅地址信息区域",
+      "expected": "进入该餐厅的详细地址页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击餐厅地址信息区域",
+      "expected": "进入该餐厅的详细地址页面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "选择步行路线方案",
+      "expected": "界面显示步行路线选项及预计时间",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "选择地图服务提供商",
+      "expected": "弹出窗口中显示可选地图服务列表",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "选择地图服务提供商",
+      "expected": "弹出窗口中显示“高德地图”选项并可点击",
+      "action_type": "click",
+      "step_order": 11
+    },
+    {
+      "goal": "点击“开始导航”按钮以启动路线规划并进入导航流程",
+      "expected": "点击后进入导航界面，开始引导用户进行导航操作",
+      "action_type": "click",
+      "step_order": 12
+    }
+  ]
+}

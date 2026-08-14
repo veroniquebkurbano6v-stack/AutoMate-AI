@@ -1,0 +1,54 @@
+{
+  "sop_id": "fa1a6867cd50f442",
+  "original_task_name": "在微信里，将我朋友小王发给我的最后一个视频转给小李。",
+  "task_name": "在微信里，将我朋友联系人发给我的最后一个视频转给联系人。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "视频",
+    "转发",
+    "消息"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，进入微信主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击联系人的聊天对话条目",
+      "expected": "进入联系人的聊天对话",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "长按视频消息以触发操作菜单",
+      "expected": "视频消息进入可选操作菜单",
+      "action_type": "long_press",
+      "step_order": 3
+    },
+    {
+      "goal": "点击消息中的地图位置信息",
+      "expected": "弹出包含转发、收藏、删除、多选、引用、提醒等功能的菜单",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择聊天对象",
+      "expected": "选择聊天列表中的指定聊天对象",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认发送消息给指定联系人",
+      "expected": "确认消息已成功发送给联系人",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

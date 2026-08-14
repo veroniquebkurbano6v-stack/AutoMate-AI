@@ -1,0 +1,84 @@
+package com.palmagent.app.floating
+
+import android.util.Log
+import com.palmagent.app.model.Question
+import com.palmagent.app.model.QuestionAnswer
+
+/**
+ * 批量提问管理器
+ *
+ * 协调悬浮窗 ASK_USER 状态，管理执行模型向用户的批量追问流程。
+ * 一次请求可展示 1-4 个问题，每问含选项按钮 + 自定义输入，用户一次性提交所有回答。
+ *
+ * P0 教训：新请求必须 cancel 前一个，避免回调丢失。
+ */
+object AskUserManager {
+
+    private const val TAG = "AskUserManager"
+
+    data class AskRequest(
+        val questions: List<Question>  // 批量问题数组（1-4 个）
+    )
+
+    data class AskResponse(
+        val answers: List<QuestionAnswer>,  // 与 AskRequest.questions 一一对应
+        val cancelled: Boolean
+    )
+
+    @Volatile
+    private var currentCallback: ((AskResponse) -> Unit)? = null
+
+    /**
+     * 当前追问请求（供 FloatingProgressManager 读取问题和选项）
+     */
+    @Volatile
+    var currentRequest: AskRequest? = null
+
+    /**
+     * 发起批量追问请求，显示悬浮窗 ASK_USER 面板
+     */
+    fun requestAnswer(req: AskRequest, onResult: (AskResponse) -> Unit) {
+        synchronized(this) {
+            cancel() // P0: 必须通知前一个调用方
+            currentRequest = req
+            currentCallback = onResult
+        }
+        FloatingProgressManager.showAskUserBanner(req)
+    }
+
+    /**
+     * 用户批量提交回答（来自悬浮窗多问题卡）
+     */
+    fun onUserAnswer(answers: List<QuestionAnswer>) {
+        handleResult(AskResponse(answers, cancelled = false))
+    }
+
+    /**
+     * 用户主动取消（点击取消按钮）
+     */
+    fun onUserCancel() {
+        handleResult(AskResponse(emptyList(), cancelled = true))
+    }
+
+    /**
+     * 外部取消（任务被取消/超时/新请求抢占）
+     */
+    fun cancel() {
+        handleResult(AskResponse(emptyList(), cancelled = true))
+    }
+
+    private fun handleResult(resp: AskResponse) {
+        synchronized(this) {
+            val cb = currentCallback
+            currentCallback = null
+            currentRequest = null
+            if (cb == null) return@synchronized
+            FloatingProgressManager.hideAskUserBanner()
+            try {
+                cb.invoke(resp)
+            } catch (e: Exception) {
+                Log.w(TAG, "回调异常: ${e.message}")
+            }
+        }
+    }
+}

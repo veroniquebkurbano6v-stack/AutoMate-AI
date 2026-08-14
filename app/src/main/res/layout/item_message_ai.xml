@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  AI 消息条目布局
+  - 参考 palmagent-ui/index.html 中的 .msg.ai 样式
+  - 头像在左（青色渐变圆形 + "AI" 字样）
+  - 气泡为现代白底 + 不对称圆角（左上小圆角模拟尾巴）+ 细边框
+  - 保留 textAvatar / textMessage ID 供 ChatAdapter 使用
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="start|top"
+    android:orientation="horizontal"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="6dp">
+
+    <!-- AI 头像：青色渐变圆形 -->
+    <TextView
+        android:id="@+id/textAvatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_ai_avatar_modern"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:text="AI"
+        android:textColor="#04121F"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <!-- AI 消息气泡：白底 + 不对称圆角 + 细边框 -->
+    <TextView
+        android:id="@+id/textMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ai_bubble_modern"
+        android:elevation="1dp"
+        android:lineSpacingExtra="3dp"
+        android:maxWidth="280dp"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp"
+        android:textColor="#1A1A1A"
+        android:textSize="14sp" />
+</LinearLayout>

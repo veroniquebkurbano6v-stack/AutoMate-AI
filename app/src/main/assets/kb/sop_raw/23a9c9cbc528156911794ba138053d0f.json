@@ -1,0 +1,60 @@
+{
+  "sop_id": "23a9c9cbc5281569",
+  "original_task_name": "从当前位置导航到未央国际的不拥堵的路线",
+  "task_name": "从当前位置导航到目的地的不拥堵的路线",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "导航",
+    "路线",
+    "驾车"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "选择驾车出行服务",
+      "expected": "界面底部的驾车服务按钮被选中，显示为蓝色圆形图标",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "输入目的地地址",
+      "expected": "激活目的地输入框，准备输入目的地信息",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择地图上的一个具体位置作为终点",
+      "expected": "在搜索栏中输入具体位置信息",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'高德推荐'按钮查看推荐路线",
+      "expected": "界面显示高德地图推荐的路线方案",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "设置导航偏好为躲避拥堵",
+      "expected": "路线偏好区域显示已选择躲避拥堵选项",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "确认导航开始按钮状态",
+      "expected": "点击后界面应显示导航已启动，路线信息和预计到达时间保持不变",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

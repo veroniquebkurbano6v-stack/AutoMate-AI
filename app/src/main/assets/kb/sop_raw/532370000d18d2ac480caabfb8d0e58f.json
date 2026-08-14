@@ -1,0 +1,59 @@
+{
+  "sop_id": "532370000d18d2ac",
+  "original_task_name": "大众点评看小龙虾的必吃榜，查看第4名的商户，导航过去",
+  "task_name": "大众点评看特定榜单，查看第4名的商户，导航过去",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定榜单",
+    "商户",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'美食排行'入口，进入榜单页面查看热门餐厅排名",
+      "expected": "进入美食排行榜单页面，展示热门餐厅排名",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'必吃榜'入口，进入必吃榜页面",
+      "expected": "进入必吃榜页面，展示必吃榜的榜单列表",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击“美食”筛选按钮以展开分类选项",
+      "expected": "筛选出与美食相关的内容",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "筛选出火锅类餐厅",
+      "expected": "筛选出火锅类餐厅",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择'私房菜'分类进行筛选",
+      "expected": "筛选出私房菜类别的餐厅",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择餐厅分类中的私房菜选项",
+      "expected": "筛选出私房菜类别的餐厅",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sop_id": "f3177070bac02e97",
+  "original_task_name": "导航到微信好友周洁最后发的位置",
+  "task_name": "导航到微信好友联系人最后发的位置",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "微信",
+    "联系人",
+    "导航",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部显示的聊天对象名称进入聊天界面",
+      "expected": "进入聊天详情页",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "确认目的地位置详情",
+      "expected": "查看该目的地的详细信息",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择导航模式",
+      "expected": "界面底部导航栏中，导航按钮被选中并高亮显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择地图服务商",
+      "expected": "弹出地图选择界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'开始导航'按钮启动路线导航",
+      "expected": "导航开始运行，屏幕底部出现蓝色的'开始导航'按钮，表示导航已启动",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

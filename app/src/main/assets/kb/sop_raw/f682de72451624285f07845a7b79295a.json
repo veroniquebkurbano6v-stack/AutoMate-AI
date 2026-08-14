@@ -1,0 +1,41 @@
+{
+  "sop_id": "f682de7245162428",
+  "original_task_name": "在手机备忘录里，记录每一天都是全新的开始，用心去生活，才能发现更多美好。",
+  "task_name": "在手机备忘录里，记录每一天都是全新的开始，用心去生活，才能发现更多美好。",
+  "app_name": "备忘录",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "工具",
+  "keywords": [
+    "备忘录",
+    "记录",
+    "便签",
+    "待办"
+  ],
+  "steps": [
+    {
+      "goal": "打开便签应用",
+      "expected": "应用图标被选中，进入便签应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击底部右下角的圆形按钮",
+      "expected": "界面进入待办页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'每一天都是全新的开始，用心去生活，才能发现更多美好。'",
+      "expected": "文本输入框中显示'每一天都是全新的开始，用心去生活，才能发现更多美好。'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "确认操作结果",
+      "expected": "操作后界面状态",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

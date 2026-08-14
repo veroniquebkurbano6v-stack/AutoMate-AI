@@ -1,0 +1,47 @@
+{
+  "sop_id": "3d9b713d8c4f5dd9",
+  "original_task_name": "优酷视频，查找脱口秀节目。",
+  "task_name": "优酷视频，查找脱口秀节目。",
+  "app_name": "优酷视频",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "优酷视频",
+    "脱口秀",
+    "节目",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开应用市场",
+      "expected": "应用市场界面已打开",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "关闭弹窗，返回主界面",
+      "expected": "关闭弹窗后，界面恢复到之前的电视剧推荐页面状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击搜索栏中的内容",
+      "expected": "搜索栏内容被选中，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'脱口秀'",
+      "expected": "文本输入框中显示'脱口秀'",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索栏右侧的搜索按钮被点击，触发搜索操作",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

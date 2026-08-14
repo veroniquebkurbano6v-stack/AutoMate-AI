@@ -1,0 +1,53 @@
+{
+  "sop_id": "a1e53771302a7cff",
+  "original_task_name": "请在高德地图上规划从当前位置到西安市碑林区南关正街88号的路线。",
+  "task_name": "请在高德地图上规划从当前位置到目的地的路线。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏中的地址文本区域",
+      "expected": "激活搜索栏，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击地址详情页的'点击'按钮",
+      "expected": "进入该地址的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'路线'按钮进入路线规划界面",
+      "expected": "进入路线规划页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

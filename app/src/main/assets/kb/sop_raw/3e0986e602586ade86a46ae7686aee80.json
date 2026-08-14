@@ -1,0 +1,47 @@
+{
+  "sop_id": "3e0986e602586ade",
+  "original_task_name": "哔哩哔哩上能播放《神医喜来乐》第13集吗？",
+  "task_name": "哔哩哔哩上能播放特定影视第13集吗？",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定影视",
+    "剧集",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "点击哔哩哔哩应用图标",
+      "expected": "打开哔哩哔哩应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'特定影视'",
+      "expected": "文本输入框中显示'特定影视'",
+      "step_order": 2
+    },
+    {
+      "goal": "执行搜索操作以查看“特定影视”的相关结果",
+      "expected": "搜索界面显示搜索结果",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击剧集列表中的第2集",
+      "expected": "进入该集的播放页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击数字13",
+      "expected": "界面显示数字13对应的选项",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

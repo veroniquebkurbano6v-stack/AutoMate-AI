@@ -1,0 +1,59 @@
+{
+  "sop_id": "626ea92bca0f9c1d",
+  "original_task_name": "QQ音乐搜浪漫的歌曲，并从第3个播放",
+  "task_name": "QQ音乐搜浪漫的歌曲，并从第3个播放",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定歌曲",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "跳过音乐详情页的弹窗",
+      "expected": "关闭弹窗，返回到上一个界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'浪漫的歌曲'",
+      "expected": "文本输入框中显示'浪漫的歌曲'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索栏中的文本区域",
+      "expected": "搜索栏内显示的文本被选中",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击搜索结果中的歌单项",
+      "expected": "进入该歌单的详情页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击歌曲详情页进入特定歌曲",
+      "expected": "进入特定歌曲的详情页面",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

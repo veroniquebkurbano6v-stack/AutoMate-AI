@@ -1,0 +1,59 @@
+{
+  "sop_id": "227d396d66913ecc",
+  "original_task_name": "给微信群\"老友记\"发条消息，告诉大家下周聚会的时间和地点。",
+  "task_name": "给微信群组发条消息，告诉大家下周聚会的时间和地点。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "群组",
+    "消息",
+    "聚会"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "打开微信应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击底部的'发现'标签",
+      "expected": "切换到发现页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击'通讯录'选项",
+      "expected": "进入通讯录页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击群组\"老友记\"",
+      "expected": "进入群聊详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击消息输入框",
+      "expected": "消息输入框获得焦点，准备输入消息内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "在消息输入框中输入\"下周聚会的时间和地点是...\"",
+      "expected": "消息输入框中显示输入的消息内容",
+      "action_type": "type"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击输入框右侧的发送按钮",
+      "expected": "消息被发送到群聊中",
+      "action_type": "click"
+    }
+  ]
+}

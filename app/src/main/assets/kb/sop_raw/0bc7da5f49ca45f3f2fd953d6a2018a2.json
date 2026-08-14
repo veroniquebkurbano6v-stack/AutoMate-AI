@@ -1,0 +1,40 @@
+{
+  "sop_id": "0bc7da5f49ca45f3",
+  "original_task_name": "搜小红书的琪怪儿",
+  "task_name": "搜小红书的联系人",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "小红书",
+    "联系人",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的小红书应用图标",
+      "expected": "小红书应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面右上角的搜索图标",
+      "expected": "界面切换至搜索功能页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索界面进入结果页面，显示与'联系人'相关的搜索结果",
+      "action_type": "click"
+    }
+  ]
+}

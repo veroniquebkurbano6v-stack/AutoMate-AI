@@ -1,0 +1,89 @@
+{
+  "sop_id": "690c08dedb2c5cd4",
+  "original_task_name": "高德把西安音乐厅增加到常去地点，并备注五一出游",
+  "task_name": "高德把目的地增加到常去地点，并备注特定备注内容",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "常去地点",
+    "目的地",
+    "备注内容"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入'我的'页面查看出行信息",
+      "expected": "操作后界面状态为进入'我的'页面，显示了包括'出行雷达目的地'在内的出行相关数据和设置选项。",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "进入设置界面",
+      "expected": "操作后界面进入设置页面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "进入足迹设置页面",
+      "expected": "导航设置页面已展开，显示包括足迹设置在内的多个子菜单选项",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "添加常去地点",
+      "expected": "进入添加常去地点的界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "界面显示'目的地'条目及其详细信息，包括地址和距离",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "确认修改常去地点并开启云同步",
+      "expected": "操作后弹窗询问是否修改常去地点，用户选择“开启云同步”后，系统将保存修改并启用云同步功能",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击'目的地'条目右侧的三点菜单按钮",
+      "expected": "弹出包含'添加'、'编辑'、'删除'、'查看历史记录'等选项的菜单",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "选择修改地点选项",
+      "expected": "弹出菜单显示修改地点、修改备注名、删除和取消选项",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "在文本输入框中输入'特定备注内容'",
+      "expected": "文本输入框中显示'特定备注内容'",
+      "action_type": "type",
+      "step_order": 11
+    },
+    {
+      "goal": "确认修改备注名并保存",
+      "expected": "界面返回主界面，备注名已更新为'特定备注内容'",
+      "action_type": "click",
+      "step_order": 12
+    }
+  ]
+}

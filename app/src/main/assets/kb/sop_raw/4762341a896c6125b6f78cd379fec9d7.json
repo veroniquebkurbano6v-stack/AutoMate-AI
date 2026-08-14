@@ -1,0 +1,78 @@
+{
+  "sop_id": "4762341a896c6125",
+  "original_task_name": "导航到西安碑林博物馆附近评价最好的酒店公寓",
+  "task_name": "导航到目的地附近评价最好的酒店公寓",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "酒店",
+    "评价"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击地图中心区域以进入详细位置界面",
+      "expected": "地图界面进入详细位置查看模式",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "界面显示'目的地'的详细信息，包括地址、打车和步行距离等",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击目的地信息卡片中的文字区域",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'酒店'分类图标",
+      "expected": "进入酒店列表页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击筛选栏中的'推荐排序'选项",
+      "expected": "筛选结果按推荐程度排序",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "筛选出距离住宿最近的酒店",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击特定酒店的限时抢购区域，进入酒店详情页",
+      "expected": "进入酒店详情页面，查看酒店详细信息和预订选项",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击预订详情中的'导航'按钮",
+      "expected": "进入酒店位置导航界面",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

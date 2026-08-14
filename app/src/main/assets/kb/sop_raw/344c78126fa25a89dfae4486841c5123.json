@@ -1,0 +1,65 @@
+{
+  "sop_id": "344c78126fa25a89",
+  "original_task_name": "请用高德导航查找从这里到翠华山的步行方向。",
+  "task_name": "请用高德导航查找从这里到目的地的步行方向。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "步行",
+    "方向"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'出发地'文字区域",
+      "expected": "搜索栏内容变为'出发地'",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏中的'点击'位置，确认搜索结果并进入详情页",
+      "expected": "搜索结果列表下方出现详细信息区域",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'路线'按钮，进入路线规划界面",
+      "expected": "进入路线规划页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择'顺风车'出行方式",
+      "expected": "界面切换至顺风车出行模式，显示对应路线和费用信息",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "确认路线选择并查看详细信息",
+      "expected": "确认已选择公交地铁作为出行方式，查看路线详情和费用信息",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "确认步行路线选项是否已选中",
+      "expected": "界面显示步行模式已启用，路线规划正在处理中",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

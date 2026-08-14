@@ -1,0 +1,47 @@
+{
+  "sop_id": "3795dff81b38083b",
+  "original_task_name": "使用微信给好友张雨婷发条消息“我到了，你在哪里？”",
+  "task_name": "使用微信给联系人发条消息“我到了，你在哪里？”",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "消息",
+    "发送"
+  ],
+  "steps": [
+    {
+      "goal": "步骤目标：打开微信应用",
+      "expected": "操作后界面状态：微信应用启动界面出现",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入微信聊天列表页面",
+      "expected": "操作后界面状态为微信聊天列表页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "输入生日祝福消息",
+      "expected": "在聊天界面底部的输入框中输入“你生日快乐！”",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'我到了，你在哪里？'",
+      "expected": "文本输入框中显示'我到了，你在哪里？'",
+      "step_order": 4
+    },
+    {
+      "goal": "发送消息",
+      "expected": "操作后界面状态：消息输入框中显示的绿色消息被发送出去",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

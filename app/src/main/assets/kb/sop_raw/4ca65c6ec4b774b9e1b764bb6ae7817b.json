@@ -1,0 +1,54 @@
+{
+  "sop_id": "4ca65c6ec4b774b9",
+  "original_task_name": "酷狗音乐搜治愈的歌曲，并从第3个播放",
+  "task_name": "酷狗音乐搜治愈的歌曲，并从第3个播放",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "酷狗音乐",
+    "治愈的歌曲",
+    "播放",
+    "搜索",
+    "单曲"
+  ],
+  "steps": [
+    {
+      "goal": "打开酷狗音乐应用",
+      "expected": "应用图标被点击，进入酷狗音乐主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入功能",
+      "expected": "搜索栏获得焦点，可输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'治愈的歌曲'",
+      "expected": "文本输入框中显示'治愈的歌曲'",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看“治愈的歌曲”相关结果",
+      "expected": "搜索界面提交请求，显示搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "切换搜索结果类型为单曲",
+      "expected": "搜索结果从综合列表切换为单曲列表",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击歌曲列表中第3首特定歌曲的标题区域",
+      "expected": "歌曲列表中第3首特定歌曲的标题区域被选中，高亮显示",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

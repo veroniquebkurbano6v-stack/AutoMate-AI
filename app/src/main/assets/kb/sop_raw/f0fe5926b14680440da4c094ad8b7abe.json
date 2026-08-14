@@ -1,0 +1,47 @@
+{
+  "sop_id": "f0fe5926b1468044",
+  "original_task_name": "导航到西安高新区的银行网点",
+  "task_name": "导航到目的地的银行网点",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "银行网点"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地附近的银行网点'",
+      "expected": "文本输入框中显示'目的地附近的银行网点'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击目的地的条目",
+      "expected": "界面显示该目的地的详细信息，包括营业厅位置、距离和交通方式选项",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击导航按钮进入路线规划界面",
+      "expected": "进入路线规划页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

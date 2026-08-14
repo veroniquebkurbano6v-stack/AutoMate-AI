@@ -1,0 +1,53 @@
+{
+  "sop_id": "83dee8687706a48e",
+  "original_task_name": "在大众点评中搜索附近的4.5星以上的儿童游乐园",
+  "task_name": "在大众点评中搜索附近的4.5星以上的儿童游乐园",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "儿童游乐园",
+    "搜索",
+    "评分"
+  ],
+  "steps": [
+    {
+      "goal": "点击大众点评应用图标以打开应用",
+      "expected": "应用启动并进入其主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'儿童游乐园'",
+      "expected": "文本输入框中显示'儿童游乐园'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面加载",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序按钮展开筛选选项",
+      "expected": "展开排序菜单，显示不同排序方式",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择排序方式为好评优先",
+      "expected": "筛选出评价较高的儿童游乐场所",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

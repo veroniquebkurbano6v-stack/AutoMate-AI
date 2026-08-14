@@ -1,0 +1,65 @@
+{
+  "sop_id": "942712822c1bbda2",
+  "original_task_name": "在京东上找匡威1970s低帮红色38码，然后加到购物车。",
+  "task_name": "在京东上找特定商品，然后加到购物车。",
+  "app_name": "京东",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "购物",
+  "keywords": [
+    "京东",
+    "特定商品",
+    "购物车",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开哔哩哔哩App",
+      "expected": "点击后进入哔哩哔哩应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，可输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定商品'",
+      "expected": "文本输入框中显示'特定商品'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏右侧的'搜索'按钮",
+      "expected": "搜索结果页面加载完成，显示与输入内容相关的搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "关闭弹窗，返回商品列表",
+      "expected": "弹窗消失，返回商品列表界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击商品图片进入详情页",
+      "expected": "进入商品详情页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击加入购物车按钮",
+      "expected": "将当前商品添加到购物车",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择鞋码43",
+      "expected": "选择酒红色后，界面底部的尺码选择区域中，43码选项被选中",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sop_id": "326927816708b5f8",
+  "original_task_name": "QQ音乐停止播放我当前在听的歌曲，然后开始播放我收藏的歌曲",
+  "task_name": "QQ音乐停止播放我当前在听的歌曲，然后开始播放我收藏的歌曲",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "播放",
+    "收藏",
+    "歌曲"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击播放控制栏中的暂停按钮",
+      "expected": "歌曲播放状态暂停",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击左上角的返回按钮",
+      "expected": "返回到上一级界面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "进入个人中心页面",
+      "expected": "操作后界面状态：用户已进入个人中心页面，可查看和管理个人账户信息、收藏、播放列表等。",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击收藏按钮，查看已收藏内容",
+      "expected": "进入收藏页面，显示已收藏的歌曲、歌单等",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击歌曲标题区域以进入歌曲详情页",
+      "expected": "进入歌曲《特定歌曲》的详情页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

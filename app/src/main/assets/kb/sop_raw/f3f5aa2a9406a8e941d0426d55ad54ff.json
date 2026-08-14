@@ -1,0 +1,48 @@
+{
+  "sop_id": "f3f5aa2a9406a8e9",
+  "original_task_name": "在点评上搜小寨百盛美食街，领优惠券",
+  "task_name": "在点评上搜目的地，领优惠券",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "目的地",
+    "优惠券",
+    "特定商家",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开优酷视频应用",
+      "expected": "优酷视频应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定商家条目以查看详细信息",
+      "expected": "进入该特定商家的详情页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

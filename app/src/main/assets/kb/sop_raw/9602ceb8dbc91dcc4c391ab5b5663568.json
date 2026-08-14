@@ -1,0 +1,84 @@
+{
+  "sop_id": "9602ceb8dbc91dcc",
+  "original_task_name": "在大众点评中查找附近评分4星以上的餐厅，将类型限定为川菜。",
+  "task_name": "在大众点评中查找附近评分4星以上的餐厅，将类型限定为川菜。",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "餐厅",
+    "评分",
+    "川菜",
+    "筛选"
+  ],
+  "steps": [
+    {
+      "goal": "点击大众点评应用图标",
+      "expected": "打开大众点评应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'川菜'",
+      "expected": "文本输入框中显示'川菜'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击筛选标签以展开筛选选项",
+      "expected": "筛选标签区域显示展开状态，提供更多筛选条件",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择附近位置作为搜索范围",
+      "expected": "界面显示附近位置筛选选项已激活",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击筛选按钮以展开筛选选项",
+      "expected": "界面弹出筛选菜单",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择商户评分4.8-5分的筛选条件",
+      "expected": "筛选出评分在4.8-5分之间的川菜商家",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "选择4.5-4.7分的商户评分筛选条件",
+      "expected": "筛选出评分在4.5-4.7分之间的川菜商家",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "选择4.0-4.4分的商户评分筛选条件",
+      "expected": "筛选出评分在4.0-4.4分之间的川菜商家",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "确认筛选条件并返回搜索结果页面",
+      "expected": "筛选条件已应用，搜索结果页面显示筛选后的川菜商家列表",
+      "action_type": "click",
+      "step_order": 11
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "sop_id": "c50c77ca4cc31a9a",
+  "original_task_name": "高德，怎么从西安钟楼骑车到大雁塔北广场",
+  "task_name": "高德，怎么从出发地骑车到目的地",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "骑行",
+    "出发地",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击路线按钮进入路线规划界面",
+      "expected": "进入路线规划功能，可选择起点、终点和交通方式",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击骑行路线规划界面中的起点位置输入框",
+      "expected": "界面进入骑行路线规划输入模式，可输入起点",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "选择'出发地'作为起点位置",
+      "expected": "界面中显示起点已设置为'出发地'",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "设置当前地点为起点",
+      "expected": "界面中显示的起点已更改为“家”",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

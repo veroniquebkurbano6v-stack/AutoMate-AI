@@ -1,0 +1,59 @@
+{
+  "sop_id": "2085cb2f9770a21d",
+  "original_task_name": "大众点评上面搜西北大附近最火的的电玩城",
+  "task_name": "大众点评上面搜特定地点附近最火的的电玩城",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定地点",
+    "电玩城",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击大众点评应用图标以打开应用",
+      "expected": "应用图标被选中，进入应用主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定地点附近的电玩城'",
+      "expected": "文本输入框中显示'特定地点附近的电玩城'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索框右侧的'搜索'按钮",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序按钮以调整搜索结果的排序方式",
+      "expected": "进入排序选项列表，可选择不同排序标准",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择排序方式为'距离优先'",
+      "expected": "界面显示排序选项中已选中'距离优先'",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'查看全部'按钮以查看所有商家列表",
+      "expected": "进入商家列表页面，显示所有可选的商家",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

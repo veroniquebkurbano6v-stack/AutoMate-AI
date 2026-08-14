@@ -1,0 +1,59 @@
+{
+  "sop_id": "49a08d664b63fc5d",
+  "original_task_name": "导航到最后一次去的地方",
+  "task_name": "导航到目的地",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "历史记录"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入个人中心页面",
+      "expected": "点击底部导航栏的“我的”按钮后，进入个人中心页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "查看出行里程数据",
+      "expected": "界面显示出行里程数据",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击历史运动记录中的某条记录",
+      "expected": "进入该历史运动记录的详细页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击再次导航按钮重新开始导航",
+      "expected": "重新开始当前导航流程",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认并继续规划到起点的路线",
+      "expected": "确认对话框关闭，返回路线规划界面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "确认点击'开始导航'按钮以启动路线规划",
+      "expected": "点击'开始导航'按钮后，系统将开始按照规划好的路线引导用户进行导航。",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

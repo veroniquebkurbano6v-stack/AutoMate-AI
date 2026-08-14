@@ -1,0 +1,47 @@
+{
+  "sop_id": "cf8ad79dc223f4c6",
+  "original_task_name": "大众点评看新疆菜的服务榜",
+  "task_name": "大众点评看特定榜单",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定榜单",
+    "搜索",
+    "餐厅"
+  ],
+  "steps": [
+    {
+      "goal": "打开大众点评应用",
+      "expected": "大众点评应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定榜单'",
+      "expected": "文本输入框中显示'特定榜单'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏中的'特定榜单'文本区域",
+      "expected": "搜索栏内容被选中，准备进行编辑或触发搜索",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'商户'标签页以查看相关餐厅信息",
+      "expected": "切换至商户标签页，显示特定榜单中的餐厅列表",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

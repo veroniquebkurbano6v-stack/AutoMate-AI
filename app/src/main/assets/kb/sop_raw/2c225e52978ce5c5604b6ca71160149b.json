@@ -1,0 +1,47 @@
+{
+  "sop_id": "2c225e52978ce5c5",
+  "original_task_name": "高德地图查找华清宫",
+  "task_name": "高德地图查找目的地",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "搜索",
+    "查找"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "打开地图应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框",
+      "expected": "搜索框获得焦点，准备输入地点信息",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索框中输入'华清宫'",
+      "expected": "搜索框中显示'华清宫'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面显示多个相关地点",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的华清宫条目",
+      "expected": "进入华清宫的详细信息页面",
+      "action_type": "click"
+    }
+  ]
+}

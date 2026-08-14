@@ -1,0 +1,77 @@
+{
+  "sop_id": "946de5226036a6ca",
+  "original_task_name": "高德把西安理工大学曲江校区增加到常去地点，改备注成景点",
+  "task_name": "高德把目的地增加到常去地点，改备注成景点",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "常去地点",
+    "备注"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "打开高德地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击打车服务图标",
+      "expected": "进入打车服务界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'设置常去地点'选项",
+      "expected": "进入目的地管理界面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "添加常去地点",
+      "expected": "界面进入添加常去地点的输入框",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 5
+    },
+    {
+      "goal": "点击收藏的点列表中的'目的地'条目",
+      "expected": "收藏的点列表中显示'目的地'条目已被选中",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'目的地'条目右侧的三点菜单按钮",
+      "expected": "展开该条目对应的更多操作选项",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击修改备注名选项",
+      "expected": "弹出修改备注名的对话框",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "在文本输入框中输入'景点'",
+      "expected": "文本输入框中显示'景点'",
+      "action_type": "type",
+      "step_order": 9
+    },
+    {
+      "goal": "确认修改备注名并保存",
+      "expected": "界面显示修改备注名已成功保存",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

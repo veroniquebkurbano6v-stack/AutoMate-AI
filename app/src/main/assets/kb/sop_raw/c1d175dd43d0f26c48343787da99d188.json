@@ -1,0 +1,53 @@
+{
+  "sop_id": "c1d175dd43d0f26c",
+  "original_task_name": "打开微信，打开与John的聊天，点击他发我的导航链接，并导航过去。",
+  "task_name": "打开微信，打开与联系人的聊天，点击他发我的导航链接，并导航过去。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "微信",
+    "联系人",
+    "导航",
+    "导航链接"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "微信应用图标被选中，进入微信应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入聊天列表界面",
+      "expected": "操作后界面状态为微信聊天列表页，显示多个联系人和群聊，顶部有搜索和加号按钮。",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击地图上的位置标记以确认该地点信息",
+      "expected": "确认该地点信息",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择导航模式",
+      "expected": "界面底部导航栏中导航按钮被选中",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择腾讯地图作为导航应用",
+      "expected": "界面弹出选择地图应用的对话框，用户可选择腾讯地图或高德地图",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认路线规划详情，查看具体导航信息",
+      "expected": "显示详细的路线信息和预计到达时间",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

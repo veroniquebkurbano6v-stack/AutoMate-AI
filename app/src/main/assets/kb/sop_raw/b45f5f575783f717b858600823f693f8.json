@@ -1,0 +1,47 @@
+{
+  "sop_id": "b45f5f575783f717",
+  "original_task_name": "用微信给好友张婷打视频电话",
+  "task_name": "用微信给联系人打视频电话",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "视频通话",
+    "通话"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部右上角的加号图标",
+      "expected": "打开微信的添加朋友或新建聊天界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "发送消息",
+      "expected": "操作后界面状态：消息输入框处于可输入状态，准备接收用户输入的消息内容。",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择视频通话功能",
+      "expected": "进入视频通话界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择视频通话方式",
+      "expected": "弹出窗口显示视频通话和语音通话选项",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

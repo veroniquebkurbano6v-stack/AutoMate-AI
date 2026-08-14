@@ -1,0 +1,47 @@
+{
+  "sop_id": "d5f18deb4c66d9ae",
+  "original_task_name": "在淘宝找一件不到50元的T恤。",
+  "task_name": "在淘宝找一件不到50元的T恤。",
+  "app_name": "淘宝",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "购物",
+  "keywords": [
+    "淘宝",
+    "T恤",
+    "商品",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，界面进入高德地图应用状态",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'连衣裙'文字区域",
+      "expected": "激活搜索栏，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'T恤'",
+      "expected": "文本输入框中显示'T恤'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索",
+      "expected": "搜索结果页面加载",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击商品图片进入详情页",
+      "expected": "进入该商品的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

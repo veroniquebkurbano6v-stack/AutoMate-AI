@@ -1,0 +1,65 @@
+{
+  "sop_id": "1c5e5b3709789ce1",
+  "original_task_name": "从当前位置使用高德地图导航到最近的潜水中心",
+  "task_name": "从当前位置使用高德地图导航到最近的潜水中心",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "潜水中心",
+    "导航",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "点击地图应用图标以打开应用",
+      "expected": "打开地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'潜水中心'",
+      "expected": "文本输入框中显示'潜水中心'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行'潜水中心'的搜索操作",
+      "expected": "搜索结果页面显示多个潜水中心的列表",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序选项以查看推荐排序结果",
+      "expected": "界面显示推荐排序的潜水中心列表",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "排序菜单中显示'距离优先'选项已被选中",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'特定潜水中心'条目",
+      "expected": "进入该潜水中心的详细信息页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击底部导航栏中的'路线'按钮",
+      "expected": "进入路线规划界面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

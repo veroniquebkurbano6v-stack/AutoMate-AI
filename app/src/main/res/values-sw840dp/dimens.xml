@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 10 寸平板（sw=840dp） -->
+    <dimen name="chat_recycler_height">640dp</dimen>
+    <dimen name="chat_recycler_min_height">480dp</dimen>
+    <dimen name="floating_input_width">400dp</dimen>
+    <dimen name="floating_input_max_width">480dp</dimen>
+    <dimen name="qrcode_size">320dp</dimen>
+    <dimen name="blockage_width">480dp</dimen>
+    <dimen name="blockage_max_height">720dp</dimen>
+</resources>

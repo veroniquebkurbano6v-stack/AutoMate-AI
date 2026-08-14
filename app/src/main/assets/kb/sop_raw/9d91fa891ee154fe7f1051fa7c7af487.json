@@ -1,0 +1,72 @@
+{
+  "sop_id": "9d91fa891ee154fe",
+  "original_task_name": "搜 up 主画渣花小烙，播放他最新发布的视频，并分享给微信好友赵瑞",
+  "task_name": "搜特定up主，播放他最新发布的视频，并分享给微信好友联系人",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "微信",
+    "特定up主",
+    "视频",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "打开哔哩哔哩App",
+      "expected": "哔哩哔哩App图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定up主'",
+      "expected": "文本输入框中显示'特定up主'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看与\"特定up主\"相关的内容",
+      "expected": "搜索结果页面显示与\"特定up主\"相关的搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击UP主头像进入个人主页",
+      "expected": "进入特定up主的个人主页",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击视频下方互动按钮区域的指定位置",
+      "expected": "视频下方互动按钮区域被选中",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择微信分享选项",
+      "expected": "分享菜单已展开，包含多个可选的分享方式",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择聊天对象进行下一步操作",
+      "expected": "进入该聊天的详情页面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "确认发送视频给联系人",
+      "expected": "弹出对话框关闭，返回选择一个聊天界面",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

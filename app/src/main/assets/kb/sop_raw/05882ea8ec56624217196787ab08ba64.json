@@ -1,0 +1,84 @@
+{
+  "sop_id": "05882ea8ec566242",
+  "original_task_name": "酷狗音乐播一千年以后并分享到朋友圈",
+  "task_name": "酷狗音乐播特定歌曲并分享到朋友圈",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "酷狗音乐",
+    "特定歌曲",
+    "朋友圈",
+    "播放",
+    "分享"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的酷狗音乐应用图标",
+      "expected": "酷狗音乐应用图标被选中，应用启动界面正在加载中",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击屏幕上的关闭按钮跳过广告",
+      "expected": "广告弹窗关闭，返回到酷狗音乐主界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果列表展开，显示与'特定歌曲'相关的搜索结果",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击搜索结果中的歌曲《特定歌曲》",
+      "expected": "进入该歌曲的详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击播放界面底部控制栏的播放按钮",
+      "expected": "歌曲《特定歌曲》开始播放",
+      "action_type": "click"
+    },
+    {
+      "step_order": 8,
+      "goal": "点击播放界面右上角的关闭按钮",
+      "expected": "关闭当前播放界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 9,
+      "goal": "点击播放界面底部控制栏的分享按钮",
+      "expected": "分享菜单弹出",
+      "action_type": "click"
+    },
+    {
+      "step_order": 10,
+      "goal": "点击分享菜单中的朋友圈选项",
+      "expected": "分享歌曲至微信朋友圈",
+      "action_type": "click"
+    },
+    {
+      "step_order": 11,
+      "goal": "点击发送按钮确认分享",
+      "expected": "分享界面已关闭，返回主界面",
+      "action_type": "click"
+    }
+  ]
+}

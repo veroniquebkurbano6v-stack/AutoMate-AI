@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 间距（8dp 网格） -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">12dp</dimen>
+    <dimen name="spacing_lg">16dp</dimen>
+    <dimen name="spacing_xl">24dp</dimen>
+    <dimen name="spacing_xxl">32dp</dimen>
+
+    <!-- 组件尺寸 -->
+    <dimen name="touch_target_min">48dp</dimen>
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="list_item_height">56dp</dimen>
+    <dimen name="list_item_height_large">72dp</dimen>
+    <dimen name="avatar_size">32dp</dimen>
+    <dimen name="icon_size_sm">24dp</dimen>
+    <dimen name="icon_size_md">40dp</dimen>
+
+    <!-- 字号（sp） -->
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_title">16sp</dimen>
+    <dimen name="text_headline">20sp</dimen>
+    <dimen name="text_display">24sp</dimen>
+
+    <!-- 响应式尺寸（默认值，sw 目录覆盖） -->
+    <dimen name="chat_recycler_height">400dp</dimen>
+    <dimen name="chat_recycler_min_height">280dp</dimen>
+    <dimen name="floating_input_width">280dp</dimen>
+    <dimen name="floating_input_max_width">320dp</dimen>
+    <dimen name="qrcode_size">240dp</dimen>
+    <dimen name="blockage_width">300dp</dimen>
+    <dimen name="blockage_max_height">500dp</dimen>
+
+    <!-- 圆角 -->
+    <dimen name="radius_sm">8dp</dimen>
+    <dimen name="radius_md">12dp</dimen>
+    <dimen name="radius_lg">16dp</dimen>
+
+    <!-- 阴影 -->
+    <dimen name="elevation_sm">1dp</dimen>
+    <dimen name="elevation_md">2dp</dimen>
+    <dimen name="elevation_lg">8dp</dimen>
+</resources>

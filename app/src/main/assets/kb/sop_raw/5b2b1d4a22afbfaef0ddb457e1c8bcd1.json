@@ -1,0 +1,96 @@
+{
+  "sop_id": "5b2b1d4a22afbfae",
+  "original_task_name": "导航到西安碑林博物馆附近评价最好的蛋糕店",
+  "task_name": "导航到目的地附近评价最好的蛋糕店",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "蛋糕店",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击目的地位置信息区域",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'景点门票'标签，进入门票购买流程",
+      "expected": "界面切换至门票购买页面，显示门票套餐和预订选项",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "在文本输入框中输入'蛋糕店'",
+      "expected": "文本输入框中显示'蛋糕店'",
+      "action_type": "type",
+      "step_order": 8
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索结果页面加载完成，显示与'蛋糕店'相关的店铺列表",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击'推荐排序'选项以查看排序方式",
+      "expected": "进入排序设置界面",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "筛选出距离用户最近的蛋糕店",
+      "action_type": "click",
+      "step_order": 11
+    },
+    {
+      "goal": "点击特定店铺条目",
+      "expected": "进入该店铺详情页",
+      "action_type": "click",
+      "step_order": 12
+    },
+    {
+      "goal": "点击导航按钮进入导航功能",
+      "expected": "进入导航界面",
+      "action_type": "click",
+      "step_order": 13
+    }
+  ]
+}

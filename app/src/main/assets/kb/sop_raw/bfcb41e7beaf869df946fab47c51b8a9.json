@@ -1,0 +1,59 @@
+{
+  "sop_id": "bfcb41e7beaf869d",
+  "original_task_name": "酷狗单曲循环播放金志文的为爱痴狂",
+  "task_name": "酷狗单曲循环播放特定歌曲",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "酷狗音乐",
+    "特定歌曲",
+    "播放",
+    "单曲循环"
+  ],
+  "steps": [
+    {
+      "goal": "点击酷狗音乐应用图标",
+      "expected": "打开酷狗音乐应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看搜索结果",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击单曲列表中的'特定歌曲'歌曲条目",
+      "expected": "进入特定歌曲的播放页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击歌曲播放控制栏的上一曲按钮",
+      "expected": "歌曲播放器界面中，上一曲按钮被点击后，歌曲播放状态可能发生变化",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择播放模式",
+      "expected": "播放模式下拉菜单已展开，显示包括顺序播放、随机播放、单曲循环和预览模式在内的选项",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

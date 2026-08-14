@@ -1,0 +1,47 @@
+{
+  "sop_id": "2eace427a37f15d4",
+  "original_task_name": "打开微信，打开与Daniel的聊天，点击他发我的导航链接，并导航过去。",
+  "task_name": "打开微信，打开与联系人的聊天，点击他发我的导航链接，并导航过去。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "导航",
+    "聊天"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，准备进入应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击聊天列表中的联系人Daniel",
+      "expected": "进入与Daniel的聊天界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击聊天中的导航链接",
+      "expected": "打开地图应用，显示导航路线",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "选择高德地图作为导航应用",
+      "expected": "界面弹出选择对话框，显示高德地图选项",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击'开始导航'按钮",
+      "expected": "启动导航，进入导航流程",
+      "action_type": "click"
+    }
+  ]
+}

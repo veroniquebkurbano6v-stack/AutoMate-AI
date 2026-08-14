@@ -1,0 +1,59 @@
+{
+  "sop_id": "26b6ae996ec5a3d3",
+  "original_task_name": "设定旅行出发前提醒闹钟",
+  "task_name": "设定旅行出发前提醒闹钟",
+  "app_name": "闹钟",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "工具",
+  "keywords": [
+    "闹钟",
+    "提醒",
+    "旅行出发",
+    "时钟"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的时钟应用图标",
+      "expected": "打开时钟应用界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面底部的'添加'按钮",
+      "expected": "界面底部出现添加闹钟按钮",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击时间区域的分钟部分",
+      "expected": "将闹钟时间的分钟设置为40分",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击时间区域的分钟部分",
+      "expected": "将闹钟时间的分钟设置为40分",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击闹钟名称输入框",
+      "expected": "文本输入框获得焦点，准备输入闹钟名称",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "在闹钟名称输入框中输入'旅行出发提醒'",
+      "expected": "文本输入框中显示'旅行出发提醒'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击页面右上角的'保存'按钮",
+      "expected": "界面显示新建闹钟设置完成",
+      "action_type": "click"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 日志图标：三条横线，参考 HTML 中的 .log-btn svg -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#6B7280"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M4,6 L20,6 M4,12 L20,12 M4,18 L14,18" />
+</vector>

@@ -1,0 +1,47 @@
+{
+  "sop_id": "24b778dfef153274",
+  "original_task_name": "打开腾讯会议，加入会议，会议号为986-808-125，进入后静音",
+  "task_name": "打开腾讯会议，加入指定会议，进入后静音",
+  "app_name": "腾讯会议",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "工具",
+  "keywords": [
+    "腾讯会议",
+    "会议",
+    "加入会议",
+    "静音"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的腾讯会议应用图标",
+      "expected": "应用图标被选中，进入腾讯会议界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面中的'加入会议'按钮",
+      "expected": "进入会议加入界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在会议号输入框中输入'986-808-125'",
+      "expected": "会议号输入框中显示'986-808-125'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击'加入会议'按钮以提交并加入会议",
+      "expected": "点击后界面显示会议加入成功提示",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击会议界面中的静音按钮",
+      "expected": "会议界面中静音按钮状态变为已激活，表示麦克风已关闭",
+      "action_type": "click"
+    }
+  ]
+}

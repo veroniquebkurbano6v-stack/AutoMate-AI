@@ -1,0 +1,41 @@
+{
+  "sop_id": "eb7491c481eac846",
+  "original_task_name": "在哔哩哔哩上找一些观众对“流浪地球”的评价视频。",
+  "task_name": "在哔哩哔哩上找一些观众对特定影视的评价视频。",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定影视",
+    "评价视频",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开哔哩哔哩App",
+      "expected": "屏幕显示哔哩哔哩应用图标已点击成功",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的文本区域",
+      "expected": "搜索栏内容被选中，准备输入新的搜索词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'特定影视观众评价'",
+      "expected": "文本输入框中显示'特定影视观众评价'",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作",
+      "expected": "搜索界面进入待处理状态",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

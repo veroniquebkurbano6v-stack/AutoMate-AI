@@ -1,0 +1,66 @@
+{
+  "sop_id": "9880a15af9da860b",
+  "original_task_name": "高德地图查找鸟巢并分享给我的微信好友李晓晴",
+  "task_name": "高德地图查找目的地并分享给我的微信好友联系人",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "微信",
+    "目的地",
+    "联系人",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击'目的地'条目，进入该地点详情页面",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击页面底部的分享按钮",
+      "expected": "分享页面内容",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击分享面板中的微信图标",
+      "expected": "分享界面关闭，返回主地图界面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择最近聊天中的'联系人'对话",
+      "expected": "界面显示已选择'联系人'对话",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "确认分享链接给联系人",
+      "expected": "确认分享链接已成功发送给联系人",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "sop_id": "207b9218b1cab0e2",
+  "original_task_name": "把QQ音乐当前播放的歌曲分享给微信联系人郑浩然",
+  "task_name": "把QQ音乐当前播放的歌曲分享给微信联系人",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "QQ音乐",
+    "微信",
+    "联系人",
+    "分享",
+    "歌曲"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的QQ音乐应用图标",
+      "expected": "QQ音乐应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击当前播放的歌曲的分享按钮",
+      "expected": "分享菜单弹出，显示分享选项",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击分享菜单中的微信选项",
+      "expected": "微信分享界面打开",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击联系人列表中的郑浩然",
+      "expected": "进入与郑浩然的聊天界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击发送按钮完成分享",
+      "expected": "歌曲分享成功发送给郑浩然",
+      "action_type": "click"
+    }
+  ]
+}

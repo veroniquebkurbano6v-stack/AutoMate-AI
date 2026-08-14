@@ -1,0 +1,78 @@
+{
+  "sop_id": "141f0e95c932dae1",
+  "original_task_name": "QQ 音乐播放郑秀文的眉飞色舞并分享到朋友圈",
+  "task_name": "QQ 音乐播放联系人的特定歌曲并分享到朋友圈",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定歌曲",
+    "联系人",
+    "播放",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "点击QQ音乐应用图标",
+      "expected": "打开QQ音乐应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "关闭推广弹窗，返回主界面",
+      "expected": "弹窗消失，返回QQ音乐主界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索结果中的'特定歌曲'条目",
+      "expected": "进入'特定歌曲'对应的搜索结果页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击联系人演唱的《特定歌曲》单曲条目",
+      "expected": "进入该歌曲的详情页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "关闭VIP订阅弹窗",
+      "expected": "返回到上一级页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击特定歌曲单曲条目右侧的更多操作按钮",
+      "expected": "歌曲条目右侧出现下拉菜单",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击分享按钮",
+      "expected": "分享菜单弹出",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "选择分享方式，将歌曲信息发送给朋友",
+      "expected": "分享菜单已展开，显示多个可选的分享选项",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

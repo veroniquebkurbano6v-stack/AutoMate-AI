@@ -1,0 +1,54 @@
+{
+  "sop_id": "ee13993cb1b2de5a",
+  "original_task_name": "查看微信好友陈嘉懿发给我地址，导航过去",
+  "task_name": "查看微信联系人发给我的地址，导航过去",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "微信",
+    "高德地图",
+    "联系人",
+    "导航",
+    "地址"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备进入应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信聊天列表中的联系人对话条目",
+      "expected": "进入与联系人的聊天界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "确认消息撤回操作是否成功",
+      "expected": "消息已成功撤回",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择导航模式",
+      "expected": "界面底部导航栏中的导航按钮被选中",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择高德地图作为导航应用",
+      "expected": "界面弹出选择高德地图的确认对话框",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认选择驾车模式并开始导航",
+      "expected": "界面显示导航已启动，路线信息和预计到达时间保持不变",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

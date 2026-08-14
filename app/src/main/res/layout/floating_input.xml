@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/floating_input_width"
+    android:maxWidth="@dimen/floating_input_max_width"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_floating_panel"
+    android:padding="12dp"
+    android:elevation="8dp">
+
+    <FrameLayout
+        android:id="@+id/floatingDragBar"
+        android:layout_width="match_parent"
+        android:layout_height="24dp">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:background="#50FFFFFF" />
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/etFloatingInput"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="输入任务，例如：打开设置..."
+        android:gravity="top"
+        android:background="@drawable/bg_floating_input"
+        android:padding="12dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#80FFFFFF"
+        android:textSize="14sp"
+        android:inputType="textMultiLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnFloatingCollapse"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="收起"
+            android:textSize="13sp"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#555555"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnFloatingSubmit"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="执行任务"
+            android:textSize="13sp"
+            android:layout_marginStart="6dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+</LinearLayout>

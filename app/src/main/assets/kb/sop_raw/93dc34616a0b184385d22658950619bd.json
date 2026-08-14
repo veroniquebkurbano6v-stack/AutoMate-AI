@@ -1,0 +1,47 @@
+{
+  "sop_id": "93dc34616a0b1843",
+  "original_task_name": "饿了么找一下附近可以送外卖的烤肉拌饭",
+  "task_name": "饿了么找一下附近可以送外卖的特定菜品",
+  "app_name": "饿了么",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "购物",
+  "keywords": [
+    "饿了么",
+    "外卖",
+    "特定菜品",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开饿了么App",
+      "expected": "饿了么App图标被点击，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'美食外卖'分类图标",
+      "expected": "进入美食外卖服务页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'特定菜品'",
+      "expected": "文本输入框中显示'特定菜品'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "执行搜索操作以查看特定菜品相关结果",
+      "expected": "搜索结果页面显示多个特定菜品商家",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

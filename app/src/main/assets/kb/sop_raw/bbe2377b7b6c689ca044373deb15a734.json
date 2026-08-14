@@ -1,0 +1,41 @@
+{
+  "sop_id": "bbe2377b7b6c689c",
+  "original_task_name": "根据个人会议号在腾讯会议开启一个快速会议。",
+  "task_name": "根据个人会议号在腾讯会议开启一个快速会议。",
+  "app_name": "腾讯会议",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "腾讯会议",
+    "快速会议",
+    "会议号",
+    "开启"
+  ],
+  "steps": [
+    {
+      "goal": "打开腾讯会议App",
+      "expected": "启动腾讯会议应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击快速会议按钮开始会议流程",
+      "expected": "进入快速会议创建界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "启用视频功能",
+      "expected": "视频功能已开启",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "进入会议",
+      "expected": "进入会议界面",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

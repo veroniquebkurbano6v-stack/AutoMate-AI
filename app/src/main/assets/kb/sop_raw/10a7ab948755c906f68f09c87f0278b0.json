@@ -1,0 +1,60 @@
+{
+  "sop_id": "10a7ab948755c906",
+  "original_task_name": "在点评上搜北大街自助餐厅导航过去",
+  "task_name": "在点评上搜特定餐厅导航过去",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定餐厅",
+    "导航",
+    "目的地",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的大众点评应用图标",
+      "expected": "打开大众点评应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'北大街自助餐厅'",
+      "expected": "搜索栏中显示'北大街自助餐厅'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果列表显示多个相关餐厅",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的餐厅条目",
+      "expected": "进入该餐厅的详情页面，显示地址和导航选项",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击餐厅详情页面中的'导航'按钮",
+      "expected": "进入地图导航界面，显示路线规划",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击'开始导航'按钮",
+      "expected": "启动导航，进入导航流程",
+      "action_type": "click"
+    }
+  ]
+}

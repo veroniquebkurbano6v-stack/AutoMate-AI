@@ -1,0 +1,47 @@
+{
+  "sop_id": "f48c2a2b44dcebed",
+  "original_task_name": "网易云音乐播放光年之外",
+  "task_name": "网易云音乐播放特定歌曲",
+  "app_name": "网易云音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "网易云音乐",
+    "特定歌曲",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开网易云音乐应用",
+      "expected": "应用图标被点击，进入网易云音乐主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看'特定歌曲'的相关结果",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定歌曲进入详情页",
+      "expected": "进入特定歌曲的详情页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

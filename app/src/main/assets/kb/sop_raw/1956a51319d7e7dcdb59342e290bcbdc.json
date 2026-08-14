@@ -1,0 +1,35 @@
+{
+  "sop_id": "1956a51319d7e7dc",
+  "original_task_name": "在微信中，播放Mila发来的最近一条语音。",
+  "task_name": "在微信中，播放联系人发来的最近一条语音。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "语音",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被点击，进入微信主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击联系人的语音消息条目",
+      "expected": "进入联系人的聊天对话",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击消息输入区域的语音按钮",
+      "expected": "激活语音输入功能",
+      "action_type": "click",
+      "step_order": 3
+    }
+  ]
+}

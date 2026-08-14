@@ -1,0 +1,53 @@
+{
+  "sop_id": "e831d4aa3fd9b053",
+  "original_task_name": "微信好友Charles发给我的最后一条消息转发给好友孙杰",
+  "task_name": "将微信联系人发给我的最后一条消息转发给另一位联系人",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "转发",
+    "消息"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，进入微信主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入联系人的聊天对话",
+      "expected": "打开联系人的聊天对话",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "长按视频消息以触发操作菜单",
+      "expected": "视频消息进入可选操作菜单",
+      "action_type": "long_press",
+      "step_order": 3
+    },
+    {
+      "goal": "点击消息内容中的地点信息区域",
+      "expected": "弹出包含转发、收藏、删除、多选、引用、提醒等功能按钮的快捷操作菜单",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择最近聊天中的联系人进行操作",
+      "expected": "界面显示最近聊天列表中的联系人选项已被选中",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认发送消息给联系人",
+      "expected": "发送对话框关闭，返回选择一个聊天页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

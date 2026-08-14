@@ -1,0 +1,65 @@
+{
+  "sop_id": "f152763a1cbb44d7",
+  "original_task_name": "在B站上观看评分最高的国产情感剧的首集。",
+  "task_name": "在B站上观看评分最高的国产情感剧的首集。",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定影视",
+    "电视剧",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "点击哔哩哔哩应用图标",
+      "expected": "打开哔哩哔哩应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击导航栏中的'影视'标签",
+      "expected": "导航栏中'影视'标签被选中，高亮显示",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'正在追'区域的特定影视剧集封面，进入该剧集详情页",
+      "expected": "进入特定影视剧集详情页面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击'电视剧'标签页",
+      "expected": "切换至电视剧内容分类",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "筛选电视剧按最多播放排序",
+      "expected": "电视剧列表按播放量从高到低排列",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "筛选电视剧类型，选择情感类内容",
+      "expected": "筛选出情感类电视剧",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'电视剧'标签以确认当前分类",
+      "expected": "保持当前分类状态",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击特定影视封面进入详情页",
+      "expected": "进入特定影视的详细信息页面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

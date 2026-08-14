@@ -1,0 +1,47 @@
+{
+  "sop_id": "d75bd0a76231b87f",
+  "original_task_name": "QQ音乐搜深情的歌曲，并播放",
+  "task_name": "QQ音乐搜深情的歌曲，并播放",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "深情的歌曲",
+    "搜索",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入音乐播放界面",
+      "expected": "操作后界面状态为进入音乐播放界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'深情的歌曲'",
+      "expected": "文本输入框中显示'深情的歌曲'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查找“深情的歌曲”相关内容",
+      "expected": "搜索界面进入待处理状态",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "切换搜索结果分类至单曲视图",
+      "expected": "单曲分类下的内容展示",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

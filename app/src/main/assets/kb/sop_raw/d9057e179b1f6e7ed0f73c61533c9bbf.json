@@ -1,0 +1,65 @@
+{
+  "sop_id": "d9057e179b1f6e7e",
+  "original_task_name": "从当前位置使用高德地图导航到最近的茶馆",
+  "task_name": "从当前位置使用高德地图导航到最近的茶馆",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "茶馆",
+    "导航",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'茶馆'",
+      "expected": "文本输入框中显示'茶馆'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作，获取与“茶馆”相关的地点信息",
+      "expected": "搜索结果页面显示多个茶馆选项及位置信息",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击“推荐排序”按钮，展开排序选项菜单",
+      "expected": "点击后弹出排序选项菜单",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "排序下拉菜单中显示“距离优先”选项已被选中",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击茶馆列表中的'目的地'条目",
+      "expected": "进入该茶馆的详情页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击导航按钮进入路线规划功能",
+      "expected": "进入路线规划界面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

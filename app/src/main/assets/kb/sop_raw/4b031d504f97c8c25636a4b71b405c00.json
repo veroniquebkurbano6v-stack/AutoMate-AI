@@ -1,0 +1,84 @@
+{
+  "sop_id": "4b031d504f97c8c2",
+  "original_task_name": "导航到西安南门广场附近最近的夜市摊位  ",
+  "task_name": "导航到目的地附近最近的夜市摊位",
+  "app_name": "地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "地图",
+    "导航",
+    "目的地",
+    "夜市",
+    "排序"
+  ],
+  "steps": [
+    {
+      "goal": "点击地图应用图标以打开应用",
+      "expected": "打开地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索框以激活输入功能",
+      "expected": "搜索框变为可输入状态，用户可输入地点、公交、地铁等信息",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'周边'按钮以查看附近商家信息",
+      "expected": "界面显示附近商家列表",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'夜市'",
+      "expected": "文本输入框中显示'夜市'",
+      "step_order": 6
+    },
+    {
+      "goal": "执行搜索操作，获取与“夜市”相关的地点信息",
+      "expected": "搜索结果页面显示多个地点选项",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击“推荐排序”按钮以展开排序选项菜单",
+      "expected": "点击后弹出排序方式选择列表",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "界面弹出的排序下拉菜单中，距离优先选项被选中并高亮显示",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击特定餐厅的条目",
+      "expected": "进入该餐厅的详情页面",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "点击底部导航栏中的'导航'按钮",
+      "expected": "进入导航功能界面",
+      "action_type": "click",
+      "step_order": 11
+    }
+  ]
+}

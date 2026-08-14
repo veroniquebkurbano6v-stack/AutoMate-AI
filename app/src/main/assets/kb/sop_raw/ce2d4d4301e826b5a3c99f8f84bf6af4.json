@@ -1,0 +1,72 @@
+{
+  "sop_id": "ce2d4d4301e826b5",
+  "original_task_name": "在大众点评中搜索附近的4星以上的甜品店",
+  "task_name": "在大众点评中搜索附近的4星以上的甜品店",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "甜品店",
+    "搜索",
+    "筛选",
+    "评分"
+  ],
+  "steps": [
+    {
+      "goal": "点击大众点评应用图标以打开应用",
+      "expected": "应用启动界面出现",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'甜品店'",
+      "expected": "文本输入框中显示'甜品店'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索结果页面加载",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击筛选按钮以展开筛选选项",
+      "expected": "筛选菜单弹出，提供多种筛选条件供用户选择",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "筛选商户评分4.8-5分的条件",
+      "expected": "应用评分筛选条件",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择商户评分4.5-4.7分的筛选条件",
+      "expected": "筛选出评分在4.5-4.7分之间的商户",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择商户评分4.0-4.4分的筛选条件",
+      "expected": "筛选出评分在4.0-4.4分之间的商户",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "确认筛选条件并返回搜索结果页面",
+      "expected": "筛选条件已应用，搜索结果页面显示符合筛选条件的商家",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

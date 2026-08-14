@@ -1,0 +1,35 @@
+{
+  "sop_id": "536168c92f272ad4",
+  "original_task_name": "播放微信好友李铭的最新一条语音消息",
+  "task_name": "播放微信好友联系人的最新一条语音消息",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "语音消息",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "微信应用图标被选中，进入微信应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击聊天列表中的'联系人'对话条目",
+      "expected": "进入与联系人的聊天界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "确认位置信息并进行下一步操作",
+      "expected": "操作后界面状态",
+      "action_type": "click",
+      "step_order": 3
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "sop_id": "5dd0b7f2facedb04",
+  "original_task_name": "开启理发店预约提醒闹钟",
+  "task_name": "开启理发店预约提醒闹钟",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "工具",
+  "keywords": [
+    "小红书",
+    "闹钟",
+    "理发店",
+    "提醒"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "操作：点击22:15闹钟开关，使该闹钟关闭",
+      "expected": "操作后界面状态：22:15闹钟的开关从灰色（关闭）变为蓝色（开启）",
+      "action_type": "click",
+      "step_order": 2
+    }
+  ]
+}

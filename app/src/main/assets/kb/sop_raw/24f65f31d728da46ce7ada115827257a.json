@@ -1,0 +1,59 @@
+{
+  "sop_id": "24f65f31d728da46",
+  "original_task_name": "请在B站播放《笑傲江湖》第3集。",
+  "task_name": "请在B站播放特定影视的第3集",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定影视",
+    "播放",
+    "第3集"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的哔哩哔哩应用图标",
+      "expected": "应用图标被选中，进入哔哩哔哩应用界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'笑傲江湖'",
+      "expected": "搜索栏中显示'笑傲江湖'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索结果列表显示",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的'番剧'标签",
+      "expected": "筛选搜索结果，仅显示番剧类内容",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击番剧详情页面中的第3集",
+      "expected": "进入特定影视第3集的播放页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击播放按钮开始播放",
+      "expected": "视频开始播放",
+      "action_type": "click"
+    }
+  ]
+}

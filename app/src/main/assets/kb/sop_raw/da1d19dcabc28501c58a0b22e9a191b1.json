@@ -1,0 +1,53 @@
+{
+  "sop_id": "da1d19dcabc28501",
+  "original_task_name": "将微信中好友小王发给我的最新消息转发到“家人交流群”。",
+  "task_name": "将微信中好友联系人发给我的最新消息转发到“群组”。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "群组",
+    "转发"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，进入微信主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入聊天列表界面",
+      "expected": "操作后界面状态为微信聊天列表页，显示了所有已保存的联系人和群聊",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "长按视频消息以触发操作菜单",
+      "expected": "视频消息区域出现可点击的菜单选项",
+      "action_type": "long_press",
+      "step_order": 3
+    },
+    {
+      "goal": "点击'转发'按钮，将当前消息内容通过其他途径分享出去",
+      "expected": "弹出包含转发、收藏、引用、删除、多选和提醒等功能的菜单",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择聊天对象进行下一步操作",
+      "expected": "进入所选聊天对象的对话界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认发送内容并完成发送操作",
+      "expected": "发送对话框关闭，返回选择一个聊天页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

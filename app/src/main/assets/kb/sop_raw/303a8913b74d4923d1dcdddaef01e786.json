@@ -1,0 +1,53 @@
+{
+  "sop_id": "303a8913b74d4923",
+  "original_task_name": "在小红书上找找关于旅行的笔记，然后给第2篇点赞。",
+  "task_name": "在小红书上找找关于旅行的笔记，然后给第2篇点赞。",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "小红书",
+    "旅行",
+    "笔记",
+    "点赞"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的小红书应用图标",
+      "expected": "打开小红书应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面右上角的搜索图标",
+      "expected": "进入搜索界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索框中输入'旅行'",
+      "expected": "搜索框中显示'旅行'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果列表显示",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击搜索结果中的第2篇笔记",
+      "expected": "进入该笔记的详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击笔记详情页面中的点赞按钮",
+      "expected": "点赞按钮状态变为已点赞",
+      "action_type": "click"
+    }
+  ]
+}

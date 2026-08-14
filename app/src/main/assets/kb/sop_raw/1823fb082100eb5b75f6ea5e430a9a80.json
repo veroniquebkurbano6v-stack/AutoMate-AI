@@ -1,0 +1,47 @@
+{
+  "sop_id": "1823fb082100eb5b",
+  "original_task_name": "在微信里给张三发个消息，告诉他我现在的位置。",
+  "task_name": "在微信里给联系人发个消息，告诉他我现在的位置。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "消息",
+    "位置"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，进入微信主界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击联系人列表中的'张三'",
+      "expected": "进入与张三的聊天界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击聊天框右侧的'+'按钮",
+      "expected": "展开更多功能选项",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击功能菜单中的'位置'选项",
+      "expected": "进入位置分享界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 5,
+      "goal": "点击位置界面中的'发送位置'按钮",
+      "expected": "当前位置信息发送给张三",
+      "action_type": "click"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "sop_id": "d018bb90d22dae34",
+  "original_task_name": "打开腾讯会议，加入会议，会议号为473-749-931",
+  "task_name": "打开腾讯会议，加入会议，会议号为特定会议号",
+  "app_name": "腾讯会议",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "工具",
+  "keywords": [
+    "腾讯会议",
+    "会议",
+    "特定会议号",
+    "加入"
+  ],
+  "steps": [
+    {
+      "goal": "点击腾讯会议应用图标",
+      "expected": "打开腾讯会议应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'加入会议'按钮",
+      "expected": "进入会议加入界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定会议号'",
+      "expected": "文本输入框中显示'特定会议号'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击“加入会议”按钮以提交会议加入请求",
+      "expected": "点击操作后，界面将跳转至会议加入成功后的状态",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

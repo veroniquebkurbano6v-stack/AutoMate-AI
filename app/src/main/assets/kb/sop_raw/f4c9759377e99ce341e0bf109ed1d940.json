@@ -1,0 +1,53 @@
+{
+  "sop_id": "f4c9759377e99ce3",
+  "original_task_name": "高德把大雁塔加入常去地点",
+  "task_name": "高德把目的地加入常去地点",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "常去地点",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被点击，应用启动并显示其主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'订酒店'按钮，进入酒店预订功能页面",
+      "expected": "进入酒店预订功能页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'目的地'常去地点条目",
+      "expected": "界面显示该目的地的详细信息",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "添加常去地点",
+      "expected": "界面进入添加常去地点的添加页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 5
+    },
+    {
+      "goal": "点击目的地条目以进入详情页面",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

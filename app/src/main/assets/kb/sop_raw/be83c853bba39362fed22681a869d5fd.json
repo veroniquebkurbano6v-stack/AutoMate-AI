@@ -1,0 +1,47 @@
+{
+  "sop_id": "be83c853bba39362",
+  "original_task_name": "小红书搜穿搭分享的视频，并播放",
+  "task_name": "小红书搜穿搭分享的视频，并播放",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "小红书",
+    "穿搭分享",
+    "视频",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用启动界面出现",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击屏幕右上角的搜索图标",
+      "expected": "进入搜索界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'穿搭分享视频'",
+      "expected": "文本输入框中显示'穿搭分享视频'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看与“穿搭分享视频”相关的搜索结果",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击标题为'特定影视'的视频内容",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

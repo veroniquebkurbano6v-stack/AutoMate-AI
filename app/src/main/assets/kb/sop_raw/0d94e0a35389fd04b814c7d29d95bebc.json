@@ -1,0 +1,138 @@
+{
+  "sop_id": "0d94e0a35389fd04",
+  "original_task_name": "在小红书上搜索化妆教程，并给看到的前10篇笔记点赞。",
+  "task_name": "在小红书上搜索化妆教程，并给看到的前10篇笔记点赞。",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "小红书",
+    "化妆教程",
+    "视频",
+    "点赞",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索图标以打开搜索界面",
+      "expected": "界面切换至搜索页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'化妆教程'",
+      "expected": "文本输入框中显示'化妆教程'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏右侧的'搜索'按钮",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击联系人发布的特定美妆教程内容卡片",
+      "expected": "进入该联系人发布的美妆教程详情页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "关闭评分弹窗",
+      "expected": "弹窗消失，返回搜索结果页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择是否为应用留下五星好评",
+      "expected": "弹窗中“立即前往”按钮变为可点击状态",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击联系人发布的关于补妆步骤的帖子",
+      "expected": "进入该联系人发布的补妆步骤帖子详情页面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击搜索结果中的美妆教程卡片",
+      "expected": "进入该美妆教程的详情页面",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击特定美妆教程视频内容",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "点击特定美妆教程视频内容",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 11
+    },
+    {
+      "goal": "点击联系人发布的特定美妆教程视频内容区域",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 12
+    },
+    {
+      "goal": "点击特定化妆教程帖子",
+      "expected": "进入该化妆教程帖子的详情页面",
+      "action_type": "click",
+      "step_order": 13
+    },
+    {
+      "goal": "点击联系人化妆教程的点赞按钮",
+      "expected": "操作后界面状态：该教程的点赞数增加",
+      "action_type": "click",
+      "step_order": 14
+    },
+    {
+      "goal": "点击'化妆教程视频'选项",
+      "expected": "进入视频教程页面",
+      "action_type": "click",
+      "step_order": 15
+    },
+    {
+      "goal": "点击视频内容进入详情页",
+      "expected": "进入该视频的详细播放页面",
+      "action_type": "click",
+      "step_order": 16
+    },
+    {
+      "goal": "点击视频内容进入详情页",
+      "expected": "进入该视频的详细播放页面",
+      "action_type": "click",
+      "step_order": 17
+    },
+    {
+      "goal": "点击联系人发布的关于干皮定妆粉饼的视频内容",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 18
+    },
+    {
+      "goal": "点击搜索栏右侧的关闭按钮",
+      "expected": "搜索栏中的内容被清除，界面恢复到搜索结果页面状态",
+      "action_type": "click",
+      "step_order": 19
+    },
+    {
+      "goal": "点击化妆教程列表中的点赞按钮",
+      "expected": "该教程的点赞数增加",
+      "action_type": "click",
+      "step_order": 20
+    }
+  ]
+}

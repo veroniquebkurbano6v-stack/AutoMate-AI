@@ -1,0 +1,66 @@
+{
+  "sop_id": "6a5e099ea5e5d395",
+  "original_task_name": "在高德地图上查找从钟楼到永宁门的骑车路线",
+  "task_name": "在高德地图上查找从出发地到目的地的骑车路线",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "路线",
+    "出发地",
+    "目的地",
+    "骑行"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'路线'按钮进入路线规划界面",
+      "expected": "进入路线规划功能页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'我的位置'按钮，确认或修改出发地",
+      "expected": "界面显示出发地设置区域，可输入或选择新的出发地点",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "选择地图上的出发地位置作为起点",
+      "expected": "界面显示出发地位置信息，包括地铁站详情",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "点击搜索到的目的地条目",
+      "expected": "界面显示该景点的详细信息",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "切换出行方式至骑行模式",
+      "expected": "界面切换至骑行模式，显示骑行路线选项",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

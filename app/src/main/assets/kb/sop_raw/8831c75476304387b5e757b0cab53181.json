@@ -1,0 +1,53 @@
+{
+  "sop_id": "8831c75476304387",
+  "original_task_name": "打开qq音乐，能否播放倚天屠龙记的片头曲给我听？",
+  "task_name": "打开qq音乐，能否播放特定影视的片头曲给我听？",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定影视",
+    "特定歌曲",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "点击QQ音乐应用图标",
+      "expected": "QQ音乐应用图标被选中，进入QQ音乐应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击页面右上角的'跳过'按钮",
+      "expected": "页面跳转至主界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入功能",
+      "expected": "搜索栏变为可输入状态，用户可输入关键词进行搜索",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索结果中的'特定歌曲'条目",
+      "expected": "进入歌曲《特定歌曲》的详情页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击歌曲《特定歌曲》的播放按钮",
+      "expected": "歌曲《特定歌曲》开始播放",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "sop_id": "44df5444a5822455",
+  "original_task_name": "使用百度地图，从我的位置到北大街招商银行进行导航。",
+  "task_name": "使用百度地图，从我的位置到目的地进行导航。",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "导航",
+    "目的地",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "打开百度地图应用",
+      "expected": "百度地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "step_order": 3
+    },
+    {
+      "goal": "选择搜索结果中的'目的地'条目",
+      "expected": "界面显示该地点的详细信息，包括地址、评分、评论数及交通方式和距离",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击导航按钮，启动地图应用的导航功能",
+      "expected": "页面进入导航界面，显示出发地和目的地选择区域",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "sop_id": "656e21b7e4a57d4d",
+  "original_task_name": "用高德地图查找最近的酒吧并分享给我的微信好友Mark",
+  "task_name": "用高德地图查找最近的酒吧并分享给我的微信联系人",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "高德地图",
+    "微信",
+    "酒吧",
+    "联系人",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'酒吧'",
+      "expected": "文本输入框中显示'酒吧'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索结果中的特定餐厅条目",
+      "expected": "进入该餐厅的详情页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击分享按钮",
+      "expected": "分享当前餐厅信息",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "操作点击微信分享按钮",
+      "expected": "分享界面弹出",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击'创建新的聊天'按钮",
+      "expected": "进入新建聊天界面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "确认分享目标联系人",
+      "expected": "确认分享操作已成功发送给指定联系人",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

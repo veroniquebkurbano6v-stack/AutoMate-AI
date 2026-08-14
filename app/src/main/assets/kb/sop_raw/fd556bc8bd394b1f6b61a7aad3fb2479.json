@@ -1,0 +1,54 @@
+{
+  "sop_id": "fd556bc8bd394b1f",
+  "original_task_name": "百度地图导航从这到陕西历史博物馆的打车路线。",
+  "task_name": "百度地图导航从这到目的地的打车路线。",
+  "app_name": "百度地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "百度地图",
+    "导航",
+    "目的地",
+    "打车",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "点击百度地图应用图标",
+      "expected": "打开百度地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索框右侧的'搜索'按钮",
+      "expected": "搜索结果页面显示目的地的详细信息和相关推荐",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'到这去'按钮，进入目的地的详细信息页面",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'打车'按钮以确认选择打车服务模式",
+      "expected": "界面切换至打车服务页面，显示可选的打车目的地",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "sop_id": "aff59381f4761da7",
+  "original_task_name": "在大众点评中搜索附近的4星以上的家居装饰店",
+  "task_name": "在大众点评中搜索附近的4星以上的家居装饰店",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "搜索",
+    "家居装饰店",
+    "筛选",
+    "好评优先"
+  ],
+  "steps": [
+    {
+      "goal": "打开大众点评应用",
+      "expected": "应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入搜索界面以输入关键词查找商家",
+      "expected": "点击搜索框后，界面进入可输入关键词的搜索状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'家居装饰店'",
+      "expected": "文本输入框中显示'家居装饰店'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看相关结果",
+      "expected": "搜索结果列表出现",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击筛选栏中的'全城'按钮",
+      "expected": "筛选结果仅显示本地装修服务商家",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择附近的商家作为搜索范围",
+      "expected": "界面显示附近商家列表，用户可选择具体位置范围",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击排序按钮以展开排序选项菜单",
+      "expected": "展开排序选项菜单",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择排序方式为好评优先",
+      "expected": "界面显示排序选项已更新为好评优先",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击商家名称进入详情页",
+      "expected": "进入该商家的详细信息页面",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

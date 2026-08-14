@@ -1,0 +1,35 @@
+{
+  "sop_id": "2610cf1b06126915",
+  "original_task_name": "播放微信群\"DIY制作\"的最新一条语音消息",
+  "task_name": "播放微信群组的最新一条语音消息",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "群组",
+    "语音消息",
+    "播放"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "微信应用图标被选中，准备进入应用",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击微信首页中的\"DIY制作\"群聊",
+      "expected": "进入群聊详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击群聊中的最新语音消息",
+      "expected": "语音消息开始播放",
+      "action_type": "click"
+    }
+  ]
+}

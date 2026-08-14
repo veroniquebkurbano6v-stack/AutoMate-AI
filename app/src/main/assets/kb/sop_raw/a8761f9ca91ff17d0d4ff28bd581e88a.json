@@ -1,0 +1,47 @@
+{
+  "sop_id": "a8761f9ca91ff17d",
+  "original_task_name": "打开腾讯会议，加入会议，会议号为532-877-273，关闭我摄像头",
+  "task_name": "打开腾讯会议，加入会议，输入会议号，关闭摄像头",
+  "app_name": "腾讯会议",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "工具",
+  "keywords": [
+    "腾讯会议",
+    "会议号",
+    "加入会议",
+    "摄像头"
+  ],
+  "steps": [
+    {
+      "goal": "打开腾讯会议应用",
+      "expected": "腾讯会议应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'加入会议'按钮",
+      "expected": "进入会议加入流程",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'会议号'",
+      "expected": "文本输入框中显示'会议号'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击开启扬声器开关以启用音频功能",
+      "expected": "扬声器功能已开启",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击“加入会议”按钮以完成会议加入操作",
+      "expected": "界面显示会议加入成功状态",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

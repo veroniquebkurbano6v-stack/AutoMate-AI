@@ -1,0 +1,59 @@
+{
+  "sop_id": "745523c9790b0e63",
+  "original_task_name": "酷狗音乐搜民谣的歌单，并播放第2个歌单",
+  "task_name": "酷狗音乐搜民谣的歌单，并播放第2个歌单",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "酷狗音乐",
+    "民谣",
+    "歌单",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "点击酷狗音乐应用图标以打开应用",
+      "expected": "应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击顶部导航栏中的“乐库”标签",
+      "expected": "进入乐库页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'民谣'",
+      "expected": "文本输入框中显示'民谣'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看民谣相关结果",
+      "expected": "搜索结果列表显示民谣相关的内容",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击分类标签栏中的“歌单”选项",
+      "expected": "筛选结果仅显示歌单类内容",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'特定歌单'条目",
+      "expected": "进入该歌单的详情页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击歌曲列表中的某首歌曲条目",
+      "expected": "进入该歌曲的详情页面",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

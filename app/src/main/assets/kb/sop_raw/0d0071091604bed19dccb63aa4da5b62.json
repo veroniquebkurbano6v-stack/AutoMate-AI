@@ -1,0 +1,41 @@
+{
+  "sop_id": "0d0071091604bed1",
+  "original_task_name": "饿了么找一下附近可以送外卖的大拇指五谷煎饼",
+  "task_name": "饿了么找一下附近可以送外卖的特定菜品",
+  "app_name": "饿了么",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "购物",
+  "keywords": [
+    "饿了么",
+    "外卖",
+    "特定菜品",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的饿了么应用图标",
+      "expected": "应用图标被选中，进入饿了么应用界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏右侧的搜索按钮被激活，界面进入搜索状态",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在文本输入框中输入'特定菜品'",
+      "expected": "文本输入框中显示'特定菜品'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面加载，显示特定菜品的店铺信息",
+      "action_type": "click"
+    }
+  ]
+}

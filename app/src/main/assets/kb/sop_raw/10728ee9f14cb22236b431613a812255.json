@@ -1,0 +1,78 @@
+{
+  "sop_id": "10728ee9f14cb222",
+  "original_task_name": "高德把西安理工大学设置成公司地址，并保存至我的收藏夹 ",
+  "task_name": "高德把目的地设置成公司地址，并保存至我的收藏夹",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "收藏夹",
+    "公司地址",
+    "设置"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击收藏夹图标以访问已保存的地点和路线",
+      "expected": "进入收藏夹页面，显示已保存的地点和路线选项",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "设置常去地点",
+      "expected": "点击后可添加或查看常用目的地",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击添加家庭地点按钮",
+      "expected": "界面进入添加家庭地点的表单页面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 5
+    },
+    {
+      "goal": "选择目的地作为搜索地点",
+      "expected": "界面显示目的地的详细信息",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击目的地信息条中的'设为公司地址'按钮",
+      "expected": "地址信息条底部的'设为公司地址'按钮被激活，可点击",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击已添加的目的地常去地点条目",
+      "expected": "该条目被选中，界面可能高亮显示或进入详情编辑状态",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击底部导航栏的'更多'按钮",
+      "expected": "展开包含'顺路搜'、'终点停车'、'更多'等选项的菜单",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击'收藏'按钮，将当前路线保存至收藏夹",
+      "expected": "收藏当前路线",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

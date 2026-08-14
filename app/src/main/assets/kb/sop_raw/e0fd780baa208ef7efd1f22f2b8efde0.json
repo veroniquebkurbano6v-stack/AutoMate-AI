@@ -1,0 +1,65 @@
+{
+  "sop_id": "e0fd780baa208ef7",
+  "original_task_name": "在大众点评上查找附近评分4星以上的烤鱼店。",
+  "task_name": "在大众点评上查找附近评分4星以上的特定菜品店",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定菜品",
+    "搜索",
+    "评分"
+  ],
+  "steps": [
+    {
+      "goal": "打开大众点评App",
+      "expected": "屏幕显示大众点评App的主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定菜品'",
+      "expected": "文本输入框中显示'特定菜品'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看特定菜品店相关结果",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'综合'标签以查看综合排序的特定菜品店列表",
+      "expected": "筛选出按综合排序的特定菜品店列表",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择附近商家作为搜索范围",
+      "expected": "搜索结果的范围被设置为附近商家",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击排序按钮展开排序选项",
+      "expected": "展开排序菜单，显示不同排序方式",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择排序方式为人气优先",
+      "expected": "界面显示排序选项已切换至人气优先",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

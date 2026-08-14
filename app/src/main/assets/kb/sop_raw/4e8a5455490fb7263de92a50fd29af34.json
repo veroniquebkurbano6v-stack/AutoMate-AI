@@ -1,0 +1,47 @@
+{
+  "sop_id": "4e8a5455490fb726",
+  "original_task_name": "在B站搜索冯曦妤的音乐，并播放",
+  "task_name": "在B站搜索联系人的音乐，并播放",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "联系人",
+    "音乐",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开哔哩哔哩App",
+      "expected": "屏幕显示哔哩哔哩应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'联系人的音乐'",
+      "expected": "文本输入框中显示'联系人的音乐'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看联系人音乐相关结果",
+      "expected": "搜索界面显示搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击联系人歌曲合集的封面区域",
+      "expected": "进入该歌曲合集的播放或详情页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

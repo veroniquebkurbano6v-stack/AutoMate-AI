@@ -1,0 +1,90 @@
+{
+  "sop_id": "bbaa5be9485140a6",
+  "original_task_name": " b 站播放偶像大师Cinderella Girls剧场的最新一集",
+  "task_name": "b 站播放特定影视的最新一集",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "特定影视",
+    "播放",
+    "最新一集",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开bilibili应用",
+      "expected": "bilibili应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的内容以触发搜索操作",
+      "expected": "搜索栏内容被选中并触发搜索",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定影视'",
+      "expected": "文本输入框中显示'特定影视'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看搜索结果",
+      "expected": "搜索结果页面加载完成，显示与输入内容相关的搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击搜索栏中的'特定影视'文本区域",
+      "expected": "搜索栏内容被选中，准备进行输入或编辑操作",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'特定影视'条目右侧的'立即观看'按钮",
+      "expected": "进入该影视的播放页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'特定影视'的对应剧集按钮",
+      "expected": "进入对应剧集的播放页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击'特定影视'的对应剧集按钮",
+      "expected": "进入对应剧集的WEB版播放页面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击选集中的对应剧集条目",
+      "expected": "进入对应剧集的WEB版播放页面",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击剧集数量显示区域，进入剧集选择页面",
+      "expected": "进入剧集选择界面，可查看各集详情",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "选择第39集",
+      "expected": "进入第39集播放页面",
+      "action_type": "click",
+      "step_order": 11
+    },
+    {
+      "goal": "选择第40集",
+      "expected": "进入第40集播放页面",
+      "action_type": "click",
+      "step_order": 12
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "sop_id": "a959caf63c76dfb9",
+  "original_task_name": "QQ 音乐播放晴天",
+  "task_name": "QQ 音乐播放特定歌曲",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定歌曲",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'点击'标签页以进入该分类页面",
+      "expected": "进入音乐分类页面，展示该分类下的内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索结果中的特定歌曲",
+      "expected": "进入特定歌曲的播放页面",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

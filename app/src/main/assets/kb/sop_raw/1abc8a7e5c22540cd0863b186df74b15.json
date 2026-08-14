@@ -1,0 +1,41 @@
+{
+  "sop_id": "1abc8a7e5c22540c",
+  "original_task_name": "在大众点评中搜索附近的4星以上的中药养生馆",
+  "task_name": "在大众点评中搜索附近的4星以上的中药养生馆",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "中药养生馆",
+    "搜索",
+    "附近"
+  ],
+  "steps": [
+    {
+      "step_order": 1,
+      "goal": "点击手机桌面上的大众点评应用图标",
+      "expected": "应用图标被选中，进入大众点评界面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索栏",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click"
+    },
+    {
+      "step_order": 3,
+      "goal": "在搜索栏中输入'附近的4星以上的中药养生馆'",
+      "expected": "搜索栏中显示'附近的4星以上的中药养生馆'",
+      "action_type": "type"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击搜索栏右侧的搜索按钮",
+      "expected": "搜索界面将显示搜索结果列表",
+      "action_type": "click"
+    }
+  ]
+}

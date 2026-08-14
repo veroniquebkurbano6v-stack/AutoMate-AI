@@ -1,0 +1,71 @@
+{
+  "sop_id": "dc28440280298cf2",
+  "original_task_name": "前往哔哩哔哩订阅JKAI杰凯的“全网最真实的声乐点评”系列视频。",
+  "task_name": "前往哔哩哔哩订阅联系人的特定影视系列视频",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "联系人",
+    "特定影视",
+    "追更"
+  ],
+  "steps": [
+    {
+      "goal": "打开哔哩哔哩应用",
+      "expected": "哔哩哔哩应用图标被选中，应用启动界面加载中",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域",
+      "expected": "激活搜索功能",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看搜索结果",
+      "expected": "搜索结果列表",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击联系人的个人主页入口",
+      "expected": "进入联系人的个人主页",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'收藏'按钮",
+      "expected": "进入收藏页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击标题为特定影视的视频条目",
+      "expected": "进入该特定影视的播放页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击视频下方的点赞按钮",
+      "expected": "点赞按钮状态变为已点亮，显示点赞数增加",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击视频列表右侧的'追更'按钮",
+      "expected": "关注该视频内容",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

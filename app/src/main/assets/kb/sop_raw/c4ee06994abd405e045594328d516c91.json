@@ -1,0 +1,77 @@
+{
+  "sop_id": "c4ee06994abd405e",
+  "original_task_name": "导航到钟楼附近的咖啡馆",
+  "task_name": "导航到目的地附近的咖啡馆",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "咖啡馆"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索框中的'目的地'文字区域",
+      "expected": "搜索框内容被选中",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击底部导航栏的'周边'按钮",
+      "expected": "进入周边功能页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "在文本输入框中输入'咖啡馆'",
+      "expected": "文本输入框中显示'咖啡馆'",
+      "action_type": "type",
+      "step_order": 7
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面加载完成，显示与“咖啡馆”相关的搜索结果",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击'特定咖啡馆'条目",
+      "expected": "进入该咖啡馆的详细信息页面",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击底部导航栏中的'导航'按钮",
+      "expected": "进入导航功能界面",
+      "action_type": "click",
+      "step_order": 10
+    }
+  ]
+}

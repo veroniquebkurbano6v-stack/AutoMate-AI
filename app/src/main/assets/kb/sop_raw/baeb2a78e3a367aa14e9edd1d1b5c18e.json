@@ -1,0 +1,72 @@
+{
+  "sop_id": "baeb2a78e3a367aa",
+  "original_task_name": "小红书搜穿搭博主的视频，播放并分享给微信好友刘浩然",
+  "task_name": "小红书搜穿搭博主的视频，播放并分享给微信联系人",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "社交",
+  "keywords": [
+    "小红书",
+    "微信",
+    "穿搭博主",
+    "视频",
+    "分享"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，应用启动并进入主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索图标以打开搜索界面",
+      "expected": "界面切换至搜索页面，显示搜索输入框和搜索建议",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'穿搭博主'",
+      "expected": "文本输入框中显示'穿搭博主'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索界面开始加载，显示搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击用户资料区域进入详情页",
+      "expected": "进入该用户的个人主页",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击分享按钮",
+      "expected": "分享功能已激活",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "选择微信好友进行分享",
+      "expected": "分享菜单中微信好友选项被选中",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "选择聊天对话",
+      "expected": "进入该聊天的详情页面",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "确认分享给联系人",
+      "expected": "确认分享对话框关闭，返回选择一个聊天界面",
+      "action_type": "click",
+      "step_order": 9
+    }
+  ]
+}

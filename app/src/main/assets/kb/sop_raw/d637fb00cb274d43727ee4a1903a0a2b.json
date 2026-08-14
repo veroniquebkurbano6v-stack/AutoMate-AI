@@ -1,0 +1,102 @@
+{
+  "sop_id": "d637fb00cb274d43",
+  "original_task_name": "通过美团找到西安交通大学附近评价好的俄罗斯菜餐馆，接着导航前往。",
+  "task_name": "通过美团找到出发地附近评价好的俄罗斯菜餐馆，接着导航前往。",
+  "app_name": "美团",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "美团",
+    "俄罗斯菜餐馆",
+    "评价",
+    "导航",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击美团应用图标",
+      "expected": "打开美团应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索栏右侧的'搜索'按钮",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击出发地的餐厅列表项",
+      "expected": "进入该餐厅的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击底部导航栏的'搜周边'按钮",
+      "expected": "进入周边功能页面",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "在文本输入框中输入'俄罗斯菜餐馆'",
+      "expected": "文本输入框中显示'俄罗斯菜餐馆'",
+      "action_type": "type",
+      "step_order": 7
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "点击'特定商户'的店铺信息区域",
+      "expected": "进入该店铺的详细信息页面",
+      "action_type": "click",
+      "step_order": 9
+    },
+    {
+      "goal": "点击餐厅地址信息区域",
+      "expected": "进入该餐厅的详细地址页面",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "点击'查看路线'按钮，获取该餐厅的导航路线信息",
+      "expected": "进入路线规划界面，显示从当前位置到餐厅的导航路线",
+      "action_type": "click",
+      "step_order": 11
+    },
+    {
+      "goal": "确认导航开始按钮状态",
+      "expected": "点击后确认导航已启动",
+      "action_type": "click",
+      "step_order": 12
+    },
+    {
+      "goal": "选择百度地图作为导航应用",
+      "expected": "界面弹出地图选择对话框，用户可选择不同地图服务商",
+      "action_type": "click",
+      "step_order": 13
+    },
+    {
+      "goal": "点击'开始导航'按钮启动导航",
+      "expected": "导航系统开始运行，显示实时路线和预计到达时间",
+      "action_type": "click",
+      "step_order": 14
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "sop_id": "f509993594c5e6c1",
+  "original_task_name": "淘宝上找户外运动服",
+  "task_name": "淘宝上找户外运动服",
+  "app_name": "淘宝",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "购物",
+  "keywords": [
+    "淘宝",
+    "户外运动服",
+    "特定商品",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开淘宝App",
+      "expected": "淘宝应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'户外运动服'",
+      "expected": "文本输入框中显示'户外运动服'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面加载",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定商品标题区域",
+      "expected": "进入该特定商品详情页",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "sop_id": "eaf7bccd2af4efe9",
+  "original_task_name": "通过高德地图查找并导航至当前位置附近最近的博物馆  ",
+  "task_name": "通过高德地图查找并导航至当前位置附近最近的博物馆",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "博物馆",
+    "导航",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用图标被选中，进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'博物馆'",
+      "expected": "文本输入框中显示'博物馆'",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索操作",
+      "expected": "搜索结果页面加载完成，显示博物馆相关结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序选项以查看不同排序方式",
+      "expected": "进入排序选择界面，可选择不同排序方式",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "界面弹出排序菜单，显示“距离优先”选项",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击目的地条目以查看详细信息",
+      "expected": "进入目的地的详情页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击导航按钮进入路线规划功能",
+      "expected": "进入路线规划界面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sop_id": "b02eecc5671fff72",
+  "original_task_name": "把当前位置发送给微信好友韩磊",
+  "task_name": "把当前位置发送给微信联系人",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "联系人",
+    "位置",
+    "发送"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入聊天对话界面",
+      "expected": "界面切换至聊天对话列表",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "发送消息",
+      "expected": "操作后界面状态：消息输入框中显示“已取消”字样，底部按钮区域出现红色箭头指示的交互元素。",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择发送位置功能",
+      "expected": "点击后选择发送位置功能",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择发送位置消息",
+      "expected": "位置发送菜单已弹出",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认目的地选择并提交",
+      "expected": "界面显示目的地已确认，可提交路线规划",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

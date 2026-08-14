@@ -1,0 +1,47 @@
+{
+  "sop_id": "bfb4093f9f9710c3",
+  "original_task_name": "在点评上搜曲江池遗址公园，领优惠券",
+  "task_name": "在点评上搜目的地，领优惠券",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "目的地",
+    "优惠券",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开大众点评App",
+      "expected": "大众点评App图标被选中，准备进入应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的文本区域",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "确认搜索建议并执行搜索",
+      "expected": "搜索建议列表下方出现搜索结果",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'目的地'条目，进入详情页面",
+      "expected": "进入目的地的详细信息页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "sop_id": "a9ff6295b08d5ad2",
+  "original_task_name": "大众点评看北京菜热门榜",
+  "task_name": "大众点评看特定榜单",
+  "app_name": "大众点评",
+  "source": "cagui_auto",
+  "difficulty": "L2",
+  "domain": "生活服务",
+  "keywords": [
+    "大众点评",
+    "特定榜单",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击大众点评应用图标",
+      "expected": "打开大众点评应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定榜单'",
+      "expected": "文本输入框中显示'特定榜单'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮执行搜索",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    }
+  ]
+}

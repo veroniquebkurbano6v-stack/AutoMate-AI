@@ -1,0 +1,125 @@
+{
+  "sop_id": "c8104cfdc1a4f5fc",
+  "original_task_name": "美团中搜西安交通大学附近的热度高的台球馆，并导航前往",
+  "task_name": "美团中搜目的地附近的热度高的台球馆，并导航前往",
+  "app_name": "美团",
+  "source": "cagui_auto",
+  "difficulty": "L4",
+  "domain": "生活服务",
+  "keywords": [
+    "美团",
+    "台球馆",
+    "目的地",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "点击美团应用图标以打开应用",
+      "expected": "应用图标被选中，进入美团应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏中的'棋牌室'文字区域",
+      "expected": "搜索栏处于可编辑状态，用户可输入新的搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'台球馆'",
+      "expected": "文本输入框中显示'台球馆'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行点击操作以触发搜索",
+      "expected": "搜索结果页面加载并显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'项目团购'标签页",
+      "expected": "进入项目团购分类页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择指定地址筛选台球馆列表",
+      "expected": "筛选出指定地址范围内的台球馆",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "确认地址修改操作已完成，界面已返回主搜索页面",
+      "expected": "点击操作后，地址选择界面关闭，返回到台球馆搜索结果页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "进入地址选择界面，准备输入或选择收货地址",
+      "expected": "当前界面已进入收货地址选择页面，包含搜索输入框和多个可选地址条目",
+      "action_type": "click",
+      "step_order": 8
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 9
+    },
+    {
+      "goal": "选择收货地址",
+      "expected": "选择并确认目的地作为收货地址",
+      "action_type": "click",
+      "step_order": 10
+    },
+    {
+      "goal": "选择目的地作为收货地址",
+      "expected": "收货地址选择界面显示该校区的详细地址信息",
+      "action_type": "click",
+      "step_order": 11
+    },
+    {
+      "goal": "点击特定店铺的条目以查看详细信息",
+      "expected": "进入该台球俱乐部的详情页面",
+      "action_type": "click",
+      "step_order": 12
+    },
+    {
+      "goal": "点击特定店铺的营业时间信息区域",
+      "expected": "进入该俱乐部的详细信息页面",
+      "action_type": "click",
+      "step_order": 13
+    },
+    {
+      "goal": "点击'查看路线'按钮，获取该地点的导航路线信息",
+      "expected": "页面显示导航路线规划界面",
+      "action_type": "click",
+      "step_order": 14
+    },
+    {
+      "goal": "确认导航开始按钮状态",
+      "expected": "点击后界面应显示导航已启动状态",
+      "action_type": "click",
+      "step_order": 15
+    },
+    {
+      "goal": "选择百度地图作为导航应用",
+      "expected": "系统弹出地图选择界面，用户可点击“百度地图(安装)”选项进行选择",
+      "action_type": "click",
+      "step_order": 16
+    },
+    {
+      "goal": "选择百度地图作为导航应用",
+      "expected": "系统弹出地图选择界面，用户可点击“百度地图(安装)”选项进行选择",
+      "action_type": "click",
+      "step_order": 17
+    },
+    {
+      "goal": "确认点击'开始导航'按钮以启动路线规划并进入导航流程",
+      "expected": "点击'开始导航'按钮后，系统将进入导航流程，提供实时导航服务",
+      "action_type": "click",
+      "step_order": 18
+    }
+  ]
+}

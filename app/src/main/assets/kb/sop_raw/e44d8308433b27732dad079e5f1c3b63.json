@@ -1,0 +1,60 @@
+{
+  "sop_id": "e44d8308433b2773",
+  "original_task_name": "在高德地图上查找从大唐芙蓉园到小寨赛格的公交路线",
+  "task_name": "在高德地图上查找从出发地到目的地的公交路线",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "出发地",
+    "目的地",
+    "公交",
+    "路线"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'路线'按钮进入路线规划界面",
+      "expected": "进入路线规划功能页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'我的位置'按钮以确认或修改起点位置",
+      "expected": "界面中'我的位置'按钮被选中，显示为高亮状态",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "点击地图选点按钮以选择出发地",
+      "expected": "界面显示出发地选择菜单",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "选择目的地为'特定地点'",
+      "expected": "目的地字段已设置为'特定地点'",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

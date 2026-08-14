@@ -1,0 +1,47 @@
+{
+  "sop_id": "39d25a409904b25a",
+  "original_task_name": "查看b站up主影视飓风的视频",
+  "task_name": "查看b站up主联系人的视频",
+  "app_name": "B站",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "B站",
+    "up主",
+    "联系人",
+    "视频"
+  ],
+  "steps": [
+    {
+      "goal": "打开哔哩哔哩App",
+      "expected": "应用图标被点击，进入哔哩哔哩应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏区域以激活输入状态",
+      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'联系人'",
+      "expected": "文本输入框中显示'联系人'",
+      "step_order": 3
+    },
+    {
+      "goal": "确认搜索结果列表已显示，准备选择相关搜索项",
+      "expected": "搜索结果列表已展开，包含多个与“联系人”相关的搜索建议",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'联系人'的头像进入个人主页",
+      "expected": "进入'联系人'的个人主页",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

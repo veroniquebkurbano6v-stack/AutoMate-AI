@@ -1,0 +1,48 @@
+{
+  "sop_id": "f7294996d642fd83",
+  "original_task_name": "搜许嵩的歌曲，并从第2个开始播放",
+  "task_name": "搜特定歌手的歌曲，并从第2个开始播放",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "微信",
+    "特定歌手",
+    "特定歌曲",
+    "播放",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "点击微信应用图标",
+      "expected": "微信应用图标被选中，界面进入微信应用状态",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击顶部导航栏中的'听书'标签",
+      "expected": "导航栏切换至听书页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌手'",
+      "expected": "文本输入框中显示'特定歌手'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索建议中的'特定歌手'选项",
+      "expected": "进入特定歌手的个人主页",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定歌手歌曲《特定歌曲》的原唱信息区域",
+      "expected": "进入该歌曲的详情页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

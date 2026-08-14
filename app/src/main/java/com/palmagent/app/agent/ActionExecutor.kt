@@ -1,0 +1,615 @@
+package com.palmagent.app.agent
+
+import android.graphics.Bitmap
+import android.util.Log
+import com.palmagent.app.LiveLogBuffer
+import com.palmagent.app.model.ActionType
+import com.palmagent.app.model.AgentAction
+import com.palmagent.app.model.QuestionAnswer
+import com.palmagent.app.model.ScreenInfo
+import com.palmagent.app.service.GUIAccessibilityService
+import com.palmagent.app.service.GuiOwlService
+import com.palmagent.app.service.RapidOcrService
+import com.palmagent.app.service.ScreenChangeDetector
+import com.palmagent.app.model.ScreenChangeType
+import com.palmagent.app.tool.ToolRegistry
+import com.palmagent.app.tool.ToolResult
+
+import com.palmagent.app.utils.recycleSafely
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
+
+/**
+ * 动作执行器
+ *
+ * 从 DefaultAgentService 中拆分，负责：
+ * - GUI-Plus Grounding 定位
+ * - 动作执行（映射 ActionType → Tool）
+ * - 操作前后变化检测
+ * - 剪贴板自动粘贴
+ * - 用户中断处理
+ */
+class ActionExecutor @Inject constructor(
+    private val screenDescriptor: ScreenDescriptor,
+    val progressTracker: TaskProgressTracker,
+    private val smartWait: SmartWaitStrategy
+) {
+
+    companion object {
+        private const val TAG = "ActionExecutor"
+        private const val POST_ACTION_DELAY_MS = 400L
+        // 批量重复执行安全边界：次数上限、间隔范围与默认值
+        private const val MAX_REPEAT_EXEC = 10
+        private const val DEFAULT_REPEAT_INTERVAL_MS = 800L
+        private const val MIN_REPEAT_INTERVAL_MS = 500L
+        private const val MAX_REPEAT_INTERVAL_MS = 2000L
+        // 支持批量重复的动作类型（点击/长按/滚动），其余类型忽略 repeat 强制单次
+        private val repeatableTypes = setOf(
+            ActionType.TAP, ActionType.CLICK, ActionType.LONG_PRESS,
+            ActionType.SCROLL_DOWN, ActionType.SCROLL_UP,
+            ActionType.SCROLL_LEFT, ActionType.SCROLL_RIGHT
+        )
+    }
+
+    /** 取消检查回调，由 DefaultAgentService 注入 */
+    var isCancelled: () -> Boolean = { false }
+
+    /** Scratchpad FORGET 回调，由 DefaultAgentService 注入 */
+    var onScratchpadForget: ((String) -> Unit)? = null
+
+    data class CaptureResult(
+        val screenInfo: ScreenInfo?,
+        val screenshotBmp: Bitmap?,
+        val isTreeEmpty: Boolean,
+        val accessibilityCheck: ScreenDescriptor.AccessibilityCheckResult? = null
+    )
+
+    /**
+     * 截屏并获取无障碍信息
+     */
+    suspend fun captureScreen(): CaptureResult = coroutineScope {
+        val screenAnalyzer = com.palmagent.app.service.ScreenAnalyzer(com.palmagent.app.AgentApplication.instance)
+        var screenshotBmp = withContext(Dispatchers.IO) {
+            screenAnalyzer.takeScreenshot()
+        }
+        // 主循环 shell 回退：无障碍截屏失败时，尝试 screencap 命令兜底
+        if (screenshotBmp == null) {
+            Log.w(TAG, "无障碍截屏失败，尝试 shell screencap 回退")
+            screenshotBmp = withContext(Dispatchers.IO) { shellScreenshotFallback() }
+            if (screenshotBmp != null) {
+                Log.w(TAG, "shell screencap 回退成功")
+                LiveLogBuffer.append("📸 shell 截屏回退成功")
+            } else {
+                Log.w(TAG, "⚠️ 截屏失败，本轮将无视觉信息（OCR/VLM/GUI-Plus 不可用）")
+                LiveLogBuffer.append("⚠️ 截屏失败，本轮无视觉信息")
+            }
+        }
+        // VL视觉模式：跳过无障碍树遍历，仅轻量获取包名（用于日志和actionHistory）
+        if (com.palmagent.app.utils.KVUtils.isVisionModeEnabled()) {
+            val root = withContext(Dispatchers.Main) {
+                try { GUIAccessibilityService.instance?.rootInActiveWindow } catch (_: Exception) { null }
+            }
+            val pkg = root?.packageName?.toString()
+            root?.recycle()
+            Log.d(TAG, "VL模式：跳过无障碍树采集，仅获取包名=$pkg")
+            val lightScreenInfo = pkg?.let {
+                ScreenInfo(uiElements = emptyList(), currentPackage = it, currentActivity = null)
+            }
+            return@coroutineScope CaptureResult(lightScreenInfo, screenshotBmp, true, null)
+        }
+        // 文本模式：完整无障碍树遍历 + dataQuality计算
+        val infoDeferred = async<ScreenInfo?>(Dispatchers.Main) {
+            GUIAccessibilityService.instance?.getCurrentScreenInfo()
+        }
+        val screenInfo = infoDeferred.await()
+        val checkResult = screenDescriptor.checkAccessibilityAvailability(screenInfo)
+        Log.d(TAG, "无障碍检查: available=${checkResult.isAvailable}, " +
+                "reason=${checkResult.reason}, " +
+                "serviceHealthy=${checkResult.serviceHealthy}, " +
+                "dataQuality=${(checkResult.dataQuality * 100).toInt()}%, " +
+                "elementCount=${checkResult.elementCount}, " +
+                "packageName=${checkResult.packageName}")
+        CaptureResult(screenInfo, screenshotBmp, !checkResult.isAvailable, checkResult)
+    }
+
+    /**
+     * shell screencap 兜底截屏（无障碍 API 失败时的最后防线）
+     * 注意：screencap 需要 root 或 shell 权限，普通应用可能失败
+     */
+    private suspend fun shellScreenshotFallback(): android.graphics.Bitmap? = withContext(Dispatchers.IO) {
+        try {
+            val file = java.io.File.createTempFile("screenshot_fallback", ".png")
+            val process = Runtime.getRuntime().exec(arrayOf("sh", "-c", "screencap ${file.absolutePath}"))
+            if (process.waitFor() == 0) {
+                val bitmap = android.graphics.BitmapFactory.decodeFile(file.absolutePath)
+                file.delete()
+                bitmap
+            } else {
+                file.delete()
+                null
+            }
+        } catch (e: Exception) {
+            Log.w(TAG, "shell screencap 回退失败: ${e.message}")
+            null
+        }
+    }
+
+    /**
+     * 执行动作（含变化检测）
+     * v2 优化：pre/post 变化检测只用无障碍树（不调用 OCR），省 2-4s/轮
+     */
+    suspend fun executeWithChangeDetection(
+        action: AgentAction,
+        screenshotBmp: Bitmap?,
+        screenInfo: ScreenInfo?,
+        round: Int,
+        userPrompt: String
+    ): ToolResult {
+        // v3.2 Bug-5 修复：ASK_USER 期间屏幕未变化，跳过操作后变化检测（节省 800ms + 一次截图）
+        if (action.type == ActionType.ASK_USER) {
+            return try {
+                GUIAccessibilityService.instance?.setAgentActing(true)
+                executeFinalAction(action, screenshotBmp, round)
+            } finally {
+                GUIAccessibilityService.instance?.setAgentActing(false)
+                GUIAccessibilityService.instance?.markAgentAction()
+            }
+        }
+        val result = try {
+            GUIAccessibilityService.instance?.setAgentActing(true)
+
+            val taskId = userPrompt.take(20).hashCode().toString() + "-" + round
+            // VL视觉模式：跳过无障碍可用性检查，变化检测走图像哈希
+            val hasA11y = if (com.palmagent.app.utils.KVUtils.isVisionModeEnabled()) {
+                false
+            } else {
+                screenDescriptor.checkAccessibilityAvailability(screenInfo).isAvailable
+            }
+            // v2：去掉 pre-action OCR（无障碍可用就直接用；不可用也不补 OCR，留给 ScreenChangeDetector 走图像哈希）
+            val preOcrTexts = emptyList<String>()
+            ScreenChangeDetector.savePreActionSnapshot(taskId, screenInfo, screenshotBmp, preOcrTexts)
+
+            executeFinalAction(action, screenshotBmp, round)
+        } finally {
+            GUIAccessibilityService.instance?.setAgentActing(false)
+            GUIAccessibilityService.instance?.markAgentAction()
+        }
+
+        // 操作后变化检测
+        val postTaskId = userPrompt.take(20).hashCode().toString() + "-" + round
+        try {
+            delay(800)
+            val postCapture = captureScreen()
+            val postScreenInfo = postCapture.screenInfo
+            val postScreenshot = postCapture.screenshotBmp
+
+            // v2：去掉 post-action OCR（同上）
+            val postOcrTexts = emptyList<String>()
+            val screenChange = ScreenChangeDetector.detectChange(
+                postTaskId, postScreenInfo, postScreenshot, postOcrTexts
+            )
+            if (screenChange != null) {
+                Log.d(TAG, "[界面变化] ${screenChange.description}")
+                LiveLogBuffer.append("📊 界面变化: ${screenChange.description}")
+
+                if (screenChange.changeType != ScreenChangeType.NO_CHANGE) {
+                    screenDescriptor.updateLastScreenDescription("[操作结果反馈] ${screenChange.description}")
+                }
+            }
+
+            postScreenshot.recycleSafely()
+        } catch (e: Exception) {
+            Log.w(TAG, "操作后变化检测失败: ${e.message}")
+            ScreenChangeDetector.detectChange(postTaskId, screenInfo, screenshotBmp, emptyList())
+        }
+
+        return result
+    }
+
+    /**
+     * 操作后延迟 + 智能等待
+     */
+    suspend fun postActionDelayAndWait(actionType: ActionType) {
+        if (actionType == ActionType.FINISH) return
+
+        // v3.2 Bug-7 修复：ASK_USER 期间屏幕未变化，跳过 delay 和 waitForPageStable
+        // 用户回答后应立即继续任务，不应等待 1000ms + 页面稳定检测
+        if (actionType == ActionType.ASK_USER) {
+            GUIAccessibilityService.instance?.markAgentAction()
+            return
+        }
+
+        if (actionType != ActionType.WAIT) {
+            // 非 WAIT：先延迟（让动画/过渡完成），再稳定等待
+            val delayMs = when (actionType) {
+                ActionType.HOME -> 500L
+                ActionType.BACK -> 500L
+                ActionType.SCROLL_UP, ActionType.SCROLL_DOWN,
+                ActionType.SCROLL_LEFT, ActionType.SCROLL_RIGHT -> 600L
+                else -> POST_ACTION_DELAY_MS
+            }
+            delay(delayMs)
+        }
+        // WAIT 本身就是等待，无需额外 delay；但仍需 markAgentAction + 稳定等待
+        // 否则 WAIT 后立即截屏会撞上 Surface 重组窗口（errorCode=3）
+        GUIAccessibilityService.instance?.markAgentAction()
+        smartWait.waitForPageStable()
+    }
+
+    /**
+     * 执行最终动作
+     */
+    private suspend fun executeFinalAction(action: AgentAction, screenshotBmp: Bitmap?, round: Int = 0): ToolResult {
+        when (action.type) {
+            ActionType.REQUEST_USER_ACTION -> return handleUserActionRequest(action)
+            ActionType.VISUAL_DESCRIBE -> return ToolResult.success("VISUAL_DESCRIBE已在决策引擎中处理")
+            ActionType.ASK_USER -> return handleAskUser(action)
+            ActionType.FORGET -> {
+                val target = action.text ?: ""
+                if (target.isBlank()) {
+                    return ToolResult.error("FORGET: 需指定条目 ID 或关键词")
+                }
+                onScratchpadForget?.invoke(target)
+                ToolResult.success("已删除工作记忆: $target")
+            }
+            else -> {}
+        }
+
+        var finalAction = action
+
+        if (shouldUseGuiOwlGrounding(action) && screenshotBmp != null && !screenshotBmp.isRecycled) {
+            val screenSize = getScreenSize()
+            val instruction = buildGroundingInstruction(action)
+            if (instruction.isNotBlank()) {
+                val groundingResult = GuiOwlService.ground(instruction, screenshotBmp, screenSize.width, screenSize.height)
+                AgentLogger.logGuiOwlGrounding(
+                    instruction, groundingResult, round
+                )
+                if (groundingResult.success && groundingResult.coordinate != null) {
+                    finalAction = action.copy(
+                        coordinate = groundingResult.coordinate,
+                        description = "${action.description} [GUI-Plus定位:(${groundingResult.coordinate.x},${groundingResult.coordinate.y})]"
+                    )
+                    Log.d(TAG, "GUI-Plus Grounding成功: (${groundingResult.coordinate.x},${groundingResult.coordinate.y})")
+                    LiveLogBuffer.append("🎯 GUI-Plus定位成功: (${groundingResult.coordinate.x},${groundingResult.coordinate.y}) ${groundingResult.durationMs}ms")
+                } else {
+                    Log.d(TAG, "GUI-Plus Grounding未启用或失败，使用原始坐标")
+                }
+            }
+        }
+
+        val toolName = mapActionTypeToTool(finalAction.type)
+            ?: return ToolResult.error("不支持的动作类型: ${finalAction.type}")
+
+        val params = if (isSwipeLike(finalAction.type)) {
+            buildSwipeParams(finalAction)
+        } else {
+            buildActionParams(finalAction).mapValues { it.value ?: "" as Any }
+        }
+
+        val tool = ToolRegistry.getTool(toolName)
+            ?: return ToolResult.error("工具未注册: $toolName")
+
+        // 批量重复执行：仅对可重复类型生效（TAP/CLICK/LONG_PRESS/SCROLL_*），其余类型强制单次
+        val repeatCount = if (finalAction.type in repeatableTypes) {
+            finalAction.repeat.coerceIn(1, MAX_REPEAT_EXEC)
+        } else 1
+        if (repeatCount <= 1) {
+            return tool.executeWithWaitAfter(params)
+        }
+
+        // 循环执行同一动作 N 次：每次间隔 interval_ms（默认 800ms，clamp 500-2000ms）
+        val intervalMs = finalAction.intervalMs?.coerceIn(MIN_REPEAT_INTERVAL_MS, MAX_REPEAT_INTERVAL_MS)
+            ?: DEFAULT_REPEAT_INTERVAL_MS
+        LiveLogBuffer.append("🔁 批量执行 ${finalAction.type} × $repeatCount（间隔 ${intervalMs}ms）")
+        var lastResult: ToolResult = ToolResult.success("")
+        for (i in 1..repeatCount) {
+            if (i > 1) {
+                delay(intervalMs)
+                GUIAccessibilityService.instance?.markAgentAction()
+            }
+            lastResult = tool.executeWithWaitAfter(params)
+            if (!lastResult.isSuccess) {
+                Log.w(TAG, "批量执行第 $i/$repeatCount 次失败: ${lastResult.error}")
+                LiveLogBuffer.append("⚠️ 批量执行第 $i/$repeatCount 次失败: ${lastResult.error}，提前终止")
+                return ToolResult.error("批量执行到第 $i/$repeatCount 次失败: ${lastResult.error}")
+            }
+            Log.d(TAG, "批量执行第 $i/$repeatCount 次成功")
+        }
+        return lastResult
+    }
+
+    private fun shouldUseGuiOwlGrounding(action: AgentAction): Boolean {
+        if (!GuiOwlService.isReady) return false
+        if (action.type != ActionType.CLICK && action.type != ActionType.LONG_PRESS && action.type != ActionType.TAP) return false
+
+        val screenSize = getScreenSize()
+        val hasValidCoordinate = action.coordinate != null &&
+            action.coordinate.x > 0 && action.coordinate.y > 0 &&
+            action.coordinate.x < screenSize.width && action.coordinate.y < screenSize.height
+
+        if (hasValidCoordinate) return false
+
+        val hasTargetWithBounds = action.targetElement != null &&
+            (action.targetElement.bounds.right - action.targetElement.bounds.left > 0 ||
+             action.targetElement.bounds.bottom - action.targetElement.bounds.top > 0)
+
+        if (hasTargetWithBounds) return false
+
+        return true
+    }
+
+    private fun buildGroundingInstruction(action: AgentAction): String {
+        val target = action.targetId ?: action.description ?: ""
+        if (target.isBlank()) return ""
+        return "Click the $target"
+    }
+
+    private fun isSwipeLike(type: ActionType): Boolean =
+        type in listOf(ActionType.SWIPE, ActionType.SCROLL_UP, ActionType.SCROLL_DOWN, ActionType.SCROLL_LEFT, ActionType.SCROLL_RIGHT)
+
+    private fun buildSwipeParams(action: AgentAction): Map<String, Any> {
+        return when (action.type) {
+            ActionType.SCROLL_DOWN, ActionType.SCROLL_UP,
+            ActionType.SCROLL_LEFT, ActionType.SCROLL_RIGHT -> {
+                mapOf("duration_ms" to 300)
+            }
+            else -> {
+                val screenSize = getScreenSize()
+                val screenW = screenSize.width
+                val screenH = screenSize.height
+                val startX = action.coordinate?.x ?: screenW / 2
+                val startY = action.coordinate?.y ?: (screenH * 0.6).toInt()
+
+                // 优先使用 AI 返回的 coordinate_end
+                if (action.coordinateEnd != null) {
+                    mapOf(
+                        "start_x" to startX, "start_y" to startY,
+                        "end_x" to action.coordinateEnd.x, "end_y" to action.coordinateEnd.y,
+                        "duration_ms" to 300
+                    )
+                } else {
+                    // 回退：根据方向文本和屏幕尺寸推算终点
+                    val swipeDistance = (screenH * 0.4).toInt()
+                    val direction = action.text?.lowercase() ?: ""
+                    val (endX, endY) = when {
+                        direction.contains("down") || direction.contains("下") -> Pair(startX, startY + swipeDistance)
+                        direction.contains("up") || direction.contains("上") -> Pair(startX, startY - swipeDistance)
+                        direction.contains("left") || direction.contains("左") -> Pair(startX - swipeDistance, startY)
+                        direction.contains("right") || direction.contains("右") -> Pair(startX + swipeDistance, startY)
+                        else -> Pair(startX, startY - swipeDistance)
+                    }
+
+                    mapOf(
+                        "start_x" to startX, "start_y" to startY,
+                        "end_x" to endX, "end_y" to endY,
+                        "duration_ms" to 300
+                    )
+                }
+            }
+        }
+    }
+
+    private fun buildActionParams(action: AgentAction): Map<String, Any?> {
+        val params = mutableMapOf<String, Any?>()
+        val screenSize = getScreenSize()
+        val screenW = screenSize.width
+        val screenH = screenSize.height
+
+        val hasValidCoord = action.coordinate != null &&
+            action.coordinate.x in 0 until screenW &&
+            action.coordinate.y in 0 until screenH
+
+        if (hasValidCoord) {
+            params["x"] = action.coordinate!!.x
+            params["y"] = action.coordinate!!.y
+        } else if (action.targetElement != null) {
+            val bounds = action.targetElement.bounds
+            params["x"] = (bounds.left + bounds.right) / 2
+            params["y"] = (bounds.top + bounds.bottom) / 2
+        } else if (action.coordinate != null) {
+            params["x"] = action.coordinate.x.coerceIn(10, screenW - 10)
+            params["y"] = action.coordinate.y.coerceIn(10, screenH - 10)
+        }
+        action.text?.let { params["text"] = it }
+        action.targetId?.let { params["target_id"] = it }
+        action.targetDesc?.let { params["target_desc"] = it }
+        action.actionDesc?.let { params["action_desc"] = it }
+
+        if (action.type == ActionType.AUTO_INPUT) {
+            action.instruction?.let { params["instruction"] = it }
+            action.searchIcon?.let { params["search_icon"] = it.toString() }
+        }
+
+        // ============ v7：新增 3 个 ActionType 的工具参数映射 ============
+        // OPEN_APP: text → app_name（主）, description → app_name（兜底）
+        if (action.type == ActionType.OPEN_APP) {
+            val appName = action.text?.takeIf { it.isNotBlank() } ?: action.description?.takeIf { it.isNotBlank() }
+            appName?.let { params["app_name"] = it }
+        }
+
+        // LOCATE: description → tool 入参 description（AI 元素描述）, text → text
+        if (action.type == ActionType.LOCATE) {
+            action.text?.let { params["text"] = it }
+            val desc = action.description?.takeIf { it.isNotBlank() } ?: action.targetDesc?.takeIf { it.isNotBlank() }
+            desc?.let { params["description"] = it }
+        }
+
+        // REQUEST_USER_ACTION: text → title（必填）, description → steps（选填）
+        if (action.type == ActionType.REQUEST_USER_ACTION) {
+            val title = action.text?.takeIf { it.isNotBlank() } ?: action.description?.takeIf { it.isNotBlank() }
+            title?.let { params["title"] = it }
+            val steps = action.description?.takeIf { it.isNotBlank() } ?: action.text?.takeIf { it.isNotBlank() }
+            steps?.let { params["steps"] = it }
+        }
+
+        // FINISH: description → summary, text → next_action
+        if (action.type == ActionType.FINISH) {
+            action.description?.takeIf { it.isNotBlank() }?.let { params["summary"] = it }
+            action.text?.takeIf { it.isNotBlank() }?.let { params["next_action"] = it }
+        }
+
+        // WAIT: duration_ms → tool duration_ms（clamp 100-10000ms 防止卡死）
+        if (action.type == ActionType.WAIT) {
+            val durationMs = action.durationMs ?: 1000L
+            params["duration_ms"] = durationMs.coerceIn(100L, 10_000L)
+        }
+        // =================================================
+
+        return params
+    }
+
+
+    private suspend fun handleUserActionRequest(action: AgentAction): ToolResult {
+        val guideText = action.description.ifBlank { "模型需要您进行手动操作" }
+        AgentLogger.log(AgentLogger.LogType.DECISION, "请求用户手动操作: $guideText")
+
+        return try {
+            val completed = kotlinx.coroutines.suspendCancellableCoroutine { cont ->
+                com.palmagent.app.floating.FloatingProgressManager.showUserGuide(
+                    text = guideText,
+                    onDone = {
+                        if (cont.isActive) cont.resumeWith(Result.success(true))
+                    },
+                    onRejected = {
+                        if (cont.isActive) cont.resumeWith(Result.success(false))
+                    }
+                )
+                cont.invokeOnCancellation {
+                    com.palmagent.app.floating.FloatingProgressManager.hideUserGuide()
+                }
+            }
+            if (!completed) {
+                ToolResult.error("用户拒绝了操作")
+            } else {
+                ToolResult.success(collectPostUserActionSnapshot(guideText))
+            }
+        } catch (e: kotlinx.coroutines.CancellationException) {
+            com.palmagent.app.floating.FloatingProgressManager.hideUserGuide()
+            throw e
+        } catch (e: Exception) {
+            com.palmagent.app.floating.FloatingProgressManager.hideUserGuide()
+            ToolResult.error("等待用户操作时出错: ${e.message}")
+        }
+    }
+
+    /**
+     * 执行模型 ASK_USER 批量追问工具（仅简单模式）
+     * Layer 3：复杂模式兜底 + 同步等待用户批量回答（5 分钟整体超时）
+     * 截图暂停/复用由 DefaultAgentService 主循环负责
+     */
+    private suspend fun handleAskUser(action: AgentAction): ToolResult {
+        // Layer 3：复杂模式兜底（PromptBuilder/ActionParser 已过滤，此处再次确认）
+        if (com.palmagent.app.utils.KVUtils.isComplexModeEnabled()) {
+            return ToolResult.error("复杂模式不支持 ask_user")
+        }
+
+        val questions = action.questions?.takeIf { it.isNotEmpty() }
+            ?: return ToolResult.error("ASK_USER 缺少 questions 字段")
+
+        Log.d(TAG, "ASK_USER 批量提问: ${questions.size} 个问题")
+        LiveLogBuffer.append("❓ 模型批量提问: ${questions.size} 个问题")
+
+        return try {
+            // 5 分钟整体超时，避免无限等待
+            val answers = kotlinx.coroutines.withTimeoutOrNull(5 * 60 * 1000L) {
+                kotlinx.coroutines.suspendCancellableCoroutine<List<QuestionAnswer>?> { cont ->
+                    com.palmagent.app.floating.AskUserManager.requestAnswer(
+                        req = com.palmagent.app.floating.AskUserManager.AskRequest(
+                            questions = questions
+                        ),
+                        onResult = { response ->
+                            if (cont.isActive) {
+                                if (response.cancelled) {
+                                    cont.resumeWith(Result.success(null))
+                                } else {
+                                    cont.resumeWith(Result.success(response.answers))
+                                }
+                            }
+                        }
+                    )
+                    cont.invokeOnCancellation {
+                        com.palmagent.app.floating.AskUserManager.cancel()
+                    }
+                }
+            }
+
+            when {
+                answers.isNullOrEmpty() -> {
+                    Log.w(TAG, "ASK_USER 用户取消或超时")
+                    ToolResult.error("用户取消了追问或超时未回答")
+                }
+                else -> {
+                    // 拼接多问多答摘要，单问答案上限 200 字符
+                    val summary = answers.joinToString(" | ") { qa ->
+                        val ansStr = qa.answer.joinToString(",")
+                        "${qa.question.take(30)}=${ansStr.take(200)}"
+                    }
+                    Log.d(TAG, "ASK_USER 用户回答: ${summary.take(200)}")
+                    LiveLogBuffer.append("💬 用户回答: ${summary.take(200)}")
+                    ToolResult.success("用户回答：$summary")
+                }
+            }
+        } catch (e: kotlinx.coroutines.CancellationException) {
+            com.palmagent.app.floating.AskUserManager.cancel()
+            throw e
+        } catch (e: Exception) {
+            com.palmagent.app.floating.AskUserManager.cancel()
+            ToolResult.error("等待用户回答时出错: ${e.message}")
+        }
+    }
+
+    private suspend fun collectPostUserActionSnapshot(guideText: String): String {
+        try {
+            delay(600)
+            val screenInfo = withContext(Dispatchers.Main) {
+                GUIAccessibilityService.instance?.getCurrentScreenInfo()
+            }
+            val pkg = screenInfo?.currentPackage ?: "未知"
+            val elementCount = screenInfo?.uiElements?.size ?: 0
+            AgentLogger.log(AgentLogger.LogType.SYSTEM, "用户操作完成，当前界面: $pkg, $elementCount 个元素")
+            return buildString {
+                appendLine("用户已完成操作: $guideText")
+                appendLine("操作后界面: $pkg, UI元素: $elementCount")
+            }
+        } catch (e: Exception) {
+            AgentLogger.log(AgentLogger.LogType.ERROR, "用户操作后快照采集失败: ${e.message}")
+            return "用户已完成操作: $guideText"
+        }
+    }
+
+    private fun mapActionTypeToTool(type: ActionType): String? {
+        return when (type) {
+            ActionType.CLICK -> "tap"
+            ActionType.TAP -> "tap"
+            ActionType.LONG_PRESS -> "long_press"
+            ActionType.SWIPE -> "swipe"
+            ActionType.SCROLL_DOWN -> "scroll_down"
+            ActionType.SCROLL_UP -> "scroll_up"
+            ActionType.SCROLL_LEFT -> "scroll_left"
+            ActionType.SCROLL_RIGHT -> "scroll_right"
+            ActionType.SCROLL_UNTIL -> "scroll_until"
+            ActionType.BACK -> "back"
+            ActionType.HOME -> "home"
+            ActionType.AUTO_INPUT -> "auto_input"
+            ActionType.LOCATE -> "locate"
+            ActionType.OPEN_APP -> "open_app"
+            ActionType.WAIT -> "wait"
+            ActionType.FINISH -> "finish"
+            else -> null
+        }
+    }
+
+    private fun getScreenSize(): GuiOwlService.ScreenSize {
+        val metrics = android.util.DisplayMetrics()
+        val wm = com.palmagent.app.AgentApplication.instance
+            .getSystemService(android.content.Context.WINDOW_SERVICE) as? android.view.WindowManager
+        @Suppress("DEPRECATION")
+        wm?.defaultDisplay?.getRealMetrics(metrics)
+        return GuiOwlService.ScreenSize(metrics.widthPixels, metrics.heightPixels)
+    }
+}

@@ -1,0 +1,47 @@
+{
+  "sop_id": "eb15e0ea2cf7a741",
+  "original_task_name": "酷狗单曲循环播放毛阿敏的思念",
+  "task_name": "酷狗单曲循环播放特定歌曲",
+  "app_name": "酷狗音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "酷狗音乐",
+    "特定歌曲",
+    "单曲循环",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开酷狗音乐应用",
+      "expected": "应用图标被选中，进入应用主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击顶部导航栏中的'点击'标签",
+      "expected": "导航栏中'点击'标签被选中并高亮显示",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "action_type": "type",
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作，获取与“特定歌曲”相关的搜索结果",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击特定歌曲的标题区域",
+      "expected": "进入歌曲详情页面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

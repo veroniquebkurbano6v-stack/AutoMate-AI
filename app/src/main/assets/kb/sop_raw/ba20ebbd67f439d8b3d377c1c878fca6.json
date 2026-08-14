@@ -1,0 +1,47 @@
+{
+  "sop_id": "ba20ebbd67f439d8",
+  "original_task_name": "使用高德地图从当前位置导航至秦始皇兵马俑博物馆  ",
+  "task_name": "使用高德地图从当前位置导航至目的地",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "当前位置"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，应用启动并显示其主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'开始导航'按钮",
+      "expected": "导航开始，系统将按照选定路线引导车辆行驶",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

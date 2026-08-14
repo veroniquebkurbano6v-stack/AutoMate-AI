@@ -1,0 +1,59 @@
+{
+  "sop_id": "76a2eb86f49c3dc9",
+  "original_task_name": "高德把长安郭氏民宅设置成家庭住址，并保存至我的收藏夹 ",
+  "task_name": "高德把目的地设置成家庭住址，并保存至我的收藏夹",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "目的地",
+    "家庭住址",
+    "收藏夹"
+  ],
+  "steps": [
+    {
+      "goal": "点击地图应用图标以打开应用",
+      "expected": "打开地图应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击骑行交通方式图标",
+      "expected": "选择骑行作为交通方式",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击'设置常去地点'选项",
+      "expected": "进入常去地点设置界面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "添加家庭地点",
+      "expected": "进入添加家庭地点的界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 5
+    },
+    {
+      "goal": "点击'我的位置'按钮，确认当前定位状态",
+      "expected": "界面显示当前定位信息，搜索结果下方出现'目的地'的搜索结果条目",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'设为家庭住址'按钮",
+      "expected": "将该地点设置为家庭住址",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

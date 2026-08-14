@@ -1,0 +1,53 @@
+{
+  "sop_id": "993d7f83db10c7af",
+  "original_task_name": "在微信里把我的当前位置发给李华。",
+  "task_name": "在微信里把我的当前位置发给联系人。",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "位置",
+    "联系人",
+    "发送"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击微信顶部右上角的加号按钮",
+      "expected": "进入添加联系人或群聊界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击底部右下角的加号按钮",
+      "expected": "界面底部右下角的加号按钮被选中，可能触发添加新内容或功能",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "选择地图上的位置作为聊天内容",
+      "expected": "操作后界面状态为聊天界面中显示了地图上的位置标记",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认发送位置选项",
+      "expected": "位置发送菜单弹窗保持打开状态",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认送达地址选择状态",
+      "expected": "界面保持当前地址选择状态，未触发新操作",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

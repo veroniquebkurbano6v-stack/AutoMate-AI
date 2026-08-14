@@ -1,0 +1,53 @@
+{
+  "sop_id": "6794a5cba42a6a9b",
+  "original_task_name": "导航到微信好友Michael最后发的位置",
+  "task_name": "导航到微信联系人最后发的位置",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "微信",
+    "导航",
+    "联系人",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "进入与联系人的聊天对话",
+      "expected": "打开联系人的聊天对话",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "确认地图中目的地位置信息",
+      "expected": "操作后界面状态：点击地图上的目的地位置，确认该地点信息",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "点击'导航'按钮以启动路线规划",
+      "expected": "界面显示导航功能已激活，准备开始路线规划",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "选择高德地图作为导航应用",
+      "expected": "界面弹出选择对话框，显示'点击地图'和'高德地图'两个选项，用户点击'高德地图'以确认选择",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "确认点击'开始导航'按钮以启动路线规划",
+      "expected": "点击'开始导航'按钮后，系统将开始按照规划路线引导用户。",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

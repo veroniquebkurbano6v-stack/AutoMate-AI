@@ -1,0 +1,60 @@
+{
+  "sop_id": "fdc8e04653d49c63",
+  "original_task_name": "请在高德地图上查一下从西安唐城墙遗址公园到大连金石滩的自驾路线。",
+  "task_name": "请在高德地图上查一下从出发地到目的地的自驾路线。",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "自驾路线",
+    "出发地",
+    "目的地",
+    "导航"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，可输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面显示目的地相关地点和酒店信息",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "确认起点位置是否已设置为'目的地'",
+      "expected": "确认起点位置已成功设置为'目的地'",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "在文本输入框中输入'出发地'",
+      "expected": "文本输入框中显示'出发地'",
+      "action_type": "type",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'出发地'条目以进入详情页",
+      "expected": "进入出发地的详细信息页面",
+      "action_type": "click",
+      "step_order": 7
+    }
+  ]
+}

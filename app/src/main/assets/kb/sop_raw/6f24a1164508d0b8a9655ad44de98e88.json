@@ -1,0 +1,65 @@
+{
+  "sop_id": "6f24a1164508d0b8",
+  "original_task_name": "从当前位置使用高德地图导航到最近的便利店",
+  "task_name": "从当前位置使用高德地图导航到最近的便利店",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "便利店",
+    "目的地"
+  ],
+  "steps": [
+    {
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏处于可输入状态",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'便利店'",
+      "expected": "文本输入框中显示'便利店'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看便利店相关结果",
+      "expected": "搜索界面显示搜索结果列表",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击排序选项以查看不同排序方式",
+      "expected": "进入排序设置界面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "选择排序方式为距离优先",
+      "expected": "界面弹出的排序下拉菜单中，'距离优先'选项被选中",
+      "action_type": "click",
+      "step_order": 6
+    },
+    {
+      "goal": "点击'特定便利店'的店铺条目",
+      "expected": "进入该便利店的详细信息页面",
+      "action_type": "click",
+      "step_order": 7
+    },
+    {
+      "goal": "点击导航按钮进入路线规划功能",
+      "expected": "进入路线规划界面",
+      "action_type": "click",
+      "step_order": 8
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "sop_id": "58e535631126ad55",
+  "original_task_name": "给微信群“星座聊吧”发条消息“天气转凉，记得多穿点衣服。”",
+  "task_name": "给微信群组发条消息“天气转凉，记得多穿点衣服。”",
+  "app_name": "微信",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "微信",
+    "群组",
+    "消息",
+    "发送"
+  ],
+  "steps": [
+    {
+      "goal": "打开微信应用",
+      "expected": "微信应用图标被选中，进入微信主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击群组对话条目",
+      "expected": "进入群组的聊天界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "点击群聊名称修改按钮",
+      "expected": "进入群聊名称修改界面",
+      "action_type": "click",
+      "step_order": 3
+    },
+    {
+      "goal": "在文本输入框中输入'天气转凉，记得多穿点衣服。'",
+      "expected": "文本输入框中显示'天气转凉，记得多穿点衣服。'",
+      "action_type": "type",
+      "step_order": 4
+    },
+    {
+      "goal": "发送消息",
+      "expected": "消息被成功发送到聊天界面",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "sop_id": "970d146a7d05992c",
+  "original_task_name": " QQ 音乐搜爸妈并播放",
+  "task_name": "QQ音乐搜特定歌曲并播放",
+  "app_name": "QQ音乐",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "媒体",
+  "keywords": [
+    "QQ音乐",
+    "特定歌曲",
+    "搜索",
+    "播放"
+  ],
+  "steps": [
+    {
+      "goal": "打开QQ音乐应用",
+      "expected": "QQ音乐应用图标被选中，应用已启动",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击'故事'标签进入故事内容页面",
+      "expected": "进入故事内容页面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'特定歌曲'",
+      "expected": "文本输入框中显示'特定歌曲'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看与'特定歌曲'相关的搜索结果",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击歌曲'特定歌曲'的标题区域",
+      "expected": "歌曲'特定歌曲'的标题区域被选中，显示歌曲信息",
+      "action_type": "click",
+      "step_order": 5
+    }
+  ]
+}

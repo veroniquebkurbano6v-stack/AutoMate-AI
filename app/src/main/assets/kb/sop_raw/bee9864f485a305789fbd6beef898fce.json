@@ -1,0 +1,53 @@
+{
+  "sop_id": "bee9864f485a3057",
+  "original_task_name": "使用高德地图从当前位置导航至高新路人人乐超市  ",
+  "task_name": "使用高德地图从当前位置导航至目的地",
+  "app_name": "高德地图",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "导航",
+  "keywords": [
+    "高德地图",
+    "导航",
+    "目的地",
+    "当前位置"
+  ],
+  "steps": [
+    {
+      "goal": "打开高德地图应用",
+      "expected": "高德地图应用图标被选中，准备启动应用",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，准备输入目的地",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以获取目的地相关结果",
+      "expected": "搜索结果列表显示",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击'目的地'店铺条目",
+      "expected": "进入该目的地详情页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击导航按钮进入导航功能页面",
+      "expected": "进入导航功能页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}

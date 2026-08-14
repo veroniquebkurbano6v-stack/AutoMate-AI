@@ -1,0 +1,53 @@
+{
+  "sop_id": "d1e3e381803f3673",
+  "original_task_name": "在小红书搜索美甲教程，并给前2篇点赞。",
+  "task_name": "在小红书搜索美甲教程，并给前2篇点赞。",
+  "app_name": "小红书",
+  "source": "cagui_auto",
+  "difficulty": "L3",
+  "domain": "社交",
+  "keywords": [
+    "小红书",
+    "美甲教程",
+    "点赞",
+    "搜索"
+  ],
+  "steps": [
+    {
+      "goal": "打开小红书应用",
+      "expected": "小红书应用图标被选中，准备进入应用界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击屏幕右上角的搜索图标",
+      "expected": "进入搜索界面",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在文本输入框中输入'美甲教程'",
+      "expected": "文本输入框中显示'美甲教程'",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "执行搜索操作以查看美甲教程相关内容",
+      "expected": "搜索结果页面显示多个美甲教程分类",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击教程标题进入详情页",
+      "expected": "进入该教程的详细页面",
+      "action_type": "click",
+      "step_order": 5
+    },
+    {
+      "goal": "点击用户'联系人'发布的美甲教程视频",
+      "expected": "进入该视频的播放页面",
+      "action_type": "click",
+      "step_order": 6
+    }
+  ]
+}
