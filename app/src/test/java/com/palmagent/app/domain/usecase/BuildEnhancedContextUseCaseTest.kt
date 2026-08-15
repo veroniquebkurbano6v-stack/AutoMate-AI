@@ -39,7 +39,7 @@ class BuildEnhancedContextUseCaseTest {
     ): BuildEnhancedContextUseCase.Params {
         return BuildEnhancedContextUseCase.Params(
             deviceCtx = "屏幕尺寸：宽=1080px, 高=2340px",
-            screenOcrText = "OCR 文本",
+            screenText = "屏幕文本",
             autoScreenDescription = "VLM 描述",
             stateWarning = "",
             isTreeEmpty = false,

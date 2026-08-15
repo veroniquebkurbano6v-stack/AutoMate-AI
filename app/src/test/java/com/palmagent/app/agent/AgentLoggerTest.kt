@@ -137,16 +137,16 @@ class AgentLoggerTest {
             action = action,
             actionSuccess = false,
             actionResultSummary = "等待超时",
-            ocrText = "屏幕OCR文本内容",
+            screenText = "屏幕文本内容",
             enhancedContext = "增强上下文内容"
         )
 
         val roundDir = File(tempDir, "round_3")
-        assertTrue("screen_ocr.txt 应存在（文本模式）", File(roundDir, "screen_ocr.txt").exists())
+        assertTrue("screen_text.txt 应存在（文本模式）", File(roundDir, "screen_text.txt").exists())
         assertTrue("enhanced_context.txt 应存在（文本模式）", File(roundDir, "enhanced_context.txt").exists())
 
-        val ocrContent = File(roundDir, "screen_ocr.txt").readText()
-        assertEquals("屏幕OCR文本内容", ocrContent)
+        val screenContent = File(roundDir, "screen_text.txt").readText()
+        assertEquals("屏幕文本内容", screenContent)
 
         val ctxContent = File(roundDir, "enhanced_context.txt").readText()
         assertEquals("增强上下文内容", ctxContent)
@@ -171,12 +171,12 @@ class AgentLoggerTest {
             action = action,
             actionSuccess = true,
             actionResultSummary = "完成",
-            ocrText = "",
+            screenText = "",
             enhancedContext = ""
         )
 
         val roundDir = File(tempDir, "round_4")
-        assertTrue("VL 模式不应创建 screen_ocr.txt", !File(roundDir, "screen_ocr.txt").exists())
+        assertTrue("VL 模式不应创建 screen_text.txt", !File(roundDir, "screen_text.txt").exists())
         assertTrue("VL 模式不应创建 enhanced_context.txt", !File(roundDir, "enhanced_context.txt").exists())
     }
 

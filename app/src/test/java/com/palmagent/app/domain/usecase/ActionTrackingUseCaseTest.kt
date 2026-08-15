@@ -15,7 +15,7 @@ import org.junit.Test
  *
  * 覆盖 project_memory 约束：
  * - WAIT 操作必须免于重复检测（不更新签名、不累加计数）
- * - 阈值 MAX_IDENTICAL_ACTION_BEFORE_WARN = 2（连续 2 次相同操作触发警告）
+ * - 阈值 MAX_IDENTICAL_ACTION_BEFORE_WARN = 4（连续 4 次相同操作触发警告，对齐 page-agent loop detection）
  */
 class ActionTrackingUseCaseTest {
 
@@ -64,11 +64,13 @@ class ActionTrackingUseCaseTest {
     }
 
     @Test
-    fun `track_sameActionSecondTime_triggersWarning`() {
+    fun `track_sameActionAtThreshold_triggersWarning`() {
         val sig = "CLICK(x=1,y=2)@pkg"
         useCase.track(sig)
+        useCase.track(sig)
+        useCase.track(sig)
         val result = useCase.track(sig)
-        assertTrue("连续 2 次相同操作应触发警告", result.shouldWarn)
+        assertTrue("连续 4 次相同操作应触发警告", result.shouldWarn)
         assertTrue("警告消息应包含操作签名", result.warningMessage.contains(sig))
     }
 
@@ -80,13 +82,14 @@ class ActionTrackingUseCaseTest {
     }
 
     @Test
-    fun `track_sameActionThreeTimes_continuesWarning`() {
+    fun `track_sameActionFourthTime_continuesWarning`() {
         val sig = "CLICK(x=1)@pkg"
         useCase.track(sig)
         useCase.track(sig)
+        useCase.track(sig)
         val result = useCase.track(sig)
-        assertTrue("连续 3 次相同操作应继续触发警告", result.shouldWarn)
-        assertTrue("警告消息应显示 3 次", result.warningMessage.contains("3 次"))
+        assertTrue("连续 4 次相同操作应继续触发警告", result.shouldWarn)
+        assertTrue("警告消息应显示 4 次", result.warningMessage.contains("4 次"))
     }
 
     /**
@@ -96,12 +99,14 @@ class ActionTrackingUseCaseTest {
     fun `track_waitAction_doesNotUpdateState`() {
         val clickSig = "CLICK(x=1)@pkg"
         useCase.track(clickSig)
+        useCase.track(clickSig)
+        useCase.track(clickSig)
 
         // WAIT 不应影响 CLICK 的计数
         val waitResult = useCase.track("WAIT()@pkg")
         assertFalse("WAIT 不应触发警告", waitResult.shouldWarn)
 
-        // 再次 track 相同 CLICK，应触发警告（说明 WAIT 没有重置计数）
+        // 再次 track 相同 CLICK（第 4 次），应触发警告（说明 WAIT 没有重置计数）
         val clickResult = useCase.track(clickSig)
         assertTrue("WAIT 不应重置 CLICK 计数", clickResult.shouldWarn)
     }
@@ -109,10 +114,12 @@ class ActionTrackingUseCaseTest {
     @Test
     fun `track_waitAction_doesNotChangeLastSignature`() {
         val clickSig = "CLICK(x=1)@pkg"
-        // track 2 次 CLICK 达到警告阈值
+        // track 4 次 CLICK 达到警告阈值
         useCase.track(clickSig)
         useCase.track(clickSig)
-        // 此时 consecutiveSameActionCount=2, lastActionSignature=clickSig
+        useCase.track(clickSig)
+        useCase.track(clickSig)
+        // 此时 consecutiveSameActionCount=4, lastActionSignature=clickSig
 
         // WAIT 不应改变 lastActionSignature
         useCase.track("WAIT()@pkg")
@@ -141,6 +148,8 @@ class ActionTrackingUseCaseTest {
         val sig = "CLICK(x=1)@pkg"
         useCase.track(sig)
         useCase.track(sig)
+        useCase.track(sig)
+        useCase.track(sig)
         val warning = useCase.getCurrentWarning()
         assertTrue("达到阈值应返回警告", warning.isNotEmpty())
         assertTrue("警告应包含 REQUEST_USER_ACTION 建议", warning.contains("REQUEST_USER_ACTION"))
@@ -153,8 +162,10 @@ class ActionTrackingUseCaseTest {
     fun `getCurrentWarning_doesNotUpdateState`() {
         val sig = "CLICK(x=1)@pkg"
         useCase.track(sig)  // 1 次
+        useCase.track(sig)  // 2 次
+        useCase.track(sig)  // 3 次
         useCase.getCurrentWarning()  // 调用 getCurrentWarning
-        val result = useCase.track(sig)  // 应该是第 2 次，触发警告
+        val result = useCase.track(sig)  // 应该是第 4 次，触发警告
         assertTrue("getCurrentWarning 不应影响 track 计数", result.shouldWarn)
     }
 
@@ -163,6 +174,8 @@ class ActionTrackingUseCaseTest {
     @Test
     fun `reset_clearsCount`() {
         val sig = "CLICK(x=1)@pkg"
+        useCase.track(sig)
+        useCase.track(sig)
         useCase.track(sig)
         useCase.track(sig)
         assertTrue(useCase.getCurrentWarning().isNotEmpty())
@@ -199,8 +212,10 @@ class ActionTrackingUseCaseTest {
     fun `scenario_waitBetweenSameActions_stillWarns`() {
         val sig = "CLICK(x=1)@pkg"
         useCase.track(sig)
-        useCase.track("WAIT()@pkg")  // WAIT 不重置
         useCase.track(sig)
+        useCase.track(sig)
+        useCase.track("WAIT()@pkg")  // WAIT 不重置
+        useCase.track(sig)  // 第 4 次 CLICK，触发警告
         assertTrue("WAIT 中断不应清除重复计数", useCase.getCurrentWarning().isNotEmpty())
     }
 }

@@ -1,5 +1,6 @@
 package com.palmagent.app
 
+import com.palmagent.app.agent.Plan
 import com.palmagent.app.channel.Channel
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -49,7 +50,8 @@ class AppCoordinatorTest {
 
         assertTrue(result)
         // verify 混合原始值和 matcher 时所有参数必须都是 matcher
-        verify(mockOrchestrator).startNewTask(eqChannel(Channel.LOCAL), eqStr("打开微信"), anyStr())
+        // startNewTask 有 4 个参数（含默认 plan），必须补齐第 4 个 matcher
+        verify(mockOrchestrator).startNewTask(eqChannel(Channel.LOCAL), eqStr("打开微信"), anyStr(), anyPlan())
     }
 
     @Test
@@ -60,7 +62,7 @@ class AppCoordinatorTest {
         val result = coordinator.sendCommand("打开微信")
 
         assertFalse(result)
-        verify(mockOrchestrator, never()).startNewTask(anyChannel(), anyStr(), anyStr())
+        verify(mockOrchestrator, never()).startNewTask(anyChannel(), anyStr(), anyStr(), anyPlan())
     }
 
     @Test
@@ -72,8 +74,8 @@ class AppCoordinatorTest {
 
         // 验证 tryAcquireTask 使用 Channel.LOCAL（修复前会使用 ?: Channel.WECHAT 导致路由错误）
         verify(mockOrchestrator).tryAcquireTask(anyStr(), eqChannel(Channel.LOCAL))
-        // 验证 startNewTask 使用 Channel.LOCAL
-        verify(mockOrchestrator).startNewTask(eqChannel(Channel.LOCAL), anyStr(), anyStr())
+        // 验证 startNewTask 使用 Channel.LOCAL（含默认 plan 参数）
+        verify(mockOrchestrator).startNewTask(eqChannel(Channel.LOCAL), anyStr(), anyStr(), anyPlan())
     }
 
     // ======================== Matcher 包装函数 ========================
@@ -88,4 +90,6 @@ class AppCoordinatorTest {
     private fun eqStr(value: String): String = ArgumentMatchers.eq(value) ?: value
 
     private fun eqChannel(value: Channel): Channel = ArgumentMatchers.eq(value) ?: value
+
+    private fun anyPlan(): Plan? = ArgumentMatchers.isNull(Plan::class.java) ?: null
 }

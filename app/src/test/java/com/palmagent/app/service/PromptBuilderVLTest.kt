@@ -20,6 +20,9 @@ class PromptBuilderVLTest {
     @Before
     fun setUp() {
         val fakePrefs = FakeSharedPreferencesForVL()
+        // getVisionSystemPrompt() 已废弃并委托 getSystemPrompt()，
+        // 必须启用视觉模式开关才能拿到 VL 系统提示词（否则返回文本模式提示词）
+        fakePrefs.edit().putBoolean("KEY_VISION_MODE_ENABLED", true).apply()
         KVUtils::class.java.getDeclaredField("prefs").apply {
             isAccessible = true
             set(KVUtils, fakePrefs)

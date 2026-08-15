@@ -45,7 +45,7 @@ class PromptBuilderTest {
         assertTrue(
             "LOCATE 应在操作工具列表中: \n$prompt",
             prompt.contains("LOCATE") &&
-                prompt.contains("视觉定位并自动点击元素")
+                prompt.contains("视觉定位并自动点击")
         )
     }
 
@@ -63,8 +63,8 @@ class PromptBuilderTest {
     fun `system_prompt_contains_output_protocol_section`() {
         val prompt = PromptBuilder.getSystemPrompt()
         assertTrue(
-            "提示词应包含 ## 输出协议 章节（替代旧 ## 字段映射说明（v7））: \n$prompt",
-            prompt.contains("## 输出协议")
+            "提示词应包含 输出格式与运行规则 章节（替代旧 ## 字段映射说明（v7））: \n$prompt",
+            prompt.contains("输出格式与运行规则")
         )
     }
 
@@ -81,9 +81,9 @@ class PromptBuilderTest {
     fun `system_prompt_output_protocol_uses_content_for_all_actions`() {
         val prompt = PromptBuilder.getSystemPrompt()
         assertTrue(
-            "输出协议应说明所有操作（包括 WEB_SEARCH）都通过 content 输出，不要使用 tool_calls: \n$prompt",
-            prompt.contains("所有操作（包括 WEB_SEARCH）都通过 content 输出") &&
-                prompt.contains("不要使用 tool_calls 字段")
+            "输出协议应说明所有操作都通过 content 输出，不要用 tool_calls: \n$prompt",
+            prompt.contains("所有操作都走 content") &&
+                prompt.contains("不要用 tool_calls")
         )
     }
 

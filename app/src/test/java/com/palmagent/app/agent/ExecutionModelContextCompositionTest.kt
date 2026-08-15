@@ -19,7 +19,7 @@ import org.junit.Test
  * 1. planContext（决策模型输出结构化 Plan，经 PlanFormatter 格式化）
  * 2. autoScreenDescription（VLM 屏幕描述）
  * 3. deviceCtx（设备信息）
- * 4. screenOcrText（OCR 提取的屏幕文本）
+ * 4. screenText（无障碍树提取的屏幕文本，每轮 OCR 已取消）
  * 5. 最近操作回顾（ContextManager.assemble 组装）
  * 6. 信息获取策略（isTreeEmpty=true 时追加）
  * 7. WAIT 连续警告（waitConsecutiveCount>=5 时追加）
@@ -46,7 +46,7 @@ class ExecutionModelContextCompositionTest {
 
         // 模拟实机场景：微信首页、无障碍树为空、第3轮
         val deviceCtx = "屏幕尺寸：宽=1080px, 高=2340px"
-        val screenOcrText = """
+        val screenText = """
             [搜索框] 微信 通讯录
             微信 (123) 消息
             订阅号消息
@@ -97,7 +97,7 @@ class ExecutionModelContextCompositionTest {
 
         val params = BuildEnhancedContextUseCase.Params(
             deviceCtx = deviceCtx,
-            screenOcrText = screenOcrText,
+            screenText = screenText,
             autoScreenDescription = autoScreenDescription,
             stateWarning = stateWarning,
             isTreeEmpty = true,
@@ -120,7 +120,7 @@ class ExecutionModelContextCompositionTest {
         val planLen = planFixtureText.length
         val autoScreenLen = autoScreenDescription.length
         val deviceLen = deviceCtx.length
-        val ocrLen = screenOcrText.length
+        val ocrLen = screenText.length
         val totalLen = enhancedContext.length
         val otherLen = totalLen - planLen - autoScreenLen - deviceLen - ocrLen
 
@@ -132,7 +132,7 @@ class ExecutionModelContextCompositionTest {
         println(String.format("%-30s %10d %7.1f%%", "1. planContext (决策模型Plan)", planLen, planLen * 100.0 / totalLen))
         println(String.format("%-30s %10d %7.1f%%", "2. autoScreenDescription (VLM)", autoScreenLen, autoScreenLen * 100.0 / totalLen))
         println(String.format("%-30s %10d %7.1f%%", "3. deviceCtx (设备信息)", deviceLen, deviceLen * 100.0 / totalLen))
-        println(String.format("%-30s %10d %7.1f%%", "4. screenOcrText (OCR文本)", ocrLen, ocrLen * 100.0 / totalLen))
+        println(String.format("%-30s %10d %7.1f%%", "4. screenText (屏幕文本)", ocrLen, ocrLen * 100.0 / totalLen))
         println(String.format("%-30s %10d %7.1f%%", "5. 其他(操作历史/策略/警告/进度)", otherLen, otherLen * 100.0 / totalLen))
         println("-".repeat(80))
         println(String.format("%-30s %10d %7.1f%%", "总 enhancedContext", totalLen, 100.0))
@@ -151,7 +151,7 @@ class ExecutionModelContextCompositionTest {
         assertTrue("enhancedContext 应包含 planContext 的完成标志", enhancedContext.contains("完成标志："))
         assertTrue("enhancedContext 应包含 VLM 描述", enhancedContext.contains("【屏幕视觉描述】"))
         assertTrue("enhancedContext 应包含设备信息", enhancedContext.contains("屏幕尺寸"))
-        assertTrue("enhancedContext 应包含 OCR 文本", enhancedScreenContainsOcr(enhancedContext, "狗吠麟"))
+        assertTrue("enhancedContext 应包含屏幕文本", enhancedScreenContainsOcr(enhancedContext, "狗吠麟"))
         assertTrue("enhancedContext 应包含操作历史", enhancedContext.contains("打开微信"))
         assertTrue("enhancedContext 应包含信息获取策略(无障碍为空)",
             enhancedContext.contains("无障碍树为空") || enhancedContext.contains("无障碍服务不可用"))
