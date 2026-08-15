@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AutoMate AI — 一句话，帮不便操作手机的人完成手机上的事</title>
 <meta name="description" content="AutoMate AI：Android 数字无障碍智能体。完全端侧知识库（离线可用），多通道感知，一句话替你完成手机操作。GOAI 无界应用赛道作品。">
+<meta property="og:title" content="AutoMate AI — 一句话，帮不便操作手机的人完成手机上的事">
+<meta property="og:description" content="Android 数字无障碍智能体：端侧知识库（离线可用）+ 多通道感知，一句话替你完成手机操作。31 场景检索 100% 命中，3 个真实任务实录。GOAI 无界应用赛道作品。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://veroniquebkurbano6v-stack.github.io/AutoMate-AI/">
+<meta property="og:image" content="https://veroniquebkurbano6v-stack.github.io/AutoMate-AI/demo/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://veroniquebkurbano6v-stack.github.io/AutoMate-AI/demo/og-image.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230EA5E9'/%3E%3Ctext x='32' y='42' font-size='30' font-weight='bold' fill='white' text-anchor='middle' font-family='sans-serif'%3EAI%3C/text%3E%3C/svg%3E">
 <style>
   :root{
     --primary:#0EA5E9; --primary-dark:#0F3460; --ink:#1A1A1A; --muted:#6B7280;
@@ -21,6 +29,7 @@
   .brand .logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#22D3EE,#0EA5E9);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
   .nav-links{display:flex;gap:18px;align-items:center}
   .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
+  .nav-links a.btn-primary{color:#fff}
   .nav-links a:hover{color:var(--primary)}
   .btn{display:inline-flex;align-items:center;gap:6px;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:.15s}
   .btn-primary{background:var(--primary);color:#fff}
@@ -49,8 +58,12 @@
   .section-head p{color:var(--muted);margin-top:8px;font-size:14px}
   /* video */
   .video-wrap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 4px 20px rgba(15,52,96,.06)}
-  .video-main{display:flex;justify-content:center;background:#000;border-radius:12px;overflow:hidden}
+  .video-main{display:flex;justify-content:center;background:#000;border-radius:12px;overflow:hidden;position:relative}
   .video-main video{display:block;max-width:100%;max-height:72vh;object-fit:contain}
+  .video-loading{position:absolute;inset:0;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;background:rgba(0,0,0,.86);color:#E5E7EB;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:5}
+  .video-loading.show{opacity:1}
+  .spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.2);border-top-color:#22D3EE;border-radius:50%;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
   .video-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
   .vt{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;text-align:left;transition:.15s}
   .vt:hover{border-color:var(--primary)}
@@ -127,21 +140,24 @@
       <p>全部在真机拍摄，AI 完整执行每一步操作 · 点击下方卡片切换视频</p>
     </div>
     <div class="video-wrap">
-      <video id="mainVideo" controls preload="metadata" poster="demo/cover_00.jpg">
-        <source id="mainSrc" src="demo/00_project_intro.mp4" type="video/mp4">
-      </video>
+      <div class="video-main">
+        <video id="mainVideo" controls preload="metadata" poster="demo/cover_00.jpg">
+          <source id="mainSrc" src="demo/00_project_intro.mp4" type="video/mp4">
+        </video>
+        <div class="video-loading" id="videoLoading"><div class="spinner"></div>正在加载视频…</div>
+      </div>
       <div class="video-tabs" id="videoTabs">
         <div class="vt active" data-src="00_project_intro.mp4" data-poster="cover_00.jpg" data-title="项目总览" data-desc="3 分钟 · 产品定位 + 技术架构 + 任务实录">
-          <b>项目总览</b><span>3 分钟 · 定位 + 架构 + 实录</span>
+          <b>项目总览</b><span>3 分钟 · 产品定位 + 技术架构 + 任务实录</span>
         </div>
         <div class="vt" data-src="03_taobao_order_milk_tea.mp4" data-poster="cover_03.jpg" data-title="用淘宝点奶茶" data-desc="老年人 · 跨页搜索→选规格→加购">
-          <b>用淘宝点奶茶</b><span>老年人 · 跨页搜索→加购</span>
+          <b>用淘宝点奶茶</b><span>老年人 · 跨页搜索→选规格→加购</span>
         </div>
         <div class="vt" data-src="01_wechat_send_message.mp4" data-poster="cover_01.jpg" data-title="用微信发消息" data-desc="行动不便/低视力 · 自动定位输入/发送">
-          <b>用微信发消息</b><span>低视力 · 自动定位输入/发送</span>
+          <b>用微信发消息</b><span>行动不便/低视力 · 自动定位输入/发送</span>
         </div>
         <div class="vt" data-src="02_amap_navigate.mp4" data-poster="cover_02.jpg" data-title="用高德导航" data-desc="老年人/视障 · 附近检索→导航">
-          <b>用高德导航</b><span>视障 · 附近检索→导航</span>
+          <b>用高德导航</b><span>老年人/视障 · 附近检索→导航</span>
         </div>
       </div>
     </div>
@@ -185,7 +201,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>评委快速上手</h2>
-      <p>安装即可用 · APK 已内置全部 API Key · 端侧知识库离线可用</p>
+      <p>评测专用版开箱即用 · 公开版需自填 Key · 端侧知识库离线可用</p>
     </div>
     <div class="steps">
       <div class="step">
@@ -204,8 +220,10 @@
         <p>输入“帮我在淘宝点杯奶茶”“用微信给家人发条消息”“导航去最近的医院”，AI 全程代操作。</p>
       </div>
     </div>
-    <div style="text-align:center;margin-top:28px">
-      <a class="btn btn-primary" href="https://github.com/veroniquebkurbano6v-stack/AutoMate-AI" target="_blank" rel="noopener">查看完整文档与技术方案 ↗</a>
+    <div style="text-align:center;margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <a class="btn btn-primary" href="https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases/latest/download/AutoMate-AI-v1.0-noKey.apk" target="_blank" rel="noopener">⬇ 下载安装包（GitHub Release）</a>
+      <a class="btn btn-ghost" href="https://github.com/veroniquebkurbano6v-stack/AutoMate-AI" target="_blank" rel="noopener">查看完整文档与技术方案 ↗</a>
+      <p style="font-size:12px;color:var(--muted);max-width:640px;line-height:1.7">公开版未内置 API Key，安装后请进入「设置」页自行填写模型 Key 即可使用（作者为学生个人开发者，暂无力承担大规模 API 消费）。评测专用版（已内置全部 Key、开箱即用）随作品报名材料提供给评委。</p>
     </div>
   </div>
 </section>
@@ -225,13 +243,22 @@
   var BASE = "demo/";
   var video = document.getElementById("mainVideo");
   var src = document.getElementById("mainSrc");
+  var loading = document.getElementById("videoLoading");
   var tabs = document.querySelectorAll("#videoTabs .vt");
+
+  function showLoading(on){
+    if (on){ loading.classList.add("show"); } else { loading.classList.remove("show"); }
+  }
+
+  video.addEventListener("canplay", function(){ showLoading(false); });
+  video.addEventListener("error", function(){ showLoading(false); });
 
   tabs.forEach(function(tab){
     tab.addEventListener("click", function(){
       if (tab.classList.contains("active")) return;
       tabs.forEach(function(t){ t.classList.remove("active"); });
       tab.classList.add("active");
+      showLoading(true);
       src.setAttribute("src", BASE + tab.getAttribute("data-src"));
       video.setAttribute("poster", BASE + tab.getAttribute("data-poster"));
       video.load();

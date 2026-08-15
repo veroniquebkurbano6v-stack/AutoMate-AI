@@ -98,6 +98,8 @@ https://github.com/user-attachments/assets/9db81a0d-4a39-4bb9-939f-031f8f49c6b8
 
 ## 🚀 快速开始
 
+> **想直接体验？** 可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases) 下载**预编译 APK**（公开版未内置 API Key，安装后需在 App 内「设置」页自行填写 Key）。作者为学生个人开发者，暂无力承担大规模 API 消费；内置全部 Key 的评测专用版仅随作品报名材料提供给评委。
+
 ### 1. 环境准备
 - Android Studio + JDK 17
 - Android SDK（路径在 `local.properties` 中配置）
