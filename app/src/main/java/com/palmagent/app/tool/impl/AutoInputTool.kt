@@ -180,7 +180,9 @@ class AutoInputTool : BaseTool() {
         if (inputNode == null) {
             Log.w(TAG, "无障碍未找到可编辑节点，降级到视觉流程")
             LiveLogBuffer.append("  ⚠️ 无障碍未找到输入框，降级到视觉流程")
-            return executeWithVision(text, "", false)
+            // 保留 instruction / isSearchIcon：丢失会导致视觉流程 step4 用通用英文提示词
+            // 重新定位输入框，在非搜索页面上会定位到错误位置（如商品列表）
+            return executeWithVision(text, instruction, isSearchIcon)
         }
 
         // 捕获输入框 Y 坐标（用于 D 步按钮的 Y-proximity）
@@ -199,7 +201,8 @@ class AutoInputTool : BaseTool() {
             if (!inputResult) {
                 Log.w(TAG, "无障碍输入失败，降级到视觉流程")
                 LiveLogBuffer.append("  ⚠️ 无障碍输入失败，降级到视觉流程")
-                return executeWithVision(text, "", false)
+                // 保留 instruction / isSearchIcon：同上，避免视觉流程定位输入框失败
+                return executeWithVision(text, instruction, isSearchIcon)
             }
 
             delay(500)

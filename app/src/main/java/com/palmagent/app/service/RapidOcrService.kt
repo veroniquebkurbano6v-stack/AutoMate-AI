@@ -112,36 +112,37 @@ object RapidOcrService {
 
         val startTime = System.currentTimeMillis()
 
-        val safeBitmap = if (bitmap.config == Bitmap.Config.HARDWARE) {
-            bitmap.copy(Bitmap.Config.ARGB_8888, true)
+        // 原始截图尺寸（屏幕像素坐标系）：坐标逆变换基准必须取它，不能取缩放后尺寸
+        val srcWidth = bitmap.width
+        val srcHeight = bitmap.height
+        val scaledWidth = (srcWidth * OCR_SCALE_RATIO).roundToInt()
+        val scaledHeight = (srcHeight * OCR_SCALE_RATIO).roundToInt()
+
+        // 统一缩放：任何 config 在尺寸不同时都缩放到 90%（与旧实现行为一致，OCR 输入始终 90%）
+        // HARDWARE 位图（无障碍 wrapHardwareBuffer 截屏）CPU 侧不可读，
+        // OpenCV bitmapToMat 对其 AndroidBitmap_lockPixels 会 SIGABRT，必须无条件先转 ARGB_8888
+        val ocrInput = if (bitmap.config == Bitmap.Config.HARDWARE) {
+            val copied = bitmap.copy(Bitmap.Config.ARGB_8888, false)
+                ?: return@withContext OcrResultData("", emptyList(), 0)
+            if (scaledWidth > 0 && scaledHeight > 0 &&
+                scaledWidth != srcWidth && scaledHeight != srcHeight) {
+                val s = Bitmap.createScaledBitmap(copied, scaledWidth, scaledHeight, true)
+                copied.recycle()
+                s
+            } else {
+                copied
+            }
+        } else if (scaledWidth > 0 && scaledHeight > 0 &&
+                   scaledWidth != srcWidth && scaledHeight != srcHeight) {
+            Bitmap.createScaledBitmap(bitmap, scaledWidth, scaledHeight, true)
         } else {
             bitmap
         }
+        val wasScaled = ocrInput.width != srcWidth || ocrInput.height != srcHeight
 
-        // Step 1: 90%缩放预处理
-        val originalWidth = safeBitmap.width
-        val originalHeight = safeBitmap.height
-        val scaledWidth = (originalWidth * OCR_SCALE_RATIO).roundToInt()
-        val scaledHeight = (originalHeight * OCR_SCALE_RATIO).roundToInt()
-
-        val scaledBitmap = if (scaledWidth > 0 && scaledHeight > 0 &&
-                               scaledWidth != originalWidth && scaledHeight != originalHeight) {
-            Bitmap.createScaledBitmap(safeBitmap, scaledWidth, scaledHeight, true)
-        } else {
-            null // 缩放后尺寸无效或与原图相同，不缩放
-        }
-
-        // 缩放完成后立即回收 safeBitmap 副本，释放 ~8MB 内存
-        if (scaledBitmap != null && safeBitmap !== bitmap && !safeBitmap.isRecycled) {
-            try { safeBitmap.recycle() } catch (_: Exception) {}
-        }
-
-        val ocrInput = scaledBitmap ?: safeBitmap
-        val wasScaled = scaledBitmap != null
-
-        // 精确逆变换比率：用实际缩放尺寸计算，避免浮点累积误差
-        val inverseScaleX = if (wasScaled) originalWidth.toFloat() / scaledWidth else 1.0f
-        val inverseScaleY = if (wasScaled) originalHeight.toFloat() / scaledHeight else 1.0f
+        // 精确逆变换比率：基准为原始截图尺寸（屏幕像素），避免浮点累积误差
+        val inverseScaleX = if (wasScaled) srcWidth.toFloat() / ocrInput.width else 1.0f
+        val inverseScaleY = if (wasScaled) srcHeight.toFloat() / ocrInput.height else 1.0f
 
         try {
             // Step 2: OCR检测与识别
@@ -157,7 +158,7 @@ object RapidOcrService {
                 val fullText = blocks.joinToString("\n") { it.text }
 
                 val filtered = rawBlocks.size - blocks.size
-                val scaleInfo = if (wasScaled) " [${originalWidth}x${originalHeight}→${scaledWidth}x${scaledHeight}]" else ""
+                val scaleInfo = if (wasScaled) " [${srcWidth}x${srcHeight}→${ocrInput.width}x${ocrInput.height}]" else ""
                 Log.d(TAG, "RapidOCR完成: 原始${rawBlocks.size}个, 过滤后${blocks.size}个文本块 (过滤${filtered}个), ${durationMs}ms$scaleInfo")
                 LiveLogBuffer.append("🔍 RapidOCR: ${blocks.size}个文本块 (${durationMs}ms)")
 
@@ -171,7 +172,10 @@ object RapidOcrService {
             val durationMs = System.currentTimeMillis() - startTime
             return@withContext OcrResultData("", emptyList(), durationMs)
         } finally {
-            scaledBitmap?.recycle()
+            // 仅回收本函数新建的位图（HARDWARE 缩放结果），调用方所有的 bitmap 不动
+            if (ocrInput !== bitmap && !ocrInput.isRecycled) {
+                try { ocrInput.recycle() } catch (_: Exception) {}
+            }
         }
     }
 

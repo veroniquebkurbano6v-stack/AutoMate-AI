@@ -40,11 +40,20 @@ object VlmService {
     private const val VLM_SCALE = 1.0f
     private const val MAX_IMAGE_DIMENSION = 1568
 
+    /** 方案C：广告弹窗判定结果（从 VLM 屏幕描述响应中解析） */
+    data class AdJudgement(
+        val type: String,                  // normal / close / auto
+        val coordinate: String? = null,    // "x,y" [0,1000] 归一化（close）
+        val conf: Float? = null,           // 置信度 0-1（close）
+        val delaySeconds: Int? = null      // 等待秒数（auto）
+    )
+
     data class VlmResult(
         val success: Boolean,
         val answer: String = "",
         val durationMs: Long = 0,
-        val error: String? = null
+        val error: String? = null,
+        val adJudgement: AdJudgement? = null   // 方案C：广告判定（无标签/解析失败为 null）
     )
 
     /** VL 模式决策结果 */
@@ -92,6 +101,25 @@ object VlmService {
 上：搜索栏、小程序标签、"全部"按钮
 中：i莞家小程序入口、"企业有难题"推荐、服务号列表
 下：底部导航栏"微信"等图标
+
+【附加任务：广告弹窗判断】
+先判断当前界面是否为广告/干扰弹窗，输出一行 XML 标签（在屏幕描述之前）：
+- 自动关闭广告（【图中可见倒计时数字】，如 "3"、"5" 秒倒计时，或"广告将在X秒后关闭"提示）→ <ad>auto</ad><delay>秒数</delay>
+- 需手动关闭的广告/干扰弹窗（有"跳过/Skip/关闭×"按钮，或无倒计时数字）→ <ad>close</ad><coordinate>x,y</coordinate><conf>0-1</conf>
+- 正常界面 → <ad>normal</ad>
+
+【强制规则】
+1. auto 判定【必须】依赖图中真实可见的倒计时数字；若图上看不到倒计时，一律判 close，禁止猜测 auto。
+2. close 分支【必须】输出 coordinate（[0,1000] 归一化），禁止漏掉。
+3. 无"跳过/关闭"字样的【全屏遮罩弹窗】也是干扰弹窗：如未成年模式弹窗、新手引导、登录弹窗、福利红包弹窗、升级提示 → 判 close 并给出关闭按钮坐标。
+
+【负例规则】以下情况是正常界面，不是广告弹窗：
+- 应用首页/列表页/搜索页/播放页/详情页（含导航栏、图标网格、搜索框、内容卡片）
+- 规格选择弹窗（份量/辣度/杯型/口味）、确认对话框、权限请求、底部菜单
+- 页面内嵌的推广横幅、推荐卡片、活动入口（它们不是弹窗，不遮挡主内容）
+
+【坐标规则】coordinate 的 x,y 为 [0,1000] 归一化坐标；判断不确定时 conf 给低值(<0.6)。
+输出 <ad> 标签行后，再输出上/中/下三区域描述。
 """
 
     fun init(): Boolean {
@@ -219,7 +247,8 @@ object VlmService {
                         return@withContext VlmResult(
                             success = true,
                             answer = content.trim(),
-                            durationMs = duration
+                            durationMs = duration,
+                            adJudgement = parseAdJudgement(content)
                         )
                     } else {
                         lastErrorMsg = "VLM返回内容为空"
@@ -346,6 +375,33 @@ object VlmService {
             Log.e(TAG, "解析响应失败: ${e.message}, body=${responseBody.take(300)}")
             ""
         }
+    }
+
+    /**
+     * 方案C：从 VLM 屏幕描述响应中解析广告弹窗判定（<ad>/<delay>/<coordinate>/<conf>）。
+     * 容错：坐标带空格、conf 标签未闭合、标签缺失均安全返回（null 表示无判定→按 normal 处理）。
+     */
+    private fun parseAdJudgement(content: String): AdJudgement? {
+        if (content.isBlank()) return null
+        val adMatch = Regex("<ad>\\s*(\\w+)\\s*</ad>").find(content)
+            ?: return null
+        val type = adMatch.groupValues[1].lowercase()
+        if (type !in setOf("normal", "close", "auto")) return null
+
+        val coordMatch = Regex("<coordinate>\\s*([\\d.,\\s]+)\\s*</coordinate>").find(content)
+        val coord = coordMatch?.groupValues?.get(1)?.trim()
+            ?.let { if (it.contains(",")) it else null }
+        val confMatch = Regex("<conf>\\s*([\\d.]+)").find(content)
+        val conf = confMatch?.groupValues?.get(1)?.toFloatOrNull()
+        val delayMatch = Regex("<delay>\\s*(\\d+)\\s*</delay>").find(content)
+        val delay = delayMatch?.groupValues?.get(1)?.toIntOrNull()
+
+        return AdJudgement(
+            type = type,
+            coordinate = coord,
+            conf = conf,
+            delaySeconds = delay
+        )
     }
 
     /**

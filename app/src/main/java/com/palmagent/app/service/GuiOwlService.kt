@@ -644,8 +644,8 @@ Rules:
         else -> action.lowercase().trim()
     }
 
-    /** 坐标缩放还原：模型输出在 [0,1000] 归一化空间 → 真实屏幕像素 */
-    private fun scaleCoordinate(
+    /** 坐标缩放还原：模型输出在 [0,1000] 归一化空间 → 真实屏幕像素（方案C 复用，故 internal） */
+    internal fun scaleCoordinate(
         x: Double, y: Double,
         screenWidth: Int, screenHeight: Int
     ): Coordinate {

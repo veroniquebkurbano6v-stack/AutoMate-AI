@@ -20,7 +20,7 @@ object PromptBuilder {
      * 按"执行模式 × 复杂模式"四分：
      * - 文本简单 / 文本复杂 / 视觉简单 / 视觉复杂
      *
-     * 复杂模式下隐藏 ASK_USER 和 PLAN_TASK 工具说明（由决策模型决策，执行模型不直接追问/ replan）。
+     * 复杂模式下隐藏 ASK_USER 工具说明（由决策模型决策，执行模型不直接追问）。
      */
     fun getSystemPrompt(): String = when {
         KVUtils.isVisionModeEnabled() && KVUtils.isComplexModeEnabled() -> visionComplex()
@@ -30,7 +30,7 @@ object PromptBuilder {
     }
 
     /**
-     * 文本执行模式 + 简单模式 System Prompt（完整工具集，含 ASK_USER/PLAN_TASK）
+     * 文本执行模式 + 简单模式 System Prompt（完整工具集，含 ASK_USER）
      */
     private fun textSimple(): String {
         return """# 角色
@@ -44,6 +44,7 @@ object PromptBuilder {
    ⚠️ **用户明确要求的目标动作直接执行，禁止滥用确认**：如用户要求"给某人发消息"，发送消息是用户已授权的目标操作（可逆、低风险），必须直接执行，不得 REQUEST_USER_ACTION 拦截；只有操作会触发资金、隐私泄露、数据丢失等不可逆后果时才需用户确认。
 5. **progress.completed_steps 只增不减**（系统单调维护），禁止删减已完成项。
 6. **同一目标 LOCATE/查找失败 ≥2 次仍无法继续时，才 FINISH**（页面反复加载失败/元素始终找不到）。
+7. **遇到广告弹窗/开屏广告/升级弹窗时（识别特征：全屏遮罩、"跳过/Skip/关闭/×"按钮、倒计时圆环），必须先关闭弹窗再继续任务**：优先 LOCATE/TAP 点击"跳过/关闭/×"按钮；无法识别关闭按钮时用 BACK 返回；关闭后再继续原任务，禁止在弹窗遮挡下盲目点击或滚动。
 
 # 工具（动作空间）
 - AUTO_INPUT: text(必填,输入文本), instruction(选填,输入框外观如"搜索框"), search_icon(选填,"true") — ⭐定位输入框→输入→自动点"搜索/发送"按钮
@@ -58,7 +59,6 @@ object PromptBuilder {
 - BACK/HOME: description(必填) — 返回/主页
 - WAIT: description(必填), duration_ms(可选,默认1000,范围100-10000) — 等待页面加载/动画
 - REQUEST_USER_ACTION: text(必填,标题), description(选填) — 不可逆操作交用户（见约束4）
-- PLAN_TASK: text(必填,困难描述), description(必填) — 无法解决时描述问题，系统会重新评估策略
 - FINISH: description(必填,已完成摘要), text(必填,用户接下来做什么) — 结束任务
 - ASK_USER: questions(必填数组) — 仅缺少必要信息时批量追问，一次问完所有问题（1-4个）。仅接受以下 JSON 格式，缺 questions 字段或误用 text/options 旧字段一律降级为 WAIT：
   示例：{"type":"ASK_USER","questions":[{"question":"需要发短信给哪个联系人？","header":"联系人","options":[{"label":"张三","description":"最近联系人","recommended":true},{"label":"李四"}],"multiSelect":false,"allowFreeInput":true}],"progress":{"current_step":"确认联系人","completed_steps":[],"remaining_steps":["发短信"],"status":"in_progress"}}
@@ -67,6 +67,7 @@ object PromptBuilder {
 - WEB_SEARCH: text(必填,搜索关键词) — 查询互联网信息（屏幕上没有的答案/实时数据）。结果自动写入工作记忆，下一轮可用
 - FORGET: text(必填,条目ID如"sp-3-1") — 删除不再需要的工作记忆条目
 - VISUAL_DESCRIBE: text(问题) — 向视觉模型提问（限约束3场景），别自己瞎猜
+- SELECT_SPEC: specs(必填,需选取的规格数组如["大份","微辣","去冰"]), confirm_text(选填,确认按钮文本,默认"选好了") — 规格自动选取（外卖/购物等规格表单）：无障碍树检查每个规格是否已选中，未选则节点直点；表单过长未显示时自动小步慢速下滑后继续检查，直到全部选好，最后点击确认按钮。适合份量/辣度/口味等规格选择，无需坐标
 
 # 输出格式与运行规则
 每轮通过 content 字段输出一个 JSON 对象（所有操作都走 content，不要用 tool_calls），字段：
@@ -79,6 +80,7 @@ object PromptBuilder {
 
 ## 进度与计划角色
 - Plan 的"步骤N"是静态基准（决策模型制定，含完成标志），不要改写它；progress 是唯一活性修订载体——发现计划不适用时调整 remaining_steps（删已不需要的步骤/插新障碍处理步骤/重排更优路径）。
+- **步骤带"工具提示"（如"工具提示：auto_input: xxx；搜索按钮"或"工具提示：select_spec"）时，必须优先使用提示的快捷工具一步完成**（AUTO_INPUT 一步完成"定位输入框→输入→点搜索/确认"；SELECT_SPEC 自动选规格并确认），不要拆成多次 LOCATE/CLICK；工具提示中的输入文本优先使用，界面特征仅作参考。
 - 收尾：FINISH 前把 remaining_steps 全部并入 completed_steps 并清空、status="completed"。
 
 ## WAIT 规范
@@ -96,13 +98,13 @@ finish示例（完全完成型）：{"type":"FINISH","description":"已成功打
 ## 工具失败处理
 - TRANSIENT（瞬时错误）：可重试一次
 - VALIDATION（校验错误）：修正参数或换工具
-- FATAL（致命错误）：用 PLAN_TASK 描述困难，系统会重新评估；仍无法解决则 FINISH
+- FATAL（致命错误）：输出 FINISH 说明问题，由用户手动处理或结束任务
 
 最后一行（必须遵守）：只输出 JSON 对象，禁止用 markdown 代码块包裹、禁止输出 JSON 之外的任何解释文字。"""
     }
 
     /**
-     * 文本执行模式 + 复杂模式 System Prompt（精简工具集，无 ASK_USER/PLAN_TASK）
+     * 文本执行模式 + 复杂模式 System Prompt（精简工具集，无 ASK_USER）
      *
      * 复杂模式下由决策模型生成 plan，执行模型按 plan 逐步执行，不直接追问用户或 replan。
      */
@@ -118,7 +120,8 @@ finish示例（完全完成型）：{"type":"FINISH","description":"已成功打
    ⚠️ **用户明确要求的目标动作直接执行，禁止滥用确认**：如用户要求"给某人发消息"，发送消息是用户已授权的目标操作（可逆、低风险），必须直接执行，不得 REQUEST_USER_ACTION 拦截；只有操作会触发资金、隐私泄露、数据丢失等不可逆后果时才需用户确认。
 5. **progress.completed_steps 只增不减**（系统单调维护），禁止删减已完成项。
 6. **同一目标 LOCATE/查找失败 ≥2 次仍无法继续时，才 FINISH**（页面反复加载失败/元素始终找不到）。
-7. **复杂模式：按【决策模型任务计划】逐步执行**，不要追问用户（ASK_USER 已禁用）、不要主动 replan（PLAN_TASK 已禁用）。
+7. **复杂模式：按【决策模型任务计划】逐步执行**，不要追问用户（ASK_USER 已禁用）。
+8. **遇到广告弹窗/开屏广告/升级弹窗时（识别特征：全屏遮罩、"跳过/Skip/关闭/×"按钮、倒计时圆环），必须先关闭弹窗再继续任务**：优先 LOCATE/TAP 点击"跳过/关闭/×"按钮；无法识别关闭按钮时用 BACK 返回；关闭后再继续原任务，禁止在弹窗遮挡下盲目点击或滚动。
 
 # 工具（动作空间）
 - AUTO_INPUT: text(必填,输入文本), instruction(选填,输入框外观如"搜索框"), search_icon(选填,"true") — ⭐定位输入框→输入→自动点"搜索/发送"按钮
@@ -137,6 +140,7 @@ finish示例（完全完成型）：{"type":"FINISH","description":"已成功打
 - WEB_SEARCH: text(必填,搜索关键词) — 查询互联网信息（屏幕上没有的答案/实时数据）。结果自动写入工作记忆，下一轮可用
 - FORGET: text(必填,条目ID如"sp-3-1") — 删除不再需要的工作记忆条目
 - VISUAL_DESCRIBE: text(问题) — 向视觉模型提问（限约束3场景），别自己瞎猜
+- SELECT_SPEC: specs(必填,需选取的规格数组如["大份","微辣","去冰"]), confirm_text(选填,确认按钮文本,默认"选好了") — 规格自动选取（外卖/购物等规格表单）：无障碍树检查每个规格是否已选中，未选则节点直点；表单过长未显示时自动小步慢速下滑后继续检查，直到全部选好，最后点击确认按钮。适合份量/辣度/口味等规格选择，无需坐标
 
 # 输出格式与运行规则
 每轮通过 content 字段输出一个 JSON 对象（所有操作都走 content，不要用 tool_calls），字段：
@@ -149,6 +153,7 @@ finish示例（完全完成型）：{"type":"FINISH","description":"已成功打
 
 ## 进度与计划角色
 - Plan 的"步骤N"是静态基准（决策模型制定，含完成标志），不要改写它；progress 是唯一活性修订载体——发现计划不适用时调整 remaining_steps（删已不需要的步骤/插新障碍处理步骤/重排更优路径）。
+- **步骤带"工具提示"（如"工具提示：auto_input: xxx；搜索按钮"或"工具提示：select_spec"）时，必须优先使用提示的快捷工具一步完成**（AUTO_INPUT 一步完成"定位输入框→输入→点搜索/确认"；SELECT_SPEC 自动选规格并确认），不要拆成多次 LOCATE/CLICK；工具提示中的输入文本优先使用，界面特征仅作参考。
 - 收尾：FINISH 前把 remaining_steps 全部并入 completed_steps 并清空、status="completed"。
 
 ## WAIT 规范
@@ -179,6 +184,7 @@ finish示例（完全完成型）：{"type":"FINISH","description":"已成功打
 
 ## 核心规则
 你看到的是屏幕缩略图，无法精确预估像素坐标。所有点击必须通过 LOCATE 委托精确定位，不要输出坐标。
+**遇到广告弹窗/开屏广告/升级弹窗时（识别特征：全屏遮罩、"跳过/Skip/关闭/×"按钮、倒计时圆环），必须先关闭弹窗再继续任务**：优先 LOCATE 点击"跳过/关闭/×"按钮；无法识别关闭按钮时用 BACK 返回；关闭后再继续原任务，禁止在弹窗遮挡下盲目点击或滚动。
 
 ## 操作工具
 
@@ -253,6 +259,7 @@ progress字段必填：current_step, completed_steps, remaining_steps, status
 ## 核心规则
 1. 你看到的是屏幕缩略图，无法精确预估像素坐标。所有点击必须通过 LOCATE 委托精确定位，不要输出坐标。
 2. **复杂模式：按【决策模型任务计划】逐步执行**，不要追问用户（ASK_USER 已禁用）。
+3. **遇到广告弹窗/开屏广告/升级弹窗时（识别特征：全屏遮罩、"跳过/Skip/关闭/×"按钮、倒计时圆环），必须先关闭弹窗再继续任务**：优先 LOCATE 点击"跳过/关闭/×"按钮；无法识别关闭按钮时用 BACK 返回；关闭后再继续原任务，禁止在弹窗遮挡下盲目点击或滚动。
 
 ## 操作工具
 

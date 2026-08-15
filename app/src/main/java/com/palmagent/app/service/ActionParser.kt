@@ -56,7 +56,10 @@ object ActionParser {
         val visual_question: String? = null,
         // 批量提问结构化字段（ASK_USER 必填，对齐 GitHub Copilot ask_questions）
         // 旧字段 options 已删除，强制模型输出 questions 数组
-        val questions: List<QuestionJson>? = null
+        val questions: List<QuestionJson>? = null,
+        // 规格自动选取（SELECT_SPEC 使用）：specs=需选取的规格列表（兼容 JSON 数组或逗号分隔字符串），confirm_text=确认按钮文本
+        val specs: JsonElement? = null,
+        val confirm_text: String? = null
     )
 
     data class QuestionJson(
@@ -225,7 +228,9 @@ object ActionParser {
                     questions = parsedQuestions,
                     repeat = actionJson.repeat?.coerceIn(1, MAX_REPEAT) ?: 1,
                     intervalMs = actionJson.interval_ms?.coerceIn(MIN_REPEAT_INTERVAL_MS, MAX_REPEAT_INTERVAL_MS),
-                    visualQuestion = actionJson.visual_question?.takeIf { it.isNotBlank() }
+                    visualQuestion = actionJson.visual_question?.takeIf { it.isNotBlank() },
+                    specs = parseSpecsField(actionJson.specs),
+                    confirmText = actionJson.confirm_text?.takeIf { it.isNotBlank() }
                 )
             } else {
                 extractActionFromText(response, screenInfo)
@@ -261,6 +266,24 @@ object ActionParser {
             description = "未知动作降级: $type",
             confidence = 0.1f
         )
+    }
+
+    /**
+     * 解析 SELECT_SPEC 的 specs 字段：兼容 JSON 数组 / 逗号顿号分隔字符串 / 空。
+     * 模型可能输出 ["大份","微辣"] 或 "大份,微辣"，统一转为 List<String>。
+     */
+    private fun parseSpecsField(raw: JsonElement?): List<String>? {
+        if (raw == null || raw.isJsonNull) return null
+        return when {
+            raw.isJsonArray -> raw.asJsonArray
+                .mapNotNull { if (it.isJsonPrimitive) it.asString.trim() else null }
+                .filter { it.isNotEmpty() }
+            raw.isJsonPrimitive -> raw.asString
+                .split(Regex("[,，、;；]"))
+                .map { it.trim() }
+                .filter { it.isNotEmpty() }
+            else -> null
+        }
     }
 
     /**

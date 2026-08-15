@@ -8,12 +8,15 @@ import com.palmagent.app.model.ScreenInfo
 import com.palmagent.app.model.UIElement
 import com.palmagent.app.model.UIElementType
 import com.palmagent.app.service.GUIAccessibilityService
-import com.palmagent.app.service.VlmService
+import com.palmagent.app.service.GuiOwlService
 import com.palmagent.app.service.RapidOcrService
+import com.palmagent.app.service.VlmService
 import com.palmagent.app.utils.KVUtils
+import com.palmagent.app.utils.recycleSafely
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 
 /**
  * 屏幕描述生成器
@@ -36,6 +39,8 @@ class ScreenDescriptor {
         private const val MIN_NON_EMPTY_ELEMENTS = 5      // ≥5 个带文本/描述元素算可用
         private const val MAX_TEXT_LENGTH = 80            // 文本最大长度，超过截断
         private const val MAX_ELEMENTS = 120              // 屏幕元素最大数量，超过按评分裁剪
+        /** 方案C：广告弹窗处理/复确认最大重试次数（防连环弹窗死循环） */
+        private const val MAX_AD_RETRY = 2
 
         // 文本清洗正则
         private val URL_PATTERN = Regex("""https?://\S+""", RegexOption.IGNORE_CASE)
@@ -711,6 +716,37 @@ class ScreenDescriptor {
                     }
                 } else null
 
+                // 方案C：广告弹窗判定处理（close→四层关闭 / auto→等待+OCR确认）
+                // 复确认循环：最多 2 次，仍为广告则放弃，返回空描述（下轮自然重新取屏）
+                val adJudgement = vlmResult?.adJudgement
+                if (adJudgement != null && adJudgement.type != "normal") {
+                    for (attempt in 1..MAX_AD_RETRY) {
+                        handleAdPopup(adJudgement)
+                        val cleanDesc = describeCleanScreen(enhancedQuestion)
+                        if (cleanDesc != null) {
+                            lastScreenDescription = cleanDesc
+                            Log.d(TAG, "方案C 复确认成功(第${attempt}次): 弹窗已处理")
+                            return@coroutineScope cleanDesc
+                        }
+                        Log.w(TAG, "方案C 复确认仍为广告(第${attempt}次/$MAX_AD_RETRY)，继续重试")
+                    }
+                    // auto 耗尽后转 close 兜底（文档：仍 auto 则转 close 四层关闭）
+                    if (adJudgement.type == "auto") {
+                        Log.w(TAG, "方案C auto 复确认耗尽，转 close 四层关闭兜底")
+                        handleAdPopup(
+                            VlmService.AdJudgement(type = "close", coordinate = null, conf = null)
+                        )
+                        val cleanDesc = describeCleanScreen(enhancedQuestion)
+                        if (cleanDesc != null) {
+                            lastScreenDescription = cleanDesc
+                            return@coroutineScope cleanDesc
+                        }
+                    }
+                    // 复确认耗尽仍失败：返回空，下轮循环自然重新取屏
+                    Log.w(TAG, "方案C 广告处理${MAX_AD_RETRY}次仍未成功，放弃本次处理，交下轮/方案A提示词兜底")
+                    return@coroutineScope ""
+                }
+
                 if (vlmResult != null && vlmResult.success && vlmResult.answer.isNotBlank()) {
                     val desc = buildString {
                         val pkg = screenInfo?.currentPackage
@@ -737,7 +773,7 @@ class ScreenDescriptor {
     }
 
     /**
-     * 获取状态栏高度（像素），用于裁剪截图顶部避免OCR/VLM描述状态栏信息
+     * 获取状态栏高度（像素），用于裁剪截图顶部避免VLM描述状态栏信息
      */
     private fun getStatusBarHeight(): Int {
         return try {
@@ -754,61 +790,139 @@ class ScreenDescriptor {
         }
     }
 
-    /**
-     * 从截图提取 OCR 文本（按行格式化）
-     * 用于无障碍数据质量低时补充屏幕信息
-     */
-    suspend fun extractOcrText(screenshotBmp: Bitmap?): String {
-        if (screenshotBmp == null || screenshotBmp.isRecycled) return ""
-        val ocrResult = RapidOcrService.recognize(screenshotBmp)
-        if (ocrResult.fullText.isBlank()) return ""
-        val rows = formatOcrByRows(ocrResult.blocks)
-        if (rows.isEmpty()) return ""
-        return buildString {
-            appendLine("【OCR 文本识别】")
-            rows.forEach { appendLine(it) }
+    // ==================== 方案C：广告弹窗处理 ====================
+
+    /** 屏幕尺寸（用于模型归一化坐标换算） */
+    private fun getScreenSizePx(): IntArray {
+        return try {
+            val metrics = android.util.DisplayMetrics()
+            val wm = com.palmagent.app.AgentApplication.instance
+                .getSystemService(android.content.Context.WINDOW_SERVICE) as? android.view.WindowManager
+            wm?.defaultDisplay?.getRealMetrics(metrics)
+            intArrayOf(metrics.widthPixels, metrics.heightPixels)
+        } catch (e: Exception) {
+            Log.w(TAG, "获取屏幕尺寸失败: ${e.message}")
+            intArrayOf(1080, 2400)
         }
     }
 
     /**
-     * 将OCR文本块按Y轴分组，同一行内按X排序
-     *
-     * 输出格式：每行展示同一Y组的所有文本块，每块格式为 `文本(x坐标，y坐标)`
-     * Y 轴分组阈值 15px（相邻块 y 差 < 15 视为同一行）
-     * 同 X 排序：每行内从左到右排列
-     *
-     * 示例：
-     * ```
-     * 中国移动(130，70) 4G(975，70) 100%(1050，70)
-     * 微信(555，235) 🔍(970，235) +(1040，235)
-     * 搜索(540，350)
-     * ```
+     * 方案C：广告弹窗处理。
+     * close → 四层关闭：模型坐标(conf≥0.6) → 无障碍树 → OCR → BACK
+     * auto → 等待 delay(clamp 1-10s) → OCR 确认点击（防 auto 幻觉）
      */
-    internal fun formatOcrByRows(blocks: List<RapidOcrService.OcrTextBlock>): List<String> {
-        if (blocks.isEmpty()) return emptyList()
-        val yThreshold = 15
-
-        // 先按Y排序，再按X排序（保证同一行内x递增）
-        val sorted = blocks.sortedWith(compareBy({ it.centerY }, { it.centerX }))
-
-        // 按Y轴分组：与上一块Y差值<threshold视为同一行
-        // 修复：之前用 currentRow[0].centerY 比较，首块Y可能不具代表性
-        val rows = mutableListOf<List<RapidOcrService.OcrTextBlock>>()
-        var currentRow = mutableListOf(sorted[0])
-        for (i in 1 until sorted.size) {
-            if (Math.abs(sorted[i].centerY - sorted[i - 1].centerY) < yThreshold) {
-                currentRow.add(sorted[i])
-            } else {
-                rows.add(currentRow)
-                currentRow = mutableListOf(sorted[i])
+    private suspend fun handleAdPopup(judgement: VlmService.AdJudgement) {
+        val service = GUIAccessibilityService.instance ?: return
+        when (judgement.type) {
+            "close" -> {
+                // 保守兜底：仅当模型明确给出 conf 且 <0.6 才视为低置信按 normal 处理（文档 5.3）
+                // conf=null（未给出/auto转close兜底）不拦截，执行关闭
+                if (judgement.conf != null && judgement.conf < 0.6f) {
+                    Log.d(TAG, "方案C close conf=${judgement.conf}<0.6 低置信，按 normal 处理，不关闭")
+                    return
+                }
+                // 第1层：模型坐标
+                var closed = false
+                val coord = judgement.coordinate?.split(",")?.mapNotNull { it.trim().toFloatOrNull() }
+                if (coord != null && coord.size >= 2) {
+                    val size = getScreenSizePx()
+                    val px = GuiOwlService.scaleCoordinate(
+                        coord[0].toDouble(), coord[1].toDouble(), size[0], size[1]
+                    )
+                    closed = service.performAccessibilityClick(px.x, px.y)
+                    Log.d(TAG, "方案C close第1层(模型坐标): ${px.x},${px.y} -> $closed")
+                }
+                // 第2层：无障碍树（模型坐标异常/点击无效时）
+                if (!closed) {
+                    for (kw in listOf("跳过", "关闭")) {
+                        val nodes = service.findNodesByText(kw)
+                        // 精确匹配优先；"关闭"需过滤"关闭通知"等误匹配（审查 #1-2）
+                        val target = nodes.firstOrNull { it.isClickable && it.text?.toString() == kw }
+                            ?: nodes.firstOrNull {
+                                it.isClickable &&
+                                it.text?.toString()?.contains(kw) == true &&
+                                !it.text.toString().contains("关闭通知")
+                            }
+                        if (target != null) {
+                            closed = service.clickNode(target)
+                            nodes.forEach { it.recycle() }
+                            if (closed) break
+                        } else {
+                            nodes.forEach { it.recycle() }
+                        }
+                    }
+                }
+                // 第3层：OCR（树不可用，如淘宝 dataQuality=0%）
+                if (!closed && RapidOcrService.isReady) {
+                    val shot = service.takeScreenshot()
+                    if (shot != null) {
+                        try {
+                            val ocr = RapidOcrService.extractTextWithBboxes(shot)
+                            val target = ocr.firstOrNull { it.text.trim() == "跳过" }
+                                ?: ocr.firstOrNull {
+                                    it.text.trim() == "关闭" && !it.text.contains("关闭通知")
+                                }
+                            if (target != null) {
+                                closed = service.performAccessibilityClick(target.centerX, target.centerY)
+                            }
+                        } finally {
+                            shot.recycleSafely()
+                        }
+                    }
+                }
+                // 第4层：BACK
+                if (!closed) {
+                    closed = service.performAccessibilityBack()
+                }
+                Log.d(TAG, "方案C close处理结果: $closed")
+                if (closed) delay(500)   // 等待弹窗关闭动画
             }
+            "auto" -> {
+                // 等待 delay（clamp 1-10s，审查 #1-3）
+                val delaySec = (judgement.delaySeconds ?: 3).coerceIn(1, 10)
+                Log.d(TAG, "方案C auto等待 ${delaySec}s")
+                delay(delaySec * 1000L)
+                // OCR 确认并点击（防 auto 幻觉，审查 #1-2）
+                if (RapidOcrService.isReady) {
+                    val shot = service.takeScreenshot()
+                    if (shot != null) {
+                        try {
+                            val ocr = RapidOcrService.extractTextWithBboxes(shot)
+                            val target = ocr.firstOrNull { it.text.trim() == "跳过" }
+                                ?: ocr.firstOrNull {
+                                    it.text.trim() == "关闭" && !it.text.contains("关闭通知")
+                                }
+                            if (target != null) {
+                                service.performAccessibilityClick(target.centerX, target.centerY)
+                                delay(300)
+                            }
+                        } finally {
+                            shot.recycleSafely()
+                        }
+                    }
+                }
+            }
+            else -> {}
         }
-        rows.add(currentRow)
+    }
 
-        // 每行内按X排序后输出，格式：文本(x坐标，y坐标)
-        return rows.map { row ->
-            row.sortedBy { it.centerX }
-                .joinToString(" ") { "${it.text}(${it.centerX}，${it.centerY})" }
+    /**
+     * 方案C：弹窗处理完成后重新截屏复确认，返回干净描述；仍为广告/失败返回 null。
+     */
+    private suspend fun describeCleanScreen(question: String?): String? {
+        val service = GUIAccessibilityService.instance ?: return null
+        val shot = service.takeScreenshot() ?: return null
+        try {
+            val reCheck = VlmService.describeScreen(shot, question) ?: return null
+            if (!reCheck.success || reCheck.answer.isBlank()) return null
+            // 复确认：仅当不再判定为广告/弹窗时才采用描述
+            if (reCheck.adJudgement != null && reCheck.adJudgement.type != "normal") return null
+            return buildString {
+                append("【屏幕视觉描述】")
+                appendLine(reCheck.answer)
+            }
+        } finally {
+            shot.recycleSafely()
         }
     }
 }
