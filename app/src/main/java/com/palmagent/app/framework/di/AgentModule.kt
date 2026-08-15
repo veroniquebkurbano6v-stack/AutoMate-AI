@@ -14,6 +14,9 @@ import com.palmagent.app.domain.repository.TaskRepository
 import com.palmagent.app.data.repository.AIRepositoryImpl
 import com.palmagent.app.data.repository.ScreenRepositoryImpl
 import com.palmagent.app.data.repository.TaskRepositoryImpl
+import com.palmagent.app.data.local.AppDatabase
+import com.palmagent.app.data.local.dao.MessageDao
+import com.palmagent.app.data.local.dao.SessionDao
 import com.palmagent.app.service.AIService
 import com.palmagent.app.service.ScreenAnalyzer
 import com.palmagent.app.service.ToolDecisionEngine
@@ -70,6 +73,18 @@ object AgentModule {
     fun provideScreenAnalyzer(@ApplicationContext context: Context): ScreenAnalyzer {
         return ScreenAnalyzer(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return AppDatabase.getInstance(context)
+    }
+
+    @Provides
+    fun provideSessionDao(db: AppDatabase): SessionDao = db.sessionDao()
+
+    @Provides
+    fun provideMessageDao(db: AppDatabase): MessageDao = db.messageDao()
 }
 
 @Module
