@@ -26,7 +26,7 @@ class BuildEnhancedContextUseCase @Inject constructor(
 ) {
     data class Params(
         val deviceCtx: String,
-        val screenOcrText: String,
+        val screenText: String,
         val autoScreenDescription: String,
         val stateWarning: String,
         val isTreeEmpty: Boolean,
@@ -35,6 +35,8 @@ class BuildEnhancedContextUseCase @Inject constructor(
         val config: AgentConfig,
         val planContext: Plan? = null,
         val compactedSummary: String = "",
+        /** 失败信息压缩摘要（FailureCompactor 产出，注入最近操作回顾之前） */
+        val failureSummary: String = "",
         val llmProgress: TaskProgress? = null,
         val scratchpad: List<ScratchpadEntry> = emptyList()
     )
@@ -42,7 +44,7 @@ class BuildEnhancedContextUseCase @Inject constructor(
     suspend operator fun invoke(params: Params): String {
         val assembled = ContextManager.assemble(
             deviceCtx = params.deviceCtx,
-            screenOcrText = params.screenOcrText,
+            screenText = params.screenText,
             actionHistory = params.actionHistory,
             isTreeEmpty = params.isTreeEmpty,
             waitConsecutiveCount = params.waitConsecutiveCount,
@@ -68,6 +70,16 @@ class BuildEnhancedContextUseCase @Inject constructor(
         if (params.compactedSummary.isNotBlank()) {
             enhancedContext = buildString {
                 appendLine("【历史摘要】${params.compactedSummary}")
+                appendLine()
+                append(enhancedContext)
+            }
+        }
+
+        // FailureCompactor: 注入失败信息压缩摘要（位于最近操作回顾之前，
+        // 让模型知道之前失败过什么、建议怎么改，避免重复犯错）
+        if (params.failureSummary.isNotBlank()) {
+            enhancedContext = buildString {
+                appendLine("【失败处理摘要】${params.failureSummary}")
                 appendLine()
                 append(enhancedContext)
             }

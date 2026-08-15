@@ -77,6 +77,7 @@ class KbReadTool : BaseTool() {
                 "端侧知识库引擎未初始化",
                 errorType = "FATAL",
                 failureCategory = "SERVICE_UNAVAILABLE",
+                code = "KB_ENGINE_UNAVAILABLE",
                 suggestion = "请重启 App，或检查 assets/kb/ 资源是否完整"
             )
 
@@ -114,7 +115,8 @@ class KbReadTool : BaseTool() {
             ToolResult.error(
                 "知识库检索异常: ${e.message}",
                 errorType = "TRANSIENT",
-                failureCategory = "SERVICE_UNAVAILABLE"
+                failureCategory = "SERVICE_UNAVAILABLE",
+                code = "KB_READ_FAILED"
             )
         }
     }

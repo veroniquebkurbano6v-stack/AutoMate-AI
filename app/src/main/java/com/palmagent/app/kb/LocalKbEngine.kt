@@ -42,50 +42,8 @@ class LocalKbEngine private constructor(
                 }
                 initializing = true
                 try {
-                    val t0 = System.currentTimeMillis()
-                    val loader = KbAssetLoader(context)
-                    val paths = loader.ensureAssets()
-
-                    // 加载嵌入器（ONNX 模型，约 1s）
-                    val embedder = OnnxEmbedder(paths.modelPath, paths.vocabPath, 512)
-
-                    val db = KbDbAccessor(paths.dbPath)
-                    val records: List<SopRecord>
-                    if (!loader.isDbBuilt()) {
-                        // 首次启动：端侧嵌入建库
-                        Log.i(TAG, "kb.db 不存在，开始端侧建库...")
-                        try {
-                            val chunks = SopJsonLoader(context).loadAll()
-                            val taskVecs = ArrayList<FloatArray>(chunks.size)
-                            val kwVecs = HashMap<String, FloatArray>()
-                            for ((i, c) in chunks.withIndex()) {
-                                taskVecs.add(embedder.embed(c.taskText))
-                                if (c.keywordText.isNotEmpty()) {
-                                    kwVecs[c.sopId] = embedder.embed(c.keywordText)
-                                }
-                                if ((i + 1) % 100 == 0) {
-                                    Log.i(TAG, "嵌入进度 ${i + 1}/${chunks.size}")
-                                }
-                            }
-                            db.buildIndex(chunks, taskVecs, kwVecs)
-                            Log.i(TAG, "端侧建库完成，耗时 ${System.currentTimeMillis() - t0}ms")
-                        } catch (e: Exception) {
-                            // 建库失败：删除可能残留的不完整 kb.db，确保下次启动重建
-                            Log.e(TAG, "端侧建库失败，清理 kb.db: ${e.message}", e)
-                            java.io.File(paths.dbPath).delete()
-                            throw e
-                        }
-                    }
-                    records = db.loadAll()
-
-                    val engine = LocalKbEngine(
-                        embedder = embedder,
-                        records = records,
-                        vectorIndex = InMemoryVectorIndex(records),
-                        keywordSearcher = KeywordSearcher(records)
-                    )
+                    val engine = buildEngine(context)
                     INSTANCE = engine
-                    Log.i(TAG, "端侧知识库就绪：${records.size} 条 SOP，总耗时 ${System.currentTimeMillis() - t0}ms")
                     return engine
                 } finally {
                     initializing = false
@@ -93,7 +51,97 @@ class LocalKbEngine private constructor(
             }
         }
 
+        /**
+         * 强制重建知识库：删除 kb.db 并从 assets 重新嵌入建库。
+         * 供设置界面"重新入库"按钮调用；必须在后台线程执行（约 30-60s）。
+         * 成功后会替换 INSTANCE 并释放旧引擎的 ONNX 会话；失败则回滚到旧引擎。
+         */
+        fun rebuild(context: Context): LocalKbEngine {
+            synchronized(this) {
+                if (initializing) {
+                    throw IllegalStateException("知识库正在初始化/重建中，请稍后再试")
+                }
+                initializing = true
+                val old = INSTANCE
+                try {
+                    // 删除旧库，强制走嵌入建库分支
+                    val paths = KbAssetLoader(context).ensureAssets()
+                    java.io.File(paths.dbPath).delete()
+                    INSTANCE = null
+                    val engine = buildEngine(context)
+                    INSTANCE = engine
+                    // 释放旧引擎的 ONNX 会话，避免模型重复加载
+                    old?.let { o ->
+                        if (o !== engine) {
+                            try { o.close() } catch (_: Exception) {}
+                        }
+                    }
+                    Log.i(TAG, "知识库重建完成：${engine.records.size} 条 SOP")
+                    return engine
+                } catch (e: Exception) {
+                    // 重建失败：回滚到旧引擎（内存数据仍可用），下次再触发重建
+                    if (INSTANCE == null) INSTANCE = old
+                    throw e
+                } finally {
+                    initializing = false
+                }
+            }
+        }
+
         fun get(): LocalKbEngine? = INSTANCE
+
+        /** 端侧嵌入建库或直接读库，构建引擎实例（不写 INSTANCE，由调用方管理）。 */
+        private fun buildEngine(context: Context): LocalKbEngine {
+            val t0 = System.currentTimeMillis()
+            val loader = KbAssetLoader(context)
+            val paths = loader.ensureAssets()
+
+            // 加载嵌入器（ONNX 模型，约 1s）
+            val embedder = OnnxEmbedder(paths.modelPath, paths.vocabPath, 512)
+
+            val db = KbDbAccessor(paths.dbPath)
+            val records: List<SopRecord>
+            if (!loader.isDbBuilt()) {
+                // 首次启动 / 重建：端侧嵌入建库
+                Log.i(TAG, "kb.db 不存在，开始端侧建库...")
+                try {
+                    val chunks = SopJsonLoader(context).loadAll()
+                    val taskVecs = ArrayList<FloatArray>(chunks.size)
+                    val kwVecs = HashMap<String, FloatArray>()
+                    for ((i, c) in chunks.withIndex()) {
+                        taskVecs.add(embedder.embed(c.taskText))
+                        if (c.keywordText.isNotEmpty()) {
+                            kwVecs[c.sopId] = embedder.embed(c.keywordText)
+                        }
+                        if ((i + 1) % 100 == 0) {
+                            Log.i(TAG, "嵌入进度 ${i + 1}/${chunks.size}")
+                        }
+                    }
+                    db.buildIndex(chunks, taskVecs, kwVecs)
+                    Log.i(TAG, "端侧建库完成，耗时 ${System.currentTimeMillis() - t0}ms")
+                } catch (e: Exception) {
+                    // 建库失败：删除可能残留的不完整 kb.db，并释放嵌入器，确保下次启动重建
+                    Log.e(TAG, "端侧建库失败，清理 kb.db: ${e.message}", e)
+                    java.io.File(paths.dbPath).delete()
+                    embedder.close()
+                    throw e
+                }
+            }
+            records = db.loadAll()
+            Log.i(TAG, "端侧知识库就绪：${records.size} 条 SOP，总耗时 ${System.currentTimeMillis() - t0}ms")
+
+            return LocalKbEngine(
+                embedder = embedder,
+                records = records,
+                vectorIndex = InMemoryVectorIndex(records),
+                keywordSearcher = KeywordSearcher(records)
+            )
+        }
+    }
+
+    /** 释放 ONNX 会话（重建替换旧引擎时调用）。 */
+    fun close() {
+        embedder.close()
     }
 
     suspend fun search(
