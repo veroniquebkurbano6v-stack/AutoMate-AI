@@ -1,5 +1,17 @@
 # AutoMate AI — 一句话，帮不便操作手机的人完成手机上的事
 
+
+https://github.com/user-attachments/assets/641b225c-3f9b-43ad-be33-ecbedba84377
+
+
+
+https://github.com/user-attachments/assets/775abc78-c6f6-47c2-98ca-af06c21359e5
+
+
+
+https://github.com/user-attachments/assets/9db81a0d-4a39-4bb9-939f-031f8f49c6b8
+
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 > Android 数字无障碍助手 · 完全端侧知识库（离线可用）· 多通道感知（无障碍树 + 视觉）
