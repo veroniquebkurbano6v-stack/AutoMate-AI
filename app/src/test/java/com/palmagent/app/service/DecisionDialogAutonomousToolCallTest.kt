@@ -68,6 +68,14 @@ class DecisionDialogAutonomousToolCallTest {
             .build()
     }
 
+    /** 真实 LLM 场景前置条件：未配置决策模型 API Key 时优雅跳过（干净环境不失败）。 */
+    private fun assumePlannerConfigured() {
+        org.junit.Assume.assumeTrue(
+            "决策模型 API Key 未配置，跳过真实 LLM 集成测试（configure planner key 后可运行）",
+            KVUtils.hasPlannerConfig()
+        )
+    }
+
     // ===== 场景 1: 挂号任务 → 期望调 kb_read =====
     //
     // 注意：本测试为真实 LLM 集成测试，LLM 行为具有非确定性。
@@ -79,6 +87,7 @@ class DecisionDialogAutonomousToolCallTest {
 
     @Test
     fun `场景1 挂号任务 LLM是否自主调用kb_read`() = runBlocking {
+        assumePlannerConfigured()
         val userMessage = "帮我挂个呼吸内科的号"
 
         println("=" .repeat(80))
@@ -107,6 +116,7 @@ class DecisionDialogAutonomousToolCallTest {
 
     @Test
     fun `场景2 打开App任务 LLM是否自主调用list_apps`() = runBlocking {
+        assumePlannerConfigured()
         val userMessage = "帮我打开粤健通"
 
         println("=" .repeat(80))
@@ -135,6 +145,7 @@ class DecisionDialogAutonomousToolCallTest {
 
     @Test
     fun `场景3 位置查询任务 LLM是否自主调用amap工具`() = runBlocking {
+        assumePlannerConfigured()
         val userMessage = "附近有什么医院"
 
         println("=" .repeat(80))
@@ -478,7 +489,8 @@ class DecisionDialogAutonomousToolCallTest {
     private fun injectFakeKVUtils() {
         val fakePrefs = FakeSharedPreferencesForDialogAutonomous()
         // KB 启用以保证 tools 列表含 kb_read
-        fakePrefs.set("local_kb_enabled", "true")
+        // 注意：键名必须与 KVUtils 常量一致（带 KEY_ 前缀），否则注入不生效
+        fakePrefs.set("KEY_LOCAL_KB_ENABLED", "true")
 
         KVUtils::class.java.getDeclaredField("securePrefs").apply {
             isAccessible = true

@@ -22,3 +22,7 @@ local.properties
 app/release/
 test_model_collaboration_report.md
 .kotlin/
+
+# 检索评测脚本运行产物（脚本本身入库，结果 json 与缓存不入库）
+/eval/eval_retrieval_results.json
+/eval/__pycache__/

@@ -378,10 +378,12 @@ class DecisionDialogServiceTest {
     private fun injectFakeKVUtils() {
         val fakePrefs = FakeSharedPreferencesForDialog()
         // 设置必要的 KV（getPlannerApiKey 等）
-        fakePrefs.set("planner_api_key", "test-key")
-        fakePrefs.set("planner_api_url", "https://api.test.com/v1")
-        fakePrefs.set("planner_model", "mock-model")
-        fakePrefs.set("local_kb_enabled", false)
+        // 注意：键名必须与 KVUtils 常量一致（带 KEY_ 前缀），否则注入不生效，
+        // getPlannerApiKey() 会回退到 BuildConfig（干净环境为空）导致"API Key 未配置"。
+        fakePrefs.set("KEY_PLANNER_API_KEY", "test-key")
+        fakePrefs.set("KEY_PLANNER_API_URL", "https://api.test.com/v1")
+        fakePrefs.set("KEY_PLANNER_MODEL", "mock-model")
+        fakePrefs.set("KEY_LOCAL_KB_ENABLED", false)
 
         KVUtils::class.java.getDeclaredField("securePrefs").apply {
             isAccessible = true
