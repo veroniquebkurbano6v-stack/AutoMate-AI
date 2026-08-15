@@ -96,6 +96,7 @@ class ScrollUntilTool : BaseTool() {
                 "GUI-Plus服务未就绪: ${GuiOwlService.lastError ?: "请在设置中配置API地址"}",
                 errorType = "FATAL",
                 failureCategory = "SERVICE_UNAVAILABLE",
+                code = "GUI_PLUS_UNAVAILABLE",
                 suggestion = "GUI-Plus服务未配置，需用户在设置中配置API"
             )
         }
@@ -129,6 +130,7 @@ class ScrollUntilTool : BaseTool() {
                         "滚动查找'$target' ${maxScrolls}次后仍未找到，可能不在当前列表或描述不准确",
                         errorType = "VALIDATION",
                         failureCategory = "TARGET_NOT_FOUND",
+                        code = "TARGET_NOT_FOUND",
                         suggestion = "目标可能不在该入口下，请返回换入口、调整target描述，或改用其他操作"
                     )
                 }
@@ -140,6 +142,7 @@ class ScrollUntilTool : BaseTool() {
                         "滚动查找'$target'在第${scroll + 1}次滚动时失败: ${scrollResult.error}（可能已到页面边界）",
                         errorType = "VALIDATION",
                         failureCategory = "TARGET_NOT_FOUND",
+                        code = "SCROLL_FAILED",
                         suggestion = "已到页面底部/边界，目标不在当前列表"
                     )
                 }

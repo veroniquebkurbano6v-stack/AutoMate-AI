@@ -31,7 +31,8 @@ class OpenAppTool : BaseTool() {
                 "应用 $appInput 未安装",
                 errorType = "FATAL",
                 failureCategory = "APP_NOT_INSTALLED",
-                suggestion = "应用未安装，需重规划：换用替代方案或征得用户同意后引导安装"
+                code = "APP_NOT_INSTALLED",
+                suggestion = "应用未安装：换用替代方案或征得用户同意后引导安装"
             )
         }
 
@@ -42,7 +43,8 @@ class OpenAppTool : BaseTool() {
                     "无法启动 $appInput (包名: $packageName)",
                     errorType = "FATAL",
                     failureCategory = "APP_NOT_INSTALLED",
-                    suggestion = "应用可能未安装，需重规划：换用替代方案或征得用户同意后引导安装"
+                    code = "APP_NOT_INSTALLED",
+                    suggestion = "应用可能未安装：换用替代方案或征得用户同意后引导安装"
                 )
             }
             // P0 修复：必须重置任务栈，否则会停留在之前的 Activity（聊天详情页等）
@@ -94,6 +96,7 @@ class OpenAppTool : BaseTool() {
                     "无法打开应用商店",
                     errorType = "FATAL",
                     failureCategory = "SERVICE_UNAVAILABLE",
+                    code = "APP_STORE_UNAVAILABLE",
                     suggestion = "设备无应用商店，需换用其他替代方案"
                 )
             }

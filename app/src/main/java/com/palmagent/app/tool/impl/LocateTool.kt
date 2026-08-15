@@ -113,6 +113,7 @@ class LocateTool : BaseTool() {
                 "GUI-Plus服务未就绪: ${GuiOwlService.lastError ?: "请在设置中配置API地址"}",
                 errorType = "FATAL",
                 failureCategory = "SERVICE_UNAVAILABLE",
+                code = "GUI_PLUS_UNAVAILABLE",
                 suggestion = "GUI-Plus服务未配置，需用户在设置中配置API"
             )
         }
@@ -126,6 +127,7 @@ class LocateTool : BaseTool() {
                 "GUI-Plus定位失败: ${groundResult.error ?: "未知错误"}",
                 errorType = "VALIDATION",
                 failureCategory = "TARGET_NOT_FOUND",
+                code = "TARGET_NOT_FOUND",
                 suggestion = "目标元素可能不存在于当前屏幕，需滑动查找或换用其他方式"
             )
         }

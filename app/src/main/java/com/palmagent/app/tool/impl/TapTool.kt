@@ -25,6 +25,7 @@ class TapTool : BaseTool() {
                 "无障碍服务未运行",
                 errorType = "FATAL",
                 failureCategory = "SERVICE_UNAVAILABLE",
+                code = "A11Y_SERVICE_UNAVAILABLE",
                 suggestion = "无障碍服务未运行，需用户开启服务"
             )
 
@@ -38,6 +39,7 @@ class TapTool : BaseTool() {
         else ToolResult.error(
             "点击手势被取消",
             errorType = "TRANSIENT",
+            code = "GESTURE_CANCELLED",
             suggestion = "手势被系统取消，可重试"
         )
     }

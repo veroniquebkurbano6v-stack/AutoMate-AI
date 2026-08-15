@@ -127,6 +127,7 @@ abstract class DirectionalScrollTool(
                 "向${dirName}滑动后页面无变化，可能已到页面边界或滑动未生效",
                 errorType = "VALIDATION",
                 failureCategory = "SCROLL_NO_EFFECT",
+                code = "SCROLL_NO_EFFECT",
                 suggestion = "已到页面边界或内容不可滚动，请尝试返回、换入口或改用其他操作，不要重复相同滑动"
             )
         }

@@ -80,7 +80,10 @@ data class AgentAction(
     val repeat: Int = 1,
     val intervalMs: Long? = null,
     // 下一轮自动屏幕描述想额外确认的问题（GUI 模型按需回答，如"当前界面是美团App吗？"；空则仅结构描述）
-    val visualQuestion: String? = null
+    val visualQuestion: String? = null,
+    // 规格自动选取字段（仅 SELECT_SPEC 类型使用）：specs=需选取的规格列表，confirmText=确认按钮文本（默认"选好了"）
+    val specs: List<String>? = null,
+    val confirmText: String? = null
 )
 
 /**
@@ -100,8 +103,8 @@ data class Coordinate(
 
 enum class ActionType {
     CLICK, TAP, LONG_PRESS, SWIPE, AUTO_INPUT, SCROLL_UP, SCROLL_DOWN, SCROLL_LEFT, SCROLL_RIGHT, SCROLL_UNTIL,
-    WAIT, BACK, HOME, FINISH, LOCATE, REQUEST_USER_ACTION, VISUAL_DESCRIBE, PLAN_TASK,
-    OPEN_APP, ASK_USER, FORGET, WEB_SEARCH
+    WAIT, BACK, HOME, FINISH, LOCATE, REQUEST_USER_ACTION, VISUAL_DESCRIBE,
+    OPEN_APP, ASK_USER, FORGET, WEB_SEARCH, SELECT_SPEC
 }
 
 /**

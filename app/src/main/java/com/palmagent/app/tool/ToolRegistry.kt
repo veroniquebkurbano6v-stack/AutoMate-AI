@@ -27,6 +27,8 @@ object ToolRegistry {
         "get_screen_info" to ::GetScreenInfoTool,
         "visual_describe" to ::VisualDescribeTool,
         "user_action" to ::UserActionTool,
+        // 规格自动选取（无障碍树驱动：查选中态 → 节点直点 → 表单过长自动小步下滑 → 点确认）
+        "select_spec" to ::SelectSpecTool,
         // 高德地图 MCP 工具
         "amap_search" to ::AmapSearchTool,
         "amap_nearby" to ::AmapNearbyTool,

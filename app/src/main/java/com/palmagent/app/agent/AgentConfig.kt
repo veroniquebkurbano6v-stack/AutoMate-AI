@@ -11,7 +11,7 @@ data class AgentConfig(
     val streaming: Boolean = false,
     val contextMaxTokens: Int = 8000,
     val contextCompactionThreshold: Double = 0.75,
-    val contextKeepRecentRounds: Int = 2
+    val contextKeepRecentRounds: Int = 4
 ) {
     companion object {
         // 系统提示词统一由 PromptBuilder.getSystemPrompt() 管理，此处保留空字符串避免重复维护
@@ -30,7 +30,7 @@ data class AgentConfig(
         private var streaming: Boolean = false
         private var contextMaxTokens: Int = 8000
         private var contextCompactionThreshold: Double = 0.75
-        private var contextKeepRecentRounds: Int = 2
+        private var contextKeepRecentRounds: Int = 4
 
         fun apiKey(apiKey: String) = apply { this.apiKey = apiKey }
         fun baseUrl(baseUrl: String) = apply { this.baseUrl = baseUrl }

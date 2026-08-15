@@ -25,6 +25,9 @@ object PlanFormatter {
                 if (step.supervised) {
                     appendLine("（此步骤需用户确认后执行）")
                 }
+                if (step.toolHint.isNotBlank()) {
+                    appendLine("工具提示：${step.toolHint}")
+                }
                 appendLine()
             }
         }

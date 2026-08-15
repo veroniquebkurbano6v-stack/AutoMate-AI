@@ -56,6 +56,12 @@ object KVUtils {
     private const val KEY_PLANNER_MODEL = "KEY_PLANNER_MODEL"
     // KEY_PLANNER_ENABLE_SEARCH 已删除 — 联网搜索由 web_search 工具提供（与执行模型统一）
 
+    // 上下文压缩模型配置（FailureCompactor 失败信息压缩，默认智谱 GLM-4.5-Flash）
+    // 未配置时运行时回退使用决策模型（Planner）配置
+    private const val KEY_COMPACT_API_KEY = "KEY_COMPACT_API_KEY"        // 加密存储
+    private const val KEY_COMPACT_API_URL = "KEY_COMPACT_API_URL"
+    private const val KEY_COMPACT_MODEL = "KEY_COMPACT_MODEL"
+
     // 本地知识库配置（端侧 RAG，无服务端依赖）
     private const val KEY_LOCAL_KB_ENABLED = "KEY_LOCAL_KB_ENABLED"
 
@@ -298,6 +304,36 @@ object KVUtils {
     }
     fun setPlannerModel(value: String) = edit { putString(KEY_PLANNER_MODEL, value) }
 
+    // ==================== 上下文压缩模型配置 ====================
+    // 独立于决策模型（默认智谱 GLM-4.5-Flash），未配置时回退 Planner 配置
+
+    fun getCompactApiKey(): String = securePrefs.getString(KEY_COMPACT_API_KEY, "")?.ifEmpty {
+        com.palmagent.app.BuildConfig.COMPACT_API_KEY
+    }?.ifEmpty {
+        // 回退决策模型（Planner）配置
+        getPlannerApiKey()
+    } ?: ""
+
+    fun setCompactApiKey(value: String) {
+        securePrefs.edit().putString(KEY_COMPACT_API_KEY, value).apply()
+    }
+
+    fun getCompactApiUrl(): String = getString(KEY_COMPACT_API_URL).ifEmpty {
+        com.palmagent.app.BuildConfig.COMPACT_API_URL
+    }.ifEmpty {
+        getPlannerApiUrl()
+    }
+
+    fun setCompactApiUrl(value: String) = edit { putString(KEY_COMPACT_API_URL, value) }
+
+    fun getCompactModel(): String = getString(KEY_COMPACT_MODEL).ifEmpty {
+        com.palmagent.app.BuildConfig.COMPACT_MODEL
+    }.ifEmpty {
+        getPlannerModel()
+    }
+
+    fun setCompactModel(value: String) = edit { putString(KEY_COMPACT_MODEL, value) }
+
     /** 决策模型是否已配置（API Key 非空即视为已配置） */
     fun hasPlannerConfig(): Boolean = getPlannerApiKey().isNotEmpty()
 
@@ -359,6 +395,12 @@ object KVUtils {
         securePrefs.edit().putString(KEY_PLANNER_API_KEY, com.palmagent.app.BuildConfig.PLANNER_API_KEY).apply()
         edit { putString(KEY_PLANNER_API_URL, com.palmagent.app.BuildConfig.PLANNER_API_URL) }
         edit { putString(KEY_PLANNER_MODEL, com.palmagent.app.BuildConfig.PLANNER_MODEL) }
+        count += 3
+
+        // 上下文压缩模型配置（FailureCompactor，API Key 加密存储）
+        securePrefs.edit().putString(KEY_COMPACT_API_KEY, com.palmagent.app.BuildConfig.COMPACT_API_KEY).apply()
+        edit { putString(KEY_COMPACT_API_URL, com.palmagent.app.BuildConfig.COMPACT_API_URL) }
+        edit { putString(KEY_COMPACT_MODEL, com.palmagent.app.BuildConfig.COMPACT_MODEL) }
         count += 3
 
         Log.i(TAG, "从 BuildConfig 无条件覆盖 $count 项配置（含空值）")

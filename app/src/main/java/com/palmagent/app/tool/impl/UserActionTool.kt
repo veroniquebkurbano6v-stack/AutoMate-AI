@@ -115,6 +115,7 @@ class UserActionTool : BaseTool() {
                         "用户取消了操作",
                         errorType = "FATAL",
                         failureCategory = "USER_CANCELLED",
+                        code = "USER_CANCELLED",
                         suggestion = "用户主动取消，应终止任务"
                     )
                 }
@@ -217,6 +218,7 @@ class UserActionTool : BaseTool() {
                     "用户取消了操作",
                     errorType = "FATAL",
                     failureCategory = "USER_CANCELLED",
+                    code = "USER_CANCELLED",
                     suggestion = "用户主动取消，应终止任务"
                 )
             }

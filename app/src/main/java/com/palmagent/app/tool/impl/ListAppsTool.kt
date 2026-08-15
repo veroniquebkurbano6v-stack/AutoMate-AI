@@ -72,6 +72,7 @@ class ListAppsTool : BaseTool() {
             return ToolResult.error(
                 "获取已装应用列表异常: ${e.message}",
                 errorType = "TRANSIENT",
+                code = "LIST_APPS_FAILED",
                 suggestion = "PackageManager 查询失败，可重试一次"
             )
         }
@@ -81,6 +82,7 @@ class ListAppsTool : BaseTool() {
                 "设备未安装任何用户应用，或缓存未就绪（AgentApplication 启动预热未完成）",
                 errorType = "SERVICE_UNAVAILABLE",
                 failureCategory = "SERVICE_UNAVAILABLE",
+                code = "APP_LIST_EMPTY",
                 suggestion = "等待 App 启动预热完成，或检查无障碍/读取应用列表权限"
             )
         }
