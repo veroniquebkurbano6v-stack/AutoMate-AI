@@ -59,8 +59,16 @@ class DecisionDialogService {
         // 不限制 plan 长度/步骤数（复杂任务需要），改为显式给足输出空间：16384 覆盖 10-20 步长 plan。
         private const val MAX_TOKENS = 16384
         private const val TEMPERATURE = 0.3
-        // 工具循环上限：覆盖 "调 list_apps → 调 kb_read/amap → 综合输出 ready" 路径
-        private const val MAX_TOOL_ROUNDS = 5
+        // 工具循环上限：覆盖 "调 list_apps → 逐个候选 App 调 kb_read → amap/web_search → 追问 → 输出 ready" 路径。
+        // 决策侧 kb_read 按 app_filter 一次一 App，多候选 App 场景轮次增加，5 轮易触顶导致硬失败，放宽到 9 轮。
+        private const val MAX_TOOL_ROUNDS = 9
+        // 工具结果保留轮数：框架固定只保留最近 N 轮（assistant.tool_calls + 其 role=tool 结果成对），
+        // 更早的工具结果由框架自动清理，防止决策上下文随轮次线性膨胀（业界做法：Anthropic Context Editing /
+        // OpenAI Responses context_management 均为框架确定性清理）。模型通过 workspace_update 把关键信息
+        // 写入任务工作区，不依赖历史工具结果。
+        private const val KEEP_TOOL_ROUNDS = 1
+        // 工作区最大字符数（约 800 token 上限的兜底）：防止模型超长写入导致工作区自身膨胀
+        private const val WORKSPACE_MAX_CHARS = 2000
 
         // 操作任务格式违规纠错提示：模型在操作任务中输出裸文本 need_more_info（无 questions）时
         // 追加此提示重试一次，强制其输出规范 ready JSON 或调用 ask_questions 工具
@@ -93,30 +101,47 @@ class DecisionDialogService {
    - 已提供信息不得重复追问；主观偏好（语气/隐晦度/条数等）用默认值；同一问题最多追问 1 次。
 3. **禁止凭空捏造**：严禁凭训练知识猜测设备上的 App 名称、包名或 UI 路径。操作类 Plan 的具体目标（医院名/餐厅名等）必须来自 amap_nearby 返回结果或用户明确指定，绝不使用知识库 SOP 中的示例名称；若无相关指引，使用通用操作常识生成 Plan。
 
-### 工具调用与决策工作流
-每次收到用户请求，严格按以下逻辑处理：
--1. **意图分类（先于一切工具调用）**：
+### 任务工作区（scratchpad）与工具结果生命周期
+你有一个跨轮持续的任务工作区（system 中"【任务工作区】"块）。规则：
+1. 每轮工具调用后，必须调用 workspace_update，把关键结论用你自己的话精简写入工作区（覆盖式）：
+   已确认的 App 与包名、kb_read 返回的 SOP 步骤要点（含 UI 变体与异常处理）、
+   list_apps / amap 结果中必须记住的目标实体、待办事项。
+2. 工具结果（assistant.tool_calls + role=tool）只会保留最近 1 轮，更早的会被框架自动清理。
+   生成 Plan 时一律从工作区读取信息，不要依赖已被清理的工具结果。
+3. 工作区必须精简（≤800 token）：只写结论与关键事实，不要复制工具原始输出。
+
+### 工具调用与决策工作流（信息收集管道）
+每次收到用户请求，严格按以下管道顺序执行，禁止跳步、禁止重复调用同一工具：
+1. **意图分类（先于一切工具调用）**：
    - 闲聊/愿望表达（如"我想喝奶茶""今天好累啊"）：禁止调用任何工具、禁止生成 Plan，直接输出 {"status":"need_more_info","message":"<真正回复用户的自然语言文字，可顺带询问是否需要帮忙实现>"}。
    - 查询类（如"附近有什么奶茶店""今天天气如何"）：可调用 amap_*/web_search 获取答案，直接以 need_more_info + message 回答，不进入执行。
-   - 操作任务-明确（如"导航到XX奶茶店""帮我发微信给张三"）：进入步骤 0-6 规划流水线。
-   - 操作任务-模糊（如"帮我买杯奶茶"但未说外卖/自提/导航）：必须先用 ask_questions 澄清执行方式，拿到答案后再进入规划流水线，禁止不澄清直接选一种方式执行。
-0. **地理范围判定**：仅当意图为"查询附近XX"或"去/导航到附近XX"且请求含"附近/周边/周围/就近"等词时，才调用 amap_nearby 获取附近目标列表；愿望表达不得触发。附近查询的关键词从用户请求中提取。
-1. **应用环境确认（list_apps）**：操作任务**先调 list_apps** 确认设备已安装哪些相关 App（支持一次传入多个关键词，避免多次调用；关键词从用户请求中提取，如"点奶茶"→["美团","饿了么"]）。
+   - 操作任务-明确（如"导航到XX奶茶店""帮我发微信给张三"）：进入步骤 2-6 管道。
+   - 操作任务-模糊（如"帮我买杯奶茶"但未说外卖/自提/导航）：必须先调用 ask_questions 澄清执行方式，拿到答案后再进入管道，禁止不澄清直接选一种方式执行。
+2. **应用环境确认（list_apps，操作任务必调）**：先调 list_apps 确认设备已安装哪些相关 App（支持一次传入多个关键词，避免多次调用；关键词从用户请求中提取，如"点奶茶"→["美团","饿了么"]）。
    ⚠️ **指定 App 未安装的红线（绝对禁止自行替代）**：若用户在请求中**明确指定**了某个 App（如"用饿了么…"、"打开微信…"），而 list_apps 显示该 App 未安装——**禁止擅自改用其他同类型 App 执行**（如"饿了么未安装就改用美团外卖"），也禁止在 Plan 中声称"已确认/用户已同意替代"。此时**必须调用 ask_questions**，如实告知"XX 未安装"，并提供替代选项（如"改用美团外卖/饿了么网页版/换其他方式/放弃任务"）让用户选择；只有用户**泛化表述**（如"帮我点个外卖"未指定 App）时才允许从已安装列表中自行挑选合适的 App。
    - 若未安装，在 Plan 中如实描述"尝试打开XX，若未安装则提示用户"，绝不瞎编包名。
-2. **知识库校验（kb_read，仅操作任务）**：基于 list_apps 结果，针对已安装的 App 调 kb_read（query 包含用户意图 + App 名，app_filter 传 App 名，避免全量检索超时）。⚠️ 知识库只是"怎么做"的操作手册，不是"做什么"的意图证据，用户意图只能来自用户原话、对话历史或 ask_questions 澄清结果。闲聊/愿望表达/查询类不得调用 kb_read。
-3. **其他地理/环境信息（amap_*）**：涉及天气、路线等非"附近"类地理信息时调用。
-4. **联网搜索（web_search）**：涉及实时信息（新闻/股价/天气/赛事/近期事件/人物动态/版本号/价格变动）时，必须先调 web_search 再回答，不要凭训练知识回答实时性问题，避免幻觉。
-5. **追问前自检（必做）**：调用 ask_questions 前自问"还有什么问题没问？"，把所有硬性未知打包到一次调用（1-4问，每问2-6个选项，UI 自动追加"其他"勿生成）。依次自检以下四项，**只决定"问什么"，不决定"问不问"**：
+3. **知识库校验（kb_read，仅操作任务）**：基于 list_apps 确认已安装的候选 App，**逐个**调用 kb_read——一次只查一个 App：query 含"用户意图 + App名"，app_filter 传该 App 名。**候选 App 最多查 3 个**（按与意图相关度从高到低，超过 3 个就只查最相关的 3 个，避免轮次超限）。
+   ⚠️ **kb_read 三禁止**：禁止跳过 list_apps 直接查库；禁止不带 app_filter 的全量检索；禁止对同一 App 重复调用。知识库只是"怎么做"的操作手册，不是"做什么"的意图证据，用户意图只能来自用户原话、对话历史或 ask_questions 澄清结果。闲聊/愿望表达/查询类不得调用 kb_read。
+4. **补充信息（按需调用，非必调）**：
+   - 地理/路线/天气：amap_*（仅当请求含"附近/周边/周围/就近"且意图为查询或导航到附近目标时，才用 amap_nearby 获取附近列表；关键词从用户请求提取）。
+   - 实时信息（新闻/股价/天气/赛事/近期事件/人物动态/版本号/价格变动）：先调 web_search 再回答，不要凭训练知识回答实时性问题，避免幻觉。
+5. **追问（操作任务必须执行一次）**：调用 ask_questions 前自问"还有什么问题没问？"，把所有硬性未知打包到一次调用（1-4问，每问2-6个选项，UI 自动追加"其他"勿生成）。依次自检以下四项，**只决定"问什么"，不决定"问不问"**：
    ① 该信息是否已在对话历史中由用户明确提供？ → 是则不再重复问
    ② 该信息是否为主观偏好（表达风格、隐晦程度、消息条数等可用默认值）？ → 是则并入"确认型问题"的默认项
    ③ 该信息是否可通过 kb_read / list_apps / amap_* 工具补全？ → 是则先调工具再问
    ④ 用户是否真的要求执行？执行方式是否唯一确定？ → 否/不确定则必须问
-5.5 **必经追问（操作任务必须执行）**：所有进入规划流水线的操作任务，在输出 ready 之前**必须至少调用一次 ask_questions 工具**：
-   - 有硬性未知（商品规格/品种/冷热/甜度/尺寸/颜色/数量/执行方式等）→ 问具体问题（1-4问，每问带选项）
-   - 无硬性未知 → 也必须调用一次 ask_questions，用"确认型问题"复述执行方案让用户确认（含默认选项，用户可一键确认）
-   - 禁止跳过 ask_questions 直接输出 ready；除非用户本轮已明确表示"随便/你定/直接执行"
+   - 有硬性未知（商品规格/品种/冷热/甜度/尺寸/颜色/数量/执行方式等）→ 问具体问题；无硬性未知 → 也必须调用一次 ask_questions 用"确认型问题"复述执行方案（含默认选项，用户可一键确认）。
+   - 禁止跳过 ask_questions 直接输出 ready；除非用户本轮已明确表示"随便/你定/直接执行"。
 6. **直接生成 Plan**：用户已回答/确认 ask_questions 的问题、或按例外跳过追问后，立即生成 Plan，停止调用工具。
+
+### 工具速查表（何时用哪个）
+- list_apps：想知道设备装了哪些 App / 该用哪个 App 执行 → 管道第 2 步必调
+- kb_read：已安装 App 的操作步骤/SOP → 管道第 3 步，app_filter=该 App 名，一次一 App
+- amap_nearby：附近/周边的地点列表（仅请求含"附近"类词）
+- amap_search / amap_directions / amap_weather：特定地点/路线/天气
+- web_search：实时信息（新闻/股价/赛事/价格变动等）
+- ask_questions：需求模糊 / 硬性未知 / 执行方式歧义
+- workspace_update：把本轮关键信息写入任务工作区（见上方"任务工作区"章节规则）
 
 ### Plan 生成规范
 Plan 是传给执行模型消费的分步骤操作指引，输出为结构化 JSON 对象（非字符串），每个字段短小无嵌套引号风险。
@@ -127,10 +152,19 @@ Plan 是传给执行模型消费的分步骤操作指引，输出为结构化 JS
   - goal：步骤目标（一句话，≤15字，只写动作）
   - success_criteria：完成标志（该步完成时应看到的界面状态/元素变体/异常处理，执行模型据此判定本步完成）
   - supervised：是否需用户监督执行（默认false；仅资金支付/转账/删除/权限变更等不可逆操作设为true；用户明确要求的常规操作如发消息不设）
+  - tool_hint：可选，建议执行模型优先使用的快捷工具（仅当该步骤可用下方"执行模型快捷工具"一步完成时填写，否则省略），格式见下方说明
 - 如有 kb_read 结果，把知识库每步的"预期"字段对应写入 steps[].success_criteria；UI 元素变体名称（如菜单可能叫"就医服务"也可能叫"服务平台"）、异常处理策略（弹窗处理、备选路径）一并提炼写入 success_criteria
 - ⚠️ **终止边界（必须遵守）**：Plan 的步骤范围严格以 kb_read 返回的 SOP 步骤为准——知识库 SOP 覆盖到哪里，Plan 就写到哪里，**禁止超出知识库覆盖范围自行续写后续操作步骤**。例如知识库 SOP 只到"将商品加入购物车"，Plan 不得自行续写"进入购物车结算→确认订单→支付"等知识库未覆盖的步骤。在知识库覆盖的最后一步之后，必须追加一个终止步骤：
   order: N+1, goal: "任务完成，终止行动", success_criteria: "执行模型输出FINISH，向用户报告已完成的范围（如已将商品加入购物车，后续结算/支付请手动确认），不再继续操作", supervised: false
   若 kb_read 未返回匹配 SOP，基于通用操作常识生成 Plan，最后一步同样必须追加上述终止步骤
+
+### 执行模型快捷工具（tool_hint 说明）
+执行模型内置两个可"一步完成多操作"的快捷工具，但因上下文注意力有限，**只有写进 Plan 的 tool_hint 才会被可靠触发**。规划时识别到以下场景，必须在对应步骤的 tool_hint 中标注：
+- **auto_input**：一步完成"定位输入框 → 输入文本 → 自动点击搜索/确认按钮"。适用：任何"输入关键词/地址/内容后触发搜索或确认"的步骤（如在 App 内搜索商品/医院/联系人、在搜索框输入地点后确认）。
+  tool_hint 写法："auto_input: <输入文本>；<按钮特征>"，如 "auto_input: 医院服务号；搜索按钮"。
+- **select_spec**：自动遍历规格表单（份量/辣度/尺寸/颜色/口味等）逐项选取并点击确认。适用：外卖/购物/预约等需选择多个规格后确认的步骤。
+  tool_hint 写法："select_spec"（具体规格内容由执行模型从屏幕读取，不在 tool_hint 中列举）。
+⚠️ tool_hint 只标注"动作类型 + 关键参数"，具体界面元素仍由执行模型从屏幕识别；纯点击/滚动/导航等不适用快捷工具的步骤一律不填 tool_hint。
 
 ### 输出紧凑度要求（防截断，步骤数不限）
 **步骤数不设上限**（复杂任务可超过 10 步），但每步必须紧凑：
@@ -139,7 +173,7 @@ Plan 是传给执行模型消费的分步骤操作指引，输出为结构化 JS
 - 禁止输出 JSON 之外的任何解释文字
 
 Plan 示例（预约挂号）：
-{"status":"ready","intent":"operate","plan":{"requirement":"用户需要为本人预约东莞市人民医院呼吸内科的挂号","goal":"通过微信服务号预约东莞市人民医院呼吸内科","steps":[{"order":1,"goal":"打开微信","success_criteria":"进入微信主页，底部有聊天/通讯录/发现/我四个Tab；如果微信未安装，提示用户","supervised":false},{"order":2,"goal":"搜索并进入医院服务号","success_criteria":"进入服务号主页，底部有菜单栏，常见叫法有就医服务/服务平台/智慧医院/诊疗服务；搜索无结果则提示用户确认医院名称","supervised":false}]},"user_summary":"通过微信服务号预约东莞市人民医院呼吸内科"}
+{"status":"ready","intent":"operate","plan":{"requirement":"用户需要为本人预约东莞市人民医院呼吸内科的挂号","goal":"通过微信服务号预约东莞市人民医院呼吸内科","steps":[{"order":1,"goal":"打开微信","success_criteria":"进入微信主页，底部有聊天/通讯录/发现/我四个Tab；如果微信未安装，提示用户","supervised":false},{"order":2,"goal":"搜索并进入医院服务号","success_criteria":"进入服务号主页，底部有菜单栏，常见叫法有就医服务/服务平台/智慧医院/诊疗服务；搜索无结果则提示用户确认医院名称","supervised":false,"tool_hint":"auto_input: 医院服务号；搜索按钮"}]},"user_summary":"通过微信服务号预约东莞市人民医院呼吸内科"}
 
 ### user_summary 规范
 - 面向用户的一句话摘要，不超过 30 字，含目标 App + 核心操作（如"通过微信预约挂号"、"在淘宝搜索商品"）
@@ -208,6 +242,16 @@ Plan 示例（预约挂号）：
         }
         messages.add(mapOf("role" to "user", "content" to userMessage))
 
+        // 插入任务工作区占位（index=1，紧跟主 system）：每轮由 callDecisionWithTools 刷新内容，
+        // 模型通过 workspace_update 写入关键信息。content 必须非空（部分 OpenAI 兼容 API 拒绝空 system）
+        messages.add(
+            1,
+            mapOf(
+                "role" to "system",
+                "content" to "【任务工作区（scratchpad）】\n（暂无内容，等待工具调用后写入）"
+            )
+        )
+
         // 统一走 function calling：模型自主决定是否调用高德工具
         // 透传 userMessage 作为降级兜底的原始用户请求（避免被纠错提示覆盖）
         return@withContext callDecisionWithTools(apiUrl, apiKey, model, messages, userMessage)
@@ -231,8 +275,23 @@ Plan 示例（预约挂号）：
         var formatRetried = false
         // 是否已对"输出被截断（finish_reason=length）"做过一次续写重试
         var truncateRetried = false
+        // 任务工作区（scratchpad）：单任务内状态，由 workspace_update 工具覆盖式更新。
+        // 注意：DecisionDialogService 是长生命周期实例，故不可用类字段承载（多任务会互相污染）
+        var workspace = ""
         while (round < MAX_TOOL_ROUNDS) {
             round++
+
+            // 框架自动清理更早的工具结果轮次，只保留最近 KEEP_TOOL_ROUNDS 轮
+            // （assistant.tool_calls 与其 role=tool 结果成对保留），控制决策上下文有界
+            trimToolMessages(messages, keepLastRounds = KEEP_TOOL_ROUNDS)
+            Log.d(TAG, "决策上下文: workspace=${workspace.length}字符, 保留最近${KEEP_TOOL_ROUNDS}轮工具结果, messages=${messages.size}条")
+
+            // 刷新任务工作区（index=1 占位 system 消息）：模型只依赖工作区信息生成 Plan；
+            // take 截断兜底，防止模型超长写入导致工作区自身膨胀
+            messages[1] = mapOf(
+                "role" to "system",
+                "content" to "【任务工作区（scratchpad）】\n${workspace.take(WORKSPACE_MAX_CHARS)}\n（工具结果可能被框架清理，请只依赖工作区中的信息生成 Plan）"
+            )
 
             // 工具选择策略：始终 auto，让 LLM 按触发式 prompt 自主决定
             // kb_read 工具仅在 KB 启用时由 buildToolsJson 注入到 tools 列表
@@ -404,6 +463,22 @@ Plan 示例（预约挂号）：
                 // 操作类工具调用过 → 判定为操作任务（查询类/闲聊不调 kb_read/list_apps）
                 if (name == "kb_read" || name == "list_apps") usedOperationalTool = true
                 val args = (tc["arguments"] as? Map<String, Any>) ?: emptyMap()
+
+                // workspace_update：工作区写入（Memory 模式）。workspace 是 callDecisionWithTools 局部状态，
+                // 无法经 executeAnyTool 访问，故在此单独处理；工具结果只写简短确认，不占上下文。
+                if (name == "workspace_update") {
+                    workspace = args["content"]?.toString() ?: ""
+                    LiveLogBuffer.append("📝 [决策] 工作区更新: ${workspace.take(60)}...")
+                    messages.add(
+                        mapOf(
+                            "role" to "tool",
+                            "tool_call_id" to id,
+                            "content" to "工作区已更新（${workspace.length} 字符）"
+                        )
+                    )
+                    continue
+                }
+
                 val result = executeAnyTool(name, args)
                 LiveLogBuffer.append("📦 [决策] 工具结果: $name → ${result.take(80)}")
                 messages.add(
@@ -418,6 +493,39 @@ Plan 示例（预约挂号）：
         }
         LiveLogBuffer.append("❌ 决策模型工具循环达到上限（$MAX_TOOL_ROUNDS 轮）")
         return DialogResult.Error("决策模型工具循环达到上限（$MAX_TOOL_ROUNDS 轮）仍未给出最终回复")
+    }
+
+    /**
+     * 按轮清理工具消息：固定保留最近 keepLastRounds 轮，删除更早的。
+     *
+     * 每"轮"指一条 assistant.tool_calls 消息及其后连续的所有 role=tool 结果消息，
+     * 必须成对保留/删除以满足 OpenAI tool_calls/tool 严格配对校验（缺失配对会 400）。
+     * 截断/纠错/自检追加的 user 提示等非工具消息不受影响。
+     */
+    private fun trimToolMessages(messages: MutableList<Map<String, Any>>, keepLastRounds: Int) {
+        if (keepLastRounds <= 0) return
+        // 1) 定位每轮 [assistantIdx, toolEndIdx) 区间
+        val rounds = mutableListOf<IntRange>()
+        var i = 0
+        while (i < messages.size) {
+            val m = messages[i]
+            if (m["role"] == "assistant" && m["tool_calls"] != null) {
+                var j = i + 1
+                while (j < messages.size && messages[j]["role"] == "tool") j++
+                rounds.add(i until j)
+                i = j
+            } else {
+                i++
+            }
+        }
+        // 2) 删除最早超出保留量的轮（从后往前删，避免下标错乱）
+        val toDelete = rounds.take(maxOf(0, rounds.size - keepLastRounds))
+        toDelete.reversed().forEach { range ->
+            repeat(range.count()) { messages.removeAt(range.first) }
+        }
+        if (toDelete.isNotEmpty()) {
+            LiveLogBuffer.append("🧹 [决策] 框架清理工具结果到最近${keepLastRounds}轮")
+        }
     }
 
     /** 决策模型回复摘要（供日志界面展示） */
@@ -676,10 +784,12 @@ Plan 示例（预约挂号）：
                     val query = args["query"]?.toString() ?: ""
                     val topK = (args["top_k"] as? Number)?.toInt() ?: 3
                     val appFilter = args["app_filter"]?.toString()
-                    val params = mutableMapOf<String, Any>("query" to query, "top_k" to topK)
-                    if (!appFilter.isNullOrEmpty()) {
-                        params["app_filter"] = appFilter
+                    // 三禁止之一：禁止无 app_filter 的全量检索（schema 已要求必填，这里兜底强制）
+                    if (appFilter.isNullOrBlank()) {
+                        return "错误：kb_read 必须传 app_filter（指定单个App名，一次只查一个App）。请先调用 list_apps 确认已安装的候选App，再对该App单独查询。"
                     }
+                    val params = mutableMapOf<String, Any>("query" to query, "top_k" to topK)
+                    params["app_filter"] = appFilter
                     val result = KbReadTool().execute(params)
                     if (result.isSuccess) result.data ?: "" else "知识库查询失败：${result.error}"
                 }
@@ -787,6 +897,9 @@ Plan 示例（预约挂号）：
             // ask_questions 工具（始终注入，用于结构化批量追问）
             append(",")
             append(buildAskQuestionsToolJson())
+            // workspace_update 工具（始终注入）：模型把关键信息写入任务工作区（Memory 模式）
+            append(",")
+            append(buildWorkspaceToolJson())
             if (KVUtils.isLocalKbEnabled()) {
                 append(",")
                 append(buildKbToolsJson())
@@ -798,6 +911,29 @@ Plan 示例（预约挂号）：
             }
             append("]")
         }
+    }
+
+    /** 构建 workspace_update 工具的 OpenAI function calling schema（任务工作区写入，Memory 模式） */
+    private fun buildWorkspaceToolJson(): String {
+        val tool = mapOf(
+            "type" to "function",
+            "function" to mapOf(
+                "name" to "workspace_update",
+                "description" to "把本轮获取的关键信息（已确认App+包名、SOP步骤要点、用户确认项、待办）用你自己的话精简写入任务工作区（覆盖式更新）。" +
+                    "工具结果会被框架自动清理，只有写进工作区的信息才会保留，生成Plan时从工作区读取。",
+                "parameters" to mapOf(
+                    "type" to "object",
+                    "properties" to mapOf(
+                        "content" to mapOf(
+                            "type" to "string",
+                            "description" to "工作区新内容（覆盖旧内容，精简，不超过800字）"
+                        )
+                    ),
+                    "required" to listOf("content")
+                )
+            )
+        )
+        return gson.toJson(tool)
     }
 
     /** 构建 ask_questions 工具的 OpenAI function calling schema（参考 GitHub Copilot） */
@@ -878,7 +1014,8 @@ Plan 示例（预约挂号）：
                 "name" to "list_apps",
                 "description" to "查询设备上已安装应用的应用名和包名映射。" +
                     "可选 keywords（关键词数组）按应用名模糊过滤（如['支付宝']或['支付宝','交管12123']），不传则返回全量已装应用列表。" +
-                    "用于解决对话模型不知道设备装了哪些 App、瞎猜 App 名/包名的问题。",
+                    "用于解决对话模型不知道设备装了哪些 App、瞎猜 App 名/包名的问题。" +
+                    "本工具的返回结果将用于后续 kb_read 的 app_filter 参数，请记录已安装的候选App名。",
                 "parameters" to mapOf(
                     "type" to "object",
                     "properties" to mapOf(
@@ -906,7 +1043,7 @@ Plan 示例（预约挂号）：
             "type" to "function",
             "function" to mapOf(
                 "name" to "kb_read",
-                "description" to "查询本地知识库获取操作手册/SOP文档。当用户询问某个App的操作步骤、流程、方法时调用此工具。",
+                "description" to "查询指定App的操作手册/SOP。必须先调用 list_apps 确认设备已安装的App，再对每个候选App单独调用本工具（app_filter 必填，一次只查一个App）。禁止无 app_filter 的全量检索、禁止对同一App重复调用、禁止跳过 list_apps 直接查库。",
                 "parameters" to mapOf(
                     "type" to "object",
                     "properties" to mapOf(
@@ -921,10 +1058,10 @@ Plan 示例（预约挂号）：
                         ),
                         "app_filter" to mapOf(
                             "type" to "string",
-                            "description" to "可选，按App过滤检索范围，如\"微信\"、\"高德地图\"；不传时全量检索"
+                            "description" to "必填，按App过滤检索范围，如\"微信\"、\"高德地图\"，一次只传一个App名"
                         )
                     ),
-                    "required" to listOf("query")
+                    "required" to listOf("query", "app_filter")
                 )
             )
         )
@@ -993,7 +1130,8 @@ Plan 示例（预约挂号）：
                     order = s.get("order")?.asInt ?: (idx + 1),
                     goal = s.get("goal")?.asString ?: "",
                     successCriteria = s.get("success_criteria")?.asString ?: "",
-                    supervised = s.get("supervised")?.asBoolean ?: false
+                    supervised = s.get("supervised")?.asBoolean ?: false,
+                    toolHint = s.get("tool_hint")?.asString ?: ""
                 )
             }.filter { it.goal.isNotBlank() }
         } else {

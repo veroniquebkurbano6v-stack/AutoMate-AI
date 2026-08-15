@@ -187,9 +187,9 @@ class DecisionDialogServiceTest {
     // ===== Case 5: 工具循环达到 MAX_TOOL_ROUNDS 上限 =====
 
     @Test
-    fun `chat 工具错误不导致死循环 达到5轮后停止`() = runBlocking {
-        // 每次 LLM 都返回 tool_calls（持续 7 次，超过 MAX_TOOL_ROUNDS=5）
-        repeat(7) {
+    fun `chat 工具错误不导致死循环 达到上限后停止`() = runBlocking {
+        // 每次 LLM 都返回 tool_calls（持续 10 次，超过 MAX_TOOL_ROUNDS=9）
+        repeat(10) {
             testInterceptor.responses.add(
                 mockOpenAiToolCallResponse(
                     toolName = "list_apps",
@@ -201,7 +201,7 @@ class DecisionDialogServiceTest {
 
         val result = dialogService.chat("测试", emptyList())
 
-        // 应在 5 轮后返回 Error，不死循环
+        // 应在 9 轮后返回 Error，不死循环
         assertTrue("达到循环上限应返回 Error: $result", result is DecisionDialogService.DialogResult.Error)
         val error = (result as DecisionDialogService.DialogResult.Error).message
         assertTrue("错误应提及循环上限: $error", error.contains("循环") || error.contains("上限"))
@@ -222,6 +222,73 @@ class DecisionDialogServiceTest {
         assertEquals("打开微信", plan.steps.first().goal)
         // 只调了 1 次 LLM（没调工具）
         assertEquals("应只调 1 次 LLM", 1, testInterceptor.capturedBodies.size)
+    }
+
+    // ===== Case 7: 工具结果超过保留轮数后，早期工具消息被框架清理 =====
+
+    @Test
+    fun `chat 工具结果超过保留轮数后 早期工具消息被框架清理`() = runBlocking {
+        // 连续 3 轮调用 list_apps（产生 3 轮工具消息），第 4 次返回 ready
+        repeat(3) {
+            testInterceptor.responses.add(
+                mockOpenAiToolCallResponse(
+                    toolName = "list_apps",
+                    toolArgs = """{"keywords":["微信"]}""",
+                    toolCallId = "call_$it"
+                )
+            )
+        }
+        testInterceptor.responses.add(
+            mockOpenAiResponse("""{"status":"ready","plan":{"requirement":"帮我挂号","goal":"打开微信挂号","steps":[{"order":1,"goal":"打开微信","success_criteria":"进入主页","supervised":false}]}}""")
+        )
+
+        val result = dialogService.chat("帮我挂号", emptyList())
+
+        assertTrue("应返回 Ready: $result", result is DecisionDialogService.DialogResult.Ready)
+        // 第 4 次请求发送前，框架已清理到只保留最近 1 轮（KEEP_TOOL_ROUNDS=1）工具结果
+        val fourthBody = testInterceptor.capturedBodies[3]
+        val fourthJson = gson.fromJson(fourthBody, JsonObject::class.java)
+        val messages = fourthJson.getAsJsonArray("messages")
+        var toolCount = 0
+        messages.forEach { msgElem ->
+            if (msgElem.asJsonObject.get("role").asString == "tool") toolCount++
+        }
+        assertEquals("第4次请求应只保留最近1轮工具结果", 1, toolCount)
+    }
+
+    // ===== Case 8: 模型调用 workspace_update，工作区写入 system 且工具结果仍被清理 =====
+
+    @Test
+    fun `chat 模型调用workspace_update 工作区写入system且工具结果仍被清理`() = runBlocking {
+        testInterceptor.responses.add(
+            mockOpenAiToolCallResponse(
+                toolName = "workspace_update",
+                toolArgs = """{"content":"已确认App=微信(com.tencent.mm)"}""",
+                toolCallId = "call_1"
+            )
+        )
+        testInterceptor.responses.add(
+            mockOpenAiResponse("""{"status":"ready","plan":{"requirement":"帮我挂号","goal":"打开微信挂号","steps":[{"order":1,"goal":"打开微信","success_criteria":"进入主页","supervised":false}]}}""")
+        )
+
+        val result = dialogService.chat("帮我挂号", emptyList())
+
+        assertTrue("应返回 Ready: $result", result is DecisionDialogService.DialogResult.Ready)
+        // 第 2 次请求的 system 消息应包含工作区内容（模型写入的关键信息）
+        val secondBody = testInterceptor.capturedBodies[1]
+        val secondJson = gson.fromJson(secondBody, JsonObject::class.java)
+        val messages = secondJson.getAsJsonArray("messages")
+        var workspaceSystem: String? = null
+        messages.forEach { msgElem ->
+            val obj = msgElem.asJsonObject
+            if (obj.get("role").asString == "system") {
+                val content = obj.get("content").asString
+                if (content.contains("已确认App")) workspaceSystem = content
+            }
+        }
+        assertNotNull("第2次请求 system 应含工作区内容", workspaceSystem)
+        assertTrue("工作区应含模型写入的 App 信息: $workspaceSystem",
+            workspaceSystem!!.contains("微信"))
     }
 
     // ============================ Mock HTTP 工具 ============================

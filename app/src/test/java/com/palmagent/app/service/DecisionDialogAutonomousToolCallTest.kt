@@ -187,8 +187,8 @@ class DecisionDialogAutonomousToolCallTest {
             systemPrompt.contains("kb_read"))
         assertTrue("SYSTEM_PROMPT 应包含 list_apps 工具说明",
             systemPrompt.contains("list_apps"))
-        assertTrue("SYSTEM_PROMPT 应包含'必须主动调用'强引导词",
-            systemPrompt.contains("必须主动调用"))
+        assertTrue("SYSTEM_PROMPT 应包含'必须调用'强引导词",
+            systemPrompt.contains("必须调用"))
         assertTrue("SYSTEM_PROMPT 应包含追问前自检规则",
             systemPrompt.contains("追问") || systemPrompt.contains("自检"))
         assertTrue("SYSTEM_PROMPT 应包含禁止凭空捏造规则",
