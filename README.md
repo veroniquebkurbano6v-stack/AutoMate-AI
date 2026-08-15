@@ -54,7 +54,11 @@ AI 自主完成搜索、定位、输入、选择、下单等全部步骤，**无
 
 ## 📺 Demo
 
-> 在线演示视频（GitHub 自动渲染，可直接播放）；每个场景的故事见 [docs/use-cases.md](docs/use-cases.md)
+> 点击封面播放完整视频；每个场景的故事见 [docs/use-cases.md](docs/use-cases.md)
+
+**📹 项目总览（3 分钟）** — 产品定位 · 端侧架构 · 3 个真实任务实录
+
+[<img src="demo/cover_00.jpg" width="480" alt="点击播放：AutoMate AI 项目演示总览"/>](demo/00_project_intro.mp4)
 
 **用淘宝点奶茶** — 老年人 · 跨页搜索→选规格→加购，全程 AI 代操作
 
@@ -86,7 +90,7 @@ https://github.com/user-attachments/assets/9db81a0d-4a39-4bb9-939f-031f8f49c6b8
 
 | 指标 | 结果 |
 |------|------|
-| 知识库检索命中率（10 场景） | **100%**（top-3）/ **100%**（top-1） |
+| 知识库检索命中率（31 场景） | **100%**（top-3）/ **100%**（top-1） |
 | 平均端到端检索延迟 | <80ms（端侧，含上下文组装） |
 | 实际任务演示 | 3/3 成功（见 Demo） |
 
