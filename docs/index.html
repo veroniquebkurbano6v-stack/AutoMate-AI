@@ -126,8 +126,8 @@
       <p>全部在真机拍摄，AI 完整执行每一步操作 · 点击下方卡片切换视频</p>
     </div>
     <div class="video-wrap">
-      <video id="mainVideo" controls preload="metadata" poster="https://raw.githubusercontent.com/veroniquebkurbano6v-stack/AutoMate-AI/master/demo/cover_00.jpg">
-        <source id="mainSrc" src="https://raw.githubusercontent.com/veroniquebkurbano6v-stack/AutoMate-AI/master/demo/00_project_intro.mp4" type="video/mp4">
+      <video id="mainVideo" controls preload="metadata" poster="demo/cover_00.jpg">
+        <source id="mainSrc" src="demo/00_project_intro.mp4" type="video/mp4">
       </video>
       <div class="video-tabs" id="videoTabs">
         <div class="vt active" data-src="00_project_intro.mp4" data-poster="cover_00.jpg" data-title="项目总览" data-desc="3 分钟 · 产品定位 + 技术架构 + 任务实录">
@@ -221,7 +221,7 @@
 
 <script>
 (function(){
-  var BASE = "https://raw.githubusercontent.com/veroniquebkurbano6v-stack/AutoMate-AI/master/demo/";
+  var BASE = "demo/";
   var video = document.getElementById("mainVideo");
   var src = document.getElementById("mainSrc");
   var tabs = document.querySelectorAll("#videoTabs .vt");
