@@ -34,13 +34,13 @@ AI 自主完成搜索、定位、输入、选择、下单等全部步骤，**无
 
 ## 📺 Demo
 
-> 点击播放，GitHub 内嵌播放完整视频；每个场景的故事见 [docs/use-cases.md](docs/use-cases.md)
+> 点击封面图播放完整视频；每个场景的故事见 [docs/use-cases.md](docs/use-cases.md)
 
 | 场景 | 演示 | 服务人群 | 亮点 |
 |------|------|---------|------|
-| 用淘宝点奶茶 | <video controls poster="demo/cover_03.jpg" src="demo/03_taobao_order_milk_tea.mp4" width="280"></video> | 老年人 | 跨页搜索→选规格→加购，全程 AI 代操作 |
-| 用微信给联系人发消息 | <video controls poster="demo/cover_01.jpg" src="demo/01_wechat_send_message.mp4" width="280"></video> | 行动不便/低视力 | 一句话 + 自动定位输入/发送 |
-| 用高德导航到目的地 | <video controls poster="demo/cover_02.jpg" src="demo/02_amap_navigate.mp4" width="280"></video> | 老年人/视障 | 附近检索→导航，语音触发 |
+| 用淘宝点奶茶 | [<img src="demo/cover_03.jpg" width="280" alt="点击播放：用淘宝点奶茶"/>](demo/03_taobao_order_milk_tea.mp4) | 老年人 | 跨页搜索→选规格→加购，全程 AI 代操作 |
+| 用微信给联系人发消息 | [<img src="demo/cover_01.jpg" width="280" alt="点击播放：用微信给联系人发消息"/>](demo/01_wechat_send_message.mp4) | 行动不便/低视力 | 一句话 + 自动定位输入/发送 |
+| 用高德导航到目的地 | [<img src="demo/cover_02.jpg" width="280" alt="点击播放：用高德导航到目的地"/>](demo/02_amap_navigate.mp4) | 老年人/视障 | 附近检索→导航，语音触发 |
 
 > 高清原片：可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases) 下载。
 
