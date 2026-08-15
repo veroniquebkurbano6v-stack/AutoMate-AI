@@ -7,9 +7,12 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -18,6 +21,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.palmagent.app.R
 import com.palmagent.app.appCoordinator
 import com.palmagent.app.agent.PlanFormatter
+import com.palmagent.app.data.local.dao.SessionWithPreview
+import com.palmagent.app.service.AccessibilityServiceHelper
+import com.palmagent.app.service.GUIAccessibilityService
 import com.palmagent.app.service.GuiOwlService
 import com.palmagent.app.service.VlmService
 import com.palmagent.app.service.RapidOcrService
@@ -27,9 +33,11 @@ import com.palmagent.app.floating.FloatingProgressManager
 import com.palmagent.app.TaskOrchestrator
 import com.palmagent.app.ui.chat.ChatAdapter
 import com.palmagent.app.ui.chat.ChatMessage
+import com.palmagent.app.ui.chat.SessionAdapter
 import com.palmagent.app.ui.guide.GuideActivity
 import com.palmagent.app.ui.settings.SettingsActivity
 import com.palmagent.app.ui.log.LogViewerActivity
+import com.palmagent.app.ui.viewmodel.ChatViewModel
 import com.palmagent.app.utils.KVUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -57,6 +65,14 @@ class HomeActivity : ComponentActivity() {
     private val dialogService = DecisionDialogService()
     private val chatHistory = mutableListOf<ChatMessage>()
 
+    // 会话持久化：会话列表/当前会话消息由 ChatViewModel 管理，HomeActivity 仅同步写库
+    private val chatViewModel: ChatViewModel by viewModels()
+
+    // 侧边抽屉（会话列表）
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var sessionAdapter: SessionAdapter
+    private var isSessionInitialized = false
+
     // v3.2 Bug-7 修复：UI 存活标志，用于悬浮窗决策对话判断 HomeActivity 是否可见
     @Volatile
     private var isUiAlive = false
@@ -79,9 +95,12 @@ class HomeActivity : ComponentActivity() {
         setContentView(R.layout.activity_home)
 
         initViews()
+        initDrawer()
         initChat()
+        initChatSession()
         setupImeInsets()
         showGuideIfNeeded()
+        tryRestoreAccessibility()
 
         // v3.2 Bug-W 修复：listener 在 onCreate 注册一次，避免 onResume/onPause 重设的 race window
         // 用 isUiAlive 控制是否处理回调，而非置 null
@@ -99,6 +118,7 @@ class HomeActivity : ComponentActivity() {
                     runOnUiThread {
                         val aiMsg = ChatMessage(content = content, isUser = false)
                         chatAdapter.addMessage(aiMsg) { scrollToBottom() }
+                        persistMessage(aiMsg)
                     }
                 }
             }
@@ -172,6 +192,128 @@ class HomeActivity : ComponentActivity() {
         // 【改动】日志按钮：原为权限容器内的 ImageButton，现改为顶部栏 TextView 文字按钮
         findViewById<TextView>(R.id.btnLogIcon).setOnClickListener {
             startActivity(Intent(this, LogViewerActivity::class.java))
+        }
+    }
+
+    /**
+     * 初始化侧边抽屉（会话列表）：
+     * - 汉堡按钮 → 打开抽屉
+     * - 会话列表 RecyclerView：点击切换会话，长按删除会话
+     * - "＋ 新建" → 新建会话并清空当前聊天界面
+     */
+    private fun initDrawer() {
+        drawerLayout = findViewById(R.id.drawerLayout)
+
+        findViewById<TextView>(R.id.btnSessions).setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        val recyclerSessions = findViewById<RecyclerView>(R.id.recyclerSessions)
+        sessionAdapter = SessionAdapter(
+            onSessionClick = { session -> switchToSession(session.id) },
+            onSessionLongClick = { session -> confirmDeleteSession(session) }
+        )
+        recyclerSessions.layoutManager = LinearLayoutManager(this)
+        recyclerSessions.adapter = sessionAdapter
+
+        findViewById<Button>(R.id.btnNewSession).setOnClickListener {
+            createNewSession()
+        }
+
+        // 观察会话列表变化，实时刷新抽屉
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                chatViewModel.sessions.collect { list ->
+                    sessionAdapter.submitList(list)
+                }
+            }
+        }
+    }
+
+    /**
+     * 首次进入：无会话则新建，有会话则恢复最近一个会话的历史记录。
+     * 使用一次性快照查询，避免依赖 sessions Flow 的初始空值时序。
+     */
+    private fun initChatSession() {
+        lifecycleScope.launch {
+            val sessions = chatViewModel.sessionsSnapshot()
+            val targetId = sessions.firstOrNull()?.id ?: chatViewModel.createSession()
+            val history = chatViewModel.loadMessages(targetId)
+            chatHistory.clear()
+            chatHistory.addAll(history)
+            chatAdapter.updateMessages(history)
+            isSessionInitialized = true
+            scrollToBottom()
+        }
+    }
+
+    /** 切换到指定会话：从库加载其消息并重建聊天界面 */
+    private fun switchToSession(sessionId: String) {
+        if (chatViewModel.currentSessionId.value == sessionId && isSessionInitialized) return
+        drawerLayout.closeDrawer(GravityCompat.START)
+        lifecycleScope.launch {
+            val history = chatViewModel.loadMessages(sessionId)
+            chatHistory.clear()
+            chatHistory.addAll(history)
+            chatAdapter.updateMessages(history)
+            isSessionInitialized = true
+            scrollToBottom()
+        }
+    }
+
+    /** 新建会话：清空聊天界面，空历史写库 */
+    private fun createNewSession() {
+        drawerLayout.closeDrawer(GravityCompat.START)
+        chatViewModel.createSession()
+        chatHistory.clear()
+        chatAdapter.updateMessages(emptyList())
+        isSessionInitialized = true
+    }
+
+    /** 删除会话（长按触发，二次确认）；若删除的是当前会话则切到剩余最近会话或新建 */
+    private fun confirmDeleteSession(session: SessionWithPreview) {
+        AlertDialog.Builder(this)
+            .setTitle("删除会话")
+            .setMessage("确定删除「${session.name}」？该会话的历史记录将一并删除，不可恢复。")
+            .setPositiveButton("删除") { _, _ ->
+                val isCurrent = chatViewModel.currentSessionId.value == session.id
+                chatViewModel.deleteSession(session.id)
+                if (isCurrent) {
+                    lifecycleScope.launch {
+                        val remaining = chatViewModel.sessionsSnapshot().filter { it.id != session.id }
+                        if (remaining.isEmpty()) {
+                            createNewSession()
+                        } else {
+                            switchToSession(remaining.first().id)
+                        }
+                    }
+                }
+            }
+            .setNegativeButton("取消", null)
+            .show()
+    }
+
+    /** 将一条消息持久化到当前会话（覆盖同 id，幂等） */
+    private fun persistMessage(message: ChatMessage) {
+        chatViewModel.currentSessionId.value?.let { sessionId ->
+            chatViewModel.persistMessage(sessionId, message)
+        }
+    }
+
+    /**
+     * 启动即自动恢复无障碍服务。
+     * 需要一次性 ADB 授权 WRITE_SECURE_SETTINGS 后永久有效；未授权时静默跳过（由用户手动开启）。
+     */
+    private fun tryRestoreAccessibility() {
+        try {
+            if (!GUIAccessibilityService.isRunning &&
+                AccessibilityServiceHelper.canWriteSecureSettings(this)
+            ) {
+                val restored = AccessibilityServiceHelper.ensureServiceEnabled(this)
+                Log.d(TAG, "启动自动恢复无障碍服务: $restored")
+            }
+        } catch (e: Exception) {
+            Log.w(TAG, "启动自动恢复无障碍服务异常: ${e.message}")
         }
     }
 
@@ -268,6 +410,7 @@ class HomeActivity : ComponentActivity() {
         shouldAutoScroll = true
         val userMsg = ChatMessage(content = text, isUser = true)
         chatAdapter.addMessage(userMsg) { scrollToBottom() }
+        persistMessage(userMsg)
 
         if (KVUtils.isComplexModeEnabled()) {
             // 复杂模式：决策模型 → 执行模型
@@ -277,6 +420,7 @@ class HomeActivity : ComponentActivity() {
             Log.d(TAG, "简单模式：直接执行任务")
             val aiMsg = ChatMessage(content = "好的，开始执行：$text", isUser = false)
             chatAdapter.addMessage(aiMsg) { scrollToBottom() }
+            persistMessage(aiMsg)
             if (!appCoordinator.sendCommand(text)) {
                 Toast.makeText(this, "有任务正在执行，请稍后再试", Toast.LENGTH_SHORT).show()
             }
@@ -292,6 +436,7 @@ class HomeActivity : ComponentActivity() {
         val userMsg = ChatMessage(content = answerText, isUser = true)
         // 不调用 chatAdapter.addMessage(userMsg)：用户答案不显示为气泡
         chatHistory.add(userMsg)  // 仅加入历史供决策模型读取
+        persistMessage(userMsg)
         runDecisionDialog(answerText, userMsgToShow = null)
     }
 
@@ -322,10 +467,12 @@ class HomeActivity : ComponentActivity() {
                             questions = result.questions
                         )
                         chatHistory.add(aiMsg)
+                        persistMessage(aiMsg)
                         chatAdapter.addMessage(aiMsg) { scrollToBottom() }
                     } else {
                         val aiMsg = ChatMessage(content = result.message, isUser = false)
                         chatHistory.add(aiMsg)
+                        persistMessage(aiMsg)
                         chatAdapter.addMessage(aiMsg) { scrollToBottom() }
                     }
                 }
@@ -339,6 +486,7 @@ class HomeActivity : ComponentActivity() {
                     }
                     val aiMsg = ChatMessage(content = confirm, isUser = false)
                     chatHistory.add(aiMsg)
+                    persistMessage(aiMsg)
                     chatAdapter.addMessage(aiMsg) { scrollToBottom() }
 
                     // v9: 决策模型的 plan 经 PlanFormatter 格式化为文本后传给执行模型
@@ -348,6 +496,7 @@ class HomeActivity : ComponentActivity() {
                 is DialogResult.Error -> {
                     val aiMsg = ChatMessage(content = "出错了：${result.message}", isUser = false)
                     chatAdapter.addMessage(aiMsg) { scrollToBottom() }
+                    persistMessage(aiMsg)
                 }
             }
         }
@@ -364,6 +513,7 @@ class HomeActivity : ComponentActivity() {
         shouldAutoScroll = true
         val userMsg = ChatMessage(content = text, isUser = true)
         chatAdapter.addMessage(userMsg) { scrollToBottom() }
+        persistMessage(userMsg)
 
         if (KVUtils.isComplexModeEnabled()) {
             Log.d(TAG, "悬浮窗-复杂模式：决策模型生成 plan")
@@ -397,10 +547,12 @@ class HomeActivity : ComponentActivity() {
                                 questions = result.questions
                             )
                             chatHistory.add(aiMsg)
+                            persistMessage(aiMsg)
                             chatAdapter.addMessage(aiMsg) { scrollToBottom() }
                         } else {
                             val aiMsg = ChatMessage(content = result.message, isUser = false)
                             chatHistory.add(aiMsg)
+                            persistMessage(aiMsg)
                             chatAdapter.addMessage(aiMsg) { scrollToBottom() }
                         }
                     }
@@ -413,6 +565,7 @@ class HomeActivity : ComponentActivity() {
                         }
                         val aiMsg = ChatMessage(content = confirm, isUser = false)
                         chatHistory.add(aiMsg)
+                        persistMessage(aiMsg)
                         chatAdapter.addMessage(aiMsg) { scrollToBottom() }
                         appCoordinator.sendCommand(PlanFormatter.format(result.plan), result.plan)
                     }
@@ -420,6 +573,7 @@ class HomeActivity : ComponentActivity() {
                         Log.w(TAG, "悬浮窗-决策模型失败: ${result.message}，降级为简单模式")
                         val aiMsg = ChatMessage(content = "决策失败，降级执行：$text", isUser = false)
                         chatAdapter.addMessage(aiMsg) { scrollToBottom() }
+                        persistMessage(aiMsg)
                         appCoordinator.sendCommand(text)
                     }
                 }
@@ -430,6 +584,7 @@ class HomeActivity : ComponentActivity() {
             if (isUiAlive) {
                 val aiMsg = ChatMessage(content = "好的，开始执行：$text", isUser = false)
                 chatAdapter.addMessage(aiMsg) { scrollToBottom() }
+                persistMessage(aiMsg)
             }
             if (!appCoordinator.sendCommand(text)) {
                 if (isUiAlive) {
