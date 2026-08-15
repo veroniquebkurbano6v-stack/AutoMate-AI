@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoMate AI — 一句话，帮不便操作手机的人完成手机上的事</title>
+<meta name="description" content="AutoMate AI：Android 数字无障碍智能体。完全端侧知识库（离线可用），多通道感知，一句话替你完成手机操作。GOAI 无界应用赛道作品。">
+<style>
+  :root{
+    --primary:#0EA5E9; --primary-dark:#0F3460; --ink:#1A1A1A; --muted:#6B7280;
+    --bg:#F5F7FA; --card:#FFFFFF; --line:#E5E7EB; --accent:#10B981;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px}
+  .brand .logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#22D3EE,#0EA5E9);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+  .nav-links{display:flex;gap:18px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
+  .nav-links a:hover{color:var(--primary)}
+  .btn{display:inline-flex;align-items:center;gap:6px;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:.15s}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-primary:hover{background:#0284C7}
+  .btn-ghost{background:#fff;color:var(--primary-dark);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--primary)}
+  /* hero */
+  .hero{background:linear-gradient(135deg,#0F3460 0%,#0B2447 45%,#082032 100%);color:#fff;padding:72px 0 60px;text-align:center}
+  .hero .badge{display:inline-block;background:rgba(14,165,233,.18);color:#7DD3FC;border:1px solid rgba(14,165,233,.4);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:600;margin-bottom:20px;letter-spacing:.5px}
+  .hero h1{font-size:40px;line-height:1.25;font-weight:800;letter-spacing:.5px}
+  .hero h1 em{font-style:normal;background:linear-gradient(90deg,#22D3EE,#38BDF8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{max-width:640px;margin:20px auto 0;color:#94A3B8;font-size:16px}
+  .hero .ctas{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero .ctas .btn-primary{background:linear-gradient(90deg,#0EA5E9,#22D3EE)}
+  .hero .ctas .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.2)}
+  .hero .ctas .btn-ghost:hover{border-color:#22D3EE}
+  .hero .stats{margin-top:44px;display:flex;gap:0;justify-content:center;flex-wrap:wrap}
+  .hero .stat{padding:0 28px;border-right:1px solid rgba(255,255,255,.12);min-width:150px}
+  .hero .stat:last-child{border-right:none}
+  .hero .stat b{display:block;font-size:30px;font-weight:800;color:#7DD3FC}
+  .hero .stat span{font-size:12px;color:#94A3B8}
+  /* sections */
+  section{padding:56px 0}
+  .section-head{text-align:center;margin-bottom:36px}
+  .section-head h2{font-size:26px;font-weight:800;color:var(--primary-dark)}
+  .section-head p{color:var(--muted);margin-top:8px;font-size:14px}
+  /* video */
+  .video-wrap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 4px 20px rgba(15,52,96,.06)}
+  .video-main video{width:100%;border-radius:12px;background:#000;max-height:72vh;object-fit:contain}
+  .video-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .vt{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;text-align:left;transition:.15s}
+  .vt:hover{border-color:var(--primary)}
+  .vt.active{border-color:var(--primary);background:#EFF8FF}
+  .vt b{display:block;font-size:13px;color:var(--ink)}
+  .vt span{font-size:12px;color:var(--muted)}
+  /* features */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .card .ico{width:40px;height:40px;border-radius:10px;background:#EFF8FF;color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:12px}
+  .card h3{font-size:15px;font-weight:700;margin-bottom:6px}
+  .card p{font-size:13px;color:var(--muted)}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;position:relative}
+  .step .num{width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+  .step h3{font-size:15px;margin-bottom:6px}
+  .step p{font-size:13px;color:var(--muted)}
+  .step code{background:var(--bg);border:1px solid var(--line);padding:2px 6px;border-radius:6px;font-size:12px;color:var(--primary-dark)}
+  /* footer */
+  footer{background:#0B2447;color:#94A3B8;padding:32px 0;text-align:center;font-size:13px}
+  footer a{color:#7DD3FC;text-decoration:none}
+  footer .links{margin-top:10px;display:flex;gap:18px;justify-content:center}
+  @media(max-width:720px){
+    .hero h1{font-size:28px}
+    .hero .stat{min-width:120px;padding:0 16px}
+    .video-tabs{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:1fr}
+    .nav-links .hide-sm{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo">AI</div>
+      <span>AutoMate AI</span>
+    </div>
+    <div class="nav-links">
+      <a href="#demo" class="hide-sm">演示</a>
+      <a href="#features" class="hide-sm">架构</a>
+      <a href="#guide" class="hide-sm">快速上手</a>
+      <a class="btn btn-primary" href="https://github.com/veroniquebkurbano6v-stack/AutoMate-AI" target="_blank" rel="noopener">GitHub 仓库 ↗</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">GOAI 世界人工智能开源大赛 · 无界应用赛道</span>
+    <h1>一句话，帮不便操作手机的人<br>完成手机上的事 <em>“我来替你做”</em></h1>
+    <p class="sub">一个运行在 Android 上的数字无障碍智能体：说一句“帮我在淘宝点杯奶茶”，AI 就自主完成搜索、定位、输入、选择、下单整个流程——无需看清屏幕、无需记住步骤、无需精确点击。</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="#demo">▶ 观看 3 分钟演示</a>
+      <a class="btn btn-ghost" href="https://github.com/veroniquebkurbano6v-stack/AutoMate-AI" target="_blank" rel="noopener">浏览源码</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>31/31</b><span>检索命中率（top-1）</span></div>
+      <div class="stat"><b>&lt;80ms</b><span>端侧检索延迟</span></div>
+      <div class="stat"><b>586</b><span>离线 SOP 知识条目</span></div>
+      <div class="stat"><b>3/3</b><span>真实任务演示成功</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Demo -->
+<section id="demo">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>真实操作实录</h2>
+      <p>全部在真机拍摄，AI 完整执行每一步操作 · 点击下方卡片切换视频</p>
+    </div>
+    <div class="video-wrap">
+      <video id="mainVideo" controls preload="metadata" poster="https://raw.githubusercontent.com/veroniquebkurbano6v-stack/AutoMate-AI/main/demo/cover_00.jpg">
+        <source id="mainSrc" src="https://raw.githubusercontent.com/veroniquebkurbano6v-stack/AutoMate-AI/main/demo/00_project_intro.mp4" type="video/mp4">
+      </video>
+      <div class="video-tabs" id="videoTabs">
+        <div class="vt active" data-src="00_project_intro.mp4" data-poster="cover_00.jpg" data-title="项目总览" data-desc="3 分钟 · 产品定位 + 技术架构 + 任务实录">
+          <b>项目总览</b><span>3 分钟 · 定位 + 架构 + 实录</span>
+        </div>
+        <div class="vt" data-src="03_taobao_order_milk_tea.mp4" data-poster="cover_03.jpg" data-title="用淘宝点奶茶" data-desc="老年人 · 跨页搜索→选规格→加购">
+          <b>用淘宝点奶茶</b><span>老年人 · 跨页搜索→加购</span>
+        </div>
+        <div class="vt" data-src="01_wechat_send_message.mp4" data-poster="cover_01.jpg" data-title="用微信发消息" data-desc="行动不便/低视力 · 自动定位输入/发送">
+          <b>用微信发消息</b><span>低视力 · 自动定位输入/发送</span>
+        </div>
+        <div class="vt" data-src="02_amap_navigate.mp4" data-poster="cover_02.jpg" data-title="用高德导航" data-desc="老年人/视障 · 附近检索→导航">
+          <b>用高德导航</b><span>视障 · 附近检索→导航</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>技术架构亮点</h2>
+      <p>“技术通用、场景垂直”——数字无障碍的核心工程能力</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">🧠</div>
+        <h3>完全端侧知识库</h3>
+        <p>bge-small-zh INT8 ONNX 嵌入 + SQLite 向量 + RRF 混合检索。数据不出手机，离线可用，隐私有保障。</p>
+      </div>
+      <div class="card">
+        <div class="ico">👁️</div>
+        <h3>多通道感知</h3>
+        <p>无障碍树 → OCR → VLM 描述 → GUI-Plus 视觉定位，四通道逐级回退，适配不同障碍人群。</p>
+      </div>
+      <div class="card">
+        <div class="ico">🤖</div>
+        <h3>双模型编排</h3>
+        <p>决策模型负责任务路由与分步 Plan；执行模型负责逐步动作。任务工作区上下文控制防膨胀。</p>
+      </div>
+      <div class="card">
+        <div class="ico">🛡️</div>
+        <h3>敏感操作拦截</h3>
+        <p>支付/转账等不可逆操作带 supervised 标记，先经用户确认再执行，不越权。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Guide -->
+<section id="guide">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>评委快速上手</h2>
+      <p>安装即可用 · APK 已内置全部 API Key · 端侧知识库离线可用</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>安装 APK</h3>
+        <p>安装作品附件中的 <code>AutoMate-AI-v1.0-内置Key.apk</code>（Android 8.0+），无需配置任何 Key。</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>开启授权</h3>
+        <p>按引导开启<strong>无障碍服务 / 悬浮窗 / 通知 / 电池白名单</strong>，约 1 分钟。</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>说出任务</h3>
+        <p>输入“帮我在淘宝点杯奶茶”“用微信给家人发条消息”“导航去最近的医院”，AI 全程代操作。</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:28px">
+      <a class="btn btn-primary" href="https://github.com/veroniquebkurbano6v-stack/AutoMate-AI" target="_blank" rel="noopener">查看完整文档与技术方案 ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>AutoMate AI · Android 数字无障碍智能体 · 完全端侧知识库（离线可用）· 多通道感知</div>
+  <div class="links">
+    <a href="https://github.com/veroniquebkurbano6v-stack/AutoMate-AI" target="_blank" rel="noopener">GitHub 仓库</a>
+    <a href="https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/blob/main/README.md" target="_blank" rel="noopener">README</a>
+    <a href="https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/blob/main/docs/tech-solution.md" target="_blank" rel="noopener">技术方案</a>
+  </div>
+  <div style="margin-top:10px">开源协议：Apache License 2.0 · GOAI 世界人工智能开源大赛 · 无界应用赛道</div>
+</footer>
+
+<script>
+(function(){
+  var BASE = "https://raw.githubusercontent.com/veroniquebkurbano6v-stack/AutoMate-AI/main/demo/";
+  var video = document.getElementById("mainVideo");
+  var src = document.getElementById("mainSrc");
+  var tabs = document.querySelectorAll("#videoTabs .vt");
+
+  tabs.forEach(function(tab){
+    tab.addEventListener("click", function(){
+      if (tab.classList.contains("active")) return;
+      tabs.forEach(function(t){ t.classList.remove("active"); });
+      tab.classList.add("active");
+      src.setAttribute("src", BASE + tab.getAttribute("data-src"));
+      video.setAttribute("poster", BASE + tab.getAttribute("data-poster"));
+      video.load();
+      video.play().catch(function(){ /* 自动播放被浏览器拦截时静默 */ });
+    });
+  });
+})();
+</script>
+</body>
+</html>
