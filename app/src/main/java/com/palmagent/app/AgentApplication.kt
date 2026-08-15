@@ -4,7 +4,7 @@ import android.app.Application
 import android.app.Activity
 import android.os.Bundle
 import com.palmagent.app.service.AIService
-import com.palmagent.app.service.VlmService
+import com.palmagent.app.service.GuiOwlService
 import com.palmagent.app.framework.config.AppConfig
 import com.palmagent.app.framework.event.EventBus
 import com.palmagent.app.framework.coroutine.AgentCoroutineScope
@@ -116,9 +116,8 @@ class AgentApplication : Application() {
         if (KVUtils.hasLlmConfig()) {
             Thread({
                 appCoordinatorInstance.afterInit()
-                // 预热 VLM 云端 API，消除首次调用冷启动延迟（8s → 1-2s）
-                VlmService.init()
-                VlmService.warmUp()
+                // 初始化 GUI-Plus 云端 API（视觉描述/问答/决策均已迁移至此）
+                GuiOwlService.init()
             }, "agent-async-init").start()
         }
     }

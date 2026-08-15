@@ -2,7 +2,7 @@ package com.palmagent.app.tool.impl
 
 import android.graphics.Bitmap
 import android.util.Log
-import com.palmagent.app.service.VlmService
+import com.palmagent.app.service.GuiOwlService
 import com.palmagent.app.tool.BaseTool
 import com.palmagent.app.tool.ToolParameter
 import com.palmagent.app.tool.ToolResult
@@ -10,7 +10,7 @@ import com.palmagent.app.tool.ToolResult
 /**
  * 视觉描述工具
  *
- * 调用 VlmService.query() 进行云端视觉问答，需要 API Key
+ * 调用 GuiOwlService.query() 进行云端视觉问答，需要 API Key
  */
 class VisualDescribeTool : BaseTool() {
 
@@ -58,11 +58,12 @@ class VisualDescribeTool : BaseTool() {
     }
 
     private suspend fun executeCloud(question: String, bitmap: Bitmap): ToolResult {
-        if (!VlmService.isReady) {
-            return ToolResult.error("VLM服务未就绪: ${VlmService.lastError ?: "请确保LLM API已配置"}")
+        if (!GuiOwlService.isReady) {
+            return ToolResult.error("VLM服务未就绪: ${GuiOwlService.lastError ?: "请确保LLM API已配置"}")
         }
 
-        val result = VlmService.query(question, bitmap)
+        val result = GuiOwlService.ask(bitmap, question)
+            ?: return ToolResult.error("视觉描述失败: GUI-Plus 未返回结果")
 
         if (!result.success) {
             return ToolResult.error("视觉描述失败: ${result.error ?: "未知错误"}")

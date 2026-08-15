@@ -10,7 +10,6 @@ import com.palmagent.app.model.UIElementType
 import com.palmagent.app.service.GUIAccessibilityService
 import com.palmagent.app.service.GuiOwlService
 import com.palmagent.app.service.RapidOcrService
-import com.palmagent.app.service.VlmService
 import com.palmagent.app.utils.KVUtils
 import com.palmagent.app.utils.recycleSafely
 import kotlinx.coroutines.Dispatchers
@@ -707,9 +706,9 @@ class ScreenDescriptor {
                 } else visualQuestion
 
                 // 云端 VLM（visualQuestion 非空时按需回答；为空回退固定结构描述）
-                val vlmResult = if (VlmService.isReady) {
+                val vlmResult = if (GuiOwlService.isReady) {
                     try {
-                        VlmService.describeScreen(croppedBmp, enhancedQuestion)
+                        GuiOwlService.describeScreen(croppedBmp, enhancedQuestion)
                     } catch (e: Exception) {
                         Log.w(TAG, "VLM屏幕描述失败: ${e.message}")
                         null
@@ -734,7 +733,7 @@ class ScreenDescriptor {
                     if (adJudgement.type == "auto") {
                         Log.w(TAG, "方案C auto 复确认耗尽，转 close 四层关闭兜底")
                         handleAdPopup(
-                            VlmService.AdJudgement(type = "close", coordinate = null, conf = null)
+                            GuiOwlService.AdJudgement(type = "close", coordinate = null, conf = null)
                         )
                         val cleanDesc = describeCleanScreen(enhancedQuestion)
                         if (cleanDesc != null) {
@@ -811,7 +810,7 @@ class ScreenDescriptor {
      * close → 四层关闭：模型坐标(conf≥0.6) → 无障碍树 → OCR → BACK
      * auto → 等待 delay(clamp 1-10s) → OCR 确认点击（防 auto 幻觉）
      */
-    private suspend fun handleAdPopup(judgement: VlmService.AdJudgement) {
+    private suspend fun handleAdPopup(judgement: GuiOwlService.AdJudgement) {
         val service = GUIAccessibilityService.instance ?: return
         when (judgement.type) {
             "close" -> {
@@ -913,7 +912,7 @@ class ScreenDescriptor {
         val service = GUIAccessibilityService.instance ?: return null
         val shot = service.takeScreenshot() ?: return null
         try {
-            val reCheck = VlmService.describeScreen(shot, question) ?: return null
+            val reCheck = GuiOwlService.describeScreen(shot, question) ?: return null
             if (!reCheck.success || reCheck.answer.isBlank()) return null
             // 复确认：仅当不再判定为广告/弹窗时才采用描述
             if (reCheck.adJudgement != null && reCheck.adJudgement.type != "normal") return null

@@ -215,7 +215,8 @@ class ToolDecisionEngine(
 
                     if (screenshotBmp != null) {
                         try {
-                            val vlmResult = VlmService.query(question, screenshotBmp)
+                            val vlmResult = GuiOwlService.ask(screenshotBmp, question)
+                                ?: GuiOwlService.VlmResult(success = false, error = "GUI-Plus 未返回结果")
 
                             AgentLogger.log(AgentLogger.LogType.GUI_PLUS_GROUNDING,
                                 "VLM视觉描述: ${question.take(100)}",

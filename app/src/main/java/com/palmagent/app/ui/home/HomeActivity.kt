@@ -25,7 +25,6 @@ import com.palmagent.app.data.local.dao.SessionWithPreview
 import com.palmagent.app.service.AccessibilityServiceHelper
 import com.palmagent.app.service.GUIAccessibilityService
 import com.palmagent.app.service.GuiOwlService
-import com.palmagent.app.service.VlmService
 import com.palmagent.app.service.RapidOcrService
 import com.palmagent.app.service.DecisionDialogService
 import com.palmagent.app.service.DecisionDialogService.DialogResult
@@ -628,9 +627,6 @@ class HomeActivity : ComponentActivity() {
                     kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
                         if (!GuiOwlService.isReady) {
                             GuiOwlService.init()
-                        }
-                        if (!VlmService.isReady) {
-                            VlmService.init()
                         }
                         if (!RapidOcrService.isReady) {
                             RapidOcrService.init(application)

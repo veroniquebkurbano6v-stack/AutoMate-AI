@@ -81,6 +81,25 @@ object GuiOwlService {
         val durationMs: Long = 0
     )
 
+    // ============ 视觉描述/问答结果（自 VlmService 迁移） ============
+
+    /** 方案C：广告弹窗判定结果（从视觉描述响应中解析） */
+    data class AdJudgement(
+        val type: String,                  // normal / close / auto
+        val coordinate: String? = null,    // "x,y" [0,1000] 归一化（close）
+        val conf: Float? = null,           // 置信度 0-1（close）
+        val delaySeconds: Int? = null      // 等待秒数（auto）
+    )
+
+    /** 屏幕描述/视觉问答结果（自 VlmService 迁移） */
+    data class VlmResult(
+        val success: Boolean,
+        val answer: String = "",
+        val durationMs: Long = 0,
+        val error: String? = null,
+        val adJudgement: AdJudgement? = null   // 方案C：广告判定（无标签/解析失败为 null）
+    )
+
     @Volatile
     var isReady: Boolean = false
         private set
@@ -273,6 +292,43 @@ object GuiOwlService {
 
     // ============ VL 模式执行决策入口 ============
 
+    /**
+     * 屏幕描述（自由文本问答）：替代 VlmService.describeScreen，由 GUI-Plus 负责。
+     * 输出上/中/下三区域描述 + 广告判定 <ad> 标签（方案C），失败返回 null（调用方降级）。
+     */
+    suspend fun describeScreen(bitmap: Bitmap, question: String? = null): VlmResult? =
+        withContext(Dispatchers.IO) {
+            if (!isReady) {
+                Log.w(TAG, "GUI-Plus[DESCRIBE]服务未就绪，跳过")
+                return@withContext null
+            }
+            val startTime = System.currentTimeMillis()
+            val payload = compressAndEncodeImage(bitmap)
+            if (payload == null) {
+                Log.w(TAG, "GUI-Plus[DESCRIBE]图片编码失败")
+                return@withContext null
+            }
+            val q = question?.takeIf { it.isNotBlank() } ?: SCREEN_DESC_PROMPT
+            return@withContext try {
+                val content = requestChat(
+                    text = q,
+                    payload = payload,
+                    screenWidth = payload.width,
+                    screenHeight = payload.height,
+                    mode = PromptMode.DESCRIBE
+                )
+                VlmResult(
+                    success = true,
+                    answer = content.trim(),
+                    durationMs = System.currentTimeMillis() - startTime,
+                    adJudgement = parseAdJudgement(content)
+                )
+            } catch (e: Exception) {
+                Log.e(TAG, "GUI-Plus[DESCRIBE]失败: ${e.message}")
+                null
+            }
+        }
+
     suspend fun decide(
         userPrompt: String,
         screenshot: Bitmap,
@@ -346,7 +402,7 @@ object GuiOwlService {
 
     // ============ 云端请求 ============
 
-    private enum class PromptMode { GROUND, DECIDE, EXISTS }
+    private enum class PromptMode { GROUND, DECIDE, EXISTS, DESCRIBE, QA }
 
     /**
      * 发送一次 GUI-Plus chat/completions 请求，返回 assistant 的 content 文本。
@@ -418,6 +474,8 @@ object GuiOwlService {
             PromptMode.GROUND -> buildGroundSystemPrompt()
             PromptMode.DECIDE -> buildDecideSystemPrompt()
             PromptMode.EXISTS -> buildExistsSystemPrompt()
+            PromptMode.DESCRIBE -> buildDescribeSystemPrompt()
+            PromptMode.QA -> buildQaSystemPrompt()
         }
         return JSONArray().apply {
             put(JSONObject().apply {
@@ -480,6 +538,114 @@ Rules:
         只输出一个 JSON 对象，不要输出任何其他内容，格式：
         {"exists": true 或 false, "reason": "简短原因"}
     """.trimIndent()
+
+    /** 屏幕描述模式：自由文本输出（上/中/下描述 + 广告判定），不强制 tool_call */
+    private fun buildDescribeSystemPrompt(): String = SCREEN_DESC_PROMPT
+
+    /** 屏幕描述提示词（自 VlmService 迁移）：上/中/下描述 + 方案C 广告判定附加段 */
+    internal const val SCREEN_DESC_PROMPT = """你是一个移动端屏幕分析助手。请将屏幕垂直分为上、中、下三部分，描述各区域的关键UI元素。
+
+【输出格式】
+上：<顶部区域>
+中：<中部区域>
+下：<底部区域>
+
+【要求】
+- 只描述可见的UI元素（按钮、输入框、列表项、图标、文本标签等），不要判断页面类型
+- 每个区域控制在25字以内
+- 如果某区域无UI元素，写"无"
+- 只输出上述三行，不要任何额外内容
+
+【示例输出】
+上：搜索栏、小程序标签、"全部"按钮
+中：i莞家小程序入口、"企业有难题"推荐、服务号列表
+下：底部导航栏"微信"等图标
+
+【附加任务：广告弹窗判断】
+先判断当前界面是否为广告/干扰弹窗，输出一行 XML 标签（在屏幕描述之前）：
+- 自动关闭广告（【图中可见倒计时数字】，如 "3"、"5" 秒倒计时，或"广告将在X秒后关闭"提示）→ <ad>auto</ad><delay>秒数</delay>
+- 需手动关闭的广告/干扰弹窗（有"跳过/Skip/关闭×"按钮，或无倒计时数字）→ <ad>close</ad><coordinate>x,y</coordinate><conf>0-1</conf>
+- 正常界面 → <ad>normal</ad>
+
+【强制规则】
+1. auto 判定【必须】依赖图中真实可见的倒计时数字；若图上看不到倒计时，一律判 close，禁止猜测 auto。
+2. close 分支【必须】输出 coordinate（[0,1000] 归一化），禁止漏掉。
+3. 无"跳过/关闭"字样的【全屏遮罩弹窗】也是干扰弹窗：如未成年模式弹窗、新手引导、登录弹窗、福利红包弹窗、升级提示 → 判 close 并给出关闭按钮坐标。
+
+【负例规则】以下情况是正常界面，不是广告弹窗：
+- 应用首页/列表页/搜索页/播放页/详情页（含导航栏、图标网格、搜索框、内容卡片）
+- 规格选择弹窗（份量/辣度/杯型/口味）、确认对话框、权限请求、底部菜单
+- 页面内嵌的推广横幅、推荐卡片、活动入口（它们不是弹窗，不遮挡主内容）
+
+【坐标规则】coordinate 的 x,y 为 [0,1000] 归一化坐标；判断不确定时 conf 给低值(<0.6)。
+输出 <ad> 标签行后，再输出上/中/下三区域描述。
+"""
+
+    /**
+     * 方案C：从视觉描述响应中解析广告弹窗判定（<ad>/<delay>/<coordinate>/<conf>）。
+     * 容错：坐标带空格、conf 标签未闭合、标签缺失均安全返回（null 表示无判定→按 normal 处理）。
+     */
+    internal fun parseAdJudgement(content: String): AdJudgement? {
+        if (content.isBlank()) return null
+        val adMatch = Regex("<ad>\\s*(\\w+)\\s*</ad>").find(content)
+            ?: return null
+        val type = adMatch.groupValues[1].lowercase()
+        if (type !in setOf("normal", "close", "auto")) return null
+
+        val coordMatch = Regex("<coordinate>\\s*([\\d.,\\s]+)\\s*</coordinate>").find(content)
+        val coord = coordMatch?.groupValues?.get(1)?.trim()
+            ?.let { if (it.contains(",")) it else null }
+        val confMatch = Regex("<conf>\\s*([\\d.]+)").find(content)
+        val conf = confMatch?.groupValues?.get(1)?.toFloatOrNull()
+        val delayMatch = Regex("<delay>\\s*(\\d+)\\s*</delay>").find(content)
+        val delay = delayMatch?.groupValues?.get(1)?.toIntOrNull()
+
+        return AdJudgement(
+            type = type,
+            coordinate = coord,
+            conf = conf,
+            delaySeconds = delay
+        )
+    }
+
+    /** 自由问答模式：回答用户关于截图的问题（替代 VlmService.query 的语义） */
+    private fun buildQaSystemPrompt(): String =
+        "你是移动端屏幕分析助手。根据屏幕截图简洁回答用户的问题，语言与问题一致。"
+
+    /**
+     * 自由视觉问答（替代 VlmService.query）：回答用户关于截图的问题，失败返回 null。
+     */
+    suspend fun ask(bitmap: Bitmap, question: String): VlmResult? =
+        withContext(Dispatchers.IO) {
+            if (!isReady) {
+                Log.w(TAG, "GUI-Plus[QA]服务未就绪，跳过")
+                return@withContext null
+            }
+            val startTime = System.currentTimeMillis()
+            val payload = compressAndEncodeImage(bitmap)
+            if (payload == null) {
+                Log.w(TAG, "GUI-Plus[QA]图片编码失败")
+                return@withContext null
+            }
+            return@withContext try {
+                val content = requestChat(
+                    text = question.take(500),
+                    payload = payload,
+                    screenWidth = payload.width,
+                    screenHeight = payload.height,
+                    mode = PromptMode.QA
+                )
+                VlmResult(
+                    success = true,
+                    answer = content.trim(),
+                    durationMs = System.currentTimeMillis() - startTime,
+                    adJudgement = null   // 自由问答无广告判定
+                )
+            } catch (e: Exception) {
+                Log.e(TAG, "GUI-Plus[QA]失败: ${e.message}")
+                null
+            }
+        }
 
     // ============ 响应解析 ============
 
