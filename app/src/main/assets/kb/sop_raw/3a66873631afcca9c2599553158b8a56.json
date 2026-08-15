@@ -1,7 +1,7 @@
 {
   "sop_id": "3a66873631afcca9",
   "original_task_name": "在小红书上找一些美容护肤的笔记，并且给我点赞前三篇。",
-  "task_name": "在小红书上找一些美容护肤的笔记，并且给我点赞前三篇。",
+  "task_name": "在小红书上找到对应的笔记，并且帮用户点赞。",
   "app_name": "小红书",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -16,20 +16,20 @@
   "steps": [
     {
       "goal": "点击小红书应用图标",
-      "expected": "打开小红书应用",
+      "expected": "进入小红书首页,顶部显示'关注''发现''同城'的导航栏",
       "action_type": "click",
       "step_order": 1
     },
     {
       "goal": "点击屏幕右上角的搜索图标",
-      "expected": "搜索图标被选中，界面进入搜索模式",
+      "expected": "进入搜索界面,顶部显示文本输入框",
       "action_type": "click",
       "step_order": 2
     },
     {
       "action_type": "type",
-      "goal": "在文本输入框中输入'美容护肤'",
-      "expected": "文本输入框中显示'美容护肤'",
+      "goal": "在文本输入框中输入需要搜索的内容",
+      "expected": "文本输入框中显示对应文字",
       "step_order": 3
     },
     {
@@ -45,8 +45,8 @@
       "step_order": 5
     },
     {
-      "goal": "点击文章底部的心形图标以收藏该内容",
-      "expected": "收藏按钮状态变为已激活，显示收藏数增加",
+      "goal": "点击文章底部的心形图标以点赞该内容",
+      "expected": "爱心按钮状态变为已激活",
       "action_type": "click",
       "step_order": 6
     },

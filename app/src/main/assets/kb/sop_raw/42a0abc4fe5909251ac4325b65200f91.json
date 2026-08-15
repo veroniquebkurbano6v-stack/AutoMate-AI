@@ -15,52 +15,52 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用启动并进入主界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "点击'我的位置'按钮以确认或修改起点位置",
       "expected": "界面中'我的位置'选项被选中，显示为高亮状态",
-      "action_type": "click",
-      "step_order": 3
+      "action_type": "click"
     },
     {
-      "action_type": "type",
+      "step_order": 4,
       "goal": "在文本输入框中输入'出发地'",
       "expected": "文本输入框中显示'出发地'",
-      "step_order": 4
+      "action_type": "type"
     },
     {
+      "step_order": 5,
       "goal": "点击搜索结果中的出发地选项",
       "expected": "界面显示出发地的详细地址信息",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
-      "action_type": "type",
+      "step_order": 6,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "step_order": 6
+      "action_type": "type"
     },
     {
+      "step_order": 7,
       "goal": "点击目的地的'停车场'选项",
       "expected": "界面显示目的地的停车场信息",
-      "action_type": "click",
-      "step_order": 7
+      "action_type": "click"
     },
     {
+      "step_order": 8,
       "goal": "选择特定公交线路作为出行方案",
       "expected": "界面显示特定公交线路的详细信息，包括行程时间、距离、票价和换乘站点",
-      "action_type": "click",
-      "step_order": 8
+      "action_type": "click"
     }
   ]
 }

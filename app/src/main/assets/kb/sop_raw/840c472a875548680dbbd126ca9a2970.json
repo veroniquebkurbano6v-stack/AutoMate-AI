@@ -1,53 +1,53 @@
 {
   "sop_id": "840c472a87554868",
   "original_task_name": "高德搜索附近有没有加油站",
-  "task_name": "高德搜索附近有没有加油站",
+  "task_name": "高德搜索附近的指定场所",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "导航",
   "keywords": [
     "高德地图",
-    "加油站",
+    "附近",
     "搜索",
     "距离优先"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用启动并进入主界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'加油站'",
-      "expected": "文本输入框中显示'加油站'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的场所",
+      "expected": "文本输入框中显示对应输入的场所",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索按钮以执行加油站的搜索操作",
-      "expected": "搜索结果页面显示加油站的位置列表",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索按钮以执行场所搜索操作",
+      "expected": "搜索结果页面显示相关场所的位置列表",
+      "action_type": "click"
     },
     {
-      "goal": "点击排序选项以调整加油站列表的排序方式",
+      "step_order": 5,
+      "goal": "点击排序选项以调整场所列表的排序方式",
       "expected": "进入排序选择界面，可选择不同的排序依据",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "选择排序方式为距离优先",
-      "expected": "排序下拉菜单中显示“距离优先”选项已被选中",
-      "action_type": "click",
-      "step_order": 6
+      "expected": "排序下拉菜单中显示'距离优先'选项已被选中",
+      "action_type": "click"
     }
   ]
 }

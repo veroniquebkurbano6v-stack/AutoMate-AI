@@ -9,32 +9,33 @@
   "keywords": [
     "高德地图",
     "目的地",
-    "查找"
+    "查找",
+    "搜索"
   ],
   "steps": [
     {
-      "goal": "打开QQ音乐应用",
-      "expected": "QQ音乐应用图标被选中，应用启动",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击高德地图应用图标",
+      "expected": "高德地图应用启动并进入主界面",
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏，准备输入地点信息",
       "expected": "搜索栏处于可输入状态，用户可输入地点、公交、地铁等信息",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
-      "goal": "点击特定地点下的'目的地'地点条目",
+      "step_order": 4,
+      "goal": "点击搜索结果中的'目的地'地点条目",
       "expected": "进入该地点详情页面",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     }
   ]
 }

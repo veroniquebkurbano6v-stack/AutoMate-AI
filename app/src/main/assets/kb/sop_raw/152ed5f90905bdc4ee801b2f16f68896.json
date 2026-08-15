@@ -15,52 +15,52 @@
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击'路线'按钮进入路线规划界面",
       "expected": "进入路线规划功能页面",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "点击'我的位置'按钮，确认或修改起点位置",
       "expected": "界面中'我的位置'按钮被选中，显示为高亮状态",
-      "action_type": "click",
-      "step_order": 3
+      "action_type": "click"
     },
     {
+      "step_order": 4,
       "goal": "在文本输入框中输入'出发地'",
       "expected": "文本输入框中显示'出发地'",
-      "action_type": "type",
-      "step_order": 4
+      "action_type": "type"
     },
     {
+      "step_order": 5,
       "goal": "选择地图上的出发地位置作为起点",
       "expected": "界面显示出发地位置信息，包括地铁站详情",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 6
+      "action_type": "type"
     },
     {
-      "goal": "点击目的地条目",
+      "step_order": 7,
+      "goal": "点击搜索结果中的目的地条目",
       "expected": "界面显示该地点的详细信息",
-      "action_type": "click",
-      "step_order": 7
+      "action_type": "click"
     },
     {
+      "step_order": 8,
       "goal": "切换出行方式至骑行模式",
       "expected": "界面切换至骑行模式，显示骑行路线选项",
-      "action_type": "click",
-      "step_order": 8
+      "action_type": "click"
     }
   ]
 }

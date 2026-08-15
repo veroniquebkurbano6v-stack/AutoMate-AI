@@ -14,34 +14,34 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用启动并进入主界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入地点信息",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
-      "goal": "点击'点击'按钮以确认或提交当前搜索结果",
-      "expected": "界面停留在当前搜索结果页面，未发生跳转",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "进入该地点的详情页面",
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击'开始导航'按钮启动路线规划",
       "expected": "导航系统开始计算并规划从当前位置到目的地的路线",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     }
   ]
 }

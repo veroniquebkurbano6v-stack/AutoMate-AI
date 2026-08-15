@@ -1,7 +1,7 @@
 {
   "sop_id": "e6a095eab1e04f67",
   "original_task_name": "高德导航从这到西安唐乐宫的驾车路线。",
-  "task_name": "高德导航从出发地到目的地的驾车路线。",
+  "task_name": "在高德地图导航从当前位置到目的地的驾车路线",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -9,45 +9,39 @@
   "keywords": [
     "高德地图",
     "导航",
-    "出发地",
-    "目的地"
+    "目的地",
+    "驾车"
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏，准备输入目的地",
-      "expected": "搜索栏处于可输入状态",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入对应地点",
+      "action_type": "click"
     },
     {
-      "action_type": "type",
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索结果页面显示多个与“目的地”相关的地点",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索结果中对应的地点条目",
+      "expected": "进入该地点的详细信息页面",
+      "action_type": "click"
     },
     {
-      "goal": "点击目的地的特色景点条目，进入详情页面查看路线信息",
-      "expected": "进入目的地详情页面，显示路线规划选项",
-      "action_type": "click",
-      "step_order": 5
-    },
-    {
-      "goal": "点击导航按钮进入路线规划功能",
-      "expected": "进入路线规划界面",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 5,
+      "goal": "点击页面底部的'导航'按钮",
+      "expected": "进入导航功能界面，显示驾车路线方案",
+      "action_type": "click"
     }
   ]
 }

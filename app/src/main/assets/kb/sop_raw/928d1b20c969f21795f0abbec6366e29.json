@@ -1,7 +1,7 @@
 {
   "sop_id": "928d1b20c969f217",
   "original_task_name": "导航到雁塔区科技路附近最近的棋牌室  ",
-  "task_name": "导航到目的地附近最近的棋牌室",
+  "task_name": "导航到目的地附近最近的指定场所",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -10,80 +10,75 @@
     "高德地图",
     "导航",
     "目的地",
-    "棋牌室"
+    "附近",
+    "搜索"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
-      "goal": "点击'目的地(地铁站)'搜索结果条目",
-      "expected": "界面显示目的地地铁站的详细信息，包括周边交通方式和距离",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索结果中的'目的地'条目",
+      "expected": "界面显示目的地的详细信息",
+      "action_type": "click"
     },
     {
-      "goal": "点击地铁3号线按钮，查看该线路的详细信息和换乘选项。",
-      "expected": "界面显示地铁3号线的详细信息，包括首末班车时间、票价以及换乘信息。",
-      "action_type": "click",
-      "step_order": 5
-    },
-    {
+      "step_order": 5,
       "goal": "点击搜索栏区域以激活输入状态",
       "expected": "搜索栏获得焦点，准备输入搜索关键词",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'棋牌室'",
-      "expected": "文本输入框中显示'棋牌室'",
-      "action_type": "type",
-      "step_order": 7
+      "step_order": 6,
+      "goal": "在文本输入框中输入'指定场所'",
+      "expected": "文本输入框中显示'指定场所'",
+      "action_type": "type"
     },
     {
-      "goal": "执行搜索操作，获取棋牌室相关结果列表",
+      "step_order": 7,
+      "goal": "执行搜索操作，获取相关结果列表",
       "expected": "搜索结果列表显示",
-      "action_type": "click",
-      "step_order": 8
+      "action_type": "click"
     },
     {
+      "step_order": 8,
       "goal": "点击'桌游'标签以筛选相关结果",
-      "expected": "筛选出符合'桌游'分类的棋牌室列表",
-      "action_type": "click",
-      "step_order": 9
+      "expected": "筛选出符合'桌游'分类的场所列表",
+      "action_type": "click"
     },
     {
+      "step_order": 9,
       "goal": "选择排序方式为距离优先",
-      "expected": "筛选出距离相近的棋牌室列表",
-      "action_type": "click",
-      "step_order": 10
+      "expected": "筛选出距离相近的场所列表",
+      "action_type": "click"
     },
     {
-      "goal": "点击'特定店铺'条目以查看详细信息",
-      "expected": "进入该棋牌室的详情页面",
-      "action_type": "click",
-      "step_order": 11
+      "step_order": 10,
+      "goal": "点击'指定场所'条目以查看详细信息",
+      "expected": "进入该场所的详情页面",
+      "action_type": "click"
     },
     {
+      "step_order": 11,
       "goal": "点击底部导航栏中的'导航'按钮",
       "expected": "进入导航功能界面",
-      "action_type": "click",
-      "step_order": 12
+      "action_type": "click"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "sop_id": "242d04b85d106518",
   "original_task_name": "高德地图查找青年路小吃街",
-  "task_name": "高德地图查找目的地",
+  "task_name": "在高德地图查找指定地点",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -27,8 +27,8 @@
     },
     {
       "step_order": 3,
-      "goal": "在搜索栏中输入'青年路小吃街'",
-      "expected": "搜索栏中显示'青年路小吃街'",
+      "goal": "在搜索栏中输入'目的地'",
+      "expected": "搜索栏中显示'目的地'",
       "action_type": "type"
     },
     {

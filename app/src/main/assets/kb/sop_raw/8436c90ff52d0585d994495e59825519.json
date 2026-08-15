@@ -1,7 +1,7 @@
 {
   "sop_id": "8436c90ff52d0585",
   "original_task_name": "高德导航指引从当前位置到西安市雁塔区雁塔西路277号的路径。",
-  "task_name": "高德导航指引从当前位置到目的地的路径。",
+  "task_name": "高德导航指引从当前位置到目的地的路径",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -14,34 +14,34 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索按钮以执行搜索操作",
       "expected": "搜索结果页面显示多个与地址相关的地点选项",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击目的地位置信息，进入该地点详情页",
       "expected": "进入该地点详情页",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     }
   ]
 }

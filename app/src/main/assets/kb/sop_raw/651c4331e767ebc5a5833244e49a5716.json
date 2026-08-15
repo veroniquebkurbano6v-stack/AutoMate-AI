@@ -15,70 +15,70 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标以启动应用程序",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏中的'打卡'按钮",
       "expected": "搜索栏内容变为'特定影视打卡'",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击打车按钮",
       "expected": "打车服务按钮被激活，显示打车选项",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击起点位置字段以修改出发地",
       "expected": "界面将显示输入框，用户可输入新的出发地点",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "在文本输入框中输入'出发地'",
       "expected": "文本输入框中显示'出发地'",
-      "action_type": "type",
-      "step_order": 6
+      "action_type": "type"
     },
     {
+      "step_order": 7,
       "goal": "点击搜索框右侧的'途经点'按钮",
       "expected": "界面显示途经点设置选项",
-      "action_type": "click",
-      "step_order": 7
+      "action_type": "click"
     },
     {
+      "step_order": 8,
       "goal": "选择出发地作为起点",
       "expected": "界面显示起点已选定为出发地",
-      "action_type": "click",
-      "step_order": 8
+      "action_type": "click"
     },
     {
+      "step_order": 9,
       "goal": "选择起点位置",
       "expected": "界面显示已选择的起点位置",
-      "action_type": "click",
-      "step_order": 9
+      "action_type": "click"
     },
     {
+      "step_order": 10,
       "goal": "添加途经点以扩展路线选择范围",
       "expected": "界面右上角的途经点按钮被激活，显示可添加途经点的交互状态",
-      "action_type": "click",
-      "step_order": 10
+      "action_type": "click"
     },
     {
+      "step_order": 11,
       "goal": "选择步行出行方式",
       "expected": "界面显示步行选项已选中",
-      "action_type": "click",
-      "step_order": 11
+      "action_type": "click"
     }
   ]
 }

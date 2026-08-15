@@ -1,7 +1,7 @@
 {
   "sop_id": "85efaba06bd59a68",
   "original_task_name": "从当前位置高德导航到最近的超市",
-  "task_name": "从当前位置高德导航到最近的超市",
+  "task_name": "从当前位置高德导航到最近的目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -9,45 +9,45 @@
   "keywords": [
     "高德地图",
     "导航",
-    "超市",
-    "目的地"
+    "目的地",
+    "搜索"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用启动",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏激活输入功能",
       "expected": "搜索栏处于可输入状态",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'最近的超市'",
-      "expected": "文本输入框中显示'最近的超市'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索按钮以执行搜索操作",
       "expected": "搜索结果页面加载",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击目的地的店铺条目",
       "expected": "进入该店铺的详细信息页面",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "点击导航按钮进入路线规划功能",
       "expected": "进入路线规划界面",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     }
   ]
 }

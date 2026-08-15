@@ -1,7 +1,7 @@
 {
   "sop_id": "50be717c5b80f5b2",
   "original_task_name": "高德，导航下大唐不夜城到钟楼的步行路线。",
-  "task_name": "高德，导航下出发地到目的地的步行路线。",
+  "task_name": "高德，导航下出发地到目的地的步行路线",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -11,62 +11,56 @@
     "导航",
     "出发地",
     "目的地",
-    "步行路线"
+    "步行"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击'路线'按钮进入路线规划界面",
       "expected": "进入路线规划功能页面",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "点击起点输入框以修改出发地",
       "expected": "界面中显示的起点信息被选中，准备输入新的出发地点",
-      "action_type": "click",
-      "step_order": 3
+      "action_type": "click"
     },
     {
+      "step_order": 4,
       "goal": "在文本输入框中输入'出发地'",
       "expected": "文本输入框中显示'出发地'",
-      "action_type": "type",
-      "step_order": 4
+      "action_type": "type"
     },
     {
+      "step_order": 5,
       "goal": "选择搜索结果中的'出发地'作为终点",
       "expected": "界面显示'出发地'为已选终点",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 6
+      "action_type": "type"
     },
     {
-      "goal": "点击收藏夹按钮以保存当前地点信息",
-      "expected": "收藏夹按钮被激活，界面可能提示收藏成功",
-      "action_type": "click",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "选择'目的地'作为终点",
+      "expected": "界面显示'目的地'为已选终点",
+      "action_type": "click"
     },
     {
-      "goal": "确认已选车型并进入打车确认页面",
-      "expected": "操作后界面显示已选车型信息及价格预估，底部有“立即打车”按钮",
-      "action_type": "click",
-      "step_order": 8
-    },
-    {
+      "step_order": 8,
       "goal": "确认步行路线规划状态",
       "expected": "界面显示步行路线规划已完成，包含路线详情、预计时间、距离等信息",
-      "action_type": "click",
-      "step_order": 9
+      "action_type": "click"
     }
   ]
 }

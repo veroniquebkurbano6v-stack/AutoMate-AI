@@ -1,65 +1,66 @@
 {
   "sop_id": "e319da3fe592df44",
   "original_task_name": "使用高德地图从当前位置导航到最近的网吧。",
-  "task_name": "使用高德地图从当前位置导航到最近的网吧",
+  "task_name": "使用高德地图从当前位置导航到最近的目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "导航",
   "keywords": [
     "高德地图",
-    "网吧",
     "导航",
+    "目的地",
+    "搜索",
     "距离优先"
   ],
   "steps": [
     {
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏处于可输入状态",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入对应地点",
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'网吧'",
-      "expected": "文本输入框中显示'网吧'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索结果页面加载完成，显示与'网吧'相关的搜索结果",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面显示搜索结果",
+      "action_type": "click"
     },
     {
-      "goal": "点击排序选项以查看排序方式",
-      "expected": "操作后界面状态：排序选项展开，显示不同排序方式",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击搜索结果中的排序选项",
+      "expected": "展开排序菜单，可选择不同的排序依据",
+      "action_type": "click"
     },
     {
-      "goal": "选择排序方式为距离优先",
-      "expected": "排序下拉菜单显示'距离优先'选项已被选中",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "选择排序方式为'距离优先'",
+      "expected": "排序菜单中显示'距离优先'选项已被选中",
+      "action_type": "click"
     },
     {
-      "goal": "点击特定店铺条目以查看详细信息",
-      "expected": "进入该特定店铺的详细信息页面",
-      "action_type": "click",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "点击搜索结果中对应的地点条目",
+      "expected": "进入该地点的详细信息页面",
+      "action_type": "click"
     },
     {
-      "goal": "点击导航按钮进入路线规划功能",
-      "expected": "进入路线规划界面",
-      "action_type": "click",
-      "step_order": 8
+      "step_order": 8,
+      "goal": "点击页面底部的'导航'按钮",
+      "expected": "进入导航功能界面",
+      "action_type": "click"
     }
   ]
 }

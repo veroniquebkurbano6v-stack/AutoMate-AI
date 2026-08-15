@@ -14,46 +14,46 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用启动",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "进入'我的'页面查看个人中心信息",
-      "expected": "操作后界面状态为进入'我的'页面，显示用户个人中心相关内容",
-      "action_type": "click",
-      "step_order": 2
+      "expected": "界面进入'我的'页面，显示用户个人中心相关内容",
+      "action_type": "click"
     },
     {
-      "goal": "进入订单管理页面",
-      "expected": "查看订单状态和管理待处理订单",
-      "action_type": "click",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "进入常去地点设置页面",
+      "expected": "显示常去地点管理选项",
+      "action_type": "click"
     },
     {
+      "step_order": 4,
       "goal": "点击'公司'位置条目",
       "expected": "进入'公司'位置条目详情页面",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击搜索框以激活输入功能",
       "expected": "搜索框获得焦点，准备输入位置信息",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 6
+      "action_type": "type"
     },
     {
+      "step_order": 7,
       "goal": "选择'目的地'作为位置设置",
       "expected": "界面显示'目的地'已被选中并确认",
-      "action_type": "click",
-      "step_order": 7
+      "action_type": "click"
     }
   ]
 }

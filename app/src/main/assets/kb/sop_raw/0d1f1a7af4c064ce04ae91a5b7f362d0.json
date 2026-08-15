@@ -1,7 +1,7 @@
 {
   "sop_id": "0d1f1a7af4c064ce",
-  "original_task_name": "高德把八路军西安办事处纪念馆加入收藏夹",
-  "task_name": "高德把目的地加入收藏夹",
+  "original_task_name": "用高德地图把八路军西安办事处纪念馆加入收藏夹",
+  "task_name": "在高德地图把指定地点加入收藏夹",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -22,30 +22,30 @@
     {
       "step_order": 2,
       "goal": "点击页面顶部的搜索框区域",
-      "expected": "搜索栏获得焦点，准备输入目的地",
+      "expected": "搜索栏获得焦点，准备输入对应地点",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
       "action_type": "type"
     },
     {
       "step_order": 4,
       "goal": "点击搜索框右侧的搜索按钮",
-      "expected": "搜索结果页面显示",
+      "expected": "搜索结果页面显示搜索结果",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击搜索结果中的'目的地'条目以查看详细信息",
+      "goal": "点击搜索结果中对应的地点条目",
       "expected": "进入该地点的详细信息页面",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "点击详情页中的收藏按钮，将地点添加到收藏夹",
+      "goal": "点击该地点详情页中的收藏按钮，将地点添加到收藏夹",
       "expected": "收藏按钮状态变为已收藏",
       "action_type": "click"
     }

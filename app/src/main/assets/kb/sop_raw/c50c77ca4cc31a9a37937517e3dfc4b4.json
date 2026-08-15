@@ -15,46 +15,52 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击路线按钮进入路线规划界面",
       "expected": "进入路线规划功能，可选择起点、终点和交通方式",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "点击骑行路线规划界面中的起点位置输入框",
       "expected": "界面进入骑行路线规划输入模式，可输入起点",
-      "action_type": "click",
-      "step_order": 3
+      "action_type": "click"
     },
     {
+      "step_order": 4,
       "goal": "在文本输入框中输入'出发地'",
       "expected": "文本输入框中显示'出发地'",
-      "action_type": "type",
-      "step_order": 4
+      "action_type": "type"
     },
     {
-      "goal": "选择'出发地'作为起点位置",
+      "step_order": 5,
+      "goal": "选择搜索结果中的'出发地'作为起点位置",
       "expected": "界面中显示起点已设置为'出发地'",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 6
+      "action_type": "type"
     },
     {
-      "goal": "设置当前地点为起点",
-      "expected": "界面中显示的起点已更改为“家”",
-      "action_type": "click",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "选择搜索结果中的'目的地'作为终点位置",
+      "expected": "界面中显示终点已设置为'目的地'",
+      "action_type": "click"
+    },
+    {
+      "step_order": 8,
+      "goal": "选择骑行出行方式",
+      "expected": "界面切换至骑行路线方案",
+      "action_type": "click"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "sop_id": "0a52f1ea6ac366fc",
-  "original_task_name": "请优酷视频根据我的历史记录播放7天内观看超过60%的短视频。",
-  "task_name": "请优酷视频根据我的历史记录播放7天内观看超过60%的短视频。",
+  "original_task_name": "打开优酷视频根据我的历史记录播放7天内观看超过60%的短视频。",
+  "task_name": "打开优酷视频根据历史记录播放对应的短视频。",
   "app_name": "优酷视频",
   "source": "cagui_auto",
   "difficulty": "L3",

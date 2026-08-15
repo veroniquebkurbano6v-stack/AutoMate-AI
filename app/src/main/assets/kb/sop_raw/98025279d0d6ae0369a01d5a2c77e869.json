@@ -1,7 +1,7 @@
 {
   "sop_id": "98025279d0d6ae03",
   "original_task_name": "启动导航，目的地是保利曲江春天里。",
-  "task_name": "启动导航，前往目的地。",
+  "task_name": "启动导航，前往目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -14,34 +14,34 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "操作点击高德地图应用图标",
       "expected": "高德地图应用启动并进入主界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索框以激活输入功能",
       "expected": "搜索框获得焦点，准备输入地点",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索结果中的'目的地'条目",
       "expected": "搜索结果列表中显示目的地的相关信息",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击页面底部的'导航'按钮",
       "expected": "进入导航功能界面",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     }
   ]
 }

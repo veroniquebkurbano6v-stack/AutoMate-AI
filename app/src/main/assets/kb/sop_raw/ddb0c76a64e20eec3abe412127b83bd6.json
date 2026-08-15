@@ -8,58 +8,59 @@
   "domain": "导航",
   "keywords": [
     "高德地图",
-    "电动车维修",
     "导航",
-    "搜索"
+    "目的地",
+    "搜索",
+    "距离优先"
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，准备进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入对应地点",
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'电动车维修'",
-      "expected": "文本输入框中显示'电动车维修'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面显示",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面显示搜索结果",
+      "action_type": "click"
     },
     {
-      "goal": "点击'修自行车'分类标签以筛选相关服务结果",
-      "expected": "筛选出所有与自行车相关的电动车维修服务",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击搜索结果中的排序选项",
+      "expected": "展开排序菜单，可选择不同的排序依据",
+      "action_type": "click"
     },
     {
-      "goal": "确认排序方式是否已设置为距离优先",
-      "expected": "界面中显示推荐排序下拉菜单，当前选中“距离优先”选项",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "选择排序方式为'距离优先'",
+      "expected": "排序菜单中显示'距离优先'选项已被选中",
+      "action_type": "click"
     },
     {
-      "goal": "选择电动车维修服务的推荐店铺",
-      "expected": "进入推荐店铺详情页面",
-      "action_type": "click",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "点击搜索结果中对应的地点条目",
+      "expected": "进入该地点的详细信息页面",
+      "action_type": "click"
     },
     {
-      "goal": "点击底部导航栏中的'导航'按钮",
+      "step_order": 8,
+      "goal": "点击页面底部的'导航'按钮",
       "expected": "进入导航功能界面",
-      "action_type": "click",
-      "step_order": 8
+      "action_type": "click"
     }
   ]
 }

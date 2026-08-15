@@ -1,7 +1,7 @@
 {
   "sop_id": "5392a71c3bc7b09e",
   "original_task_name": "用高德地图找最近的牛排自助并分享给我的好友周洁",
-  "task_name": "用高德地图找最近的牛排自助并分享给我的好友联系人",
+  "task_name": "用高德地图找最近的牛排自助并分享给我的联系人",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -14,82 +14,82 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏中的'健身工作室'文字区域",
+      "step_order": 2,
+      "goal": "点击搜索栏中的'目的地'文字区域",
       "expected": "搜索栏内容被选中，准备输入新的搜索词",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'牛排自助'",
       "expected": "文本输入框中显示'牛排自助'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "执行搜索操作以查看相关结果",
       "expected": "搜索界面显示搜索结果列表",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击筛选标签栏中的'推荐排序'选项",
       "expected": "筛选结果按推荐排序重新排列",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "选择排序方式为距离优先",
-      "expected": "排序菜单中显示“距离优先”选项已被选中",
-      "action_type": "click",
-      "step_order": 6
+      "expected": "排序菜单中显示'距离优先'选项已被选中",
+      "action_type": "click"
     },
     {
-      "goal": "点击特定餐厅的店铺名称以进入详情页",
+      "step_order": 7,
+      "goal": "点击特定店铺的店铺名称以进入详情页",
       "expected": "进入该店铺的详细信息页面",
-      "action_type": "click",
-      "step_order": 7
+      "action_type": "click"
     },
     {
+      "step_order": 8,
       "goal": "点击页面底部的分享按钮",
       "expected": "分享按钮处于可点击状态",
-      "action_type": "click",
-      "step_order": 8
+      "action_type": "click"
     },
     {
+      "step_order": 9,
       "goal": "选择分享方式中的微信选项",
       "expected": "分享界面停留在微信应用图标上",
-      "action_type": "click",
-      "step_order": 9
+      "action_type": "click"
     },
     {
+      "step_order": 10,
       "goal": "选择聊天对象",
       "expected": "进入聊天选择界面",
-      "action_type": "click",
-      "step_order": 10
+      "action_type": "click"
     },
     {
+      "step_order": 11,
       "goal": "在文本输入框中输入'联系人'",
       "expected": "文本输入框中显示'联系人'",
-      "action_type": "type",
-      "step_order": 11
+      "action_type": "type"
     },
     {
+      "step_order": 12,
       "goal": "选择指定联系人",
       "expected": "界面显示指定联系人的详细信息",
-      "action_type": "click",
-      "step_order": 12
+      "action_type": "click"
     },
     {
+      "step_order": 13,
       "goal": "确认分享链接给联系人",
       "expected": "分享对话框关闭，返回上一级界面",
-      "action_type": "click",
-      "step_order": 13
+      "action_type": "click"
     }
   ]
 }

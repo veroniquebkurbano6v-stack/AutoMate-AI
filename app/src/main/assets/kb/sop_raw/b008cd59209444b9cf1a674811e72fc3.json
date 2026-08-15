@@ -14,40 +14,40 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击地图应用图标以打开应用",
       "expected": "打开地图应用",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击地图中心区域以调整视图位置",
       "expected": "地图视图发生移动，中心位置发生偏移",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索按钮以执行目的地的搜索操作",
       "expected": "搜索结果页面显示目的地及其相关地点信息",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击目的地详情页的'点击'按钮",
       "expected": "进入目的地详情页",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "点击底部导航栏中的'导航'按钮",
       "expected": "进入导航功能界面",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     }
   ]
 }

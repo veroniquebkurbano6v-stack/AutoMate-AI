@@ -1,59 +1,59 @@
 {
   "sop_id": "e72cd04932126c7f",
   "original_task_name": "高德把唐沣国际广场设置成公司地址",
-  "task_name": "高德把特定地点设置成公司地址",
+  "task_name": "在高德地图把指定地点设置成公司地址",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "导航",
   "keywords": [
     "高德地图",
-    "特定地点",
+    "目的地",
     "公司地址",
-    "设置"
+    "搜索"
   ],
   "steps": [
     {
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击顺风车服务图标",
-      "expected": "进入顺风车服务页面",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击底部导航栏中的'我的'按钮",
+      "expected": "进入个人中心页面",
+      "action_type": "click"
     },
     {
-      "goal": "设置常去地点",
-      "expected": "点击后可添加或编辑常去地点",
-      "action_type": "click",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击'常用地址'入口",
+      "expected": "进入地址管理页面，可添加或编辑常用地址",
+      "action_type": "click"
     },
     {
-      "goal": "添加家庭或公司地点",
-      "expected": "进入添加地点的界面",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击添加公司地址的入口",
+      "expected": "进入添加地址页面",
+      "action_type": "click"
     },
     {
-      "action_type": "type",
-      "goal": "在文本输入框中输入'特定地点'",
-      "expected": "文本输入框中显示'特定地点'",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击'地图选点'按钮，进入地图查看该位置详情",
-      "expected": "进入地图界面，显示该位置的详细地图视图",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "点击搜索结果中对应的地点条目",
+      "expected": "选择该地点，界面显示该地点的详细信息",
+      "action_type": "click"
     },
     {
+      "step_order": 7,
       "goal": "点击'设为公司地址'按钮",
-      "expected": "地址信息已成功保存并显示在地图上",
-      "action_type": "click",
-      "step_order": 7
+      "expected": "界面显示'已设为公司地址'提示",
+      "action_type": "click"
     }
   ]
 }

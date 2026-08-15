@@ -1,7 +1,7 @@
 {
   "sop_id": "d5d27e2620315f37",
   "original_task_name": "高德地图查找化觉巷清真大寺",
-  "task_name": "高德地图查找目的地",
+  "task_name": "在高德地图查找指定地点",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -14,28 +14,28 @@
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，应用启动并显示其界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入地点信息",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入对应地点",
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索结果中的'目的地'条目",
-      "expected": "界面显示该目的地的详细信息，包括地址、交通方式和距离等",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索结果中对应的地点条目",
+      "expected": "进入该地点的详细信息页面",
+      "action_type": "click"
     }
   ]
 }

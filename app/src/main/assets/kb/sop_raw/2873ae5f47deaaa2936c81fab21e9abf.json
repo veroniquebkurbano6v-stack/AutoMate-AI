@@ -1,7 +1,7 @@
 {
   "sop_id": "2873ae5f47deaaa2",
   "original_task_name": "规划未央湖到西安高新区的自驾路线  ",
-  "task_name": "规划出发地到目的地的自驾路线",
+  "task_name": "规划从出发地到目的地的自驾路线",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -10,68 +10,69 @@
     "高德地图",
     "出发地",
     "目的地",
-    "自驾路线"
+    "自驾路线",
+    "导航"
   ],
   "steps": [
     {
-      "goal": "点击高德地图应用图标以启动应用程序",
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
       "expected": "高德地图应用图标被选中，应用界面开始加载",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏激活输入功能",
       "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
-      "action_type": "type",
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索按钮以执行搜索操作",
       "expected": "搜索结果页面显示",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
-      "goal": "点击目的地位置信息右侧的路线按钮",
+      "step_order": 5,
+      "goal": "点击目的地位置信息右侧的'路线'按钮",
       "expected": "进入该位置的详细路线规划界面",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "点击出发地'我的位置'以修改出发地点",
       "expected": "界面显示出发地修改选项",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     },
     {
-      "action_type": "type",
+      "step_order": 7,
       "goal": "在文本输入框中输入'出发地'",
       "expected": "文本输入框中显示'出发地'",
-      "step_order": 7
+      "action_type": "type"
     },
     {
+      "step_order": 8,
       "goal": "点击搜索结果中的'出发地'条目",
-      "expected": "界面显示'出发地'的详细信息，包括其作为水系的位置信息和距离",
-      "action_type": "click",
-      "step_order": 8
+      "expected": "界面显示'出发地'的详细信息，包括其位置信息和距离",
+      "action_type": "click"
     },
     {
+      "step_order": 9,
       "goal": "选择公交地铁出行方式",
       "expected": "界面切换至公交地铁出行模式",
-      "action_type": "click",
-      "step_order": 9
+      "action_type": "click"
     },
     {
+      "step_order": 10,
       "goal": "选择驾车出行方式",
       "expected": "界面切换至驾车模式，显示驾车路线选项",
-      "action_type": "click",
-      "step_order": 10
+      "action_type": "click"
     }
   ]
 }

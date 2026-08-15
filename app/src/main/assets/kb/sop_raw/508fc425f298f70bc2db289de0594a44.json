@@ -1,7 +1,7 @@
 {
   "sop_id": "508fc425f298f70b",
   "original_task_name": "高德导航从这到青龙寺的公交线路。",
-  "task_name": "高德导航从这到目的地的公交线路。",
+  "task_name": "高德导航从这到目的地的公交线路",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,44 +10,44 @@
     "高德地图",
     "导航",
     "目的地",
-    "公交线路"
+    "公交"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标以启动应用程序",
       "expected": "高德地图应用图标被选中，应用界面开始加载",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
-      "goal": "执行搜索操作以查看“目的地”相关地点信息",
-      "expected": "搜索结果页面显示“目的地”相关地点列表",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "执行搜索操作以查看'目的地'相关地点信息",
+      "expected": "搜索结果页面显示'目的地'相关地点列表",
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击'目的地(地铁站)'信息区域，进入该地点详情页面",
       "expected": "进入目的地地铁站的详细信息页面",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "选择公交地铁出行方式",
       "expected": "界面切换至公交地铁出行模式",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     }
   ]
 }

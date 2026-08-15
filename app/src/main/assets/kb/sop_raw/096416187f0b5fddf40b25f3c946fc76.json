@@ -1,7 +1,7 @@
 {
   "sop_id": "096416187f0b5fdd",
   "original_task_name": "高德导航从这里到西安博物院的停车场的路线。",
-  "task_name": "高德导航从这里到目的地的路线。",
+  "task_name": "在高德地图导航从当前位置到目的地的路线",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -14,34 +14,34 @@
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被点击，应用启动并显示其主界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并显示其主界面",
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "选择驾车出行方式",
-      "expected": "界面底部的驾车按钮被选中，高亮显示",
-      "action_type": "click",
-      "step_order": 2
+      "expected": "界面底部的'驾车'按钮被选中，高亮显示",
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "点击'输入终点'输入框以设置目的地",
       "expected": "界面进入目的地输入状态",
-      "action_type": "click",
-      "step_order": 3
+      "action_type": "click"
     },
     {
+      "step_order": 4,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 4
+      "action_type": "type"
     },
     {
-      "goal": "选择目的地作为终点",
+      "step_order": 5,
+      "goal": "选择搜索结果中的目的地作为终点",
       "expected": "界面显示目的地的详细信息",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     }
   ]
 }

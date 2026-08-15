@@ -1,7 +1,7 @@
 {
   "sop_id": "92fa23c013165cc5",
   "original_task_name": "导航到西安大唐芙蓉园附近评价最好的三星级酒店",
-  "task_name": "导航到目的地附近评价最好的三星级酒店",
+  "task_name": "导航到目的地附近评价最好的指定场所",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -10,98 +10,99 @@
     "高德地图",
     "导航",
     "目的地",
-    "酒店"
+    "附近",
+    "搜索"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索栏中的'目的地'文字区域",
       "expected": "激活搜索栏，显示键盘并准备输入新的搜索内容",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
-      "goal": "点击'周边'按钮查看附近景点信息",
+      "step_order": 5,
+      "goal": "点击'周边'按钮查看附近信息",
       "expected": "页面显示附近景点列表",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
-      "goal": "点击屏幕右上角的'点击'按钮",
+      "step_order": 6,
+      "goal": "点击页面返回按钮",
       "expected": "返回到上一级界面",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'酒店'",
-      "expected": "文本输入框中显示'酒店'",
-      "action_type": "type",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "在文本输入框中输入'指定场所'",
+      "expected": "文本输入框中显示'指定场所'",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索按钮以执行酒店搜索",
-      "expected": "搜索结果页面加载，显示酒店列表",
-      "action_type": "click",
-      "step_order": 8
+      "step_order": 8,
+      "goal": "点击搜索按钮以执行搜索操作",
+      "expected": "搜索结果页面加载，显示场所列表",
+      "action_type": "click"
     },
     {
+      "step_order": 9,
       "goal": "点击'位置距离'筛选选项",
       "expected": "界面展开位置距离筛选菜单",
-      "action_type": "click",
-      "step_order": 9
+      "action_type": "click"
     },
     {
+      "step_order": 10,
       "goal": "点击筛选选项中的'三星/舒适'按钮",
-      "expected": "筛选出三星/舒适类型的酒店",
-      "action_type": "click",
-      "step_order": 10
+      "expected": "筛选出三星/舒适类型的场所",
+      "action_type": "click"
     },
     {
+      "step_order": 11,
       "goal": "确认筛选条件并关闭筛选面板",
-      "expected": "筛选条件已应用，酒店列表更新显示符合'三星/舒适'标准的酒店",
-      "action_type": "click",
-      "step_order": 11
+      "expected": "筛选条件已应用，列表更新显示符合'三星/舒适'标准的场所",
+      "action_type": "click"
     },
     {
+      "step_order": 12,
       "goal": "点击'推荐排序'按钮以展开排序选项",
       "expected": "展开排序选择菜单",
-      "action_type": "click",
-      "step_order": 12
+      "action_type": "click"
     },
     {
+      "step_order": 13,
       "goal": "选择排序方式为距离优先",
-      "expected": "筛选出距离酒店最近的推荐排序",
-      "action_type": "click",
-      "step_order": 13
+      "expected": "筛选出距离最近的场所",
+      "action_type": "click"
     },
     {
-      "goal": "点击'特定酒店'的酒店名称区域",
-      "expected": "进入该酒店的详情页面",
-      "action_type": "click",
-      "step_order": 14
+      "step_order": 14,
+      "goal": "点击'指定场所'条目",
+      "expected": "进入该场所的详情页面",
+      "action_type": "click"
     },
     {
+      "step_order": 15,
       "goal": "点击底部导航栏中的'导航'按钮",
-      "expected": "进入酒店位置导航界面",
-      "action_type": "click",
-      "step_order": 15
+      "expected": "进入目的地位置导航界面",
+      "action_type": "click"
     }
   ]
 }

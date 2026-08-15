@@ -8,40 +8,40 @@
   "domain": "导航",
   "keywords": [
     "高德地图",
-    "导航",
     "目的地",
+    "导航",
     "搜索"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "打开高德地图应用",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，可输入地点信息",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
-      "goal": "点击目的地博物院的名称以进入详情页",
+      "step_order": 4,
+      "goal": "点击'目的地'的名称以进入详情页",
       "expected": "进入目的地的详细信息页面",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击底部导航栏中的'导航'按钮",
       "expected": "进入导航功能界面",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     }
   ]
 }

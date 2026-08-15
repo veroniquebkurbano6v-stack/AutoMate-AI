@@ -10,50 +10,50 @@
     "高德地图",
     "目的地",
     "公司地址",
-    "导航"
+    "设置"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击顺风车服务图标",
       "expected": "进入顺风车服务页面",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "设置常去地点",
       "expected": "点击后可添加或编辑常去地点",
-      "action_type": "click",
-      "step_order": 3
+      "action_type": "click"
     },
     {
+      "step_order": 4,
       "goal": "添加家庭或公司地点",
       "expected": "进入添加地点的界面",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 5
+      "action_type": "type"
     },
     {
+      "step_order": 6,
       "goal": "点击'地图选点'按钮，进入地图查看该位置详情",
       "expected": "进入地图界面，显示该位置的详细地图视图",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     },
     {
+      "step_order": 7,
       "goal": "点击'设为公司地址'按钮",
       "expected": "地址信息已成功保存并显示在地图上",
-      "action_type": "click",
-      "step_order": 7
+      "action_type": "click"
     }
   ]
 }

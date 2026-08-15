@@ -1,53 +1,47 @@
 {
   "sop_id": "eeac5eec37170efe",
   "original_task_name": "高德地图查找秦岭终南山并导航过去",
-  "task_name": "高德地图查找目的地并导航过去",
+  "task_name": "在高德地图查找指定地点并导航过去",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "导航",
   "keywords": [
     "高德地图",
+    "查找",
     "目的地",
-    "导航",
-    "查找"
+    "导航"
   ],
   "steps": [
     {
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索框以激活输入功能",
-      "expected": "搜索框处于可输入状态",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入对应地点",
+      "action_type": "click"
     },
     {
-      "action_type": "type",
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "执行搜索操作，获取目的地相关地点信息",
-      "expected": "界面显示搜索结果列表，包含多个与目的地相关的地点",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索结果中对应的地点条目",
+      "expected": "进入该地点的详细信息页面",
+      "action_type": "click"
     },
     {
-      "goal": "点击景区名称进入详情页",
-      "expected": "进入景区详细信息页面",
-      "action_type": "click",
-      "step_order": 5
-    },
-    {
-      "goal": "点击导航按钮进入路线规划功能",
-      "expected": "进入路线规划界面",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 5,
+      "goal": "点击页面底部的'导航'按钮",
+      "expected": "进入导航功能界面",
+      "action_type": "click"
     }
   ]
 }

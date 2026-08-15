@@ -9,58 +9,70 @@
   "keywords": [
     "高德地图",
     "导航",
-    "自驾路线",
+    "自驾",
     "出发地",
     "目的地"
   ],
   "steps": [
     {
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏中的'特定地点'文字区域",
-      "expected": "搜索栏内容被选中，准备输入新的搜索词",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面底部的'路线'按钮",
+      "expected": "进入路线规划界面",
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击起点输入框",
+      "expected": "起点输入框获得焦点，准备输入出发地",
+      "action_type": "click"
     },
     {
-      "goal": "点击目的地风景区下的停车场选项",
-      "expected": "进入停车场信息页面",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "在文本输入框中输入出发地",
+      "expected": "文本输入框中显示输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击'路线'按钮以进入路线规划界面",
-      "expected": "进入路线规划页面",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击搜索结果中对应的出发地条目",
+      "expected": "出发地设置完成，界面显示已选出发地",
+      "action_type": "click"
     },
     {
-      "goal": "确认起点位置是否为“我的位置”",
-      "expected": "确认起点已设置为“我的位置”",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "点击终点输入框",
+      "expected": "终点输入框获得焦点，准备输入目的地",
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'出发地'",
-      "expected": "文本输入框中显示'出发地'",
-      "action_type": "type",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "在文本输入框中输入目的地",
+      "expected": "文本输入框中显示输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击地图选按钮进入地图选择界面",
-      "expected": "进入地图选择界面",
-      "action_type": "click",
-      "step_order": 8
+      "step_order": 8,
+      "goal": "点击搜索结果中对应的目的地条目",
+      "expected": "目的地设置完成，界面显示已选目的地",
+      "action_type": "click"
+    },
+    {
+      "step_order": 9,
+      "goal": "点击'驾车'选项卡",
+      "expected": "界面显示驾车路线方案",
+      "action_type": "click"
+    },
+    {
+      "step_order": 10,
+      "goal": "点击'开始导航'按钮",
+      "expected": "进入导航流程，开始按路线引导行驶",
+      "action_type": "click"
     }
   ]
 }

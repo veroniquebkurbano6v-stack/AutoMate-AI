@@ -1,7 +1,7 @@
 {
   "sop_id": "10f13efd0efa7c08",
   "original_task_name": "高德搜西安小寨附近的咖啡馆",
-  "task_name": "高德搜目的地附近的咖啡馆",
+  "task_name": "在高德地图搜索指定地点附近的咖啡馆",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -28,14 +28,14 @@
     },
     {
       "step_order": 3,
-      "goal": "在搜索栏中输入'西安小寨'",
-      "expected": "搜索栏中显示'西安小寨'",
+      "goal": "在搜索栏中输入'目的地'",
+      "expected": "搜索栏中显示'目的地'",
       "action_type": "type"
     },
     {
       "step_order": 4,
       "goal": "点击搜索栏右侧的搜索按钮",
-      "expected": "界面显示西安小寨的详细信息，包括地铁线路、周边商场和景点等",
+      "expected": "界面显示目的地的详细信息，包括地铁线路、周边商场和景点等",
       "action_type": "click"
     },
     {

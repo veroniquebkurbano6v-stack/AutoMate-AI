@@ -14,64 +14,64 @@
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "打开高德地图应用",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击打车服务图标",
       "expected": "进入打车服务界面",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "点击'设置常去地点'选项",
       "expected": "进入目的地管理界面",
-      "action_type": "click",
-      "step_order": 3
+      "action_type": "click"
     },
     {
+      "step_order": 4,
       "goal": "添加常去地点",
       "expected": "界面进入添加常去地点的输入框",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 5
+      "action_type": "type"
     },
     {
+      "step_order": 6,
       "goal": "点击收藏的点列表中的目的地条目",
       "expected": "收藏的点列表中显示目的地条目已被选中",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     },
     {
+      "step_order": 7,
       "goal": "点击目的地条目右侧的三点菜单按钮",
       "expected": "展开该条目对应的更多操作选项",
-      "action_type": "click",
-      "step_order": 7
+      "action_type": "click"
     },
     {
+      "step_order": 8,
       "goal": "点击修改备注名选项",
       "expected": "弹出修改备注名的对话框",
-      "action_type": "click",
-      "step_order": 8
+      "action_type": "click"
     },
     {
+      "step_order": 9,
       "goal": "在文本输入框中输入'景点'",
       "expected": "文本输入框中显示'景点'",
-      "action_type": "type",
-      "step_order": 9
+      "action_type": "type"
     },
     {
+      "step_order": 10,
       "goal": "确认修改备注名并保存",
       "expected": "界面显示修改备注名已成功保存",
-      "action_type": "click",
-      "step_order": 10
+      "action_type": "click"
     }
   ]
 }

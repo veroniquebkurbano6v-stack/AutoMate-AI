@@ -1,7 +1,7 @@
 {
   "sop_id": "2239a63e31c3cadd",
   "original_task_name": "导航到西安烤鸭店，如果要排号，帮我先约个号。",
-  "task_name": "导航到目的地，如果要排号，帮我先约个号。",
+  "task_name": "在高德地图导航到指定地点并预约排号",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,44 +10,45 @@
     "高德地图",
     "目的地",
     "导航",
+    "搜索",
     "排号"
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
       "expected": "高德地图应用图标被选中，准备进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏激活输入功能",
       "expected": "搜索栏处于可输入状态",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索按钮以执行搜索操作",
       "expected": "搜索结果页面显示多个相关地点列表",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击优惠券按钮以查看可用优惠",
       "expected": "进入优惠券领取页面",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "点击底部导航栏中的'导航'按钮",
       "expected": "进入导航功能界面",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     }
   ]
 }

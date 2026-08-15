@@ -1,7 +1,7 @@
 {
   "sop_id": "f95b69a87bfca724",
   "original_task_name": "用高德地图找找最近的音乐学校，找到了请转发给黄莉。",
-  "task_name": "用高德地图找找最近的音乐学校，找到了请转发给联系人。",
+  "task_name": "用高德地图找最近的指定地点并转发给联系人",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -9,76 +9,77 @@
   "keywords": [
     "高德地图",
     "微信",
-    "音乐学校",
+    "目的地",
     "联系人",
-    "导航"
+    "分享",
+    "距离优先"
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏中的'特定地点'文字区域",
-      "expected": "搜索栏内容被选中，准备进行输入或搜索操作",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入对应地点",
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'音乐学校'",
-      "expected": "文本输入框中显示'音乐学校'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面显示",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面显示搜索结果",
+      "action_type": "click"
     },
     {
-      "goal": "点击'推荐排序'按钮以展开排序选项",
-      "expected": "展开排序菜单，显示包括价格、距离、评分等排序方式",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击搜索结果中的排序选项",
+      "expected": "展开排序菜单，可选择不同的排序依据",
+      "action_type": "click"
     },
     {
-      "goal": "选择排序方式为距离优先",
-      "expected": "筛选出距离当前位置较近的音乐学校列表",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "选择排序方式为'距离优先'",
+      "expected": "排序菜单中显示'距离优先'选项已被选中",
+      "action_type": "click"
     },
     {
-      "goal": "点击'特定学校'条目以查看详细信息",
-      "expected": "进入该培训机构的详情页面",
-      "action_type": "click",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "点击搜索结果中对应的地点条目",
+      "expected": "进入该地点的详细信息页面",
+      "action_type": "click"
     },
     {
-      "goal": "点击底部导航栏中的分享按钮",
-      "expected": "分享按钮处于可点击状态",
-      "action_type": "click",
-      "step_order": 8
+      "step_order": 8,
+      "goal": "点击页面底部的分享按钮",
+      "expected": "弹出分享选项面板",
+      "action_type": "click"
     },
     {
-      "goal": "选择微信作为分享目标应用",
-      "expected": "分享面板中微信应用选项被选中",
-      "action_type": "click",
-      "step_order": 9
+      "step_order": 9,
+      "goal": "点击分享面板中的微信图标",
+      "expected": "跳转至微信分享页面",
+      "action_type": "click"
     },
     {
-      "goal": "选择最近聊天中的'联系人'对话",
-      "expected": "进入'联系人'的聊天界面",
-      "action_type": "click",
-      "step_order": 10
+      "step_order": 10,
+      "goal": "选择最近聊天中对应的联系人对话",
+      "expected": "界面显示已选择该联系人对话",
+      "action_type": "click"
     },
     {
-      "goal": "确认分享给联系人的链接",
-      "expected": "确认分享链接已成功发送给联系人",
-      "action_type": "click",
-      "step_order": 11
+      "step_order": 11,
+      "goal": "确认发送分享链接",
+      "expected": "分享链接已成功发送给联系人",
+      "action_type": "click"
     }
   ]
 }

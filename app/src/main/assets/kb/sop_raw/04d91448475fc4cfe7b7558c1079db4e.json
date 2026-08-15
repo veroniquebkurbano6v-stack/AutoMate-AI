@@ -16,13 +16,13 @@
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击高德地图应用图标以启动应用程序",
-      "expected": "高德地图应用图标被选中，应用界面开始加载",
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏激活输入功能",
+      "goal": "点击页面顶部的搜索框区域",
       "expected": "搜索栏获得焦点，准备输入目的地",
       "action_type": "click"
     },
@@ -34,13 +34,13 @@
     },
     {
       "step_order": 4,
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面显示",
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面显示搜索结果",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击目的地位置信息右侧的路线按钮",
+      "goal": "点击目的地位置信息右侧的'路线'按钮",
       "expected": "进入该位置的详细路线规划界面",
       "action_type": "click"
     },

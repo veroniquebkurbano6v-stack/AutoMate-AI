@@ -13,11 +13,35 @@
     "会议"
   ],
   "steps": [
-    {
-      "goal": "点击微信应用图标以打开应用",
-      "expected": "微信应用图标被选中，界面进入微信应用状态",
-      "action_type": "click",
-      "step_order": 1
-    }
+   {
+    "goal": "点击手机桌面上的腾讯会议应用图标",
+    "expected": "应用图标被选中，进入腾讯会议界面",
+    "action_type": "click",
+    "step_order": 1
+   },
+   {
+    "goal": "点击页面中的'加入会议'按钮",
+    "expected": "进入会议加入界面",
+    "action_type": "click",
+    "step_order": 2
+   },
+   {
+    "goal": "在会议号输入框中输入'特定会议号'",
+    "expected": "会议号输入框中显示'特定会议号'",
+    "action_type": "type",
+    "step_order": 3
+   },
+   {
+    "goal": "点击'加入会议'按钮以提交并加入会议",
+    "expected": "点击后界面显示会议加入成功提示",
+    "action_type": "click",
+    "step_order": 4
+   },
+   {
+    "goal": "点击会议界面中的静音按钮",
+    "expected": "会议界面中静音按钮状态变为已激活，表示麦克风已关闭",
+    "action_type": "click",
+    "step_order": 5
+   }
   ]
 }

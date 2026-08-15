@@ -1,7 +1,7 @@
 {
   "sop_id": "2765e04dd6a7fe57",
   "original_task_name": "导航到西安音乐厅的演出排练厅",
-  "task_name": "导航到目的地",
+  "task_name": "导航到目的地的指定场所",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -14,40 +14,40 @@
   ],
   "steps": [
     {
-      "goal": "点击高德地图应用图标",
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索框以启动地点搜索功能",
       "expected": "搜索框处于可输入状态，准备进行地点、公交、地铁等查询",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
-      "action_type": "type",
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索按钮执行搜索操作",
       "expected": "搜索结果页面加载完成，显示与搜索关键词相关的搜索结果",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击目的地的详细信息区域",
       "expected": "进入目的地的详细信息页面",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "点击底部导航栏中的'导航'按钮",
       "expected": "进入导航功能界面",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     }
   ]
 }

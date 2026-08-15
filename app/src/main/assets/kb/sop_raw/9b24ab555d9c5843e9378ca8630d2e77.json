@@ -1,65 +1,66 @@
 {
   "sop_id": "9b24ab555d9c5843",
   "original_task_name": "通过高德地图查找并导航至当前位置附近最近的家电维修点  ",
-  "task_name": "通过高德地图查找并导航至当前位置附近最近的家电维修点",
+  "task_name": "通过高德地图查找并导航至当前位置附近最近的目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "导航",
   "keywords": [
     "高德地图",
+    "目的地",
     "导航",
-    "家电维修",
-    "目的地"
+    "搜索",
+    "附近"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，可输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'家电维修'",
-      "expected": "文本输入框中显示'家电维修'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入'目的地'",
+      "expected": "文本输入框中显示'目的地'",
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面加载完成，显示与\"家电维修\"相关的服务和地点列表",
-      "action_type": "click",
-      "step_order": 4
+      "expected": "搜索结果页面加载完成，显示相关服务地点列表",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏右侧的关闭按钮",
-      "expected": "搜索栏被关闭，界面返回到上一级",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击排序选项调整结果排序方式",
+      "expected": "进入排序选择界面，可选择不同的排序依据",
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "选择排序方式为距离优先",
       "expected": "排序菜单显示距离优先选项已被选中",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     },
     {
-      "goal": "选择特定服务点作为家电维修服务提供商",
-      "expected": "界面显示该服务商的详细信息，包括评分、地址和联系方式",
-      "action_type": "click",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "点击'目的地'条目",
+      "expected": "界面显示该地点的详细信息，包括评分、地址和联系方式",
+      "action_type": "click"
     },
     {
+      "step_order": 8,
       "goal": "点击导航按钮进入路线规划功能",
       "expected": "进入路线规划界面",
-      "action_type": "click",
-      "step_order": 8
+      "action_type": "click"
     }
   ]
 }

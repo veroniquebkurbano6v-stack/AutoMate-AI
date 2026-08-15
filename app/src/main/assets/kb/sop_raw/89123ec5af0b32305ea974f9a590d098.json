@@ -1,7 +1,7 @@
 {
   "sop_id": "89123ec5af0b3230",
   "original_task_name": "导航到西安钟楼附近的甜品店",
-  "task_name": "导航到目的地附近的甜品店",
+  "task_name": "导航到目的地附近的指定场所",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -9,45 +9,45 @@
   "keywords": [
     "高德地图",
     "导航",
-    "甜品店",
-    "目的地"
+    "目的地",
+    "附近"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用启动并进入主界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入状态",
       "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'目的地甜品店'",
-      "expected": "文本输入框中显示'目的地甜品店'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的场所",
+      "expected": "文本输入框中显示对应输入的场所",
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索按钮以执行搜索操作",
       "expected": "搜索结果页面加载完成，显示搜索结果列表",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
-      "goal": "点击目的地甜品站的条目",
-      "expected": "进入该店铺的详细信息页面",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击搜索结果中的场所条目",
+      "expected": "进入该场所的详细信息页面",
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "进入导航功能页面",
       "expected": "页面切换至导航功能界面",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     }
   ]
 }

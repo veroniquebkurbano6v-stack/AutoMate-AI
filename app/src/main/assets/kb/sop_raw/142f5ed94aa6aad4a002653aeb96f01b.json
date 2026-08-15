@@ -1,7 +1,7 @@
 {
   "sop_id": "142f5ed94aa6aad4",
   "original_task_name": "请用高德导航从当前位置前往雁塔区唐延路与科技七路交汇处。",
-  "task_name": "请用高德导航从当前位置前往目的地。",
+  "task_name": "请用高德导航从当前位置前往目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -14,34 +14,34 @@
   ],
   "steps": [
     {
-      "goal": "点击高德地图应用图标以启动应用程序",
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
       "expected": "高德地图应用图标被选中，应用界面开始加载",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
-      "goal": "选择目的地作为导航终点",
+      "step_order": 4,
+      "goal": "选择搜索结果中的目的地作为导航终点",
       "expected": "界面显示该地点的详细信息和交通选项",
-      "action_type": "click",
-      "step_order": 4
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击底部导航栏中的'导航'按钮",
       "expected": "进入导航界面",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     }
   ]
 }

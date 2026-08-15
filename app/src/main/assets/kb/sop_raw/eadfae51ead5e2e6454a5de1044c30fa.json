@@ -1,7 +1,7 @@
 {
   "sop_id": "eadfae51ead5e2e6",
   "original_task_name": "使用高德地图从当前位置导航至秦始皇兵马俑博物馆  ",
-  "task_name": "使用高德地图从当前位置导航至目的地",
+  "task_name": "使用高德地图从当前位置导航至指定地点",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -14,34 +14,40 @@
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，应用启动并显示其主界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入对应地点",
+      "action_type": "click"
     },
     {
-      "action_type": "type",
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "界面显示搜索结果，包含目的地附近的景点、博物馆和售票处等信息",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面显示搜索结果",
+      "action_type": "click"
     },
     {
-      "goal": "点击'开始导航'按钮",
-      "expected": "导航开始，系统将按照选定路线引导车辆行驶",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击搜索结果中对应的地点条目",
+      "expected": "进入该地点的详细信息页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 6,
+      "goal": "点击页面底部的'开始导航'按钮",
+      "expected": "进入导航流程，开始按路线引导",
+      "action_type": "click"
     }
   ]
 }

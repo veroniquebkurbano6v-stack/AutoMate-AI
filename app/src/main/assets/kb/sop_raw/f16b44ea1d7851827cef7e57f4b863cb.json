@@ -1,7 +1,7 @@
 {
   "sop_id": "f16b44ea1d785182",
   "original_task_name": "导航到西北工业大学附近的便利店",
-  "task_name": "导航到目的地附近的便利店",
+  "task_name": "导航到指定地点附近的便利店",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -10,74 +10,75 @@
     "高德地图",
     "导航",
     "目的地",
-    "便利店"
+    "便利店",
+    "搜索"
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
+      "step_order": 1,
+      "goal": "点击手机桌面上的高德地图应用图标",
       "expected": "高德地图应用图标被选中，应用启动并进入主界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入目的地",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框区域",
+      "expected": "搜索栏获得焦点，准备输入对应地点",
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在文本输入框中输入需要查找的地点",
+      "expected": "文本输入框中显示对应输入的地点",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面显示",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果页面显示搜索结果",
+      "action_type": "click"
     },
     {
-      "goal": "点击目的地的路线按钮",
-      "expected": "进入路线规划界面",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击搜索结果中对应的地点条目",
+      "expected": "进入该地点的详细信息页面",
+      "action_type": "click"
     },
     {
-      "goal": "点击底部导航栏的'周边'按钮",
+      "step_order": 6,
+      "goal": "点击页面底部的'周边'按钮",
       "expected": "进入周边功能页面",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏中的位置名称文本区域",
-      "expected": "搜索栏中的位置名称文本区域被选中，准备输入新的搜索内容",
-      "action_type": "click",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "点击搜索栏区域",
+      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'便利店'",
-      "expected": "文本输入框中显示'便利店'",
-      "action_type": "type",
-      "step_order": 8
+      "step_order": 8,
+      "goal": "在文本输入框中输入需要查找的场所",
+      "expected": "文本输入框中显示对应输入的场所",
+      "action_type": "type"
     },
     {
-      "goal": "执行搜索操作，获取便利店相关结果",
-      "expected": "界面显示搜索结果列表",
-      "action_type": "click",
-      "step_order": 9
+      "step_order": 9,
+      "goal": "点击搜索框右侧的搜索按钮",
+      "expected": "搜索结果列表显示",
+      "action_type": "click"
     },
     {
-      "goal": "点击特定商家条目以查看详细信息",
-      "expected": "进入该特定商家的详细信息页面",
-      "action_type": "click",
-      "step_order": 10
+      "step_order": 10,
+      "goal": "点击搜索结果中对应的场所条目",
+      "expected": "进入该场所的详细信息页面",
+      "action_type": "click"
     },
     {
-      "goal": "点击底部导航栏中的'导航'按钮",
+      "step_order": 11,
+      "goal": "点击页面底部的'导航'按钮",
       "expected": "进入导航功能界面",
-      "action_type": "click",
-      "step_order": 11
+      "action_type": "click"
     }
   ]
 }

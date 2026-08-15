@@ -1,7 +1,7 @@
 {
   "sop_id": "a9acc9c76d711067",
   "original_task_name": "搜西安钟楼附近的邮局",
-  "task_name": "搜目的地附近的邮局",
+  "task_name": "搜目的地附近的指定场所",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -9,57 +9,57 @@
   "keywords": [
     "高德地图",
     "目的地",
-    "邮局",
+    "附近",
     "搜索"
   ],
   "steps": [
     {
+      "step_order": 1,
       "goal": "点击高德地图应用图标",
       "expected": "高德地图应用图标被选中，进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "action_type": "click"
     },
     {
+      "step_order": 2,
       "goal": "点击搜索栏以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入地点信息",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
+      "step_order": 3,
       "goal": "在文本输入框中输入'目的地'",
       "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
-      "step_order": 3
+      "action_type": "type"
     },
     {
+      "step_order": 4,
       "goal": "点击搜索结果中的'目的地'条目",
-      "expected": "界面显示目的地的详细信息，包括文物古迹、附近地铁站位置、打车和导航选项等",
-      "action_type": "click",
-      "step_order": 4
+      "expected": "界面显示目的地的详细信息，包括周边交通方式和导航选项等",
+      "action_type": "click"
     },
     {
+      "step_order": 5,
       "goal": "点击底部导航栏的'周边'按钮",
       "expected": "进入周边功能页面",
-      "action_type": "click",
-      "step_order": 5
+      "action_type": "click"
     },
     {
+      "step_order": 6,
       "goal": "点击搜索栏区域以激活输入功能",
       "expected": "搜索栏获得焦点，准备输入新的搜索内容",
-      "action_type": "click",
-      "step_order": 6
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'邮局'",
-      "expected": "文本输入框中显示'邮局'",
-      "action_type": "type",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "在文本输入框中输入'需要查找的场所'",
+      "expected": "文本输入框中显示'需要查找的场所'",
+      "action_type": "type"
     },
     {
+      "step_order": 8,
       "goal": "点击搜索按钮以执行搜索操作",
       "expected": "搜索结果列表显示",
-      "action_type": "click",
-      "step_order": 8
+      "action_type": "click"
     }
   ]
 }
