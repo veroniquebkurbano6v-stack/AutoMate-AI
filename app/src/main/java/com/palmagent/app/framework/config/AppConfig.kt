@@ -14,7 +14,6 @@ class AppConfig @Inject constructor() {
 
     // GUI-Plus 配置
     val guiOwlApiUrl: String get() = KVUtils.getGuiOwlApiUrl()
-    val isGuiOwlEnabled: Boolean get() = KVUtils.isGuiOwlEnabled()
 
     // 决策模型配置
     val plannerApiKey: String get() = KVUtils.getPlannerApiKey()

@@ -59,13 +59,13 @@
 
                 <!-- 版本徽章（参考 HTML lg-live 样式） -->
                 <TextView
+                    android:id="@+id/tvVersionBadge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:background="@drawable/bg_sic_cyan"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="2dp"
-                    android:text="v3.2"
                     android:textColor="@android:color/white"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -142,7 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="任务决策与文本执行"
+                        android:text="执行模型 · 按 Plan 逐步操作屏幕"
                         android:textColor="#AAAAAA"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -301,72 +301,6 @@
                 android:layout_marginHorizontal="12dp"
                 android:background="#F0F0F0" />
 
-            <!-- 视觉执行模型测试 (GUI-OWL VL模式) -->
-            <LinearLayout
-                android:id="@+id/menu_visual_execution_test"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="12dp">
-
-                <TextView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/bg_sic_cyan"
-                    android:gravity="center"
-                    android:text="V"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="视觉执行模型测试"
-                        android:textColor="#1A1A1A"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="GUI-OWL · VL模式端到端验证"
-                        android:textColor="#AAAAAA"
-                        android:textSize="11sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tvVisualExecutionTestValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#999999"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="›"
-                    android:textColor="#CCCCCC"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="12dp"
-                android:background="#F0F0F0" />
-
             <!-- 任务决策模型 -->
             <LinearLayout
                 android:id="@+id/menu_planner_config"
@@ -406,7 +340,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Planner · 复杂模式编排"
+                        android:text="决策模型 · 复杂模式生成分步 Plan"
                         android:textColor="#AAAAAA"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -679,7 +613,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="视觉模型执行模式（VL）"
+                        android:text="视觉执行模式（GUI-Plus）"
                         android:textColor="#1A1A1A"
                         android:textSize="15sp" />
 
@@ -687,7 +621,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="截图直传视觉模型决策"
+                        android:text="截图直传 GUI-Plus 决策"
                         android:textColor="#AAAAAA"
                         android:textSize="11sp" />
                 </LinearLayout>

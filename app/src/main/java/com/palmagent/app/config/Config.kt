@@ -32,9 +32,6 @@ object Config {
     @Deprecated("使用 KVUtils.getGuiOwlModel()", ReplaceWith("KVUtils.getGuiOwlModel()"))
     val GUI_OWL_MODEL: String get() = KVUtils.getGuiOwlModel()
 
-    @Deprecated("使用 KVUtils.isGuiOwlEnabled()", ReplaceWith("KVUtils.isGuiOwlEnabled()"))
-    val GUI_OWL_ENABLED: Boolean get() = KVUtils.isGuiOwlEnabled()
-
     @Deprecated("使用 KVUtils.getGuiOwlConnectTimeout()", ReplaceWith("KVUtils.getGuiOwlConnectTimeout()"))
     val GUI_OWL_CONNECT_TIMEOUT: Long get() = KVUtils.getGuiOwlConnectTimeout()
 

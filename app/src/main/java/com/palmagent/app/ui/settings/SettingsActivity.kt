@@ -91,6 +91,9 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+        // 版本徽章动态化：跟随 BuildConfig（避免布局硬编码忘记更新）
+        findViewById<TextView>(R.id.tvVersionBadge)?.text = "v${BuildConfig.VERSION_NAME}"
+
         findViewById<Button>(R.id.btnBack).setOnClickListener { finish() }
         // 【改动·新增】初始化权限管理功能（从 HomeActivity 移植）
         setupPermissions()
@@ -105,7 +108,6 @@ class SettingsActivity : AppCompatActivity() {
         setupKeyboardVlmConfig()
         setupVisionModeSwitch()
         setupGuiOwlConfig()
-        setupVisualExecutionTest()
         setupAmapMcpConfig()
         setupPlannerConfig()
         
@@ -401,9 +403,11 @@ class SettingsActivity : AppCompatActivity() {
         val matchedPresetIndex = llmPresets.indexOfFirst { it.baseUrl.isNotEmpty() && it.baseUrl == currentBaseUrl }
         presetSpinner.setSelection(if (matchedPresetIndex >= 0) matchedPresetIndex else llmPresets.size - 1)
 
-        // Spinner 选择事件
+        // Spinner 选择事件（初始化回调会覆盖预填的实际配置，首次跳过）
+        var spinnerInitialized = false
         presetSpinner.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                if (!spinnerInitialized) { spinnerInitialized = true; return }
                 val preset = llmPresets[position]
                 if (preset.displayName == "自定义") {
                     baseUrlEdit.setText("")
@@ -894,8 +898,11 @@ class SettingsActivity : AppCompatActivity() {
         }
         presetSpinner.setSelection(if (matchedPresetIndex >= 0) matchedPresetIndex else plannerPresets.size - 1)
 
+        // 初始化回调会覆盖预填的实际配置，首次跳过
+        var plannerSpinnerInitialized = false
         presetSpinner.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                if (!plannerSpinnerInitialized) { plannerSpinnerInitialized = true; return }
                 val preset = plannerPresets[position]
                 if (preset.displayName != "自定义") {
                     baseUrlEdit.setText(preset.baseUrl)
@@ -1217,13 +1224,14 @@ class SettingsActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun refreshGuiOwlConfigDisplay() {
         val tv = findViewById<TextView>(R.id.tvGuiOwlConfigValue)
-        val state = viewModel.uiState.value
-        if (state.isGuiOwlEnabled) {
+        // GUI-Plus 为唯一视觉模型，常驻启用；但 API-Key 未配置时提示未配置（回退 LLM_API_KEY 也算已配置）
+        val key = KVUtils.getGuiOwlApiKey()
+        if (key.isNotBlank()) {
             tv.text = "已启用"
             tv.setTextColor(0xFF4CAF50.toInt())
         } else {
-            tv.text = "未启用"
-            tv.setTextColor(0xFF999999.toInt())
+            tv.text = "未配置"
+            tv.setTextColor(0xFFE53935.toInt())
         }
     }
 
@@ -1241,107 +1249,6 @@ class SettingsActivity : AppCompatActivity() {
         guiOwlMenu?.setOnClickListener { showGuiOwlConfigDialog() }
     }
 
-    // ==================== 视觉执行模型测试（独立入口） ====================
-
-    private fun setupVisualExecutionTest() {
-        val menu = findViewById<LinearLayout>(R.id.menu_visual_execution_test)
-        menu?.setOnClickListener { showVisualExecutionTestDialog() }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun showVisualExecutionTestDialog() {
-        val layout = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(48, 32, 48, 16)
-        }
-
-        val descText = TextView(this).apply {
-            text = "VL视觉执行模式：模型直接接收截图+任务描述，输出完整操作决策（动作+坐标）。\n\n" +
-                   "测试流程：生成内置样图（搜索按钮）→ 发送任务\"点击搜索按钮\" → 验证返回的动作与坐标。\n\n" +
-                   "服务地址：${KVUtils.getGuiOwlApiUrl()}"
-            textSize = 12f
-            setTextColor(0xFF666666.toInt())
-            setPadding(0, 0, 0, 16)
-        }
-        layout.addView(descText)
-
-        val resultText = TextView(this).apply {
-            textSize = 13f
-            setPadding(0, 16, 0, 8)
-            visibility = TextView.GONE
-            setLineSpacing(1.4f, 1f)
-        }
-        layout.addView(resultText)
-
-        val progressBar = ProgressBar(this).apply {
-            visibility = ProgressBar.GONE
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { gravity = Gravity.CENTER_HORIZONTAL }
-        }
-        layout.addView(progressBar)
-
-        val testButton = Button(this).apply {
-            text = "开始测试"
-            textSize = 14f
-        }
-        layout.addView(testButton)
-
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("视觉执行模型测试（VL模式）")
-            .setView(layout)
-            .setNegativeButton("关闭", null)
-            .create()
-
-        testButton.setOnClickListener {
-            testButton.isEnabled = false
-            testButton.text = "测试中..."
-            resultText.visibility = TextView.GONE
-            progressBar.visibility = ProgressBar.VISIBLE
-
-            lifecycleScope.launch(Dispatchers.IO) {
-                val result = testGuiOwlVisualExecution(KVUtils.getGuiOwlApiUrl())
-
-                withContext(Dispatchers.Main) {
-                    progressBar.visibility = ProgressBar.GONE
-                    testButton.isEnabled = true
-                    testButton.text = "重新测试"
-                    resultText.visibility = TextView.VISIBLE
-
-                    if (result.isSuccess) {
-                        resultText.text = "✓ 测试成功\n\n" +
-                                "连接方式: ${result.connectionType}\n" +
-                                "动作(action): ${result.action}\n" +
-                                "坐标(coordinate): ${result.coordinate}\n" +
-                                "耗时: ${result.inferenceTime}s\n\n" +
-                                "原始输出:\n${result.rawOutput.take(300)}"
-                        resultText.setTextColor(0xFF4CAF50.toInt())
-
-                        // 更新主界面状态
-                        findViewById<TextView>(R.id.tvVisualExecutionTestValue)?.apply {
-                            text = "✓ 可用"
-                            setTextColor(0xFF4CAF50.toInt())
-                        }
-                    } else {
-                        resultText.text = "✗ 测试失败\n\n" +
-                                "连接方式: ${result.connectionType}\n" +
-                                "错误: ${result.error}\n\n" +
-                                "原始响应:\n${result.rawOutput.take(300)}"
-                        resultText.setTextColor(0xFFE53935.toInt())
-
-                        findViewById<TextView>(R.id.tvVisualExecutionTestValue)?.apply {
-                            text = "✗ 不可用"
-                            setTextColor(0xFFE53935.toInt())
-                        }
-                    }
-                }
-            }
-        }
-
-        dialog.show()
-    }
-
     @SuppressLint("SetTextI18n")
     private fun showGuiOwlConfigDialog() {
         val scrollView = ScrollView(this).apply {
@@ -1354,14 +1261,6 @@ class SettingsActivity : AppCompatActivity() {
             orientation = LinearLayout.VERTICAL
             setPadding(48, 24, 48, 8)
         }
-
-        val enabledCheckbox = android.widget.CheckBox(this).apply {
-            text = "启用 GUI-Plus 视觉执行/定位"
-            isChecked = viewModel.uiState.value.isGuiOwlEnabled
-            textSize = 14f
-            setPadding(0, 16, 0, 8)
-        }
-        layout.addView(enabledCheckbox)
 
         fun addField(labelText: String, editText: EditText, inputType: Int = InputType.TYPE_CLASS_TEXT) {
             val label = TextView(this@SettingsActivity).apply {
@@ -1405,6 +1304,28 @@ class SettingsActivity : AppCompatActivity() {
             ).apply { bottomMargin = 4 }
         }
         layout.addView(apiUrlView)
+
+        // API-Key 输入区（留空则不修改，与 LLM/Planner 对话框一致）
+        val apiKeyLabel = TextView(this).apply {
+            text = "API Key（百炼，留空则复用 LLM_API_KEY）"
+            textSize = 14f
+            setTextColor(0xFF333333.toInt())
+            setPadding(0, 20, 0, 8)
+        }
+        layout.addView(apiKeyLabel)
+
+        val apiKeyEdit = EditText(this).apply {
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            hint = "当前: ${KVUtils.maskApiKey(KVUtils.getGuiOwlApiKey())}（留空则不修改）"
+            setTextSize(14f)
+            setPadding(24, 20, 24, 20)
+            setBackgroundResource(R.drawable.bg_input_field)
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply { bottomMargin = 4 }
+        }
+        layout.addView(apiKeyEdit)
 
         val testButton = Button(this).apply {
             text = "测试连通性"
@@ -1524,8 +1445,12 @@ class SettingsActivity : AppCompatActivity() {
         dialog.setOnShowListener {
             val saveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             saveButton.setOnClickListener {
-                val enabled = enabledCheckbox.isChecked
-                viewModel.saveGuiOwlConfig(enabled)
+                // 保存 API-Key（留空则不修改，避免误覆盖）
+                val newKey = apiKeyEdit.text.toString().trim()
+                if (newKey.isNotEmpty()) {
+                    KVUtils.setGuiOwlApiKey(newKey)
+                }
+                viewModel.saveGuiOwlConfig()
                 refreshGuiOwlConfigDisplay()
                 Toast.makeText(this, "GUI-Plus配置已保存", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
@@ -1978,13 +1903,16 @@ class SettingsActivity : AppCompatActivity() {
                 results.add("○ 文本执行模型: 未配置")
             }
 
-            // 2. 视觉描述模型
-            val vlmKey = KVUtils.getVlmApiKey()
-            if (vlmKey.isNotEmpty()) {
-                val vlmResult = testApiConnection(KVUtils.getVlmApiUrl(), vlmKey, KVUtils.getVlmModelName())
-                results.add(if (vlmResult.isSuccess) "✓ 视觉描述模型 (云端VLM): 正常" else "✗ 视觉描述模型 (云端VLM): ${vlmResult.error}")
+            // 2. 视觉描述/问答模型 (GUI-Plus，VLM 已迁移至此)
+            val guiVlmKey = KVUtils.getGuiOwlApiKey()
+            if (guiVlmKey.isNotEmpty()) {
+                val guiVlmResult = testApiConnection(
+                    KVUtils.getGuiOwlApiUrl(), guiVlmKey, KVUtils.getGuiOwlModel()
+                )
+                results.add(if (guiVlmResult.isSuccess) "✓ 视觉描述/问答模型 (GUI-Plus): 正常"
+                            else "✗ 视觉描述/问答模型 (GUI-Plus): ${guiVlmResult.error}")
             } else {
-                results.add("○ 视觉描述模型: 未配置")
+                results.add("○ 视觉描述/问答模型 (GUI-Plus): 未配置")
             }
 
             // 3. 键盘检测模型
@@ -1999,7 +1927,7 @@ class SettingsActivity : AppCompatActivity() {
             // 4. 视觉定位模型 (GUI-Plus Grounding)
             val guiOwlUrl = KVUtils.getGuiOwlApiUrl()
             val guiOwlResult = testGuiOwlGroundingConnection(guiOwlUrl)
-            val enabledTag = if (viewModel.uiState.value.isGuiOwlEnabled) "已启用" else "未启用"
+            val enabledTag = "已启用"
             if (guiOwlResult.isSuccess) {
                 results.add("✓ 视觉定位模型 (GUI-Plus): ${guiOwlResult.connectionType} ($enabledTag)")
             } else {

@@ -27,7 +27,6 @@ data class SettingsUiState(
     val vlmApiUrl: String = "",
     val compactModelName: String = "",
     val compactApiUrl: String = "",
-    val isGuiOwlEnabled: Boolean = false,
     val ocrEngineLabel: String = "RapidOCR（本地）",
     val isWechatBound: Boolean = false,
     val wechatBotId: String = "",
@@ -60,7 +59,6 @@ class SettingsViewModel @Inject constructor() : ViewModel() {
             llmBaseUrl = KVUtils.getLlmBaseUrl(),
             vlmModelName = KVUtils.getVlmModelName(),
             vlmApiUrl = KVUtils.getVlmApiUrl(),
-            isGuiOwlEnabled = KVUtils.isGuiOwlEnabled(),
             isWechatBound = KVUtils.getWechatBotToken().isNotBlank(),
             wechatBotId = KVUtils.getWechatBotId().ifEmpty { "微信Bot" }
         )
@@ -73,8 +71,7 @@ class SettingsViewModel @Inject constructor() : ViewModel() {
         refreshConfig()
     }
 
-    fun saveGuiOwlConfig(enabled: Boolean) {
-        KVUtils.setGuiOwlEnabled(enabled)
+    fun saveGuiOwlConfig() {
         refreshConfig()
     }
 
