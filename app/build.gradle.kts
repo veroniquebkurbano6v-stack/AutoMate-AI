@@ -49,6 +49,12 @@ android {
         buildConfigField("String", "PLANNER_MODEL", "\"${getLocalProperty("PLANNER_MODEL", "")}\"")
         // PLANNER_ENABLE_SEARCH 已删除 — 联网搜索由 web_search 工具提供（与执行模型统一）
 
+        // 上下文压缩模型（FailureCompactor 失败信息压缩，默认智谱 GLM-4.5-Flash）
+        // 未配置时运行时回退使用决策模型（Planner）配置
+        buildConfigField("String", "COMPACT_API_KEY", "\"${getLocalProperty("COMPACT_API_KEY", "")}\"")
+        buildConfigField("String", "COMPACT_API_URL", "\"${getLocalProperty("COMPACT_API_URL", "")}\"")
+        buildConfigField("String", "COMPACT_MODEL", "\"${getLocalProperty("COMPACT_MODEL", "")}\"")
+
         // 高德地图 MCP
         buildConfigField("String", "AMAP_API_KEY", "\"${getLocalProperty("AMAP_API_KEY", "")}\"")
         buildConfigField("String", "AMAP_MCP_BASE_URL", "\"${getLocalProperty("AMAP_MCP_BASE_URL", "https://mcp.amap.com/mcp")}\"")

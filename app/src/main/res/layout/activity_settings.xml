@@ -1060,6 +1060,16 @@
                 android:text="端侧知识库未启用"
                 android:textColor="#999999"
                 android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/kb_rebuild_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#22D3EE"
+                android:text="重新入库（重建知识库）"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>

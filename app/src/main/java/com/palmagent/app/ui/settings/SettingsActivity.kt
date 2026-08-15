@@ -2078,7 +2078,42 @@ class SettingsActivity : AppCompatActivity() {
             refreshKbStatus()
         }
 
+        findViewById<Button>(R.id.kb_rebuild_btn).setOnClickListener { confirmRebuildKb() }
+
         refreshKbStatus()
+    }
+
+    /** 点击"重新入库"：弹确认框后后台重建知识库（删除 kb.db 并从 assets 重新嵌入）。 */
+    private fun confirmRebuildKb() {
+        AlertDialog.Builder(this)
+            .setTitle("重新入库")
+            .setMessage("将从 assets/kb 重新读取全部 SOP 并重新嵌入建库（约 30-60s），期间知识库检索不可用。确定继续？")
+            .setPositiveButton("确定") { _, _ -> rebuildKb() }
+            .setNegativeButton("取消", null)
+            .show()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun rebuildKb() {
+        val rebuildBtn = findViewById<Button>(R.id.kb_rebuild_btn)
+        val statusText = findViewById<TextView>(R.id.kb_status_text)
+        rebuildBtn.isEnabled = false
+        statusText.text = "正在重建知识库（约 30-60s）..."
+        statusText.setTextColor(0xFFFF9800.toInt())
+        lifecycleScope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    com.palmagent.app.kb.LocalKbEngine.rebuild(applicationContext)
+                }
+                Toast.makeText(this@SettingsActivity, "知识库重建完成", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Log.e("SettingsActivity", "知识库重建失败", e)
+                Toast.makeText(this@SettingsActivity, "重建失败：${e.message}", Toast.LENGTH_LONG).show()
+            } finally {
+                rebuildBtn.isEnabled = true
+                refreshKbStatus()
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
