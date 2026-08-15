@@ -1,5 +1,7 @@
 package com.palmagent.app.tool.impl
 
+import com.palmagent.app.tool.ToolResult
+
 /**
  * 步骤错误三分类模型
  *
@@ -42,29 +44,18 @@ class ToolExecutionException(
 /**
  * 错误分类器
  *
- * 双轨分类机制：
+ * 职责边界（方案 A）：
+ * - 正常路径：工具自报结构化错误信封（ToolResult.error 的 errorType/failureCategory），框架透传
+ * - 兜底路径：工具抛异常冒泡到执行层时，按异常类型分类（业界标准做法，
+ *   同 LangGraph RetryPolicy 的 retry_on=ConnectionError 思路），
+ *   从 ToolExecutionException 的结构化 metadata 信封分类，不做关键词字符串匹配。
+ *
+ * 分类优先级：
  * 1. 异常类型匹配（优先级最高）：IllegalArgumentException → Validation
- * 2. 错误消息模式匹配（次之）：匹配关键词判断类别
+ * 2. 工具异常信封分类（次之）：读 toolResultMetadata 中的 error_type 等结构化字段
  * 3. 默认兜底（保守策略）：未知错误归为 Transient
  */
 object ErrorClassifier {
-
-    // 校验错误关键词：参数问题、目标不存在
-    private val validationPatterns = listOf(
-        "参数", "不能为空", "坐标.*超出", "越界",
-        "未找到.*文字", "未找到.*元素", "无法解析",
-        "格式错误", "不合法", "invalid", "illegal",
-        "target not found", "element not found"
-    )
-
-    // 致命错误关键词：服务未就绪、应用未安装、权限问题
-    private val fatalPatterns = listOf(
-        "服务未运行", "服务未就绪", "未开启", "未安装",
-        "权限", "设备离线", "adb.*断开", "连接.*失败",
-        "空指针", "not installed", "permission denied",
-        "app_not_installed", "应用未安装", "目标应用不存在",
-        "无法打开应用商店"
-    )
 
     /**
      * 分类入口
@@ -84,8 +75,8 @@ object ErrorClassifier {
             is java.net.SocketTimeoutException,
             is java.io.IOException -> StepError.Transient(t)
 
-            // 3. 工具执行异常：进入消息模式匹配
-            is ToolExecutionException -> classifyToolError(t)
+            // 3. 工具执行异常：从结构化 metadata 信封分类（非字符串匹配）
+            is ToolExecutionException -> classifyByEnvelope(t)
 
             // 4. 默认兜底：保守策略，认为可重试
             else -> StepError.Transient(t)
@@ -93,22 +84,17 @@ object ErrorClassifier {
     }
 
     /**
-     * 工具执行异常分类：通过错误消息模式匹配
+     * 工具执行异常分类：优先读结构化错误信封（ToolResult metadata），
+     * 无信封信息时保守归为 Transient（可重试）。
      */
-    private fun classifyToolError(e: ToolExecutionException): StepError {
-        val msg = e.errorMessage.lowercase()
-
-        // 校验错误：参数问题、目标不存在
-        if (validationPatterns.any { msg.contains(it.lowercase()) }) {
-            return StepError.Validation(e)
+    private fun classifyByEnvelope(e: ToolExecutionException): StepError {
+        val errorType = e.toolResultMetadata[ToolResult.META_ERROR_TYPE] as? String
+        return when (errorType) {
+            "VALIDATION" -> StepError.Validation(e)
+            "FATAL" -> StepError.Fatal(e)
+            "TRANSIENT" -> StepError.Transient(e)
+            // 无信封信息：保守兜底，认为可重试
+            else -> StepError.Transient(e)
         }
-
-        // 致命错误：服务未就绪、应用未安装、权限问题
-        if (fatalPatterns.any { msg.contains(it.lowercase()) }) {
-            return StepError.Fatal(e)
-        }
-
-        // 瞬时错误：偶发失败，重试可能成功（如点击被取消、OCR 未识别到文字）
-        return StepError.Transient(e)
     }
 }

@@ -12,8 +12,12 @@ import com.palmagent.app.service.GuiOwlService
 import com.palmagent.app.service.RapidOcrService
 import com.palmagent.app.service.ScreenChangeDetector
 import com.palmagent.app.model.ScreenChangeType
+import com.palmagent.app.tool.BaseTool
 import com.palmagent.app.tool.ToolRegistry
 import com.palmagent.app.tool.ToolResult
+import com.palmagent.app.tool.impl.ErrorClassifier
+import com.palmagent.app.tool.impl.StepError
+import com.palmagent.app.tool.impl.ToolExecutionException
 
 import com.palmagent.app.utils.recycleSafely
 import kotlinx.coroutines.Dispatchers
@@ -299,7 +303,7 @@ class ActionExecutor @Inject constructor(
             finalAction.repeat.coerceIn(1, MAX_REPEAT_EXEC)
         } else 1
         if (repeatCount <= 1) {
-            return tool.executeWithWaitAfter(params)
+            return executeToolWithFallback(tool, params)
         }
 
         // 循环执行同一动作 N 次：每次间隔 interval_ms（默认 800ms，clamp 500-2000ms）
@@ -312,7 +316,7 @@ class ActionExecutor @Inject constructor(
                 delay(intervalMs)
                 GUIAccessibilityService.instance?.markAgentAction()
             }
-            lastResult = tool.executeWithWaitAfter(params)
+            lastResult = executeToolWithFallback(tool, params)
             if (!lastResult.isSuccess) {
                 Log.w(TAG, "批量执行第 $i/$repeatCount 次失败: ${lastResult.error}")
                 LiveLogBuffer.append("⚠️ 批量执行第 $i/$repeatCount 次失败: ${lastResult.error}，提前终止")
@@ -321,6 +325,38 @@ class ActionExecutor @Inject constructor(
             Log.d(TAG, "批量执行第 $i/$repeatCount 次成功")
         }
         return lastResult
+    }
+
+    /**
+     * 工具执行兜底（方案 A）：工具正常返回则透传；
+     * 工具抛异常时用 ErrorClassifier 分类为结构化错误信封，避免原始异常冒泡。
+     */
+    private suspend fun executeToolWithFallback(tool: BaseTool, params: Map<String, Any>): ToolResult {
+        return try {
+            tool.executeWithWaitAfter(params)
+        } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
+            val stepError = ErrorClassifier.classify(e)
+            val errorType = when (stepError) {
+                is StepError.Transient -> "TRANSIENT"
+                is StepError.Fatal -> "FATAL"
+                is StepError.Validation -> "VALIDATION"
+            }
+            val retriable = stepError is StepError.Transient
+            val errorMsg = if (e is ToolExecutionException) {
+                e.errorMessage
+            } else {
+                e.message ?: "工具执行异常"
+            }
+            Log.w(TAG, "工具执行异常(${tool.getName()}): $errorMsg")
+            LiveLogBuffer.append("⚠️ 工具执行异常: ${errorMsg.take(60)}")
+            ToolResult.error(
+                error = errorMsg,
+                errorType = errorType,
+                code = "TOOL_EXECUTION_EXCEPTION",
+                retriable = retriable
+            )
+        }
     }
 
     private fun shouldUseGuiOwlGrounding(action: AgentAction): Boolean {
@@ -457,6 +493,12 @@ class ActionExecutor @Inject constructor(
         if (action.type == ActionType.WAIT) {
             val durationMs = action.durationMs ?: 1000L
             params["duration_ms"] = durationMs.coerceIn(100L, 10_000L)
+        }
+
+        // SELECT_SPEC: specs → specs（需选取的规格列表）, confirmText → confirm_text（确认按钮文本）
+        if (action.type == ActionType.SELECT_SPEC) {
+            action.specs?.takeIf { it.isNotEmpty() }?.let { params["specs"] = it }
+            action.confirmText?.takeIf { it.isNotBlank() }?.let { params["confirm_text"] = it }
         }
         // =================================================
 
@@ -600,6 +642,7 @@ class ActionExecutor @Inject constructor(
             ActionType.OPEN_APP -> "open_app"
             ActionType.WAIT -> "wait"
             ActionType.FINISH -> "finish"
+            ActionType.SELECT_SPEC -> "select_spec"
             else -> null
         }
     }

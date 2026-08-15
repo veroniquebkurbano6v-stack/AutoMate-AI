@@ -36,7 +36,7 @@ object ContextManager {
 
     suspend fun assemble(
         deviceCtx: String,
-        screenOcrText: String,
+        screenText: String,
         actionHistory: List<ActionRecord>,
         isTreeEmpty: Boolean,
         waitConsecutiveCount: Int,
@@ -45,7 +45,7 @@ object ContextManager {
     ): AssembledContext {
         return buildAssembledContext(
             deviceCtx = deviceCtx,
-            screenOcrText = screenOcrText,
+            screenText = screenText,
             actionHistory = actionHistory,
             isTreeEmpty = isTreeEmpty,
             waitConsecutiveCount = waitConsecutiveCount,
@@ -56,7 +56,7 @@ object ContextManager {
 
     private fun buildAssembledContext(
         deviceCtx: String,
-        screenOcrText: String,
+        screenText: String,
         actionHistory: List<ActionRecord>,
         isTreeEmpty: Boolean,
         waitConsecutiveCount: Int,
@@ -91,11 +91,11 @@ object ContextManager {
             if (isTreeEmpty) {
                 appendLine("- ⚠️ 无障碍树为空，屏幕信息可能不可靠")
             }
-            if (screenOcrText.isNotBlank()) {
+            if (screenText.isNotBlank()) {
                 val a11yBudget = ((budget - usedTokens) * 0.3).toInt().coerceAtLeast(100)
-                val trimmedA11y = if (estimateTokens(screenOcrText) > a11yBudget) {
-                    screenOcrText.take(a11yBudget * 2)
-                } else screenOcrText
+                val trimmedA11y = if (estimateTokens(screenText) > a11yBudget) {
+                    screenText.take(a11yBudget * 2)
+                } else screenText
                 if (trimmedA11y.isNotBlank()) {
                     appendLine(trimmedA11y)
                 }

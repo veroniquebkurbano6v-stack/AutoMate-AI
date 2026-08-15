@@ -233,7 +233,7 @@ object AgentLogger {
         action: AgentAction,
         actionSuccess: Boolean,
         actionResultSummary: String,
-        ocrText: String = "",
+        screenText: String = "",
         enhancedContext: String = "",
         planContext: Plan? = null
     ) {
@@ -247,9 +247,9 @@ object AgentLogger {
         // 2. 无障碍信息
         saveScreenInfo(screenInfo, roundDir)
 
-        // 3. OCR 文本
-        if (ocrText.isNotBlank()) {
-            try { File(roundDir, "screen_ocr.txt").writeText(ocrText) } catch (_: Exception) {}
+        // 3. 屏幕文本（无障碍树提取，每轮 OCR 已取消）
+        if (screenText.isNotBlank()) {
+            try { File(roundDir, "screen_text.txt").writeText(screenText) } catch (_: Exception) {}
         }
 
         // 4. 模型输入
@@ -318,7 +318,7 @@ object AgentLogger {
     /**
      * 记录工具循环中的 LLM 输入到独立文件
      * 文件名: model_input_tool_M.txt（M 是工具循环序号，从 1 开始）
-     * 触发场景: LOCATE / VISUAL_DESCRIBE / PLAN_TASK 等工具调用后重新请求 AI 决策
+     * 触发场景: LOCATE / VISUAL_DESCRIBE 等工具调用后重新请求 AI 决策
      */
     fun logToolLoopModelInput(fullPrompt: String, round: Int, attempt: Int) {
         log(LogType.MODEL_INPUT, "工具循环第${attempt}次重新请求AI (第${round}轮)",

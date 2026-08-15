@@ -17,6 +17,10 @@ class ToolDecisionEngine(
 ) {
     companion object {
         private const val TAG = "ToolDecision"
+        /** 方案 B：同轮相同调用（同 tool+参数）拦截阈值，达到后强制换策略、不执行该调用 */
+        private const val MAX_SAME_CALL = 3
+        /** 方案 B：工具连续失败熔断阈值，达到后停止工具循环（防重试风暴烧 token） */
+        private const val MAX_CONSECUTIVE_FAILURES = 3
     }
 
     suspend fun executeWithTools(
@@ -45,6 +49,22 @@ class ToolDecisionEngine(
         var loopCount = 0
         // P2-6 修复：工具循环加 30s 整体 deadline，防止 5×15s=75s 超时
         val loopStartTime = System.currentTimeMillis()
+        // 方案 B：同轮相同调用计数器（"tool:参数"签名 → 次数），连续失败计数器
+        val callCounters = mutableMapOf<String, Int>()
+        var consecutiveFailures = 0
+
+        // 方案 B②：工具失败熔断辅助——连续失败达到阈值时返回 true，调用方 break 停止工具循环
+        // （防重试风暴：连续失败且无成功意味着模型策略失效，继续重试只会烧 token）
+        fun recordToolFailure(reason: String): Boolean {
+            consecutiveFailures++
+            log("工具调用失败（$reason），连续第 $consecutiveFailures 次")
+            if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
+                log("【熔断】工具连续失败 $consecutiveFailures 次，停止工具循环")
+                LiveLogBuffer.append("🛑 工具连续失败 $consecutiveFailures 次，系统熔断停止本轮工具调用")
+                return true
+            }
+            return false
+        }
 
         while (loopCount < 5 && !isCancelled() &&
             System.currentTimeMillis() - loopStartTime < 30_000L) {
@@ -67,6 +87,37 @@ class ToolDecisionEngine(
                             scratchpadEntries = scratchpadEntries
                         )
                     }
+
+                    // 方案 B①：相同调用拦截——同轮相同 (tool, 参数) 达到阈值时
+                    // 不执行搜索，注入强制换策略提示后重新请求 AI 决策，避免重试风暴烧 token
+                    val callSig = "web_search:$query"
+                    val sameCallCount = (callCounters[callSig] ?: 0) + 1
+                    callCounters[callSig] = sameCallCount
+                    if (sameCallCount >= MAX_SAME_CALL) {
+                        log("【熔断】相同搜索调用第${sameCallCount}次: $callSig，强制换策略")
+                        LiveLogBuffer.append("🛑 相同搜索调用 $sameCallCount 次，系统拦截强制换策略")
+                        toolResults.add(ToolCallResult(
+                            toolName = "web_search",
+                            success = false,
+                            error = "系统拦截：相同调用 $sameCallCount 次"
+                        ))
+                        contextFromTools = buildString {
+                            if (contextFromTools.isNotBlank()) {
+                                appendLine(contextFromTools)
+                                appendLine()
+                            }
+                            appendLine("【系统拦截】你已连续 $sameCallCount 次发起完全相同的调用（$callSig），结果不会改变。")
+                            appendLine("请立即更换策略：换一个不同的搜索关键词，或根据当前屏幕信息直接输出最终动作（如 FINISH/WAIT）。禁止重复相同调用。")
+                        }
+                        logToolLoopModelInput(userRequest, contextFromTools, round, loopCount)
+                        action = aiService.generateAction(
+                            userRequest = userRequest,
+            screenInfo = screenInfo,
+            knowledgeContext = contextFromTools,
+                        )
+                        continue
+                    }
+
                     log("AI请求联网搜索: ${query.take(80)}")
                     LiveLogBuffer.append("🔍 模型请求联网搜索: ${query.take(80)}")
 
@@ -90,11 +141,14 @@ class ToolDecisionEngine(
                     ))
 
                     if (searchResult.success) {
+                        consecutiveFailures = 0
                         log("搜索成功: ${entryContent.take(80)}，重新请求AI决策...")
                         LiveLogBuffer.append("✓ 搜索成功，结果已写入工作记忆")
                     } else {
                         log("搜索失败: ${searchResult.error}")
                         LiveLogBuffer.append("❌ 搜索失败: ${searchResult.error}")
+                        // 方案 B②：连续失败熔断——达到阈值直接退出工具循环
+                        if (recordToolFailure("web_search: ${searchResult.error}")) break
                     }
 
                     val combined = buildString {
@@ -122,6 +176,37 @@ class ToolDecisionEngine(
 
                 ActionType.VISUAL_DESCRIBE -> {
                     val question = action.text?.takeIf { it.isNotBlank() } ?: action.description
+
+                    // 方案 B①：相同调用拦截——同轮相同 (tool, 参数) 达到阈值时
+                    // 不执行 VLM 调用，注入强制换策略提示后重新请求 AI 决策
+                    val callSig = "visual_describe:$question"
+                    val sameCallCount = (callCounters[callSig] ?: 0) + 1
+                    callCounters[callSig] = sameCallCount
+                    if (sameCallCount >= MAX_SAME_CALL) {
+                        log("【熔断】相同视觉描述调用第${sameCallCount}次: $callSig，强制换策略")
+                        LiveLogBuffer.append("🛑 相同视觉描述调用 $sameCallCount 次，系统拦截强制换策略")
+                        toolResults.add(ToolCallResult(
+                            toolName = "visual_describe",
+                            success = false,
+                            error = "系统拦截：相同调用 $sameCallCount 次"
+                        ))
+                        contextFromTools = buildString {
+                            if (contextFromTools.isNotBlank()) {
+                                appendLine(contextFromTools)
+                                appendLine()
+                            }
+                            appendLine("【系统拦截】你已连续 $sameCallCount 次发起完全相同的调用（$callSig），结果不会改变。")
+                            appendLine("请立即更换策略：换一个问题，或根据当前屏幕信息直接输出最终动作（如 FINISH/WAIT）。禁止重复相同调用。")
+                        }
+                        logToolLoopModelInput(userRequest, contextFromTools, round, loopCount)
+                        action = aiService.generateAction(
+                            userRequest = userRequest,
+            screenInfo = screenInfo,
+            knowledgeContext = contextFromTools,
+                        )
+                        continue
+                    }
+
                     log("AI请求视觉描述: ${question.take(80)}")
                     LiveLogBuffer.append("👁 模型请求视觉描述: ${question.take(80)}")
 
@@ -137,6 +222,7 @@ class ToolDecisionEngine(
                                 vlmResult.answer.take(500), 0)
 
                             if (vlmResult.success) {
+                                consecutiveFailures = 0
                                 val resultContent = buildString {
                                     appendLine("视觉描述结果:")
                                     appendLine("  问题: $question")
@@ -173,6 +259,8 @@ class ToolDecisionEngine(
                                 val errorMsg = vlmResult.error ?: "描述失败"
                                 log("视觉描述失败: $errorMsg")
                                 LiveLogBuffer.append("❌ 视觉描述失败: $errorMsg")
+                                // 方案 B②：连续失败熔断——达到阈值直接退出工具循环
+                                if (recordToolFailure("visual_describe: $errorMsg")) break
 
                                 toolResults.add(ToolCallResult(
                                     toolName = "visual_describe",
@@ -202,6 +290,8 @@ class ToolDecisionEngine(
                     } else {
                         log("无法截图，视觉描述不可用")
                         LiveLogBuffer.append("❌ 视觉描述不可用: 无法获取截图")
+                        // 方案 B②：连续失败熔断——达到阈值直接退出工具循环
+                        if (recordToolFailure("visual_describe: 无法截图")) break
 
                         toolResults.add(ToolCallResult(
                             toolName = "visual_describe",
@@ -224,37 +314,6 @@ class ToolDecisionEngine(
                         )
                         contextFromTools = fallbackContext
                     }
-                }
-
-                ActionType.PLAN_TASK -> {
-                    val taskDescription = action.text ?: userRequest
-                    log("执行模型遇到困难，使用 PLAN_TASK 自反思: ${taskDescription.take(80)}")
-                    LiveLogBuffer.append("🤔 执行模型遇到困难，重新评估策略")
-
-                    // v9: PLAN_TASK 作为执行模型的自反思机制
-                    // 执行模型描述遇到的困难，系统将其作为额外上下文注入，让执行模型重新决策
-                    // 不再调用规划模型（已砍掉），执行模型根据当前屏幕+困难描述自行调整策略
-                    contextFromTools = buildString {
-                        if (contextFromTools.isNotBlank()) {
-                            appendLine(contextFromTools)
-                            appendLine()
-                        }
-                        appendLine("【执行困难】${taskDescription}")
-                        appendLine("请根据当前屏幕信息和上述困难，重新评估操作策略。")
-                    }
-
-                    toolResults.add(ToolCallResult(
-                        toolName = "plan_task",
-                        success = true,
-                        content = "已记录困难，重新决策"
-                    ))
-
-                    logToolLoopModelInput(userRequest, contextFromTools, round, loopCount)
-                    action = aiService.generateAction(
-                        userRequest = userRequest,
-            screenInfo = screenInfo,
-            knowledgeContext = contextFromTools,
-                    )
                 }
 
                 else -> return DecisionResult(
@@ -286,7 +345,7 @@ class ToolDecisionEngine(
     /**
      * 记录工具循环中的 LLM 输入到独立文件
      * 文件名: round_N_model_input_tool_M.txt（M 是工具循环序号，从 1 开始）
-     * 触发场景: VISUAL_DESCRIBE / PLAN_TASK 等工具调用后重新请求 AI 决策
+     * 触发场景: VISUAL_DESCRIBE 等工具调用后重新请求 AI 决策
      */
     private fun logToolLoopModelInput(
         userRequest: String,

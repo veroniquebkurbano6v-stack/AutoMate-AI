@@ -6,6 +6,7 @@ import com.palmagent.app.AgentApplication
 import com.palmagent.app.LiveLogBuffer
 import com.palmagent.app.floating.FloatingProgressManager
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import com.palmagent.app.domain.usecase.ActionTrackingUseCase
 import com.palmagent.app.domain.usecase.BuildEnhancedContextUseCase
 import com.palmagent.app.domain.usecase.RequestAIDecisionUseCase
@@ -20,7 +21,6 @@ import com.palmagent.app.service.AIService
 import com.palmagent.app.service.GUIAccessibilityService
 import com.palmagent.app.service.GuiOwlActionAdapter
 import com.palmagent.app.service.GuiOwlService
-import com.palmagent.app.service.DecisionDialogService
 import com.palmagent.app.service.PromptBuilder
 import com.palmagent.app.service.ToolDecisionEngine
 import com.palmagent.app.service.WebSearchService
@@ -76,7 +76,6 @@ class DefaultAgentService @Inject constructor(
         private const val TAG = "DefaultAgentService"
 
         private const val WAIT_MAX_CONSECUTIVE = 5
-        private const val MAX_REPLAN = 2
 
         /** 同时缓存的最大操作历史轮数（超出后删除最旧记录，控制内存）
          *  v9.2: 5→7，避免压缩前丢失早期历史（详见 P2 Running Summary 压缩可靠性提升方案 修复 2） */
@@ -94,12 +93,18 @@ class DefaultAgentService @Inject constructor(
     private var planContext: Plan? = null
     /** LLM 自管理的任务进度（上一轮输出，注入下一轮上下文） */
     private var llmProgress: com.palmagent.app.model.TaskProgress? = null
-    /** 重规划次数（限流） */
-    private var replanCount = 0
-    
 
     /** Scratchpad 工作记忆：跨轮保留的搜索结果 */
     private val scratchpad = mutableListOf<ScratchpadEntry>()
+
+    /** FailureCompactor：失败信息收集（跨轮保留，不受历史4轮限制） */
+    private val failedActions = mutableListOf<FailureCompactor.FailedAction>()
+    /** 压缩后的失败摘要（跨轮注入上下文，后台压缩完成后写入） */
+    @Volatile
+    private var failureSummary: String = ""
+    /** 最近一次触发压缩的轮次（节流，避免每轮调用压缩模型） */
+    private var lastCompactRound = 0
+    private val failureCompactor = FailureCompactor()
 
     /** v3.2: ASK_USER 截图复用——缓存上一轮 capture，ASK_USER 后下一轮跳过截图 */
     @Volatile
@@ -123,15 +128,15 @@ class DefaultAgentService @Inject constructor(
         actionHistory.clear()
         waitConsecutiveCount = 0
         // v9: userPrompt 是 PlanFormatter 格式化后的 plan 文本，直接使用
-        // 双注入修复：planContext 仅在 triggerReplan 重规划或显式传入 plan 时承载
         planContext = plan
         llmProgress = null
-        replanCount = 0
-        
         scratchpad.clear()
         screenDescriptor.reset()
         progressTracker.reset()
         ContextManager.reset()
+        failedActions.clear()
+        failureSummary = ""
+        lastCompactRound = 0
 
         GUIAccessibilityService.instance?.markAgentAction()
         AgentLogger.beginTask(
@@ -154,9 +159,7 @@ class DefaultAgentService @Inject constructor(
             callback.onContent(0, "任务启动: $userPrompt\n$deviceCtx")
             LiveLogBuffer.append("🚀 开始执行任务: ${userPrompt.take(80)}")
 
-            // 决策模型已改造为执行模型按需调用的工具（PLAN_TASK），
-            // 执行模型在自认为知识不足时可主动调用，无需在此固定前置规划。
-            // 重规划（triggerReplan）仍保留作为 FATAL 错误的兜底机制。
+            // 任务循环由执行模型按需决策，无需固定前置规划。
             callback.onContent(0, "开始执行任务...")
 
             // 注入取消回调到 SmartWaitStrategy，使其能响应取消信号
@@ -200,14 +203,9 @@ class DefaultAgentService @Inject constructor(
                 val screenInfo = capture.screenInfo
                 val screenshotBmp = capture.screenshotBmp
 
-                // 当无障碍数据质量过低时，放弃无障碍数据改用 OCR+VLM
-                val dataQuality = capture.accessibilityCheck?.dataQuality ?: 0f
-                val useAccessibility = capture.accessibilityCheck?.isAvailable == true && dataQuality >= 0.3f
+                // 每轮屏幕信息获取完全依赖无障碍树：不再因数据质量低切换 OCR 兜底（每轮 OCR 已取消）
+                val useAccessibility = capture.accessibilityCheck?.isAvailable == true
                 val effectiveTreeEmpty = !useAccessibility
-
-                if (!useAccessibility && capture.accessibilityCheck?.isAvailable == true) {
-                    Log.w(TAG, "无障碍数据质量过低(${(dataQuality * 100).toInt()}%)，放弃无障碍数据改用OCR+VLM")
-                }
 
                 if (isTaskCancelled) {
                     callback.onComplete(round, "任务已被用户取消", accumTokens)
@@ -219,7 +217,7 @@ class DefaultAgentService @Inject constructor(
                 // 统一日志变量（两种模式共用）
                 var fullPromptForLog = ""
                 var enhancedContextForLog = ""
-                var screenOcrTextForLog = ""
+                var screenTextForLog = ""
                 var textDecision: ToolDecisionEngine.DecisionResult? = null
                 var vlDecisionResult: VisionDecisionResult? = null
 
@@ -325,11 +323,8 @@ class DefaultAgentService @Inject constructor(
                     FloatingProgressManager.updateProgress(round, "${finalAction.type.name} ${finalAction.description.take(40)}")
                 } else {
                     // ============ 文本模式：保持现有流程 ============
-                    screenOcrTextForLog = if (useAccessibility) {
-                        screenDescriptor.extractScreenText(screenInfo)
-                    } else {
-                        screenDescriptor.extractOcrText(screenshotBmp)
-                    }
+                    // 完全取消每轮 OCR：无论无障碍树质量如何，都从无障碍树提取屏幕文本
+                    screenTextForLog = screenDescriptor.extractScreenText(screenInfo)
 
                     if (isTaskCancelled) {
                         callback.onComplete(round, "任务已被用户取消", accumTokens)
@@ -343,7 +338,7 @@ class DefaultAgentService @Inject constructor(
 
                     val stateWarning = buildStateWarningFromTracking()
                     val screenshotFailedSignal = if (screenshotBmp == null) {
-                        "⚠️ 截屏失败，OCR/VLM/GUI-Plus 视觉信息不可用。请基于无障碍节点和上下文谨慎决策；若需视觉确认请输出 WAIT 等待下一轮重试"
+                        "⚠️ 截屏失败，VLM/GUI-Plus 视觉信息不可用。请基于无障碍节点和上下文谨慎决策；若需视觉确认请输出 WAIT 等待下一轮重试"
                     } else null
                     val effectiveStateWarning = listOfNotNull(stateWarning, screenshotFailedSignal)
                         .filter { it.isNotBlank() }
@@ -358,7 +353,7 @@ class DefaultAgentService @Inject constructor(
                     enhancedContextForLog = buildEnhancedContextUseCase(
                         BuildEnhancedContextUseCase.Params(
                             deviceCtx = deviceCtx,
-                            screenOcrText = screenOcrTextForLog,
+                            screenText = screenTextForLog,
                             autoScreenDescription = autoScreenDescription,
                             stateWarning = effectiveStateWarning,
                             isTreeEmpty = effectiveTreeEmpty,
@@ -366,7 +361,7 @@ class DefaultAgentService @Inject constructor(
                             waitConsecutiveCount = waitConsecutiveCount,
                             config = config,
                             planContext = planContext,
-                            
+                            failureSummary = failureSummary,
                             llmProgress = llmProgress,
                             scratchpad = scratchpad.toList()
                         )
@@ -486,6 +481,28 @@ class DefaultAgentService @Inject constructor(
                     actionHistory.removeAt(0)
                 }
 
+                // FailureCompactor：收集失败信息（跨轮保留，不受历史4轮限制）
+                if (!result.isSuccess) {
+                    failedActions.add(FailureCompactor.FailedAction(
+                        round = round,
+                        actionType = finalAction.type.name,
+                        // 与 error(≤80)/suggestion(≤60) 对齐，收敛压缩输入大小
+                        description = finalAction.description.take(100),
+                        error = result.error ?: "执行失败",
+                        errorType = result.metadata[ToolResult.META_ERROR_TYPE] as? String ?: "TRANSIENT",
+                        category = result.metadata[ToolResult.META_FAILURE_CATEGORY] as? String,
+                        suggestion = result.metadata[ToolResult.META_ERROR_SUGGESTION] as? String ?: ""
+                    ))
+                    // 触发压缩：失败累积≥2 且距上次压缩≥3轮（节流），后台执行不阻塞本轮
+                    if (failedActions.size >= 2 && round - lastCompactRound >= 3) {
+                        lastCompactRound = round
+                        val snapshot = failedActions.toList()
+                        coroutineScope.launch {
+                            failureSummary = failureCompactor.compact(userPrompt, snapshot)
+                        }
+                    }
+                }
+
                 // ============ 统一轮次日志保存 ============
                 val mode = if (KVUtils.isVisionModeEnabled()) "VL" else "TEXT"
                 val modelInput = if (vlDecisionResult != null) {
@@ -509,7 +526,7 @@ class DefaultAgentService @Inject constructor(
                     action = finalAction,
                     actionSuccess = result.isSuccess,
                     actionResultSummary = buildResultSummaryForHistory(finalAction, result),
-                    ocrText = if (vlDecisionResult != null) "" else screenOcrTextForLog,
+                    screenText = if (vlDecisionResult != null) "" else screenTextForLog,
                     enhancedContext = if (vlDecisionResult != null) "" else enhancedContextForLog,
                     planContext = planContext
                 )
@@ -536,26 +553,6 @@ class DefaultAgentService @Inject constructor(
                     LiveLogBuffer.append("🚫 $finishMsg")
                     callback.onComplete(round, finishMsg, accumTokens)
                     return
-                }
-
-                // 永久失败检测与重规划触发
-                if (!result.isSuccess && shouldTriggerReplan(result, finalAction)) {
-                    LiveLogBuffer.append("🔄 检测到永久失败，触发重规划...")
-                    val replanTriggered = triggerReplan(
-                        failureReason = formatErrorForLLM(result, finalAction),
-                        failedAction = finalAction,
-                        completedSteps = llmProgress?.completedSteps ?: emptyList(),
-                        currentScreen = screenInfo,
-                        // 双注入修复：原计划以 userPrompt（决策模型输出的 plan）为准，
-                        // 不依赖 planContext（其仅在重规划成功后承载新计划）
-                        originalPlan = userPrompt,
-                        callback = callback
-                    )
-                    if (replanTriggered) {
-                        LiveLogBuffer.append("✓ 重规划成功，继续执行新计划")
-                    } else {
-                        LiveLogBuffer.append("⚠ 重规划失败，降级为执行模型自行处理")
-                    }
                 }
             }
 
@@ -641,113 +638,6 @@ class DefaultAgentService @Inject constructor(
             return if (result.isSuccess) (result.data ?: "").take(200) else "追问失败"
         }
         return if (result.isSuccess) (result.data ?: "") else (result.error ?: "失败")
-    }
-
-    /**
-     * 判断是否应触发重规划
-     * 复用 ErrorClassifier 分类，仅 Fatal 类错误且可重规划时触发
-     */
-    private fun shouldTriggerReplan(result: ToolResult, action: AgentAction): Boolean {
-        if (result.isSuccess) return false
-
-        // 从 metadata 获取错误类型
-        val errorType = result.metadata[ToolResult.META_ERROR_TYPE] as? String
-        val failureCategory = result.metadata[ToolResult.META_FAILURE_CATEGORY] as? String
-
-        // 仅 FATAL 类错误触发重规划
-        if (errorType != "FATAL") return false
-
-        // 排除不可重规划的 Fatal 错误（服务不可用等无法通过换方案解决的）
-        val nonReplannable = listOf("PERMISSION_DENIED", "SERVICE_UNAVAILABLE")
-        if (failureCategory in nonReplannable) return false
-
-        // 检查重规划限流
-        if (replanCount >= MAX_REPLAN) {
-            Log.w(TAG, "重规划次数超限($MAX_REPLAN)，不再触发重规划")
-            return false
-        }
-
-        // 检查决策模型是否可用
-        if (!KVUtils.hasPlannerConfig()) return false
-
-        return true
-    }
-
-    /**
-     * 将工具错误转为 LLM 可读的简明信息（不暴露技术细节）
-     */
-    private fun formatErrorForLLM(result: ToolResult, action: AgentAction): String {
-        if (result.isSuccess) return result.data ?: ""
-
-        val errorType = result.metadata[ToolResult.META_ERROR_TYPE] as? String ?: "UNKNOWN"
-        val suggestion = result.metadata[ToolResult.META_ERROR_SUGGESTION] as? String ?: ""
-
-        return buildString {
-            append("❌ ${action.type} 执行失败")
-            append("\n类型: $errorType")
-            append("\n原因: ${result.error?.take(80)}")
-            if (suggestion.isNotBlank()) {
-                append("\n建议: $suggestion")
-            }
-        }
-    }
-
-    /**
-     * 触发重规划
-     * v9: 回调决策模型重新规划（替代旧的规划模型调用），
-     * 决策模型有 kb_read 访问权限，能基于 SOP 知识生成替代方案
-     */
-    private suspend fun triggerReplan(
-        failureReason: String,
-        failedAction: AgentAction,
-        completedSteps: List<String>,
-        currentScreen: ScreenInfo?,
-        originalPlan: String,
-        callback: AgentCallback
-    ): Boolean {
-        replanCount++
-        Log.d(TAG, "触发重规划（第${replanCount}次），失败原因: $failureReason")
-
-        val replanPrompt = buildString {
-            appendLine("原计划执行中遇到困难，需要调整后续步骤。")
-            appendLine()
-            appendLine("原计划：")
-            appendLine(originalPlan)
-            appendLine()
-            appendLine("当前困难：$failureReason")
-            appendLine("失败动作：${failedAction.type} - ${failedAction.description}")
-            if (completedSteps.isNotEmpty()) {
-                appendLine("已完成：${completedSteps.joinToString("、")}")
-            }
-            appendLine("当前应用：${currentScreen?.currentPackage ?: "未知"}")
-            appendLine()
-            appendLine("请基于当前困难重新规划后续步骤，输出新的分步骤操作指引。")
-        }
-
-        return try {
-            callback.onContent(0, "检测到不可恢复的失败，正在重新规划任务...")
-            val decisionService = DecisionDialogService()
-            val result = decisionService.chat(replanPrompt, history = emptyList())
-
-            if (result is DecisionDialogService.DialogResult.Ready && result.plan.steps.isNotEmpty()) {
-                planContext = result.plan
-                Log.d(TAG, "重规划成功，新 plan ${planContext?.steps?.size ?: 0}步")
-                callback.onContent(0, "任务计划已更新，继续执行...")
-                return true
-            } else {
-                val errorMsg = when (result) {
-                    is DecisionDialogService.DialogResult.Error -> result.message
-                    is DecisionDialogService.DialogResult.NeedMoreInfo -> "决策模型要求更多信息: ${result.message}"
-                    else -> "未知错误"
-                }
-                Log.w(TAG, "重规划失败: $errorMsg")
-                callback.onContent(0, "重规划失败，继续尝试其他方式...")
-                return false
-            }
-        } catch (e: Exception) {
-            Log.w(TAG, "重规划异常: ${e.message}")
-            return false
-        }
     }
 
     private fun buildActionParams(action: AgentAction): Map<String, Any?> {
@@ -840,7 +730,7 @@ class DefaultAgentService @Inject constructor(
         }
 
         // 1. 构建 VL User Prompt
-        val vlUserPrompt = buildVisionUserPrompt(userPrompt, actionHistory, llmProgress, scratchpad.toList(), planContext)
+        val vlUserPrompt = buildVisionUserPrompt(userPrompt, actionHistory, llmProgress, scratchpad.toList(), planContext, failureSummary)
 
         // 2. 获取屏幕尺寸
         val screenSize = getScreenSize()
@@ -876,16 +766,23 @@ class DefaultAgentService @Inject constructor(
         actionHistory: List<ActionRecord>,
         progress: com.palmagent.app.model.TaskProgress?,
         scratchpad: List<ScratchpadEntry> = emptyList(),
-        planContext: Plan? = null
+        planContext: Plan? = null,
+        failureSummary: String = ""
     ): String = buildString {
         appendLine("【用户任务】$userPrompt")
         appendLine()
 
-        // 决策模型 Plan 已作为 userPrompt（【用户任务】区域）传递一次，此处仅在重规划后注入新计划
+        // 决策模型 Plan 已作为 userPrompt（【用户任务】区域）传递一次，此处仅显式传入 plan 时注入
         // 双注入修复：正常执行时 planContext 为空，不重复注入同一份 plan
         if (planContext != null) {
             appendLine("【决策模型任务计划】（已经过用户确认，其中目标对象、参数等信息为用户明确提供，无需追问）")
             appendLine(PlanFormatter.format(planContext))
+            appendLine()
+        }
+
+        // FailureCompactor: 注入失败信息压缩摘要（位于最近操作回顾之前，让模型避免重复犯错）
+        if (failureSummary.isNotBlank()) {
+            appendLine("【失败处理摘要】$failureSummary")
             appendLine()
         }
 
