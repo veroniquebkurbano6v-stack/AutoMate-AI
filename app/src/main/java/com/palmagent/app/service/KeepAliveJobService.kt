@@ -13,7 +13,7 @@ class KeepAliveJobService : JobService() {
     companion object {
         private const val TAG = "KeepAliveJob"
         private const val JOB_ID = 10086
-        private const val INTERVAL_MS = 15 * 60 * 1000L
+        private const val INTERVAL_MS = 5 * 60 * 1000L
 
         fun schedule(context: Context) {
             val scheduler = context.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
