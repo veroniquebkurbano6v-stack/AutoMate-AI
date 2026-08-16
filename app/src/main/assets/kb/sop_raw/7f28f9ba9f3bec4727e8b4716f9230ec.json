@@ -14,34 +14,29 @@
   ],
   "steps": [
     {
-      "goal": "打开哔哩哔哩App",
-      "expected": "屏幕显示哔哩哔哩应用图标已被选中，准备进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的哔哩哔哩应用图标",
+      "expected": "进入哔哩哔哩主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏中的文本区域",
-      "expected": "搜索栏内容被选中，准备输入新的搜索词",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框输入'UP主名称'",
+      "expected": "界面显示搜索结果列表",
+      "action_type": "type"
     },
     {
-      "goal": "在文本输入框中输入'联系人'",
-      "expected": "文本输入框中显示'联系人'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击搜索结果中的UP主条目",
+      "expected": "进入该UP主的个人空间主页",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏右侧的搜索按钮",
-      "expected": "搜索结果列表展开，显示与“联系人”相关的搜索结果",
-      "action_type": "click",
-      "step_order": 4
-    },
-    {
-      "goal": "点击UP主头像进入个人主页",
-      "expected": "进入UP主个人主页",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 4,
+      "goal": "点击UP主主页中的最新视频",
+      "expected": "该视频开始播放，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "7f28f9ba9f3bec4727e8b4716f9230ec.json"
 }

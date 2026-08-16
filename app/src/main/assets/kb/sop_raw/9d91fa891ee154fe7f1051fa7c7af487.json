@@ -1,7 +1,7 @@
 {
   "sop_id": "9d91fa891ee154fe",
   "original_task_name": "搜 up 主画渣花小烙，播放他最新发布的视频，并分享给微信好友赵瑞",
-  "task_name": "搜特定up主，播放他最新发布的视频，并分享给微信好友联系人",
+  "task_name": "搜up主，播放他最新发布的视频，并分享给微信好友联系人",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -9,64 +9,65 @@
   "keywords": [
     "B站",
     "微信",
-    "特定up主",
+    "up主",
     "视频",
     "分享"
   ],
   "steps": [
     {
-      "goal": "打开哔哩哔哩App",
-      "expected": "哔哩哔哩App图标被选中，应用启动并进入主界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的哔哩哔哩应用图标",
+      "expected": "进入哔哩哔哩主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏区域以激活输入状态",
-      "expected": "搜索栏获得焦点，准备输入搜索内容",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框输入'UP主名称'",
+      "expected": "界面显示搜索结果列表",
+      "action_type": "type"
     },
     {
-      "goal": "在文本输入框中输入'特定up主'",
-      "expected": "文本输入框中显示'特定up主'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击搜索结果中的UP主条目",
+      "expected": "进入该UP主的个人空间主页",
+      "action_type": "click"
     },
     {
-      "goal": "执行搜索操作以查看与\"特定up主\"相关的内容",
-      "expected": "搜索结果页面显示与\"特定up主\"相关的搜索结果",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击UP主主页中的最新视频",
+      "expected": "该视频开始播放",
+      "action_type": "click"
     },
     {
-      "goal": "点击UP主头像进入个人主页",
-      "expected": "进入特定up主的个人主页",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击播放界面右下角的'分享'按钮",
+      "expected": "弹出分享面板",
+      "action_type": "click"
     },
     {
-      "goal": "点击视频下方互动按钮区域的指定位置",
-      "expected": "视频下方互动按钮区域被选中",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "点击分享面板中的'微信'选项",
+      "expected": "进入微信分享界面",
+      "action_type": "click"
     },
     {
-      "goal": "选择微信分享选项",
-      "expected": "分享菜单已展开，包含多个可选的分享方式",
-      "action_type": "click",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "点击微信分享界面上方的搜索框输入'联系人姓名'",
+      "expected": "界面显示匹配的搜索结果条目",
+      "action_type": "type"
     },
     {
-      "goal": "选择聊天对象进行下一步操作",
-      "expected": "进入该聊天的详情页面",
-      "action_type": "click",
-      "step_order": 8
+      "step_order": 8,
+      "goal": "点击搜索结果中的联系人条目",
+      "expected": "弹出包含'确认'和'取消'按钮的确认分享对话框",
+      "action_type": "click"
     },
     {
-      "goal": "确认发送视频给联系人",
-      "expected": "弹出对话框关闭，返回选择一个聊天界面",
-      "action_type": "click",
-      "step_order": 9
+      "step_order": 9,
+      "goal": "点击对话框中的'确认'按钮",
+      "expected": "视频已分享给联系人，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "9d91fa891ee154fe7f1051fa7c7af487.json"
 }

@@ -1,7 +1,7 @@
 {
   "sop_id": "e05f582bc700a66f",
   "original_task_name": "通过美团找到西安交通大学附近评价好的俄罗斯菜餐馆，接着导航前往。",
-  "task_name": "通过美团找到出发地附近评价好的特定菜品餐馆，接着导航前往",
+  "task_name": "通过美团找到出发地附近评价好的菜品餐馆，接着导航前往",
   "app_name": "美团",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -14,88 +14,47 @@
   ],
   "steps": [
     {
-      "goal": "点击美团应用图标",
-      "expected": "打开美团应用",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的美团应用图标",
+      "expected": "进入美团主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏区域",
-      "expected": "搜索栏处于可输入状态",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框输入'菜系或餐馆名称'",
+      "expected": "界面显示搜索结果列表",
+      "action_type": "type"
     },
     {
-      "goal": "在文本输入框中输入'出发地'",
-      "expected": "文本输入框中显示'出发地'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击搜索结果列表上方的'排序'按钮",
+      "expected": "弹出排序方式菜单",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏右侧的'搜索'按钮",
-      "expected": "搜索结果列表显示",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "选择排序方式为'好评优先'",
+      "expected": "餐馆列表按用户评价从高到低排列",
+      "action_type": "click"
     },
     {
-      "goal": "点击出发地附近的餐厅列表项",
-      "expected": "进入该餐厅的详细信息页面",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击目标餐馆条目",
+      "expected": "进入该餐馆的详细信息页面",
+      "action_type": "click"
     },
     {
-      "goal": "点击底部导航栏的'搜周边'按钮",
-      "expected": "进入周边功能页面",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "点击详情页中的'排队取号'按钮",
+      "expected": "进入排队取号界面",
+      "action_type": "click"
     },
     {
-      "goal": "在文本输入框中输入'特定菜品'",
-      "expected": "文本输入框中显示'特定菜品'",
-      "action_type": "type",
-      "step_order": 7
-    },
-    {
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面显示",
-      "action_type": "click",
-      "step_order": 8
-    },
-    {
-      "goal": "点击特定店铺的店铺信息区域",
-      "expected": "进入该特定店铺的详细信息页面",
-      "action_type": "click",
-      "step_order": 9
-    },
-    {
-      "goal": "点击餐厅地址信息区域",
-      "expected": "进入该餐厅的详细地址页面",
-      "action_type": "click",
-      "step_order": 10
-    },
-    {
-      "goal": "点击'查看路线'按钮，获取该餐厅的导航路线信息",
-      "expected": "进入路线规划界面，显示从当前位置到餐厅的导航路线",
-      "action_type": "click",
-      "step_order": 11
-    },
-    {
-      "goal": "确认导航开始按钮状态",
-      "expected": "点击后确认导航已启动",
-      "action_type": "click",
-      "step_order": 12
-    },
-    {
-      "goal": "选择百度地图作为导航应用",
-      "expected": "界面弹出地图选择对话框，用户可选择不同地图服务商",
-      "action_type": "click",
-      "step_order": 13
-    },
-    {
-      "goal": "点击'开始导航'按钮启动导航",
-      "expected": "导航系统开始运行，显示实时路线和预计到达时间",
-      "action_type": "click",
-      "step_order": 14
+      "step_order": 7,
+      "goal": "点击'确认取号'按钮",
+      "expected": "取号成功，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "e05f582bc700a66f4a442e511f1d4301.json"
 }

@@ -1,7 +1,7 @@
 {
   "sop_id": "dc28440280298cf2",
   "original_task_name": "前往哔哩哔哩订阅JKAI杰凯的“全网最真实的声乐点评”系列视频。",
-  "task_name": "前往哔哩哔哩订阅联系人的特定影视系列视频",
+  "task_name": "前往哔哩哔哩订阅联系人的影视系列视频",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -14,58 +14,29 @@
   ],
   "steps": [
     {
-      "goal": "打开哔哩哔哩应用",
-      "expected": "哔哩哔哩应用图标被选中，应用启动界面加载中",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的哔哩哔哩应用图标",
+      "expected": "进入哔哩哔哩主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击搜索栏区域",
-      "expected": "激活搜索功能",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框输入'UP主名称'",
+      "expected": "界面显示搜索结果列表",
+      "action_type": "type"
     },
     {
-      "goal": "在文本输入框中输入'联系人'",
-      "expected": "文本输入框中显示'联系人'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击搜索结果中的UP主条目",
+      "expected": "进入该UP主的个人空间主页",
+      "action_type": "click"
     },
     {
-      "goal": "执行搜索操作以查看搜索结果",
-      "expected": "搜索结果列表",
-      "action_type": "click",
-      "step_order": 4
-    },
-    {
-      "goal": "点击联系人的个人主页入口",
-      "expected": "进入联系人的个人主页",
-      "action_type": "click",
-      "step_order": 5
-    },
-    {
-      "goal": "点击'收藏'按钮",
-      "expected": "进入收藏页面",
-      "action_type": "click",
-      "step_order": 6
-    },
-    {
-      "goal": "点击标题为特定影视的视频条目",
-      "expected": "进入该特定影视的播放页面",
-      "action_type": "click",
-      "step_order": 7
-    },
-    {
-      "goal": "点击视频下方的点赞按钮",
-      "expected": "点赞按钮状态变为已点亮，显示点赞数增加",
-      "action_type": "click",
-      "step_order": 8
-    },
-    {
-      "goal": "点击视频列表右侧的'追更'按钮",
-      "expected": "关注该视频内容",
-      "action_type": "click",
-      "step_order": 9
+      "step_order": 4,
+      "goal": "点击UP主主页中的'订阅'按钮",
+      "expected": "订阅成功，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "dc28440280298cf277b66708f8dd5d67.json"
 }

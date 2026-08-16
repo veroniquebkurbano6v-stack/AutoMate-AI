@@ -23,7 +23,7 @@
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索框区域",
+      "goal": "点击屏幕中间的搜索框区域",
       "expected": "搜索栏获得焦点，准备输入地点信息",
       "action_type": "click"
     },

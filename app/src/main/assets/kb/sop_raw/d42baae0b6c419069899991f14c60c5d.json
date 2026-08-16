@@ -13,22 +13,29 @@
   ],
   "steps": [
     {
-      "goal": "打开地图App",
-      "expected": "应用图标被选中，进入地图界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的腾讯会议应用图标",
+      "expected": "进入腾讯会议主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击底部功能栏中的“共享屏幕”按钮",
-      "expected": "进入屏幕共享界面",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击'加入会议'按钮并输入会议号进入会议",
+      "expected": "进入会议房间",
+      "action_type": "click"
     },
     {
-      "goal": "点击'共享屏幕'按钮",
-      "expected": "弹出包含'共享屏幕'、'共享白板'和'取消'三个选项的菜单",
-      "action_type": "click",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击会议界面底部的'共享屏幕'按钮",
+      "expected": "弹出共享选择面板",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击共享面板中的'屏幕'选项",
+      "expected": "屏幕开始共享，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "d42baae0b6c419069899991f14c60c5d.json"
 }

@@ -14,16 +14,29 @@
   ],
   "steps": [
     {
-      "goal": "打开小红书应用",
-      "expected": "小红书应用图标被选中，准备进入应用界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的小红书应用图标",
+      "expected": "进入小红书主界面",
+      "action_type": "click"
     },
     {
-      "goal": "操作：点击22:15闹钟开关，使该闹钟关闭",
-      "expected": "操作后界面状态：22:15闹钟的开关从灰色（关闭）变为蓝色（开启）",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框输入'笔记关键词'",
+      "expected": "界面显示搜索结果列表",
+      "action_type": "type"
+    },
+    {
+      "step_order": 3,
+      "goal": "点击搜索结果中的目标笔记条目",
+      "expected": "进入笔记详情页面",
+      "action_type": "click"
+    },
+    {
+      "step_order": 4,
+      "goal": "点击笔记详情页底部的'点赞'图标",
+      "expected": "点赞成功，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "5dd0b7f2facedb04ccf959248d438e47.json"
 }

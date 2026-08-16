@@ -14,40 +14,35 @@
   ],
   "steps": [
     {
-      "goal": "打开微信应用",
-      "expected": "微信应用图标被选中，进入微信主界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "进入微信主界面，显示聊天列表",
+      "action_type": "click"
     },
     {
-      "goal": "点击聊天列表中的'联系人'对话条目",
-      "expected": "进入'联系人'的聊天界面",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击微信主界面顶部的搜索框输入'群组或联系人姓名'",
+      "expected": "界面显示匹配的搜索结果条目",
+      "action_type": "type"
     },
     {
-      "goal": "长按视频消息以触发操作菜单",
-      "expected": "视频消息进入可交互状态，显示操作选项",
-      "action_type": "long_press",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击搜索结果中的目标条目",
+      "expected": "进入与目标对象的聊天界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击消息中的地图位置信息，打开详情面板",
-      "expected": "显示包含地址和位置信息的详情面板",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击聊天界面底部的消息输入框输入消息内容",
+      "expected": "消息输入框中显示要发送的文本",
+      "action_type": "type"
     },
     {
-      "goal": "选择聊天对象进行下一步操作",
-      "expected": "进入聊天详情页面",
-      "action_type": "click",
-      "step_order": 5
-    },
-    {
-      "goal": "确认发送消息给指定联系人",
-      "expected": "发送对话框关闭，返回选择一个聊天界面",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 5,
+      "goal": "点击输入框右侧的'发送'按钮",
+      "expected": "消息已发送给目标对象，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "37ea746e88efe5880a750d9e04e7b763.json"
 }

@@ -14,40 +14,53 @@
   ],
   "steps": [
     {
-      "goal": "打开微信App",
-      "expected": "微信应用图标被选中，准备进入应用",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的微信应用图标",
+      "expected": "进入微信主界面，显示聊天列表",
+      "action_type": "click"
     },
     {
-      "goal": "进入聊天列表界面",
-      "expected": "操作后界面状态为微信聊天列表页面，显示了多个联系人和群聊的对话条目。",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击微信主界面顶部的搜索框输入'联系人姓名'",
+      "expected": "界面显示匹配的搜索结果条目",
+      "action_type": "type"
     },
     {
-      "goal": "长按视频消息以触发播放或更多选项",
-      "expected": "视频消息开始播放",
-      "action_type": "long_press",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击搜索结果中的联系人条目",
+      "expected": "进入与该联系人的聊天界面",
+      "action_type": "click"
     },
     {
-      "goal": "选择视频的转发选项",
-      "expected": "视频右下角的转发按钮被选中",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "长按要转发的消息气泡",
+      "expected": "弹出操作菜单，包含转发、收藏、删除等选项",
+      "action_type": "long_press"
     },
     {
-      "goal": "选择聊天对象进行转发操作",
-      "expected": "选择联系人作为转发的聊天对象",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击操作菜单中的'转发'选项",
+      "expected": "进入选择聊天界面，显示最近聊天列表",
+      "action_type": "click"
     },
     {
-      "goal": "发送消息给联系人",
-      "expected": "确认消息已成功发送给联系人",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "点击选择聊天界面上方的搜索框输入'群组或联系人姓名'",
+      "expected": "界面显示匹配的搜索结果条目",
+      "action_type": "type"
+    },
+    {
+      "step_order": 7,
+      "goal": "点击搜索结果中的目标条目",
+      "expected": "弹出包含'确认'和'取消'按钮的确认转发对话框",
+      "action_type": "click"
+    },
+    {
+      "step_order": 8,
+      "goal": "点击对话框中的'确认'按钮",
+      "expected": "消息已转发成功，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "a4506677bf2153bbe784f5006076e2b6.json"
 }

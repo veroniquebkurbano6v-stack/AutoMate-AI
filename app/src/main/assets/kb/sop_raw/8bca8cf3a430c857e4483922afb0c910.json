@@ -14,34 +14,29 @@
   ],
   "steps": [
     {
-      "goal": "点击优酷视频应用图标",
-      "expected": "打开优酷视频应用",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的优酷视频应用图标",
+      "expected": "进入优酷视频主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击底部导航栏最右侧的'我的'按钮",
+      "step_order": 2,
+      "goal": "点击界面底部的'我的'按钮进入个人中心",
       "expected": "进入个人中心页面",
-      "action_type": "click",
-      "step_order": 2
+      "action_type": "click"
     },
     {
-      "goal": "点击'选择偏好，推荐更精准'按钮",
-      "expected": "进入偏好设置页面",
-      "action_type": "click",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击'观看历史'入口",
+      "expected": "显示观看历史列表",
+      "action_type": "click"
     },
     {
-      "goal": "进入历史记录页面查看观看记录",
-      "expected": "进入历史记录页面，显示包含多个短视频内容的观看记录",
-      "action_type": "click",
-      "step_order": 4
-    },
-    {
-      "goal": "点击左中部的视频缩略图以开始播放",
-      "expected": "视频开始播放",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 4,
+      "goal": "点击历史列表中的目标视频条目",
+      "expected": "该视频开始播放，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "8bca8cf3a430c857e4483922afb0c910.json"
 }

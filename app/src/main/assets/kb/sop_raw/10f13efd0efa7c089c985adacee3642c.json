@@ -22,7 +22,7 @@
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索栏",
+      "goal": "点击屏幕中间的搜索栏",
       "expected": "搜索栏变为可输入状态，用户可输入目的地",
       "action_type": "click"
     },

@@ -14,28 +14,23 @@
   ],
   "steps": [
     {
-      "goal": "打开腾讯会议App",
-      "expected": "启动腾讯会议应用",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的腾讯会议应用图标",
+      "expected": "进入腾讯会议主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击快速会议按钮开始会议流程",
-      "expected": "进入快速会议创建界面",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击'快速会议'按钮",
+      "expected": "弹出快速会议确认弹窗",
+      "action_type": "click"
     },
     {
-      "goal": "启用视频功能",
-      "expected": "视频功能已开启",
-      "action_type": "click",
-      "step_order": 3
-    },
-    {
-      "goal": "进入会议",
-      "expected": "进入会议界面",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 3,
+      "goal": "点击弹窗中的'进入会议'按钮",
+      "expected": "快速会议已开启并进入，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "bbe2377b7b6c689ca044373deb15a734.json"
 }

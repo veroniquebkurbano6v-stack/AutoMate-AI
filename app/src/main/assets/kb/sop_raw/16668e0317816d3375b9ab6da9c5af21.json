@@ -21,7 +21,7 @@
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索栏",
+      "goal": "点击屏幕中间的搜索栏",
       "expected": "搜索栏获得焦点，准备输入目的地",
       "action_type": "click"
     },

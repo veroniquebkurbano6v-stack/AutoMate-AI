@@ -14,28 +14,29 @@
   ],
   "steps": [
     {
-      "goal": "打开腾讯会议应用",
-      "expected": "腾讯会议应用图标被选中，应用启动并进入主界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的腾讯会议应用图标",
+      "expected": "进入腾讯会议主界面",
+      "action_type": "click"
     },
     {
-      "goal": "进入管理成员界面",
-      "expected": "点击底部导航栏中的管理成员按钮后，进入会议成员管理页面",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击'加入会议'按钮并输入会议号进入会议",
+      "expected": "进入会议房间",
+      "action_type": "click"
     },
     {
-      "goal": "操作点击'全体静音'按钮",
-      "expected": "点击'全体静音'按钮后，会议中的所有参会者将被设置为静音状态。",
-      "action_type": "click",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击会议界面底部的'成员'按钮",
+      "expected": "展开成员列表面板",
+      "action_type": "click"
     },
     {
-      "goal": "确认静音设置并关闭对话框",
-      "expected": "操作后界面状态为：弹出对话框中的“允许成员自我解除静音”选项被选中，底部的“取消”和“全体静音”按钮处于可点击状态。",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击成员列表下方的'全员静音'按钮",
+      "expected": "全体成员被静音，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "e298cf08b4c1c117cf239fd3c58ebe29.json"
 }

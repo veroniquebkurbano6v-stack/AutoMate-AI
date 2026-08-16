@@ -14,52 +14,29 @@
   ],
   "steps": [
     {
-      "goal": "打开QQ音乐应用",
-      "expected": "QQ音乐应用图标被选中，应用已启动",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的音乐应用图标",
+      "expected": "进入音乐应用主界面",
+      "action_type": "click"
     },
     {
-      "goal": "跳过广告页面",
-      "expected": "广告页面消失，返回到QQ音乐主界面",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框输入'歌单名称'",
+      "expected": "界面显示搜索结果列表",
+      "action_type": "type"
     },
     {
-      "goal": "点击顶部导航栏中的'乐馆'标签",
-      "expected": "进入乐馆页面",
-      "action_type": "click",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击搜索结果中的目标歌单条目",
+      "expected": "进入歌单详情页面，显示歌曲列表",
+      "action_type": "click"
     },
     {
-      "goal": "点击歌单功能入口",
-      "expected": "进入歌单相关功能页面",
-      "action_type": "click",
-      "step_order": 4
-    },
-    {
-      "goal": "点击分类歌单顶部导航栏的'说'标签",
-      "expected": "进入说分类歌单页面",
-      "action_type": "click",
-      "step_order": 5
-    },
-    {
-      "goal": "点击特定主题分类按钮",
-      "expected": "进入特定主题分类页面",
-      "action_type": "click",
-      "step_order": 6
-    },
-    {
-      "goal": "点击粤语经典视频内容区域",
-      "expected": "进入该视频的播放页面",
-      "action_type": "click",
-      "step_order": 7
-    },
-    {
-      "goal": "点击'全部播放'按钮开始播放所有歌曲",
-      "expected": "歌曲列表开始播放",
-      "action_type": "click",
-      "step_order": 8
+      "step_order": 4,
+      "goal": "点击歌单中的目标歌曲",
+      "expected": "该歌曲开始播放，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "c3128c787f0fd55f2d049abad26d6984.json"
 }

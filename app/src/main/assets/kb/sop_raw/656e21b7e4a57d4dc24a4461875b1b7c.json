@@ -16,57 +16,64 @@
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用图标被选中，进入应用界面",
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "进入高德地图主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "点击屏幕中间的搜索框输入'目的地名称'",
+      "expected": "界面显示搜索结果列表",
       "action_type": "type"
     },
     {
+      "step_order": 3,
+      "goal": "点击搜索结果列表上方的'推荐排序'按钮",
+      "expected": "弹出排序方式菜单，包含推荐排序、距离优先、好评优先等选项",
+      "action_type": "click"
+    },
+    {
       "step_order": 4,
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索结果页面显示",
+      "goal": "选择排序方式为'距离优先'",
+      "expected": "列表按距离从近到远重新排列",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击搜索结果中的特定场所条目",
-      "expected": "进入该场所的详情页面",
+      "goal": "点击距离最近的目标店铺条目",
+      "expected": "进入该店铺的详细信息页面，显示地址、评分和营业信息",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "点击分享按钮",
-      "expected": "分享当前场所信息",
+      "goal": "点击详情页底部的'分享'按钮",
+      "expected": "弹出分享面板，显示微信、朋友圈等分享方式选项",
       "action_type": "click"
     },
     {
       "step_order": 7,
-      "goal": "操作点击微信分享按钮",
-      "expected": "分享界面弹出",
+      "goal": "点击分享面板中的'微信'图标",
+      "expected": "进入微信分享界面，显示最近聊天列表",
       "action_type": "click"
     },
     {
       "step_order": 8,
-      "goal": "点击'创建新的聊天'按钮",
-      "expected": "进入新建聊天界面",
-      "action_type": "click"
+      "goal": "点击微信分享界面上方的搜索框输入'联系人姓名'",
+      "expected": "界面显示匹配的搜索结果条目",
+      "action_type": "type"
     },
     {
       "step_order": 9,
-      "goal": "确认分享目标联系人",
-      "expected": "确认分享操作已成功发送给指定联系人",
+      "goal": "点击搜索结果中的联系人条目",
+      "expected": "弹出包含'确认'和'取消'按钮的确认分享对话框",
+      "action_type": "click"
+    },
+    {
+      "step_order": 10,
+      "goal": "点击对话框中的'确认'按钮",
+      "expected": "店铺位置已分享给联系人，任务完成",
       "action_type": "click"
     }
-  ]
+  ],
+  "_file": "656e21b7e4a57d4dc24a4461875b1b7c.json"
 }

@@ -14,40 +14,41 @@
   ],
   "steps": [
     {
-      "goal": "打开QQ音乐应用",
-      "expected": "QQ音乐应用图标被选中，应用启动并进入主界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的音乐应用图标",
+      "expected": "进入音乐应用主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击播放控制栏中的暂停按钮",
-      "expected": "歌曲播放状态暂停",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击界面底部、下方导航栏上方一点的'正在播放'音乐图标",
+      "expected": "进入当前播放歌曲的播放界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击左上角的返回按钮",
-      "expected": "返回到上一级界面",
-      "action_type": "click",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击播放界面的'暂停'按钮停止当前歌曲",
+      "expected": "当前歌曲停止播放",
+      "action_type": "click"
     },
     {
-      "goal": "进入个人中心页面",
-      "expected": "操作后界面状态：用户已进入个人中心页面，可查看和管理个人账户信息、收藏、播放列表等。",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "点击界面底部的'我的'按钮进入个人中心",
+      "expected": "进入个人中心页面",
+      "action_type": "click"
     },
     {
-      "goal": "点击收藏按钮，查看已收藏内容",
-      "expected": "进入收藏页面，显示已收藏的歌曲、歌单等",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击'收藏'入口进入收藏歌曲列表",
+      "expected": "显示已收藏的歌曲列表",
+      "action_type": "click"
     },
     {
-      "goal": "点击歌曲标题区域以进入歌曲详情页",
-      "expected": "进入歌曲《特定歌曲》的详情页面",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "点击收藏列表中的目标歌曲",
+      "expected": "该歌曲开始播放，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "326927816708b5f8885d9d5ba23fc7cd.json"
 }

@@ -15,34 +15,29 @@
   ],
   "steps": [
     {
-      "goal": "打开酷狗音乐应用",
-      "expected": "应用图标被选中，进入酷狗音乐主界面",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "点击手机桌面上的音乐应用图标",
+      "expected": "进入音乐应用主界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击顶部搜索栏区域",
-      "expected": "搜索栏处于可输入状态",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击页面顶部的搜索框输入'歌曲名称'",
+      "expected": "界面显示搜索结果列表",
+      "action_type": "type"
     },
     {
-      "goal": "在文本输入框中输入'联系人'",
-      "expected": "文本输入框中显示'联系人'",
-      "action_type": "type",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "点击搜索结果中的目标歌曲条目",
+      "expected": "进入歌曲详情或播放界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击联系人的头像进入其个人主页",
-      "expected": "进入联系人的个人主页",
-      "action_type": "click",
-      "step_order": 4
-    },
-    {
-      "goal": "点击特定歌曲",
-      "expected": "特定歌曲进入播放界面",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 4,
+      "goal": "点击歌曲列表中的第N首歌曲",
+      "expected": "从第N首歌曲开始播放，任务完成",
+      "action_type": "click"
     }
-  ]
+  ],
+  "_file": "f1168413a47c836e7afe2ef71e99b10e.json"
 }

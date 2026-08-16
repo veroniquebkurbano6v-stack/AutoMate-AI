@@ -1,7 +1,7 @@
 {
   "sop_id": "1b8d3233f4502d20",
   "original_task_name": "打开QQ音乐排行榜游戏音乐榜的全部歌曲，从第一首开始播放",
-  "task_name": "打开QQ音乐排行榜特定榜单的全部歌曲，从第一首开始播放",
+  "task_name": "打开QQ音乐排行榜榜单的全部歌曲，从第一首开始播放",
   "app_name": "QQ音乐",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -15,27 +15,28 @@
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击手机桌面上的QQ音乐应用图标",
-      "expected": "QQ音乐应用图标被选中，进入其主界面",
+      "goal": "点击手机桌面上的音乐应用图标",
+      "expected": "进入音乐应用主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击底部导航栏中的'排行榜'标签",
-      "expected": "导航栏中'排行榜'标签被选中并高亮显示",
-      "action_type": "click"
+      "goal": "点击页面顶部的搜索框输入'歌曲名称'",
+      "expected": "界面显示搜索结果列表",
+      "action_type": "type"
     },
     {
       "step_order": 3,
-      "goal": "点击排行榜页面中的'游戏音乐榜'选项",
-      "expected": "进入游戏音乐榜页面",
+      "goal": "点击搜索结果中的目标歌曲条目",
+      "expected": "进入歌曲详情或播放界面",
       "action_type": "click"
     },
     {
       "step_order": 4,
-      "goal": "点击游戏音乐榜页面中的'播放全部'按钮",
-      "expected": "从第一首开始播放全部歌曲",
+      "goal": "点击歌曲列表中的第N首歌曲",
+      "expected": "从第N首歌曲开始播放，任务完成",
       "action_type": "click"
     }
-  ]
+  ],
+  "_file": "1b8d3233f4502d2095c342de2db3f246.json"
 }

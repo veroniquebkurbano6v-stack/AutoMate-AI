@@ -1,7 +1,7 @@
 {
   "sop_id": "614de66a9393ad18",
-  "original_task_name": "高德地图查找安仁坊遗址博物馆并导航过去",
-  "task_name": "高德地图查找目的地并导航过去",
+  "original_task_name": "高德地图查找安仁坊遗址博物馆并查看一日游行程",
+  "task_name": "高德地图查找目的地并查看一日游行程",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
