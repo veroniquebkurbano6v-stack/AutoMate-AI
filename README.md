@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/cce9ba53-cc70-4989-86ab-111bdf66a439
 # AutoMate AI — 一句话，帮不便操作手机的人完成手机上的事
 
 
@@ -62,7 +64,11 @@ AI 自主完成搜索、定位、输入、选择、下单等全部步骤，**无
 
 **📹 项目总览（3 分钟）** — 产品定位 · 端侧架构 · 多段真实任务实录
 
-[<img src="demo/cover_00.jpg" width="480" alt="点击播放：AutoMate AI 项目演示总览"/>](demo/00_project_intro.mp4)
+https://github.com/user-attachments/assets/718524ff-01a3-4450-b693-d55a2843d374
+
+
+
+
 
 **用淘宝点奶茶** — 老年人 · 跨页搜索→选规格→加购，全程 AI 代操作
 
