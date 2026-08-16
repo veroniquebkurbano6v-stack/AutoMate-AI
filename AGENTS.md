@@ -42,7 +42,7 @@ tap / long_press / swipe / scroll_down / scroll_up / scroll_left / scroll_right 
 ## Gotchas
 - 注释与日志以中文为主，保留既有中文注释，不翻译不删改。
 - `aaptOptions.noCompress("tflite", "onnx")`：ONNX/TFLite 模型必须保持未压缩（运行时 mmap 加载），勿改。
-- 知识库资产在 `app/src/main/assets/kb/`（约 23MB ONNX 模型 + **586 条** SOP JSON，共约 26MB）；首次启动后台建库 30–60s，用 Logcat 标签 `LocalKbEngine` 排查；设置页可触发"重新入库"（`LocalKbEngine.rebuild`）。
+- 知识库资产在 `app/src/main/assets/kb/`（约 23MB ONNX 模型 + **514 条** SOP JSON，共约 26MB）；首次启动后台建库 30–60s，用 Logcat 标签 `LocalKbEngine` 排查；设置页可触发"重新入库"（`LocalKbEngine.rebuild`）。
 - 检索管线：embed(query) → 向量检索 + 关键词检索（各取 50 候选）→ RRF 融合（RRF_K=60）→ 阈值过滤 0.3 → top_k（1-5，默认 3）。置信度：score≥0.55 high / ≥0.45 medium / 其余 low。
 - 单元测试配置了 `unitTests.isReturnDefaultValues = true`，JVM 测试中 Android 框架调用返回默认值，断言不要依赖真实系统行为；测试用 mockito-inline + coroutines-test。
 - 保活：Manifest 声明 `WRITE_SECURE_SETTINGS`（ADB 授权）→ BootReceiver / ScreenStateReceiver / KeepAliveJobService / A11yTileService（通知栏快捷开关）负责恢复无障碍服务。

@@ -400,8 +400,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Compactor · Running Summary 历史压缩"
-                        android:textColor="#AAAAAA"
+                        android:text="开发中 · Compactor 历史压缩"
+                        android:textColor="#E53935"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -621,15 +621,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="截图直传 GUI-Plus 决策"
-                        android:textColor="#AAAAAA"
+                        android:text="开发中 · 截图直传 GUI-Plus 决策"
+                        android:textColor="#E53935"
                         android:textSize="11sp" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_vision_mode"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:enabled="false" />
             </LinearLayout>
         </LinearLayout>
 
@@ -702,8 +703,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="@string/channel_wechat_disconnected"
-                        android:textColor="#AAAAAA"
+                        android:text="开发中"
+                        android:textColor="#E53935"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -915,16 +916,6 @@
             android:paddingVertical="12dp">
 
             <Button
-                android:id="@+id/btnImportFromBuildConfig"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/bg_input_field"
-                android:text="从配置文件导入（覆盖当前配置）"
-                android:textColor="#1A1A1A"
-                android:textSize="15sp" />
-
-            <Button
                 android:id="@+id/btnDiagnoseAll"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
@@ -976,15 +967,14 @@
             android:paddingHorizontal="16dp"
             android:paddingVertical="12dp">
 
-            <CheckBox
-                android:id="@+id/kb_enable_switch"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
                 android:paddingBottom="8dp"
-                android:text="启用端侧知识库（完全本地 RAG，离线可用）"
-                android:textColor="#1A1A1A"
-                android:textSize="15sp" />
+                android:text="本地知识库方便部署，后续转云端"
+                android:textColor="#E53935"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/kb_status_text"

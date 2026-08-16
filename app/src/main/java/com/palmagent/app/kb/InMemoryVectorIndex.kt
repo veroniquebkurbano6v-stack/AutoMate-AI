@@ -2,7 +2,7 @@ package com.palmagent.app.kb
 
 /**
  * 内存向量索引：全量加载后暴力余弦检索。
- * 586 条 × 512 维，单次检索 <5ms，无需 ANN 索引。
+ * 514 条 × 512 维，单次检索 <5ms，无需 ANN 索引。
  * task 向量 0.7 + keyword 向量 0.3 加权融合。
  */
 class InMemoryVectorIndex(

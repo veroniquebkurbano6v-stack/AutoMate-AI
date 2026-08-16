@@ -3,7 +3,7 @@
 """
 端侧知识库检索评测脚本 —— 与 App 内 LocalKbEngine 完全同口径。
 
-复现 docs/evaluation.md 中的 10 条 query 评测：
+复现 docs/evaluation.md 中的 31 条 query 评测：
   embed(query) → 向量检索(50) + 关键词检索(50) → RRF 融合(K=60)
   → 阈值过滤 0.3 → top_k(3)，判定 top-1 / top-3 命中率。
 
@@ -35,7 +35,7 @@ import numpy as np
 # ============ 评测集（对齐 docs/evaluation.md，query 与知识库实际数据一致） ============
 # 注：饿了么平台已下线，知识库实际条目为「淘宝闪购外卖」（sop 006b3e83f8，
 # task=淘宝闪购找一下附近可以送外卖的特定菜品），故 query 1 使用淘宝闪购表述。
-# 30 条 query：覆盖 17 个 App + 跨App 场景，每条均对应知识库真实 SOP 语义。
+# 31 条 query：覆盖 17 个 App + 跨App 场景，每条均对应知识库真实 SOP 语义。
 # (query, 期望 App, 领域)
 QUERIES = [
     # ---- 购物/外卖 ----

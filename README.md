@@ -34,7 +34,7 @@ AI 自主完成搜索、定位、输入、选择、下单等全部步骤，**无
 - **社会价值**：中国 60 岁以上人口超 2.8 亿，加上视障、听障、手部不便人群，
   是"数字鸿沟"最严重的群体；本项目的目标是让 AI 替他们"看屏幕、点按钮"。
 - **技术价值**：完整落地了"端侧 RAG（隐私不出手机）+ 双模型编排 + 无障碍感知"
-  这一组合，工程上有 25 个动作工具、586 条离线 SOP、<80ms 端侧检索。
+  这一组合，工程上有 25 个动作工具、514 条离线 SOP、<80ms 端侧检索。
 - **可验证性**：多段真实操作演示视频 + 可复现的检索/视觉消融评测数据
   （见 [docs/evaluation.md](docs/evaluation.md)），非概念 Demo。
 
@@ -78,7 +78,7 @@ https://github.com/user-attachments/assets/9db81a0d-4a39-4bb9-939f-031f8f49c6b8
 https://github.com/user-attachments/assets/4da8022d-3aba-47f9-92cf-db198f330f7f
 
 > 以上为代表性演示。底层是覆盖购物 / 社交 / 导航 / 生活服务的**通用底座**，
-> 配合 586 条端侧离线 SOP，可进一步扩展到点外卖、打车、挂号、缴费等更多日常场景。
+> 配合 514 条端侧离线 SOP，可进一步扩展到点外卖、打车、挂号、缴费等更多日常场景。
 > 高清原片：可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases) 下载。
 
 ## 🗺️ 端到端流程
@@ -105,11 +105,12 @@ https://github.com/user-attachments/assets/4da8022d-3aba-47f9-92cf-db198f330f7f
 
 ## 🚀 快速开始
 
-> **想直接体验？** 可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases) 下载**预编译 APK**（公开版未内置 API Key，安装后需在 App 内「设置」页自行填写 Key）。作者为学生个人开发者，暂无力承担大规模 API 消费；内置全部 Key 的评测专用版仅随作品报名材料提供给评委。
+> **想直接体验？** 可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases) 下载**预编译 APK**（不含任何 API Key，安全合规；安装后需在 App 内「设置」页自行填写 Key）。作者为学生个人开发者，暂无力承担大规模 API 消费。
 
 ### 1. 环境准备
 - Android Studio + JDK 17
-- Android SDK（路径在 `local.properties` 中配置）
+- Android SDK Platform 36（`compileSdk`/`targetSdk` = 36；打开项目时 Android Studio 会自动提示下载缺失组件）
+- 运行设备：Android 10+（`minSdk` = 29）
 
 ### 2. 配置
 ```bash
@@ -124,7 +125,7 @@ cp local.default.properties local.properties
 - `AMAP_API_KEY` / `AMAP_MCP_BASE_URL`：高德地图 MCP
 - `BOCHA_API_KEY`：联网搜索（不配则降级 DuckDuckGo）
 
-> 端侧知识库无需配置：App 内置 ONNX 模型 + 586 条 SOP，首次启动自动建库，离线可用。
+> 端侧知识库无需配置：App 内置 ONNX 模型 + 514 条 SOP，首次启动自动建库，离线可用。
 
 ### 3. 编译安装
 ```bash
@@ -162,7 +163,7 @@ app/src/main/java/com/palmagent/app/
 - **简单模式**：用户请求 → 直接交执行模型（跳过决策层）
 
 ### 端侧知识库（完全本地 RAG）
-586 条 SOP JSON → 端侧 bge-small-zh INT8 嵌入 → SQLite BLOB 向量 → 内存检索。
+514 条 SOP JSON → 端侧 bge-small-zh INT8 嵌入 → SQLite BLOB 向量 → 内存检索。
 检索管线：关键词 + 向量（task 0.7 + keyword 0.3）→ RRF 融合（RRF_K=60）→ 阈值过滤 0.3。
 **无服务端、无网络依赖**，首次启动自动建库。
 
@@ -188,4 +189,4 @@ app/src/main/java/com/palmagent/app/
 
 ---
 
-**相关文档**：[使用场景](docs/use-cases.md) · [架构说明](docs/architecture.md) · [评估结果](docs/evaluation.md)
+**相关文档**：[使用场景](docs/use-cases.md) · [架构说明](docs/architecture.md) · [评估结果](docs/evaluation.md) · [部署引导](docs/DEPLOY.md) · [依赖与合规](docs/DEPENDENCIES.md) · [开源边界](docs/OPEN-SOURCE-BOUNDARY.md) · [评委验证清单](docs/VERIFICATION-CHECKLIST.md)

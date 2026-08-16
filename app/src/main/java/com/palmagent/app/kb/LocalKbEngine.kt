@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
  *
  * 初始化流程：
  * 1. KbAssetLoader 拷贝 ONNX 模型 + vocab 到 filesDir
- * 2. 若 kb.db 不存在 → SopJsonLoader 从 assets 读 586 条 SOP → OnnxEmbedder 逐条嵌入 → KbDbAccessor 写库
+ * 2. 若 kb.db 不存在 → SopJsonLoader 从 assets 读 514 条 SOP → OnnxEmbedder 逐条嵌入 → KbDbAccessor 写库
  * 3. 若 kb.db 已存在 → 直接读全量数据到内存
  * 4. 构建 InMemoryVectorIndex + KeywordSearcher
  *

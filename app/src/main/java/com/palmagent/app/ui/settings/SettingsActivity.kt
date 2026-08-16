@@ -114,7 +114,6 @@ class SettingsActivity : AppCompatActivity() {
         setupOcrEngineConfig()
         setupWeChatBinding()
         setupDiagnoseAll()
-        setupImportFromBuildConfig()
         setupKbConfig()
     }
 
@@ -305,6 +304,16 @@ class SettingsActivity : AppCompatActivity() {
         LlmPreset("自定义", "", "")
     )
 
+    data class KeyboardVlmPreset(val displayName: String, val baseUrl: String, val modelName: String)
+
+    // 键盘检测模型预设：仅支持视觉的模型（区别于 LLM 文本模型预设）
+    private val keyboardVlmPresets = listOf(
+        KeyboardVlmPreset("智谱GLM-4V", "https://open.bigmodel.cn/api/paas/v4", "glm-4v-flash"),
+        KeyboardVlmPreset("通义千问VL", "https://dashscope.aliyuncs.com/compatible-mode/v1", "qwen-vl-plus"),
+        KeyboardVlmPreset("通义千问3-VL", "https://dashscope.aliyuncs.com/compatible-mode/v1", "qwen3-vl-flash"),
+        KeyboardVlmPreset("自定义", "", "")
+    )
+
     @SuppressLint("SetTextI18n")
     private fun showLLMConfigDialog() {
         val scrollView = ScrollView(this).apply {
@@ -368,12 +377,13 @@ class SettingsActivity : AppCompatActivity() {
         addField("API Key（必填）", apiKeyEdit)
 
         val baseUrlEdit = EditText(this).apply {
-            setText(viewModel.uiState.value.llmBaseUrl)
+            // 预填推荐配置（DeepSeek-V4-Flash），用户可修改；已有配置则保留
+            setText(viewModel.uiState.value.llmBaseUrl.ifEmpty { "https://api.deepseek.com/v1" })
         }
         addField("API 地址（例如 https://api.deepseek.com）", baseUrlEdit)
 
         val modelEdit = EditText(this).apply {
-            setText(viewModel.uiState.value.llmModelName)
+            setText(viewModel.uiState.value.llmModelName.ifEmpty { "deepseek-v4-flash" })
         }
         addField("模型名称（留空则自动选择默认模型）", modelEdit)
 
@@ -624,18 +634,17 @@ class SettingsActivity : AppCompatActivity() {
         layout.addView(enabledCheckbox)
 
         val apiKeyLabel = TextView(this).apply {
-            text = "API Key（从 local.properties 导入）"
+            text = "API Key（留空则使用 local.properties 导入值）"
             textSize = 14f
             setTextColor(0xFF333333.toInt())
             setPadding(0, 20, 0, 8)
         }
         layout.addView(apiKeyLabel)
 
-        val apiKeyText = TextView(this).apply {
-            val apiKey = KVUtils.getAmapApiKey()
-            text = if (apiKey.isNotBlank()) "已配置" else "未配置"
-            textSize = 14f
-            setTextColor(0xFF666666.toInt())
+        val apiKeyEdit = EditText(this).apply {
+            hint = "当前: ${KVUtils.maskApiKey(KVUtils.getAmapApiKey())}（留空则不修改）"
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            setTextSize(14f)
             setPadding(24, 20, 24, 20)
             setBackgroundResource(R.drawable.bg_input_field)
             layoutParams = LinearLayout.LayoutParams(
@@ -643,7 +652,7 @@ class SettingsActivity : AppCompatActivity() {
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply { bottomMargin = 4 }
         }
-        layout.addView(apiKeyText)
+        layout.addView(apiKeyEdit)
 
         val baseUrlLabel = TextView(this).apply {
             text = "MCP 端点 URL"
@@ -713,6 +722,10 @@ class SettingsActivity : AppCompatActivity() {
         dialog.setOnShowListener {
             val saveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             saveButton.setOnClickListener {
+                val newKey = apiKeyEdit.text.toString().trim()
+                if (newKey.isNotEmpty()) {
+                    KVUtils.setAmapApiKey(newKey)
+                }
                 val enabled = enabledCheckbox.isChecked
                 KVUtils.setAmapMcpEnabled(enabled)
                 refreshAmapMcpConfigDisplay()
@@ -879,13 +892,14 @@ class SettingsActivity : AppCompatActivity() {
         addField("API Key（必填，加密存储）", apiKeyEdit)
 
         val baseUrlEdit = EditText(this).apply {
-            setText(KVUtils.getPlannerApiUrl())
+            // 预填推荐配置（DeepSeek-V4-Flash），用户可修改；已有配置则保留
+            setText(KVUtils.getPlannerApiUrl().ifEmpty { "https://api.deepseek.com/v1" })
             hint = "https://dashscope.aliyuncs.com/compatible-mode/v1"
         }
         addField("API 地址", baseUrlEdit)
 
         val modelEdit = EditText(this).apply {
-            setText(KVUtils.getPlannerModel())
+            setText(KVUtils.getPlannerModel().ifEmpty { "deepseek-v4-flash" })
             hint = "qwen-plus"
         }
         addField("模型名称", modelEdit)
@@ -1108,13 +1122,35 @@ class SettingsActivity : AppCompatActivity() {
 
         val descText = TextView(this).apply {
             text = "键盘检测模型用于检测输入框点击后键盘是否弹出（是/否判断）。\n\n" +
-                  "推荐使用智谱 GLM-4V-Flash（免费模型），注册即用。\n" +
-                  "获取地址：https://open.bigmodel.cn/"
+                  "键盘检测模型：点击输入框后，检测屏幕键盘是否弹出（是/否判断），\n" +
+                  "用于验证输入框是否聚焦成功、决定后续输入流程。\n" +
+                  "请选择支持视觉（VLM）能力的模型。"
             textSize = 12f
             setTextColor(0xFF666666.toInt())
             setPadding(0, 0, 0, 16)
         }
         layout.addView(descText)
+
+        // 预设服务商 Spinner（仅视觉模型，区别于文本模型预设）
+        val presetLabel = TextView(this).apply {
+            text = "服务商预设（视觉模型）"
+            textSize = 14f
+            setTextColor(0xFF333333.toInt())
+            setPadding(0, 20, 0, 8)
+        }
+        layout.addView(presetLabel)
+
+        val presetSpinner = Spinner(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply { bottomMargin = 4 }
+        }
+        val presetNames = keyboardVlmPresets.map { it.displayName }
+        val spinnerAdapter = ArrayAdapter(this@SettingsActivity, android.R.layout.simple_spinner_item, presetNames)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        presetSpinner.adapter = spinnerAdapter
+        layout.addView(presetSpinner)
 
         val apiKeyEdit = EditText(this).apply {
             hint = "当前: ${KVUtils.maskApiKey(KVUtils.getKeyboardVlmApiKey())}（留空则不修改）"
@@ -1123,16 +1159,39 @@ class SettingsActivity : AppCompatActivity() {
         addField("API Key（必填）", apiKeyEdit)
 
         val apiUrlEdit = EditText(this).apply {
-            setText(KVUtils.getKeyboardVlmApiUrl())
+            // 预填推荐配置（智谱 GLM-4V-Flash），用户可修改；已有配置则保留
+            setText(KVUtils.getKeyboardVlmApiUrl().ifEmpty { "https://open.bigmodel.cn/api/paas/v4" })
             hint = "https://open.bigmodel.cn/api/paas/v4/chat/completions"
         }
         addField("API 地址", apiUrlEdit)
 
         val modelEdit = EditText(this).apply {
-            setText(KVUtils.getKeyboardVlmModelName())
+            setText(KVUtils.getKeyboardVlmModelName().ifEmpty { "glm-4v-flash" })
             hint = "glm-4v-flash"
         }
         addField("模型名称", modelEdit)
+
+        // 根据当前保存的 baseUrl 匹配预设，设置 Spinner 默认选中项
+        val currentKbUrl = KVUtils.getKeyboardVlmApiUrl()
+        val matchedKbIndex = keyboardVlmPresets.indexOfFirst { it.baseUrl.isNotEmpty() && it.baseUrl == currentKbUrl }
+        presetSpinner.setSelection(if (matchedKbIndex >= 0) matchedKbIndex else keyboardVlmPresets.size - 1)
+
+        // Spinner 选择事件（初始化回调会覆盖预填的实际配置，首次跳过）
+        var kbSpinnerInitialized = false
+        presetSpinner.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                if (!kbSpinnerInitialized) { kbSpinnerInitialized = true; return }
+                val preset = keyboardVlmPresets[position]
+                if (preset.displayName == "自定义") {
+                    apiUrlEdit.setText("")
+                    modelEdit.setText("")
+                } else {
+                    apiUrlEdit.setText(preset.baseUrl)
+                    modelEdit.setText(preset.modelName)
+                }
+            }
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>?) {}
+        }
 
         val testButton = Button(this).apply {
             text = "测试连通性"
@@ -1284,28 +1343,7 @@ class SettingsActivity : AppCompatActivity() {
             layout.addView(editText)
         }
 
-        val apiUrlLabel = TextView(this).apply {
-            text = "API 地址（阿里云百炼）"
-            textSize = 14f
-            setTextColor(0xFF333333.toInt())
-            setPadding(0, 20, 0, 8)
-        }
-        layout.addView(apiUrlLabel)
-
-        val apiUrlView = TextView(this).apply {
-            text = KVUtils.getGuiOwlApiUrl()
-            textSize = 14f
-            setTextColor(0xFF4CAF50.toInt())
-            setPadding(24, 20, 24, 20)
-            setBackgroundResource(R.drawable.bg_input_field)
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { bottomMargin = 4 }
-        }
-        layout.addView(apiUrlView)
-
-        // API-Key 输入区（留空则不修改，与 LLM/Planner 对话框一致）
+        // API-Key 输入区（留空则不修改，与 LLM/Planner 对话框一致；API 地址固定为百炼端点，不可修改）
         val apiKeyLabel = TextView(this).apply {
             text = "API Key（百炼，留空则复用 LLM_API_KEY）"
             textSize = 14f
@@ -1700,15 +1738,13 @@ class SettingsActivity : AppCompatActivity() {
         val wechatActionText = findViewById<TextView>(R.id.wechat_action_text)
         val wechatIcon = findViewById<ImageView>(R.id.wechat_status_icon)
 
-        val state = viewModel.uiState.value
-        refreshWeChatUI(wechatStatusText, wechatActionText, wechatIcon, state.isWechatBound)
-
+        // 开发中：锁死微信通道（扫码绑定功能未完成），固定显示"开发中"，点击仅提示不进入绑定流程
+        wechatStatusText.text = "开发中"
+        wechatStatusText.setTextColor(0xFFE53935.toInt())
+        wechatActionText.text = "敬请期待"
+        wechatIcon.setImageResource(android.R.drawable.presence_offline)
         wechatMenu.setOnClickListener {
-            if (state.isWechatBound) {
-                showWechatLogoutDialog(wechatStatusText, wechatActionText, wechatIcon)
-            } else {
-                startQrCodeLogin(wechatStatusText, wechatActionText, wechatIcon)
-            }
+            Toast.makeText(this, "微信通道开发中，敬请期待", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -1970,42 +2006,28 @@ class SettingsActivity : AppCompatActivity() {
         qrLoginDialog?.dismiss()
     }
 
-    // ==================== 从 BuildConfig 强制导入 ====================
+    // ==================== 从 BuildConfig 强制导入（功能保留，入口已从设置页移除） ====================
 
-    private fun setupImportFromBuildConfig() {
-        val btnImport = findViewById<Button>(R.id.btnImportFromBuildConfig)
-        btnImport?.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("从配置文件导入")
-                .setMessage("将从编译时内置的配置（local.properties）强制覆盖当前所有模型配置。\n\n此操作会覆盖您在设置界面中手动修改的配置值。是否继续？")
-                .setPositiveButton("确认导入") { _, _ ->
-                    val count = KVUtils.forceImportFromBuildConfig()
-                    viewModel.refreshConfig()
-                    refreshLlmConfigDisplay()
-                    refreshKeyboardVlmConfigDisplay()
-                    refreshGuiOwlConfigDisplay()
-                    refreshAmapMcpConfigDisplay()
-                    refreshPlannerConfigDisplay()
-                    Toast.makeText(this, "已从配置文件导入 $count 项配置", Toast.LENGTH_SHORT).show()
-                }
-                .setNegativeButton("取消", null)
-                .show()
-        }
+    /**
+     * 从编译时内置配置（local.properties）强制导入，覆盖当前所有模型配置。
+     * 保留此功能供未来入口调用；设置页诊断工具中的导入按钮已移除。
+     */
+    fun importFromBuildConfig(): Int {
+        val count = KVUtils.forceImportFromBuildConfig()
+        viewModel.refreshConfig()
+        refreshLlmConfigDisplay()
+        refreshKeyboardVlmConfigDisplay()
+        refreshGuiOwlConfigDisplay()
+        refreshAmapMcpConfigDisplay()
+        refreshPlannerConfigDisplay()
+        return count
     }
 
     // ==================== 端侧知识库配置（完全本地 RAG，无服务端） ====================
 
     @SuppressLint("SetTextI18n")
     private fun setupKbConfig() {
-        val enableSwitch = findViewById<android.widget.CheckBox>(R.id.kb_enable_switch)
-        val statusText = findViewById<TextView>(R.id.kb_status_text)
-
-        enableSwitch.isChecked = KVUtils.isLocalKbEnabled()
-        enableSwitch.setOnCheckedChangeListener { _, isChecked ->
-            KVUtils.setLocalKbEnabled(isChecked)
-            refreshKbStatus()
-        }
-
+        // 端侧知识库默认启用（isLocalKbEnabled 默认 true），已移除启用复选框
         findViewById<Button>(R.id.kb_rebuild_btn).setOnClickListener { confirmRebuildKb() }
 
         refreshKbStatus()

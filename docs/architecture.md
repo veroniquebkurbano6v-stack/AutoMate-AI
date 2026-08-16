@@ -60,7 +60,7 @@ AutoMate AI 是一个 **Android 原生 App**（Kotlin），把"看得懂屏幕�
 ## 端侧知识库（完全本地 RAG，隐私不出手机）
 
 ```
-assets/kb/ 586 条 SOP JSON
+assets/kb/ 514 条 SOP JSON
       │ 首次启动
       ▼
 bge-small-zh INT8 ONNX 嵌入（端侧推理）

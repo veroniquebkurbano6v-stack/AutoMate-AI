@@ -24,6 +24,7 @@ object KVUtils {
 
     // 高德地图 MCP 配置
     private const val KEY_AMAP_MCP_ENABLED = "KEY_AMAP_MCP_ENABLED"
+    private const val KEY_AMAP_API_KEY = "KEY_AMAP_API_KEY"
 
     private const val KEY_WECHAT_BOT_TOKEN = "KEY_WECHAT_BOT_TOKEN"
     private const val KEY_WECHAT_API_BASE_URL = "KEY_WECHAT_API_BASE_URL"
@@ -173,9 +174,10 @@ object KVUtils {
     fun setAmapMcpEnabled(value: Boolean) = putBoolean(KEY_AMAP_MCP_ENABLED, value)
 
     /**
-     * 高德 API Key（从 BuildConfig 读取，编译时从 local.properties 注入）
+     * 高德 API Key（界面可配置：SharedPreferences 优先，为空回退 BuildConfig 注入值）
      */
-    fun getAmapApiKey(): String = BuildConfig.AMAP_API_KEY
+    fun getAmapApiKey(): String = getString(KEY_AMAP_API_KEY).ifEmpty { BuildConfig.AMAP_API_KEY }
+    fun setAmapApiKey(value: String) = edit { putString(KEY_AMAP_API_KEY, value) }
 
     /**
      * 高德 MCP 完整端点 URL（自动拼接 API Key）
