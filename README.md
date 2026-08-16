@@ -1,10 +1,4 @@
-
-https://github.com/user-attachments/assets/cce9ba53-cc70-4989-86ab-111bdf66a439
 # AutoMate AI — 一句话，帮不便操作手机的人完成手机上的事
-
-
-https://github.com/user-attachments/assets/4da8022d-3aba-47f9-92cf-db198f330f7f
-
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
@@ -58,19 +52,16 @@ AI 自主完成搜索、定位、输入、选择、下单等全部步骤，**无
 | 端到端执行 | 25 个动作工具（tap / auto_input / select_spec / open_app…） | 自动完成定位、输入、点击 |
 | 敏感操作拦截 | `supervised` 标记 + 用户确认 | 支付/转账等不可逆操作不越权 |
 
-## 📺 Demo
+## 📺 演示视频
 
-> 点击封面播放完整视频；每个场景的故事见 [docs/use-cases.md](docs/use-cases.md)
+> 代表性操作实录：均为真机拍摄，AI 端到端自动完成，点击即可播放。
+> 完整场景故事见 [docs/use-cases.md](docs/use-cases.md)。
 
-**📹 项目总览（3 分钟）** — 产品定位 · 端侧架构 · 多段真实任务实录
+**📹 项目总览（3 分钟）** — 产品定位 · 端侧架构 · 多段任务实录
 
 https://github.com/user-attachments/assets/718524ff-01a3-4450-b693-d55a2843d374
 
-
-
-
-
-**用淘宝点奶茶** — 老年人 · 跨页搜索→选规格→加购，全程 AI 代操作
+**用淘宝点奶茶** — 老年人 · 跨页搜索 → 选规格 → 加购，全程 AI 代操作
 
 https://github.com/user-attachments/assets/641b225c-3f9b-43ad-be33-ecbedba84377
 
@@ -78,7 +69,7 @@ https://github.com/user-attachments/assets/641b225c-3f9b-43ad-be33-ecbedba84377
 
 https://github.com/user-attachments/assets/775abc78-c6f6-47c2-98ca-af06c21359e5
 
-**用高德导航到目的地** — 老年人/视障 · 附近检索→导航，语音触发
+**用高德导航到目的地** — 老年人/视障 · 附近检索 → 导航，语音触发
 
 https://github.com/user-attachments/assets/9db81a0d-4a39-4bb9-939f-031f8f49c6b8
 
@@ -86,6 +77,8 @@ https://github.com/user-attachments/assets/9db81a0d-4a39-4bb9-939f-031f8f49c6b8
 
 https://github.com/user-attachments/assets/4da8022d-3aba-47f9-92cf-db198f330f7f
 
+> 以上为代表性演示。底层是覆盖购物 / 社交 / 导航 / 生活服务的**通用底座**，
+> 配合 586 条端侧离线 SOP，可进一步扩展到点外卖、打车、挂号、缴费等更多日常场景。
 > 高清原片：可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases) 下载。
 
 ## 🗺️ 端到端流程
