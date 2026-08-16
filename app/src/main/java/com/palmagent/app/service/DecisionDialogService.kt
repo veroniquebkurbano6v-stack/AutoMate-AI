@@ -145,7 +145,7 @@ class DecisionDialogService {
 
 ### Plan 生成规范
 Plan 是传给执行模型消费的分步骤操作指引，输出为结构化 JSON 对象（非字符串），每个字段短小无嵌套引号风险。
-- plan.requirement：完整复述用户原始需求（对象、地点、时间、数量、内容等关键要素逐条列出，不得遗漏、不得凭训练知识编造）
+- plan.requirement：用一句话摘要用户需求（≤60字，含关键要素：对象/地点/时间/数量；完整细节放工作区，禁止超长复述导致输出截断）
 - plan.goal：一句话概括任务目标
 - plan.steps：步骤数组，每个步骤对象含：
   - order：步骤序号（从1开始递增）
@@ -275,6 +275,8 @@ Plan 示例（预约挂号）：
         var formatRetried = false
         // 是否已对"输出被截断（finish_reason=length）"做过一次续写重试
         var truncateRetried = false
+        // 续写轮提升输出预算（MAX_TOKENS * 1.5），避免同参数重发导致同一位置二次截断
+        var nextMaxTokens = MAX_TOKENS
         // 任务工作区（scratchpad）：单任务内状态，由 workspace_update 工具覆盖式更新。
         // 注意：DecisionDialogService 是长生命周期实例，故不可用类字段承载（多任务会互相污染）
         var workspace = ""
@@ -299,7 +301,7 @@ Plan 示例（预约挂号）：
 
             LiveLogBuffer.append("🔁 决策模型推理（第${round}轮/${MAX_TOOL_ROUNDS}）")
             Log.d(TAG, "决策推理 第${round}轮/${MAX_TOOL_ROUNDS}")
-            val (content, toolCalls, truncated) = callApiWithTools(apiUrl, apiKey, model, messages, toolChoiceJson)
+            val (content, toolCalls, truncated) = callApiWithTools(apiUrl, apiKey, model, messages, toolChoiceJson, nextMaxTokens)
                 ?: run {
                     LiveLogBuffer.append("❌ 决策模型调用失败")
                     return DialogResult.Error("决策模型调用失败，请查看日志")
@@ -318,6 +320,7 @@ Plan 示例（预约挂号）：
                     messages.add(mapOf("role" to "assistant", "content" to content))
                     messages.add(mapOf("role" to "user", "content" to TRUNCATED_CONTINUE_PROMPT))
                     truncateRetried = true
+                    nextMaxTokens = (MAX_TOKENS * 1.5).toInt()
                     continue
                 }
                 // 格式违规拦截：操作任务返回"无结构化问题"的裸文本 need_more_info
@@ -586,17 +589,18 @@ Plan 示例（预约挂号）：
         apiKey: String,
         model: String,
         messages: List<Map<String, Any>>,
-        toolChoiceJson: String = "\"auto\""
+        toolChoiceJson: String = "\"auto\"",
+        maxTokens: Int = MAX_TOKENS
     ): Triple<String, List<Map<String, Any>>, Boolean>? {
         return try {
             // 先尝试启用 JSON 模式（response_format: json_object，由 API 层保证输出合法 JSON，
             // 避免模型输出裸文本/代码块导致解析失败）；若 API 不支持则回退为普通请求重试
-            var requestBody = buildDecisionRequestBody(model, messages, toolChoiceJson, useJsonFormat = true)
+            var requestBody = buildDecisionRequestBody(model, messages, toolChoiceJson, useJsonFormat = true, maxTokens = maxTokens)
             var (responseCode, body) = executeDecisionRequest(apiUrl, apiKey, requestBody)
             if (responseCode !in 200..299) {
                 val firstError = parseErrorMessage(body, responseCode)
                 Log.w(TAG, "决策对话 JSON 模式请求失败: HTTP $responseCode, $firstError，回退为普通请求重试")
-                requestBody = buildDecisionRequestBody(model, messages, toolChoiceJson, useJsonFormat = false)
+                requestBody = buildDecisionRequestBody(model, messages, toolChoiceJson, useJsonFormat = false, maxTokens = maxTokens)
                 val retry = executeDecisionRequest(apiUrl, apiKey, requestBody)
                 responseCode = retry.first
                 body = retry.second
@@ -672,14 +676,15 @@ Plan 示例（预约挂号）：
         model: String,
         messages: List<Map<String, Any>>,
         toolChoiceJson: String,
-        useJsonFormat: Boolean
+        useJsonFormat: Boolean,
+        maxTokens: Int = MAX_TOKENS
     ): String = buildString {
         append("{")
         append("\"model\":\"$model\",")
         append("\"messages\":${gson.toJson(messages)},")
         // 显式设置足够的输出上限（16384），避免长 plan（复杂任务可超 10 步）被截断；
         // 不传该字段时 API 使用默认上限（约 4096）仍会截断，必须显式给足
-        append("\"max_tokens\":$MAX_TOKENS,")
+        append("\"max_tokens\":$maxTokens,")
         append("\"temperature\":$TEMPERATURE,")
         if (useJsonFormat) {
             // API 层结构化输出约束（OpenAI 兼容格式，与 function calling 可共存）
