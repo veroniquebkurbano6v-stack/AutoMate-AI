@@ -64,7 +64,7 @@
   .video-loading.show{opacity:1}
   .spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.2);border-top-color:#22D3EE;border-radius:50%;animation:spin .8s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .video-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .video-tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
   .vt{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;text-align:left;transition:.15s}
   .vt:hover{border-color:var(--primary)}
   .vt.active{border-color:var(--primary);background:#EFF8FF}
@@ -158,6 +158,9 @@
         </div>
         <div class="vt" data-src="02_amap_navigate.mp4" data-poster="cover_02.jpg" data-title="用高德导航" data-desc="老年人/视障 · 附近检索→导航">
           <b>用高德导航</b><span>老年人/视障 · 附近检索→导航</span>
+        </div>
+        <div class="vt" data-src="04_amap_share_location_wechat.mp4" data-poster="cover_04.jpg" data-title="高德分享位置到微信" data-desc="跨 App 协作 · 检索评分最高店铺 → 一键分享定位给微信联系人">
+          <b>高德分享位置到微信</b><span>跨 App 协作 · 检索评分最高店铺 → 一键分享定位给微信联系人</span>
         </div>
       </div>
     </div>
