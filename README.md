@@ -39,7 +39,7 @@ AI 自主完成搜索、定位、输入、选择、下单等全部步骤，**无
   是"数字鸿沟"最严重的群体；本项目的目标是让 AI 替他们"看屏幕、点按钮"。
 - **技术价值**：完整落地了"端侧 RAG（隐私不出手机）+ 双模型编排 + 无障碍感知"
   这一组合，工程上有 25 个动作工具、586 条离线 SOP、<80ms 端侧检索。
-- **可验证性**：3 段真实操作演示视频 + 可复现的检索/视觉消融评测数据
+- **可验证性**：多段真实操作演示视频 + 可复现的检索/视觉消融评测数据
   （见 [docs/evaluation.md](docs/evaluation.md)），非概念 Demo。
 
 **一句话总结**：AutoMate AI 是一个"技术通用、场景垂直"的数字无障碍项目——
@@ -60,7 +60,7 @@ AI 自主完成搜索、定位、输入、选择、下单等全部步骤，**无
 
 > 点击封面播放完整视频；每个场景的故事见 [docs/use-cases.md](docs/use-cases.md)
 
-**📹 项目总览（3 分钟）** — 产品定位 · 端侧架构 · 3 个真实任务实录
+**📹 项目总览（3 分钟）** — 产品定位 · 端侧架构 · 多段真实任务实录
 
 [<img src="demo/cover_00.jpg" width="480" alt="点击播放：AutoMate AI 项目演示总览"/>](demo/00_project_intro.mp4)
 
@@ -75,6 +75,10 @@ https://github.com/user-attachments/assets/775abc78-c6f6-47c2-98ca-af06c21359e5
 **用高德导航到目的地** — 老年人/视障 · 附近检索→导航，语音触发
 
 https://github.com/user-attachments/assets/9db81a0d-4a39-4bb9-939f-031f8f49c6b8
+
+**高德分享位置到微信** — 跨 App 协作 · 检索评分最高店铺 → 一键分享定位给微信联系人
+
+https://github.com/user-attachments/assets/4da8022d-3aba-47f9-92cf-db198f330f7f
 
 > 高清原片：可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases) 下载。
 
@@ -96,7 +100,7 @@ https://github.com/user-attachments/assets/9db81a0d-4a39-4bb9-939f-031f8f49c6b8
 |------|------|
 | 知识库检索命中率（31 场景） | **100%**（top-3）/ **100%**（top-1） |
 | 平均端到端检索延迟 | <80ms（端侧，含上下文组装） |
-| 实际任务演示 | 3/3 成功（见 Demo） |
+| 实际任务演示 | 端到端完成（见 Demo） |
 
 [完整评估数据见 docs/evaluation.md](docs/evaluation.md)
 
