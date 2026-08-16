@@ -317,6 +317,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@android:color/white"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
         <!-- 抽屉头部：标题 + 新建会话按钮 -->

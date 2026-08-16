@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PalmAgent</string>
+    <string name="app_name">AutoMate AI</string>
     <string name="accessibility_service_description">GUI 智能助手需要使用无障碍服务来分析屏幕内容和执行自动化操作，以帮助您完成手机操作任务。</string>
 
     <!-- 引导页 -->
