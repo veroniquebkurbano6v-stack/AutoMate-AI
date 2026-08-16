@@ -1,4 +1,4 @@
-# AutoMate AI 评委验证清单
+# AutoMate·小艾 评委验证清单
 
 > 给评委的一页纸引导。按 1→2→3→4 顺序即可在最短时间内完成对项目
 > **可运行性、可复现性、工程深度、合规性**的核查。
@@ -7,7 +7,7 @@
 
 ## 0. 先看（1 分钟）
 
-- [ ] 仓库：https://github.com/veroniquebkurbano6v-stack/AutoMate-AI
+- [ ] 仓库：https://github.com/veroniquebkurbano6v-stack/AutoMate-XiaoAi
 - [ ] 落地页（GitHub Pages）：`docs/index.html` —— 产品定位 + 端到端演示视频
 - [ ] README：项目简介、核心特性、评估摘要
 - [ ] 技术方案 PDF：`docs/tech-solution.pdf` / 报名材料 `03_技术方案`
@@ -24,7 +24,7 @@
 
 ## 2. 跑真机任务（约 5 分钟，可选）
 
-- [ ] 安装 `AutoMate-AI-v1.0.apk`（不含任何 API Key），在 App「设置」页自行填写模型 Key
+- [ ] 安装 `AutoMate-XiaoAi-v1.0.apk`（不含任何 API Key），在 App「设置」页自行填写模型 Key
 - [ ] 开启无障碍服务（必要时执行 `adb shell pm grant com.palmagent.app android.permission.WRITE_SECURE_SETTINGS`）
 - [ ] 输入 `帮我在淘宝点杯奶茶` → 观察 AI 自主完成全流程
 - [ ] 输入 `用微信给联系人发消息` → 观察定位/输入/发送
@@ -32,7 +32,7 @@
 
 ## 3. 复现评测数据（约 10 分钟，无真机也可）
 
-- [ ] `python eval/eval_retrieval.py` → 31/31 场景 100% 检索命中率（与 `docs/evaluation.md` 一致）
+- [ ] `python eval/eval_retrieval.py` → 32/32 场景 100% 检索命中率（与 `docs/evaluation.md` 一致）
 - [ ] `python eval/eval_vision.py` → 视觉鲁棒性/提示词消融（185 张真实截图）
 - [ ] `python eval/audit_dedup.py` / `audit_sop_quality.py` → 知识库数据质量审计
 

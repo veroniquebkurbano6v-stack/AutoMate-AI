@@ -1,4 +1,4 @@
-# AutoMate AI — 一句话，帮不便操作手机的人完成手机上的事
+# AutoMate·小艾 — 一句话，帮不便操作手机的人完成手机上的事
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
@@ -11,7 +11,7 @@
 行动不便者、以及不熟悉数字世界的用户。对他们而言，**点外卖、发消息、查路线**
 这些"日常小事"，却是难以跨越的障碍。
 
-AutoMate AI 用一句自然语言，帮他们完成整个手机操作流程：
+AutoMate·小艾 用一句自然语言，帮他们完成整个手机操作流程：
 **"帮我在淘宝点杯奶茶"、"用微信给家人发条消息"、"导航去最近的医院"** ——
 AI 自主完成搜索、定位、输入、选择、下单等全部步骤，**无需看清屏幕、无需记住步骤、
 无需精确点击**。
@@ -38,7 +38,7 @@ AI 自主完成搜索、定位、输入、选择、下单等全部步骤，**无
 - **可验证性**：多段真实操作演示视频 + 可复现的检索/视觉消融评测数据
   （见 [docs/evaluation.md](docs/evaluation.md)），非概念 Demo。
 
-**一句话总结**：AutoMate AI 是一个"技术通用、场景垂直"的数字无障碍项目——
+**一句话总结**：AutoMate·小艾 是一个"技术通用、场景垂直"的数字无障碍项目——
 技术栈可复用于任意 GUI 操作任务，而服务对象始终锚定最需要帮助的群体。
 
 ## ✨ 核心特性
@@ -79,7 +79,7 @@ https://github.com/user-attachments/assets/4da8022d-3aba-47f9-92cf-db198f330f7f
 
 > 以上为代表性演示。底层是覆盖购物 / 社交 / 导航 / 生活服务的**通用底座**，
 > 配合 514 条端侧离线 SOP，可进一步扩展到点外卖、打车、挂号、缴费等更多日常场景。
-> 高清原片：可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases) 下载。
+> 高清原片：可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-XiaoAi/releases) 下载。
 
 ## 🗺️ 端到端流程
 
@@ -97,7 +97,7 @@ https://github.com/user-attachments/assets/4da8022d-3aba-47f9-92cf-db198f330f7f
 
 | 指标 | 结果 |
 |------|------|
-| 知识库检索命中率（31 场景） | **100%**（top-3）/ **100%**（top-1） |
+| 知识库检索命中率（32 场景） | **100%**（top-3）/ **100%**（top-1） |
 | 平均端到端检索延迟 | <80ms（端侧，含上下文组装） |
 | 实际任务演示 | 端到端完成（见 Demo） |
 
@@ -105,7 +105,7 @@ https://github.com/user-attachments/assets/4da8022d-3aba-47f9-92cf-db198f330f7f
 
 ## 🚀 快速开始
 
-> **想直接体验？** 可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-AI/releases) 下载**预编译 APK**（不含任何 API Key，安全合规；安装后需在 App 内「设置」页自行填写 Key）。作者为学生个人开发者，暂无力承担大规模 API 消费。
+> **想直接体验？** 可在 [GitHub Releases](https://github.com/veroniquebkurbano6v-stack/AutoMate-XiaoAi/releases) 下载**预编译 APK**（不含任何 API Key，安全合规；安装后需在 App 内「设置」页自行填写 Key）。作者为学生个人开发者，暂无力承担大规模 API 消费。
 
 ### 1. 环境准备
 - Android Studio + JDK 17

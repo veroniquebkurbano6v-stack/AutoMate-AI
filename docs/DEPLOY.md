@@ -1,4 +1,4 @@
-# AutoMate AI 部署引导（评委验证路径）
+# AutoMate·小艾 部署引导（评委验证路径）
 
 > 本文档给评委/开发者提供一条**从零到跑通任务**的最短路径。
 > 建议按顺序：① 装 APK 直接体验 → ② 从源码构建 → ③ 复现评测。
@@ -14,9 +14,9 @@
 | **B. 从源码构建** | Windows/Linux/macOS + JDK 17 + Android SDK | 约 15 分钟 | 工程可复现性：源码 → APK 全链路可构建 |
 | **C. 复现评测（无真机也可）** | PC + Python 3.10+ | 约 10 分钟 | 检索命中率 / 视觉消融数据可复现 |
 
-> 路径 A 安装作品附件 `AutoMate-AI-v1.0.apk`（**不含任何 API Key**，安全合规），安装后在
+> 路径 A 安装作品附件 `AutoMate-XiaoAi-v1.0.apk`（**不含任何 API Key**，安全合规），安装后在
 > App「设置」页自行填写模型 Key 即可使用；路径 B 构建出的为公开版（同样不内置 Key），
-> 对应 GitHub Release 的 `AutoMate-AI-v1.0-noKey.apk`。
+> 对应 GitHub Release 的 `AutoMate-XiaoAi-v1.0-noKey.apk`。
 
 ---
 
@@ -25,14 +25,14 @@
 ### A1. 安装
 
 ```bash
-adb install AutoMate-AI-v1.0.apk
+adb install AutoMate-XiaoAi-v1.0.apk
 ```
 
 也可将 APK 拷贝到手机，点击安装（需允许"安装未知来源应用"）。
 
 ### A2. 授权无障碍服务（关键）
 
-打开 App → 跟随引导进入「设置」开启 **AutoMate AI 无障碍服务**。
+打开 App → 跟随引导进入「设置」开启 **AutoMate·小艾 无障碍服务**。
 为让无障碍服务具备开机自动恢复能力，需一次性授予系统级写权限：
 
 ```bash
@@ -72,8 +72,8 @@ adb shell pm grant com.palmagent.app android.permission.WRITE_SECURE_SETTINGS
 ### B2. 克隆并配置
 
 ```bash
-git clone https://github.com/veroniquebkurbano6v-stack/AutoMate-AI.git
-cd AutoMate-AI
+git clone https://github.com/veroniquebkurbano6v-stack/AutoMate-XiaoAi.git
+cd AutoMate-XiaoAi
 cp local.default.properties local.properties
 # 编辑 local.properties，填入 API Key + 修改 sdk.dir（见下方）
 ```
@@ -123,13 +123,13 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 无需 Android 设备，在 PC 上直接复现知识库检索与视觉评测。
 
 ```bash
-cd AutoMate-AI
+cd AutoMate-XiaoAi
 
 # 0. 安装评测依赖（两个脚本分别需要）
 pip install onnxruntime numpy        # eval_retrieval.py 所需
 pip install Pillow requests          # eval_vision.py 所需
 
-# 1. 知识库检索评测（31 场景，与论文/技术方案同口径）
+# 1. 知识库检索评测（32 场景，与论文/技术方案同口径）
 python eval/eval_retrieval.py
 
 # 2. 视觉鲁棒性 / 提示词消融评测（185 张真实截图）
@@ -137,7 +137,7 @@ python eval/eval_retrieval.py
 python eval/eval_vision.py
 ```
 
-- 检索评测使用与 App 端**同一 ONNX 嵌入模型、同一 RRF 融合参数**（`LocalKbEngine` 同口径），结果可直接复现 `docs/evaluation.md` 中的 31/31 = 100% 命中率。
+- 检索评测使用与 App 端**同一 ONNX 嵌入模型、同一 RRF 融合参数**（`LocalKbEngine` 同口径），结果可直接复现 `docs/evaluation.md` 中的 32/32 = 100% 命中率。
 - 更多数据审计脚本（去重/质量审计）：`eval/audit_dedup.py`、`eval/audit_sop_quality.py`。
 
 ---

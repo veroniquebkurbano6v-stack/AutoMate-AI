@@ -1,6 +1,6 @@
 # AGENTS.md
 
-AutoMate AI：Android GUI 智能助手（Kotlin），端侧 RAG + 云端多模型编排。单模块 Gradle 工程，代码全部在 `app/`。
+AutoMate·小艾：Android GUI 智能助手（Kotlin），端侧 RAG + 云端多模型编排。单模块 Gradle 工程，代码全部在 `app/`。
 
 ## 构建 / 测试 / Lint
 - 构建（Windows 环境，用 `.bat`）：`./gradlew.bat assembleDebug`，APK 输出 `app/build/outputs/apk/debug/app-debug.apk`

@@ -1,7 +1,7 @@
 # 知识库 SOP 数据生产规范 Prompt
 
-> 适用范围：AutoMate-AI 端侧知识库（`app/src/main/assets/kb/sop_raw/*.json`）的新增、改写、审核。
-> 配套审查脚本：`eval/audit_sop_quality.py`（扫描 587 条 SOP，检出含糊描述 / 未搜索优先 / 占位词问题）。
+> 适用范围：AutoMate·小艾 端侧知识库（`app/src/main/assets/kb/sop_raw/*.json`）的新增、改写、审核。
+> 配套审查脚本：`eval/audit_sop_quality.py`（扫描知识库全部 SOP，检出含糊描述 / 未搜索优先 / 占位词问题）。
 > 配套检索评测：`eval/eval_retrieval.py`（bge-small-zh 向量 + 关键词 RRF 融合，top-3 命中判定）。
 
 ---
@@ -214,7 +214,7 @@ keywords 泛化即可，步骤必须具体）：
 
 ---
 
-## 八、当前库审查结论（2026-08-16，587 条）
+## 八、当前库审查结论（2026-08-16 审查当日 587 条，去重后当前库 514 条）
 
 - **达标基准**：354 条（有搜索步骤 + 无占位词 + goal 均长 ≥12 字 + 步数 ≥3）
 - **推荐删除/重写候选**：139 条，主要问题集中在：

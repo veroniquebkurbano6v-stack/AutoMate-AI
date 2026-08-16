@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  AutoMate AI 主界面（对话页）布局
+  AutoMate·小艾 主界面（对话页）布局
   - 参考 palmagent-ui/index.html 的设计语言进行视觉优化
   - 保留所有原有 ID 与逻辑结构（btnSettings/btnCancelTask/btnViewLogs/recyclerChat/etInput/btnSend/chipModeSwitch 等）
   - 新增：Logo + 副标题、欢迎语卡片、胶囊式输入栏、麦克风按钮（不绑定事件，仅展示）

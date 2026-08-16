@@ -1,6 +1,6 @@
 # 架构说明
 
-AutoMate AI 是一个 **Android 原生 App**（Kotlin），把"看得懂屏幕的 AI"装进手机，
+AutoMate·小艾 是一个 **Android 原生 App**（Kotlin），把"看得懂屏幕的 AI"装进手机，
 用户一句话即可完成手机操作。核心是 **决策-执行两层模型 + 多通道感知 + 端侧知识库**。
 
 ## 端到端流程

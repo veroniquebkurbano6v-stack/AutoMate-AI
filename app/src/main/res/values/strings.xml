@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">AutoMate AI</string>
+    <string name="app_name">AutoMate·小艾</string>
     <string name="accessibility_service_description">GUI 智能助手需要使用无障碍服务来分析屏幕内容和执行自动化操作，以帮助您完成手机操作任务。</string>
 
     <!-- 引导页 -->
     <string name="guide_skip">跳过</string>
     <string name="guide_start">开始使用</string>
-    <string name="guide_page_title">欢迎使用 AutoMate AI</string>
+    <string name="guide_page_title">欢迎使用 AutoMate·小艾</string>
     <string name="guide_page_subtitle">使用前请开启以下必要权限</string>
     <string name="guide_title_accessibility">无障碍服务</string>
     <string name="guide_desc_accessibility">用于读取屏幕内容和执行自动化操作</string>
@@ -35,7 +35,7 @@
     <string name="home_cancel_task_success">会话已结束</string>
     <string name="home_no_task_running">当前没有运行中的任务</string>
     <string name="home_view_logs">查看模型日志</string>
-    <string name="home_enable_accessibility">请在列表中找到 AutoMate AI 并开启无障碍服务</string>
+    <string name="home_enable_accessibility">请在列表中找到 AutoMate·小艾 并开启无障碍服务</string>
     <string name="home_accessibility_enabled">无障碍服务已开启</string>
     <string name="home_enable_storage">请开启「所有文件访问」权限</string>
     <string name="home_storage_enabled">文件访问权限已开启</string>
@@ -52,16 +52,16 @@
     <string name="menu_llm_config">大模型配置</string>
 
     <!-- 通道消息 -->
-    <string name="channel_msg_no_accessibility">无法执行：无障碍服务未开启，请在系统设置中开启 AutoMate AI 无障碍服务</string>
+    <string name="channel_msg_no_accessibility">无法执行：无障碍服务未开启，请在系统设置中开启 AutoMate·小艾 无障碍服务</string>
     <string name="channel_msg_task_in_progress">请等待当前任务完成后再发送新任务</string>
     <string name="channel_msg_task_cancelled">任务已取消</string>
     <string name="channel_msg_task_error">任务执行出错：%s</string>
     <string name="channel_msg_service_not_ready">服务未就绪，请先在应用中配置 LLM</string>
 
     <!-- 无障碍操作描述 -->
-    <string name="notification_channel_name">AutoMate AI 后台服务</string>
-    <string name="notification_channel_description">保持 AutoMate AI 在后台运行</string>
-    <string name="notification_content_title">AutoMate AI 运行中</string>
+    <string name="notification_channel_name">AutoMate·小艾 后台服务</string>
+    <string name="notification_channel_description">保持 AutoMate·小艾 在后台运行</string>
+    <string name="notification_content_title">AutoMate·小艾 运行中</string>
     <string name="notification_content_text">正在监听任务…</string>
 
     <!-- 悬浮窗 -->

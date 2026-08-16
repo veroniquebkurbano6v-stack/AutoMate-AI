@@ -30,5 +30,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AutoMate AI"
+rootProject.name = "AutoMate·小艾"
 include(":app")
