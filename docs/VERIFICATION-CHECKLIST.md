@@ -35,6 +35,7 @@
 - [ ] `python eval/eval_retrieval.py` → 32/32 场景 100% 检索命中率（与 `docs/evaluation.md` 一致）
 - [ ] `python eval/eval_vision.py` → 视觉鲁棒性/提示词消融（185 张真实截图）
 - [ ] `python eval/audit_dedup.py` / `audit_sop_quality.py` → 知识库数据质量审计
+- [ ] `./gradlew.bat :app:testDebugUnitTest` → 201 个用例全部通过（其中 6 个云端 VLM/LLM 集成用例因未配置 API Key 按设计跳过，属预期行为；在 `local.properties` 配置 `VLM_API_KEY` / `PLANNER_API_KEY` 后会自动运行）
 
 > 检索评测与 App 端**同一 ONNX 模型、同一 RRF 参数**，结果可直接复现。
 

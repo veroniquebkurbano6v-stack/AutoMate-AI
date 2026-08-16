@@ -168,6 +168,7 @@ App 内置的 **514 条离线 SOP**（`app/src/main/assets/kb/sop_raw/`）来源
 | 构建报错找不到 SDK | 在 `local.properties` 中设置 `sdk.dir` 指向本机 Android SDK |
 | 想换模型/Key | 编辑 `local.properties` 的 `LLM_MODEL` / `VLM_MODEL` 等，重新构建即可 |
 | 演示时网络差 | 端侧知识库离线可用；云端推理部分尽量用真机+稳定网络 |
+| 跑 `testDebugUnitTest` 看到 6 个用例被跳过 | 属预期行为：这 6 个是云端 VLM/LLM 集成用例（`CloudVlmScreenDescTest` / `DecisionDialogAutonomousToolCallTest` / `VlmImageConfigIntegrationTest`），需真实 API Key 才能运行；无 Key 时按 `assumeTrue` 设计优雅跳过，配置 `VLM_API_KEY` / `PLANNER_API_KEY` 后会自动补跑 |
 
 ---
 
