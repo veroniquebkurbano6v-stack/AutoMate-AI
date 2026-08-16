@@ -47,7 +47,7 @@ object PromptBuilder {
 7. **遇到广告弹窗/开屏广告/升级弹窗时（识别特征：全屏遮罩、"跳过/Skip/关闭/×"按钮、倒计时圆环），必须先关闭弹窗再继续任务**：优先 LOCATE/TAP 点击"跳过/关闭/×"按钮；无法识别关闭按钮时用 BACK 返回；关闭后再继续原任务，禁止在弹窗遮挡下盲目点击或滚动。
 
 # 工具（动作空间）
-- AUTO_INPUT: text(必填,输入文本), instruction(选填,输入框外观如"搜索框"), search_icon(选填,"true") — ⭐定位输入框→输入→自动点"搜索/发送"按钮
+- AUTO_INPUT: text(必填,输入文本), is_text_input_box(选填,布尔"true"=文本输入框,"false"=搜索图标；不填跳过定位) — ⭐定位输入框→输入→自动点"搜索/发送"按钮
 - LOCATE: description(必填,功能+图标特征+区域), text(必填,要定位的文字) — ⭐视觉定位并自动点击（Grounding→OCR 兜底）
 - TAP: coordinate(必填,[x,y]数组如[976,2376]), description(必填) — 仅已知精确坐标直接点击
 - OPEN_APP: text(必填,应用中文名或包名) — 打开应用
@@ -72,7 +72,7 @@ object PromptBuilder {
 # 输出格式与运行规则
 每轮通过 content 字段输出一个 JSON 对象（所有操作都走 content，不要用 tool_calls），字段：
 - type: 动作名（来自上方工具列表）
-- text/description/coordinate/instruction/search_icon: 对应各操作的参数
+- text/description/coordinate/is_text_input_box: 对应各操作的参数
 - coordinate/coordinate_end(坐标): 一律用数组 [x, y]（先x后y），如 TAP 示例 {"type":"TAP","coordinate":[976,2376],"description":"点击去结算按钮"}
 - progress(必填): {"current_step":"当前步骤","completed_steps":["已完成,只增不减"],"remaining_steps":["剩余,引用Plan步骤N"],"status":"in_progress"}
 - visual_question(必填): 本轮动作后想从下轮屏幕描述确认的问题（如"当前界面是美团App吗？"）；确实无需确认时写""
@@ -124,7 +124,7 @@ finish示例（完全完成型）：{"type":"FINISH","description":"已成功打
 8. **遇到广告弹窗/开屏广告/升级弹窗时（识别特征：全屏遮罩、"跳过/Skip/关闭/×"按钮、倒计时圆环），必须先关闭弹窗再继续任务**：优先 LOCATE/TAP 点击"跳过/关闭/×"按钮；无法识别关闭按钮时用 BACK 返回；关闭后再继续原任务，禁止在弹窗遮挡下盲目点击或滚动。
 
 # 工具（动作空间）
-- AUTO_INPUT: text(必填,输入文本), instruction(选填,输入框外观如"搜索框"), search_icon(选填,"true") — ⭐定位输入框→输入→自动点"搜索/发送"按钮
+- AUTO_INPUT: text(必填,输入文本), is_text_input_box(选填,布尔"true"=文本输入框,"false"=搜索图标；不填跳过定位) — ⭐定位输入框→输入→自动点"搜索/发送"按钮
 - LOCATE: description(必填,功能+图标特征+区域), text(必填,要定位的文字) — ⭐视觉定位并自动点击（Grounding→OCR 兜底）
 - TAP: coordinate(必填,[x,y]数组如[976,2376]), description(必填) — 仅已知精确坐标直接点击
 - OPEN_APP: text(必填,应用中文名或包名) — 打开应用
@@ -145,7 +145,7 @@ finish示例（完全完成型）：{"type":"FINISH","description":"已成功打
 # 输出格式与运行规则
 每轮通过 content 字段输出一个 JSON 对象（所有操作都走 content，不要用 tool_calls），字段：
 - type: 动作名（来自上方工具列表）
-- text/description/coordinate/instruction/search_icon: 对应各操作的参数
+- text/description/coordinate/is_text_input_box: 对应各操作的参数
 - coordinate/coordinate_end(坐标): 一律用数组 [x, y]（先x后y），如 TAP 示例 {"type":"TAP","coordinate":[976,2376],"description":"点击去结算按钮"}
 - progress(必填): {"current_step":"当前步骤","completed_steps":["已完成,只增不减"],"remaining_steps":["剩余,引用Plan步骤N"],"status":"in_progress"}
 - visual_question(必填): 本轮动作后想从下轮屏幕描述确认的问题（如"当前界面是美团App吗？"）；确实无需确认时写""
@@ -190,7 +190,7 @@ finish示例（完全完成型）：{"type":"FINISH","description":"已成功打
 
 ### 定位与输入
 - LOCATE: text(必填,简要描述目标), description(必填,外观特征+屏幕区域) — 最高频工具：委托视觉定位服务精确定位并自动点击
-- AUTO_INPUT: text(必填,输入文本), instruction(选填,输入框外观描述) — 一步完成"定位输入框→输入文本→自动点搜索按钮"
+- AUTO_INPUT: text(必填,输入文本), is_text_input_box(选填,布尔"true"=文本输入框,"false"=搜索图标；不填跳过定位) — 一步完成"定位输入框→输入文本→自动点搜索按钮"
 
 ### 导航与浏览
 - SCROLL_DOWN/UP: description(必填) — 向下/向上滚动
@@ -265,7 +265,7 @@ progress字段必填：current_step, completed_steps, remaining_steps, status
 
 ### 定位与输入
 - LOCATE: text(必填,简要描述目标), description(必填,外观特征+屏幕区域) — 最高频工具：委托视觉定位服务精确定位并自动点击
-- AUTO_INPUT: text(必填,输入文本), instruction(选填,输入框外观描述) — 一步完成"定位输入框→输入文本→自动点搜索按钮"
+- AUTO_INPUT: text(必填,输入文本), is_text_input_box(选填,布尔"true"=文本输入框,"false"=搜索图标；不填跳过定位) — 一步完成"定位输入框→输入文本→自动点搜索按钮"
 
 ### 导航与浏览
 - SCROLL_DOWN/UP: description(必填) — 向下/向上滚动

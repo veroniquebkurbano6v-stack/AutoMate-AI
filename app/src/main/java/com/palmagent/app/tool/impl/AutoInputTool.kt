@@ -23,7 +23,7 @@ import kotlinx.coroutines.delay
  * 双模式执行：无障碍快捷流程（~1s） / 视觉降级流程（13-25s）
  *
  * ┌─ 无障碍可用 → 快捷流程 ─────────────────────────────────┐
- * │ A步: 定位目标元素（instruction≠""时）                      │
+ * │ A步: 定位目标元素（isTextInputBox≠null 时）                      │
  * │     findNodesByText → findNodesByDesc → GUI-Plus兜底        │
  * │ B步: 查找输入框节点                                        │
  * │     findFocus(FOCUS_INPUT) → findEditableNode             │
@@ -57,7 +57,7 @@ class AutoInputTool : BaseTool() {
         private const val TAG = "AutoInput"
         private const val LONG_PRESS_DURATION = 600L
         private const val WAIT_AFTER_CLICK_INPUT = 1000L
-        private const val WAIT_AFTER_LONG_PRESS = 1000L
+        private const val WAIT_AFTER_LONG_PRESS = 1800L   // 长按后等粘贴菜单动画渲染完成再截屏 OCR
         private const val MAX_KEYBOARD_RETRY = 3
 
         private const val LOWER_THIRD_THRESHOLD = 2f / 3f
@@ -89,27 +89,23 @@ class AutoInputTool : BaseTool() {
 
     override fun getParameters(): List<ToolParameter> = listOf(
         ToolParameter("text", "string", "Text to input (will be copied to clipboard and pasted)", true),
-        ToolParameter("instruction", "string",
-            "Optional: GUI-Plus instruction to locate and click a target element BEFORE input. " +
-            "E.g. 'magnifying glass search icon', 'search input field'. If omitted, skip step 0 and go directly to input.", false),
-        ToolParameter("search_icon", "string",
-            "Set to 'true' ONLY when instruction targets a magnifying glass/search icon. " +
-            "Uses top-1/4 crop+80% scale for better accuracy. Default: 'false'", false)
+        ToolParameter("is_text_input_box", "string",
+            "Optional: true=click the text input box, false=click the search icon. " +
+            "If omitted, skip locating and go directly to input.", false)
     )
 
     override suspend fun execute(params: Map<String, Any>): ToolResult {
         val text = requireString(params, "text")
         if (text.isBlank()) return ToolResult.error("输入文本不能为空")
 
-        val instruction = params["instruction"]?.toString()?.trim() ?: ""
-        val isSearchIcon = params["search_icon"]?.toString()?.lowercase() == "true" ||
-                (instruction.isNotBlank() && GuiOwlService.isSearchIconInstruction(instruction))
+        // isTextInputBox：true=文本输入框，false=搜索图标（PromptBuilder 锁死二选一），null=跳过定位
+        val isTextInputBox = params["is_text_input_box"]?.toString()?.trim()?.lowercase()
+            ?.let { if (it == "true") true else if (it == "false") false else null }
 
         Log.d(TAG, "开始自动化输入: '$text'" +
-                (if (instruction.isNotBlank()) ", 目标: '$instruction'" else "") +
-                (if (isSearchIcon) " [搜索图标模式]" else ""))
+                (if (isTextInputBox != null) ", 目标: ${if (isTextInputBox) "文本输入框" else "搜索图标"}" else ""))
         LiveLogBuffer.append("⌨️ 自动输入: '$text'" +
-                (if (instruction.isNotBlank()) " → '$instruction'" else ""))
+                (if (isTextInputBox != null) " → ${if (isTextInputBox) "文本输入框" else "搜索图标"}" else ""))
 
         // 检测无障碍服务可用性
         val a11yService = getA11yService()
@@ -120,11 +116,11 @@ class AutoInputTool : BaseTool() {
         return if (a11yAvailable && a11yService != null) {
             Log.d(TAG, "无障碍服务可用，使用快捷流程")
             LiveLogBuffer.append("  🚀 无障碍快捷模式")
-            executeWithAccessibility(a11yService, text, instruction, isSearchIcon)
+            executeWithAccessibility(a11yService, text, isTextInputBox)
         } else {
             Log.d(TAG, "无障碍服务不可用，使用视觉流程")
             LiveLogBuffer.append("  👁️ 视觉降级模式")
-            executeWithVision(text, instruction, isSearchIcon)
+            executeWithVision(text, isTextInputBox)
         }
     }
 
@@ -136,11 +132,10 @@ class AutoInputTool : BaseTool() {
     private suspend fun executeWithAccessibility(
         service: GUIAccessibilityService,
         text: String,
-        instruction: String,
-        isSearchIcon: Boolean
+        isTextInputBox: Boolean?
     ): ToolResult {
-        // [A步] 定位+点击目标元素
-        if (instruction.isNotBlank()) {
+        // [A步] 定位+点击目标元素（true=文本输入框 / false=搜索图标）
+        if (isTextInputBox != null) {
             // 定位前先检测键盘：键盘已弹出说明输入框已聚焦，跳过定位直接输入
             val kbScreenshot: Bitmap? = takeScreenshot()
             val keyboardVisible = if (kbScreenshot != null) {
@@ -161,15 +156,11 @@ class AutoInputTool : BaseTool() {
                 Log.d(TAG, "键盘已弹出，跳过A步定位，直接输入文字")
                 LiveLogBuffer.append("  ⏭️ 键盘已弹出，跳过定位直接输入")
             } else {
-                val clickResult = a11yLocateAndClick(service, instruction, isSearchIcon)
-                if (clickResult.isFailure) {
-                    // 无障碍定位失败，尝试 GUI-Plus 兜底
-                    Log.w(TAG, "无障碍定位失败: ${clickResult.exceptionOrNull()?.message}，尝试GUI-Plus兜底")
-                    val state = InputState()
-                    val groundResult = step0LocateAndClick(instruction, isSearchIcon, state)
-                    if (groundResult.isFailure) {
-                        return ToolResult.error("定位目标元素失败: ${groundResult.exceptionOrNull()?.message}")
-                    }
+                // 极简定位：按 isTextInputBox 生成定位描述，GUI-Plus 定位并点击
+                val state = InputState()
+                val groundResult = step0LocateAndClick(isTextInputBox, state)
+                if (groundResult.isFailure) {
+                    return ToolResult.error("定位目标元素失败: ${groundResult.exceptionOrNull()?.message}")
                 }
                 delay(500)
             }
@@ -180,9 +171,9 @@ class AutoInputTool : BaseTool() {
         if (inputNode == null) {
             Log.w(TAG, "无障碍未找到可编辑节点，降级到视觉流程")
             LiveLogBuffer.append("  ⚠️ 无障碍未找到输入框，降级到视觉流程")
-            // 保留 instruction / isSearchIcon：丢失会导致视觉流程 step4 用通用英文提示词
+            // 保留 instruction：丢失会导致视觉流程 step4 用通用英文提示词
             // 重新定位输入框，在非搜索页面上会定位到错误位置（如商品列表）
-            return executeWithVision(text, instruction, isSearchIcon)
+            return executeWithVision(text, isTextInputBox)
         }
 
         // 捕获输入框 Y 坐标（用于 D 步按钮的 Y-proximity）
@@ -201,8 +192,8 @@ class AutoInputTool : BaseTool() {
             if (!inputResult) {
                 Log.w(TAG, "无障碍输入失败，降级到视觉流程")
                 LiveLogBuffer.append("  ⚠️ 无障碍输入失败，降级到视觉流程")
-                // 保留 instruction / isSearchIcon：同上，避免视觉流程定位输入框失败
-                return executeWithVision(text, instruction, isSearchIcon)
+                // 保留 instruction：同上，避免视觉流程定位输入框失败
+                return executeWithVision(text, isTextInputBox)
             }
 
             delay(500)
@@ -222,56 +213,6 @@ class AutoInputTool : BaseTool() {
         } finally {
             try { inputNode.recycle() } catch (_: Exception) {}
         }
-    }
-
-    /**
-     * 无障碍定位+点击目标元素
-     * 优先级：findNodesByText → findNodesByDesc → GUI-Plus兜底
-     */
-    private suspend fun a11yLocateAndClick(
-        service: GUIAccessibilityService,
-        instruction: String,
-        isSearchIcon: Boolean
-    ): Result<Unit> {
-        // 1. 按文本查找可点击节点
-        try {
-            val textNodes = service.findNodesByText(instruction)
-            val clickableByText = textNodes.filter { it.isClickable }
-            if (clickableByText.isNotEmpty()) {
-                val clicked = service.clickNode(clickableByText[0])
-                clickableByText.forEach { try { it.recycle() } catch (_: Exception) {} }
-                textNodes.forEach { try { it.recycle() } catch (_: Exception) {} }
-                if (clicked) {
-                    Log.v(TAG, "A步: findNodesByText定位+点击 '$instruction'")
-                    LiveLogBuffer.append("  ✅ A步: 无障碍文本定位 '$instruction'")
-                    return Result.success(Unit)
-                }
-            }
-            textNodes.forEach { try { it.recycle() } catch (_: Exception) {} }
-        } catch (e: Exception) {
-            Log.w(TAG, "findNodesByText异常: ${e.message}")
-        }
-
-        // 2. 按contentDescription查找可点击节点
-        try {
-            val descNodes = service.findNodesByDesc(instruction)
-            val clickableByDesc = descNodes.filter { it.isClickable }
-            if (clickableByDesc.isNotEmpty()) {
-                val clicked = service.clickNode(clickableByDesc[0])
-                clickableByDesc.forEach { try { it.recycle() } catch (_: Exception) {} }
-                descNodes.forEach { try { it.recycle() } catch (_: Exception) {} }
-                if (clicked) {
-                    Log.d(TAG, "A步: findNodesByDesc定位+点击 '$instruction'")
-                    LiveLogBuffer.append("  ✅ A步: 无障碍描述定位 '$instruction'")
-                    return Result.success(Unit)
-                }
-            }
-            descNodes.forEach { try { it.recycle() } catch (_: Exception) {} }
-        } catch (e: Exception) {
-            Log.w(TAG, "findNodesByDesc异常: ${e.message}")
-        }
-
-        return Result.failure(IllegalStateException("无障碍树中未找到: $instruction"))
     }
 
     /**
@@ -324,8 +265,7 @@ class AutoInputTool : BaseTool() {
      */
     private suspend fun executeWithVision(
         text: String,
-        instruction: String,
-        isSearchIcon: Boolean
+        isTextInputBox: Boolean?
     ): ToolResult {
         val screenSize = getScreenSize()
         val screenWidth = screenSize[0]
@@ -334,8 +274,8 @@ class AutoInputTool : BaseTool() {
         val state = InputState()
 
         // ====== 第0步：GUI-Plus定位目标元素并点击（可选） ======
-        if (instruction.isNotBlank()) {
-            step0LocateAndClick(instruction, isSearchIcon, state).let { result ->
+        if (isTextInputBox != null) {
+            step0LocateAndClick(isTextInputBox, state).let { result ->
                 if (result.isFailure) return ToolResult.error(result.exceptionOrNull()?.message ?: "第0步失败")
             }
         }
@@ -350,13 +290,13 @@ class AutoInputTool : BaseTool() {
 
         // ====== 第3步：GUI-Plus定位输入框 → 点击 → 键盘验证+定位检测（3步回退） ======
         if (state.needInputLocate && !state.keyboardDetected) {
-            step3LocateInputField(state, instruction).let { result ->
+            step3LocateInputField(state, isTextInputBox).let { result ->
                 if (result.isFailure) return ToolResult.error(result.exceptionOrNull()?.message ?: "第3步失败")
             }
         }
 
         // ====== 第4步：长按输入框 ======
-        step4LongPress(state, instruction).let { result ->
+        step4LongPress(state, isTextInputBox).let { result ->
             if (result.isFailure) return ToolResult.error(result.exceptionOrNull()?.message ?: "第4步失败")
         }
 
@@ -399,7 +339,7 @@ class AutoInputTool : BaseTool() {
      *    （如搜索图标模式 (959,786) 的事故），全屏模式下由服务端用 screen_width/height
      *    直接完成精确映射
      */
-    private suspend fun step0LocateAndClick(instruction: String, isSearchIcon: Boolean, state: InputState): Result<Unit> {
+    private suspend fun step0LocateAndClick(isTextInputBox: Boolean?, state: InputState): Result<Unit> {
         if (!GuiOwlService.isReady) {
             return Result.failure(IllegalStateException("第0步失败: GUI-Plus服务未就绪，无法定位目标元素"))
         }
@@ -414,10 +354,13 @@ class AutoInputTool : BaseTool() {
             val screenWidth = screenSize[0]
             val screenHeight = screenSize[1]
 
-            val modeDesc = if (isSearchIcon) "搜索图标" else "通用"
+            val modeDesc = "通用"
             Log.d(TAG, "第0步: $modeDesc 模式，使用全屏GUI-Plus定位")
+            // 方案1：定位描述具体化（业界做法：类型+位置+可见文本），避免 GUI-Plus 把
+            // 占位文本当可点击文字元素定位到错误目标（如"路线"按钮而非输入框）
+            val groundInstruction = buildGroundInstruction(isTextInputBox)
             val groundResult = GuiOwlService.ground(
-                instruction, groundScreenshot, screenWidth, screenHeight
+                groundInstruction, groundScreenshot, screenWidth, screenHeight
             )
 
             if (!groundResult.success || groundResult.coordinate == null) {
@@ -485,6 +428,11 @@ class AutoInputTool : BaseTool() {
         return Result.success(Unit)
     }
 
+    /** 极简定位描述：true=请点击文本输入框，false=请点击搜索图标 */
+    private fun buildGroundInstruction(isTextInputBox: Boolean?): String {
+        return if (isTextInputBox == false) "请点击搜索图标" else "请点击文本输入框"
+    }
+
     /**
      * 第1步：复制文本到剪贴板
      */
@@ -542,10 +490,9 @@ class AutoInputTool : BaseTool() {
      * 客户端裁剪+80%缩放既无明显速度收益（服务端会 resize），又引入了客户端
      * scale 字段未传服务端的坐标映射 bug。3 次重试仅用于应对键盘未弹出的瞬时失败。
      *
-     * 定位指令优先使用模型提供的中文 instruction（如"店内的搜索输入框，位于顶部
-     * 返回和搜索文字之间"），描述越具体 GUI-Plus 定位越准；为空时才回退英文泛化描述。
+     * 定位指令：isTextInputBox 布尔语义经 buildGroundInstruction 生成两句描述（输入框/搜索图标）；
      */
-    private suspend fun step3LocateInputField(state: InputState, instruction: String): Result<Unit> {
+    private suspend fun step3LocateInputField(state: InputState, isTextInputBox: Boolean?): Result<Unit> {
         if (!GuiOwlService.isReady) {
             return Result.failure(IllegalStateException("第3步失败: GUI-Plus服务未就绪，无法定位输入框"))
         }
@@ -553,9 +500,12 @@ class AutoInputTool : BaseTool() {
         val screenSize = getScreenSize()
         val screenWidth = screenSize[0]
         val screenHeight = screenSize[1]
-        // 优先用模型的中文指令定位输入框，为空时回退英文泛化描述
-        val locateInstruction = instruction.ifBlank { "text input field, search bar, or chat input box" }
-
+        // 定位指令：isTextInputBox 为布尔语义（true=输入框/false=搜索图标），经 buildGroundInstruction 生成描述
+        val locateInstruction = if (isTextInputBox != null) {
+            buildGroundInstruction(isTextInputBox)
+        } else {
+            "text input field, search bar, or chat input box"
+        }
         for (attempt in 1..MAX_KEYBOARD_RETRY) {
             val locateScreenshot: Bitmap? = takeScreenshot()
             if (locateScreenshot == null) {
@@ -647,37 +597,44 @@ class AutoInputTool : BaseTool() {
      * 键盘已弹出的分支：键盘检测完成后才走到这里，输入框坐标已由 step0/step3 设置。
      * 键盘未弹出的分支（仅 step0 跳过 step3 场景）：用全屏 ground() 定位后长按。
      */
-    private suspend fun step4LongPress(state: InputState, instruction: String): Result<Unit> {
-        // 如果键盘已弹出（跳过了第3步），需要先定位输入框用于长按
-        if (state.inputX == 0 && state.inputY == 0) {
-            if (!GuiOwlService.isReady) {
-                return Result.failure(IllegalStateException("第4步失败: GUI-Plus服务未就绪，无法定位输入框进行长按"))
-            }
-            val locateScreenshot: Bitmap? = takeScreenshot()
-            if (locateScreenshot == null) return Result.failure(IllegalStateException("第4步失败: 无法获取屏幕截图"))
+    private suspend fun step4LongPress(state: InputState, isTextInputBox: Boolean?): Result<Unit> {
+        // 长按前必须用 GUI 重新定位输入框：键盘弹出后布局可能变化（输入框被键盘顶起），
+        // 且 state 坐标可能来自 step0 点击的目标元素（搜索图标）而非输入框，不能复用旧坐标
+        if (!GuiOwlService.isReady) {
+            return Result.failure(IllegalStateException("第4步失败: GUI-Plus服务未就绪，无法定位输入框进行长按"))
+        }
+        val locateScreenshot: Bitmap? = takeScreenshot()
+        if (locateScreenshot == null) return Result.failure(IllegalStateException("第4步失败: 无法获取屏幕截图"))
 
-            // 优先用模型的中文指令定位输入框，为空时回退英文泛化描述
-            val locateInstruction = instruction.ifBlank { "text input field, search bar, or chat input box" }
-            val inputCoord = try {
-                val screenSize = getScreenSize()
-                val result = GuiOwlService.ground(
-                    locateInstruction,
-                    locateScreenshot, screenSize[0], screenSize[1]
-                )
-                if (!result.success || result.coordinate == null) {
-                    throw NoSuchElementException("GUI-Plus未找到输入框 - ${result.error ?: "未返回坐标"}")
-                }
-                result.coordinate
-            } catch (e: NoSuchElementException) {
-                return Result.failure(IllegalStateException("第4步失败: ${e.message}"))
-            } finally {
-                locateScreenshot.recycleSafely()
+        // 定位指令：键盘已弹出时输入框被顶到键盘正上方且被压缩（占位文字消失、仅剩光标），
+        // 必须给 GUI-Plus 明确位置锚点（"键盘正上方"），否则模型无法确认目标而不返回坐标；
+        // 键盘未弹出时按 isTextInputBox 布尔语义生成常规描述
+        val locateInstruction = if (state.keyboardDetected) {
+            "点击键盘正上方的文本输入框（输入光标所在位置），用于输入文字；不要点击键盘按键"
+        } else if (isTextInputBox != null) {
+            buildGroundInstruction(isTextInputBox)
+        } else {
+            "text input field, search bar, or chat input box"
+        }
+        val inputCoord = try {
+            val screenSize = getScreenSize()
+            val result = GuiOwlService.ground(
+                locateInstruction,
+                locateScreenshot, screenSize[0], screenSize[1]
+            )
+            if (!result.success || result.coordinate == null) {
+                throw NoSuchElementException("GUI-Plus未找到输入框 - ${result.error ?: "未返回坐标"}")
             }
-            state.inputX = inputCoord.x
-            state.inputY = inputCoord.y
-            validateCoordinates(state.inputX, state.inputY)?.let {
-                return Result.failure(IllegalStateException("第4步失败: $it"))
-            }
+            result.coordinate
+        } catch (e: NoSuchElementException) {
+            return Result.failure(IllegalStateException("第4步失败: ${e.message}"))
+        } finally {
+            locateScreenshot.recycleSafely()
+        }
+        state.inputX = inputCoord.x
+        state.inputY = inputCoord.y
+        validateCoordinates(state.inputX, state.inputY)?.let {
+            return Result.failure(IllegalStateException("第4步失败: $it"))
         }
 
         val longPressOk = performLongPress(state.inputX, state.inputY, LONG_PRESS_DURATION)
@@ -712,14 +669,15 @@ class AutoInputTool : BaseTool() {
                 return Result.failure(IllegalStateException("第5步失败: OCR ${MAX_PASTE_RETRY}次未找到粘贴按钮"))
             }
 
-            // 回退：重新点击输入框，触发上下文菜单重新弹出（输入框坐标由第4步保存）
+            // 回退：重新长按输入框，触发上下文菜单重新弹出（输入框坐标由第4步保存）
+            // 注意：回退必须重新长按（点击无法弹出粘贴菜单；键盘已确认弹出），等菜单动画后再 OCR
             if (state.inputX == 0 && state.inputY == 0) {
-                return Result.failure(IllegalStateException("第5步失败: 输入框坐标未知，无法回退点击"))
+                return Result.failure(IllegalStateException("第5步失败: 输入框坐标未知，无法回退长按"))
             }
-            Log.w(TAG, "第5步: OCR未找到粘贴（第${attempt}次），回退点击输入框(${state.inputX},${state.inputY})重新触发菜单")
-            LiveLogBuffer.append("  ⚠️ 步骤5: OCR未找到粘贴，回退点击输入框(第${attempt}次)")
-            if (!performClick(state.inputX, state.inputY)) {
-                return Result.failure(IllegalStateException("第5步失败: 回退点击输入框失败"))
+            Log.w(TAG, "第5步: OCR未找到粘贴（第${attempt}次），回退重新长按输入框(${state.inputX},${state.inputY})重新触发菜单")
+            LiveLogBuffer.append("  ⚠️ 步骤5: OCR未找到粘贴，回退重新长按输入框(第${attempt}次)")
+            if (!performLongPress(state.inputX, state.inputY, LONG_PRESS_DURATION)) {
+                return Result.failure(IllegalStateException("第5步失败: 回退长按输入框失败"))
             }
             delay(MENU_POPUP_DELAY)
         }

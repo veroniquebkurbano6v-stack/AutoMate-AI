@@ -458,7 +458,6 @@ class ActionExecutor @Inject constructor(
 
         if (action.type == ActionType.AUTO_INPUT) {
             action.instruction?.let { params["instruction"] = it }
-            action.searchIcon?.let { params["search_icon"] = it.toString() }
         }
 
         // ============ v7：新增 3 个 ActionType 的工具参数映射 ============

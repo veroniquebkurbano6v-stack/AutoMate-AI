@@ -618,6 +618,26 @@ class GUIAccessibilityService : AccessibilityService() {
         }
     }
 
+    /** 按 hintText（占位文本）查找节点：搜索框占位符通常在 hint 而非 text（方案3） */
+    fun findNodesByHint(hint: String): List<AccessibilityNodeInfo> {
+        val root = try { rootInActiveWindow } catch (_: Exception) { null } ?: return emptyList()
+        val results = mutableListOf<AccessibilityNodeInfo>()
+        findNodesByHintRecursive(root, hint, results)
+        root.recycle()
+        return results
+    }
+
+    private fun findNodesByHintRecursive(node: AccessibilityNodeInfo, hint: String, results: MutableList<AccessibilityNodeInfo>) {
+        if (node.hintText?.contains(hint, ignoreCase = true) == true) {
+            results.add(AccessibilityNodeInfo.obtain(node))
+        }
+        for (i in 0 until node.childCount) {
+            val child = node.getChild(i) ?: continue
+            findNodesByHintRecursive(child, hint, results)
+            child.recycle()
+        }
+    }
+
     @Suppress("DEPRECATION")
     fun findNodesById(viewId: String): List<AccessibilityNodeInfo> {
         val root = try { rootInActiveWindow } catch (_: Exception) { null } ?: return emptyList()

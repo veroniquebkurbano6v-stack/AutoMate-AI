@@ -108,17 +108,6 @@ object GuiOwlService {
     var lastError: String? = null
         private set
 
-    // ============ 指令识别工具 ============
-
-    private val SEARCH_ICON_KEYWORDS = listOf(
-        "搜索图标", "search icon", "magnifying glass", "放大镜", "lens icon"
-    )
-
-    fun isSearchIconInstruction(instruction: String): Boolean {
-        val lower = instruction.lowercase()
-        return SEARCH_ICON_KEYWORDS.any { lower.contains(it) }
-    }
-
     // ============ HTTP 客户端 ============
 
     private val client: OkHttpClient by lazy {
@@ -540,7 +529,13 @@ Rules:
     """.trimIndent()
 
     /** 屏幕描述模式：自由文本输出（上/中/下描述 + 广告判定），不强制 tool_call */
-    private fun buildDescribeSystemPrompt(): String = SCREEN_DESC_PROMPT
+    private fun buildDescribeSystemPrompt(): String = SCREEN_DESC_PROMPT + """
+
+【回答用户问题】
+若用户消息中包含需要确认的问题（如"XX是否已选中？"、"当前界面是否是XX？"），
+请在上/中/下三区域描述之后，用一句话明确回答该问题（如"好评优先已选中，列表按评分排序"）；
+若用户消息仅是常规描述请求（无问题），则无需回答，只输出描述。
+""".trimIndent()
 
     /** 屏幕描述提示词（自 VlmService 迁移）：上/中/下描述 + 方案C 广告判定附加段 */
     internal const val SCREEN_DESC_PROMPT = """你是一个移动端屏幕分析助手。请将屏幕垂直分为上、中、下三部分，描述各区域的关键UI元素。

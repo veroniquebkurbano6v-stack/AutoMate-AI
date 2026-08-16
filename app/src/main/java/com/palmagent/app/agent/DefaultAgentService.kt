@@ -668,7 +668,6 @@ class DefaultAgentService @Inject constructor(
 
         if (action.type == ActionType.AUTO_INPUT) {
             action.instruction?.let { params["instruction"] = it }
-            action.searchIcon?.let { params["search_icon"] = it.toString() }
         }
         if (action.type == ActionType.OPEN_APP) {
             val appName = action.text?.takeIf { it.isNotBlank() } ?: action.description?.takeIf { it.isNotBlank() }

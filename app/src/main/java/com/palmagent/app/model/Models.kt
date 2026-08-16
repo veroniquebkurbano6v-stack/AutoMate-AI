@@ -70,7 +70,6 @@ data class AgentAction(
     val targetDesc: String? = null,
     val actionDesc: String? = null,
     val instruction: String? = null,
-    val searchIcon: Boolean? = null,
     val relatedKeywords: String? = null,
     val progress: TaskProgress? = null,
     val durationMs: Long? = null,

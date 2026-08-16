@@ -45,7 +45,6 @@ object ActionParser {
         val target_desc: String? = null,
         val action_desc: String? = null,
         val instruction: String? = null,
-        val search_icon: String? = null,
         val related_keywords: String? = null,
         val progress: ProgressJson? = null,
         val duration_ms: Long? = null,
@@ -213,8 +212,6 @@ object ActionParser {
                     targetDesc = actionJson.target_desc,
                     actionDesc = actionJson.action_desc,
                     instruction = actionJson.instruction,
-                    // P3-11 修复：toBoolean 仅识别 "true"，补充 "1"/"yes" 变体
-                    searchIcon = actionJson.search_icon?.let { parseBooleanLoose(it) },
                     relatedKeywords = actionJson.related_keywords,
                     progress = actionJson.progress?.let { pj ->
                         TaskProgress(
