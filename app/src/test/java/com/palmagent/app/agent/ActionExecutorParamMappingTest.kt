@@ -194,19 +194,22 @@ class ActionExecutorParamMappingTest {
 
     // ==================== 回归测试（3 个）====================
 
+    /**
+     * v10（b634a85）：AUTO_INPUT 定位参数由 search_icon 重构为 is_text_input_box，
+     * 该参数现由 AutoInputTool 直接从工具参数读取，不再经 AgentAction/buildActionParams 映射。
+     * 回归验证：instruction 与 text 映射保持不受影响。
+     */
     @Test
-    fun `AUTO_INPUT instruction_and_search_icon_regression`() {
+    fun `AUTO_INPUT instruction_and_text_regression`() {
         val action = AgentAction(
             type = ActionType.AUTO_INPUT,
             text = "测试文本",
             description = "测试输入",
             instruction = "搜索框",
-            searchIcon = true,
             confidence = 0.9f
         )
         val params = buildParamsMethod.invoke(executor, action) as Map<String, Any?>
         assertEquals("搜索框", params["instruction"])
-        assertEquals("true", params["search_icon"])
         assertEquals("测试文本", params["text"])
     }
 }
