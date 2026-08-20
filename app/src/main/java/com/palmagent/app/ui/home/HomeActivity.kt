@@ -452,7 +452,7 @@ class HomeActivity : ComponentActivity() {
         chatAdapter.addMessage(thinkingMsg) { scrollToBottom() }
 
         lifecycleScope.launch {
-            val result = dialogService.chat(text, chatHistory)
+            val result = dialogService.chat(text, chatHistory, chatViewModel.currentSessionId.value ?: "")
             chatAdapter.removeMessage(thinkingMsg) { scrollToBottom() }
             if (userMsgToShow != null) chatHistory.add(userMsgToShow)
 
@@ -520,7 +520,7 @@ class HomeActivity : ComponentActivity() {
             chatAdapter.addMessage(thinkingMsg) { scrollToBottom() }
             // v3.2 Bug-7 修复：用应用级 scope，避免 HomeActivity 销毁时决策对话被取消
             appCoordinator.launchDecision {
-                val result = dialogService.chat(text, chatHistory)
+                val result = dialogService.chat(text, chatHistory, chatViewModel.currentSessionId.value ?: "")
                 if (!isUiAlive) {
                     // v3.2 Bug-7：HomeActivity 不可见时，决策结果降级执行（不更新 UI）
                     // v3.2 Bug-3 修复：必须移除 thinkingMsg，避免 UI 残留"思考中..."
