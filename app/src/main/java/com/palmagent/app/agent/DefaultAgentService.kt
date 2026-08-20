@@ -22,6 +22,7 @@ import com.palmagent.app.service.GUIAccessibilityService
 import com.palmagent.app.service.GuiOwlActionAdapter
 import com.palmagent.app.service.GuiOwlService
 import com.palmagent.app.service.PromptBuilder
+import com.palmagent.app.service.SearchResultCache
 import com.palmagent.app.service.ToolDecisionEngine
 import com.palmagent.app.service.WebSearchService
 import com.palmagent.app.tool.ToolRegistry
@@ -97,6 +98,9 @@ class DefaultAgentService @Inject constructor(
     /** Scratchpad 工作记忆：跨轮保留的搜索结果 */
     private val scratchpad = mutableListOf<ScratchpadEntry>()
 
+    /** 本轮临时搜索结果（摘要或取回原文）：仅注入当前轮 prompt，不写入工作区/历史，模型看后即弃 */
+    private var transientSearchSection: String? = null
+
     /** FailureCompactor：失败信息收集（跨轮保留，不受历史4轮限制） */
     private val failedActions = mutableListOf<FailureCompactor.FailedAction>()
     /** 压缩后的失败摘要（跨轮注入上下文，后台压缩完成后写入） */
@@ -131,6 +135,9 @@ class DefaultAgentService @Inject constructor(
         planContext = plan
         llmProgress = null
         scratchpad.clear()
+        transientSearchSection = null
+        // 任务开始清理上一任务的搜索缓存（文件 + 去重索引）
+        SearchResultCache.clearAll()
         screenDescriptor.reset()
         progressTracker.reset()
         ContextManager.reset()
@@ -272,20 +279,24 @@ class DefaultAgentService @Inject constructor(
                         llmProgress = finalAction.progress
                     }
 
-                    // VL 模式：WEB_SEARCH 处理（搜索结果写入 Scratchpad，跨轮保留）
+                    // VL 模式：WEB_SEARCH 处理（完整结果缓存 + 摘要仅本轮注入，不写工作区）
                     if (finalAction.type == ActionType.WEB_SEARCH) {
                         val searchQuery = finalAction.text ?: finalAction.description
                         Log.d(TAG, "VL请求联网搜索: $searchQuery")
                         LiveLogBuffer.append("🔍 VL请求联网搜索: ${searchQuery.take(40)}")
 
-                        val searchResult = WebSearchService.search(searchQuery)
-
-                        addToScratchpad(listOf(ScratchpadEntry(
-                            id = "sp-${round}-1",
-                            content = (searchResult.content ?: "").take(300),
-                            source = "web_search: $searchQuery",
-                            roundCreated = round
-                        )))
+                        val searchResult = WebSearchService.searchWithCache(searchQuery, round = round)
+                        if (searchResult.success) {
+                            // 摘要仅本轮临时注入（模型看后判断需取回的 ref；不写 Scratchpad）
+                            transientSearchSection = searchResult.summaryText
+                            LiveLogBuffer.append(
+                                if (searchResult.hitCache) "↩️ 搜索缓存命中(round ${searchResult.hitRound})"
+                                else "✓ 搜索完成，结果已缓存，可按 ref 取回原文"
+                            )
+                        } else {
+                            transientSearchSection = "【搜索结果】查询失败：${searchResult.error ?: "未知错误"}"
+                            LiveLogBuffer.append("❌ 搜索失败: ${searchResult.error}")
+                        }
 
                         actionHistory.add(ActionRecord(
                             round = round,
@@ -293,8 +304,12 @@ class DefaultAgentService @Inject constructor(
                             params = mapOf("query" to searchQuery),
                             description = "联网搜索: $searchQuery",
                             screenPackage = screenInfo?.currentPackage,
-                            success = true,
-                            resultSummary = "搜索完成，结果已写入工作记忆（${searchResult.content?.take(50) ?: ""}...）"
+                            success = searchResult.success,
+                            resultSummary = if (searchResult.success) {
+                                if (searchResult.hitCache) "搜索命中缓存(round ${searchResult.hitRound})，摘要已注入本轮" else "搜索完成，${searchResult.refs.size} 条结果已缓存，摘要已注入本轮"
+                            } else {
+                                "搜索失败: ${searchResult.error}"
+                            }
                         ))
                         while (actionHistory.size > MAX_ACTION_HISTORY) {
                             actionHistory.removeAt(0)
@@ -308,8 +323,62 @@ class DefaultAgentService @Inject constructor(
                             modelInput = "=== System Prompt ===\n${PromptBuilder.getSystemPrompt()}\n\n=== User Prompt ===\n${vlDecision.userPrompt}",
                             modelOutput = vlDecision.rawContent,
                             action = finalAction,
-                            actionSuccess = true,
-                            actionResultSummary = "搜索完成，结果已写入工作记忆",
+                            actionSuccess = searchResult.success,
+                            actionResultSummary = if (searchResult.success) "搜索完成，结果已缓存" else "搜索失败: ${searchResult.error}",
+                            planContext = planContext
+                        )
+                        screenshotBmp.recycleSafely()
+                        lastActionWasAskUser = false
+                        cachedCapture = null
+                        continue  // 跳过本轮执行，进入下一轮
+                    }
+
+                    // VL 模式：WEB_SEARCH_FETCH 处理（按 ref 取回缓存原文，仅本轮临时注入）
+                    if (finalAction.type == ActionType.WEB_SEARCH_FETCH) {
+                        val ref = finalAction.text?.trim().orEmpty()
+                        Log.d(TAG, "VL请求取回搜索结果: $ref")
+                        LiveLogBuffer.append("📄 VL取回搜索结果: ${ref.take(40)}")
+
+                        val cached = SearchResultCache.get(ref)
+                        if (cached != null) {
+                            transientSearchSection = buildString {
+                                appendLine("【取回搜索结果 ${cached.ref}】${cached.title}")
+                                if (cached.url.isNotBlank()) appendLine("URL: ${cached.url}")
+                                if (cached.snippet.isNotBlank()) appendLine("片段: ${cached.snippet}")
+                                if (!cached.summary.isNullOrBlank()) {
+                                    val cut = if (cached.summary.length > 800) "${cached.summary.take(800)}…" else cached.summary
+                                    appendLine("原文摘要: $cut")
+                                }
+                                appendLine("（本内容仅供本轮参考，不写入工作记忆；需要保留的要点请自行提炼）")
+                            }
+                            LiveLogBuffer.append("✓ 已取回 ${cached.ref} 原文")
+                        } else {
+                            transientSearchSection = "【取回失败】ref=$ref 不存在或已清理，请重新搜索"
+                            LiveLogBuffer.append("❌ 取回失败: $ref")
+                        }
+
+                        actionHistory.add(ActionRecord(
+                            round = round,
+                            actionType = "WEB_SEARCH_FETCH",
+                            params = mapOf("ref" to ref),
+                            description = "取回搜索结果: $ref",
+                            screenPackage = screenInfo?.currentPackage,
+                            success = cached != null,
+                            resultSummary = if (cached != null) "已取回 $ref 原文供本轮参考" else "取回失败: $ref"
+                        ))
+                        while (actionHistory.size > MAX_ACTION_HISTORY) {
+                            actionHistory.removeAt(0)
+                        }
+                        AgentLogger.logRound(
+                            round = round,
+                            mode = "VL",
+                            screenInfo = screenInfo,
+                            screenshotJpegBytes = AgentLogger.compressScreenshot(screenshotBmp),
+                            modelInput = "=== System Prompt ===\n${PromptBuilder.getSystemPrompt()}\n\n=== User Prompt ===\n${vlDecision.userPrompt}",
+                            modelOutput = vlDecision.rawContent,
+                            action = finalAction,
+                            actionSuccess = cached != null,
+                            actionResultSummary = if (cached != null) "已取回 $ref 原文" else "取回失败: $ref",
                             planContext = planContext
                         )
                         screenshotBmp.recycleSafely()
@@ -409,6 +478,12 @@ class DefaultAgentService @Inject constructor(
                     FloatingProgressManager.updateProgress(round, "${finalAction.type.name} ${finalAction.description.take(40)}")
                 }
                 // ============ 分流结束，finalAction 已就绪 ============
+
+                // 摘要/取回原文"即看即弃"：模型本轮看到临时搜索结果并输出非搜索动作
+                // （说明已判断完毕），下一轮不再注入；WEB_SEARCH/FETCH 分支已 continue 自行更新
+                if (finalAction!!.type != ActionType.WEB_SEARCH && finalAction.type != ActionType.WEB_SEARCH_FETCH) {
+                    transientSearchSection = null
+                }
 
                 val actionSig = actionTrackingUseCase.actionSignature(finalAction!!.type.name, buildActionParams(finalAction), screenInfo?.currentPackage)
                 actionTrackingUseCase.track(actionSig)
@@ -729,7 +804,7 @@ class DefaultAgentService @Inject constructor(
         }
 
         // 1. 构建 VL User Prompt
-        val vlUserPrompt = buildVisionUserPrompt(userPrompt, actionHistory, llmProgress, scratchpad.toList(), planContext, failureSummary)
+        val vlUserPrompt = buildVisionUserPrompt(userPrompt, actionHistory, llmProgress, scratchpad.toList(), planContext, failureSummary, transientSearchSection)
 
         // 2. 获取屏幕尺寸
         val screenSize = getScreenSize()
@@ -766,10 +841,17 @@ class DefaultAgentService @Inject constructor(
         progress: com.palmagent.app.model.TaskProgress?,
         scratchpad: List<ScratchpadEntry> = emptyList(),
         planContext: Plan? = null,
-        failureSummary: String = ""
+        failureSummary: String = "",
+        transientSearch: String? = null
     ): String = buildString {
         appendLine("【用户任务】$userPrompt")
         appendLine()
+
+        // 本轮临时搜索结果（摘要/取回原文）：仅本轮可见，不写工作区；看完后若需保留要点请自行提炼写入工作区
+        if (!transientSearch.isNullOrBlank()) {
+            appendLine(transientSearch.trimEnd())
+            appendLine()
+        }
 
         // 决策模型 Plan 已作为 userPrompt（【用户任务】区域）传递一次，此处仅显式传入 plan 时注入
         // 双注入修复：正常执行时 planContext 为空，不重复注入同一份 plan

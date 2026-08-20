@@ -1,6 +1,7 @@
 package com.palmagent.app.tool.impl
 
 import com.palmagent.app.model.ToolCallResult
+import com.palmagent.app.service.SearchResultCache
 import com.palmagent.app.service.WebSearchService
 import com.palmagent.app.tool.BaseTool
 import com.palmagent.app.tool.ToolParameter
@@ -16,10 +17,6 @@ import com.palmagent.app.tool.ToolResult
  *   ToolCallResult.content → ToolResult.data
  */
 class WebSearchTool : BaseTool() {
-
-    companion object {
-        private const val TAG = "WebSearchTool"
-    }
 
     private val webSearchService get() = WebSearchService
 
@@ -61,5 +58,56 @@ class WebSearchTool : BaseTool() {
         } else {
             ToolResult.error(result.error ?: "搜索失败")
         }
+    }
+}
+
+/**
+ * 取回缓存搜索结果工具（注册到 ToolRegistry）。
+ *
+ * 工具名：web_search_fetch
+ * 参数：ref(必填, 如 "ws-3-2")
+ * 从 SearchResultCache 按 ref 取回该条完整结果（snippet + summary），仅供本轮参考。
+ */
+class WebSearchFetchTool : BaseTool() {
+
+    override fun getName(): String = "web_search_fetch"
+
+    override fun getDisplayName(): String = "取回搜索结果"
+
+    override fun getParameters(): List<ToolParameter> = listOf(
+        ToolParameter(
+            name = "ref",
+            type = "string",
+            description = "搜索结果缓存条目 ref（如 ws-3-2）",
+            isRequired = true
+        )
+    )
+
+    override fun getDescriptionEN(): String =
+        "Fetch the full cached content of a previous web search result by ref. The fetched content is for current-round reference only and is not persisted to working memory."
+
+    override fun getDescriptionCN(): String =
+        "按 ref 取回之前联网搜索缓存的完整内容（仅本轮参考，不写入工作记忆；需要保留的要点请自行提炼）。"
+
+    override suspend fun execute(params: Map<String, Any>): ToolResult {
+        val ref = requireString(params, "ref").trim()
+        if (ref.isEmpty()) {
+            return ToolResult.error("ref 不能为空")
+        }
+        val cached = SearchResultCache.get(ref)
+        if (cached == null) {
+            return ToolResult.error("ref=$ref 不存在或已清理，请重新搜索")
+        }
+        val content = buildString {
+            appendLine("【取回搜索结果 ${cached.ref}】${cached.title}")
+            if (cached.url.isNotBlank()) appendLine("URL: ${cached.url}")
+            if (cached.snippet.isNotBlank()) appendLine("片段: ${cached.snippet}")
+            if (!cached.summary.isNullOrBlank()) {
+                val cut = if (cached.summary.length > 800) "${cached.summary.take(800)}…" else cached.summary
+                appendLine("原文摘要: $cut")
+            }
+            appendLine("（本内容仅供本轮参考，不写入工作记忆；需要保留的要点请自行提炼）")
+        }
+        return ToolResult.success(content)
     }
 }

@@ -51,6 +51,31 @@ object WebSearchService {
         val summary: String? = null
     )
 
+    /** 结构化搜索结果（供缓存/摘要视图使用，避免格式化文本丢失结构） */
+    data class SearchOutcome(
+        val success: Boolean,
+        val result: WebSearchResult? = null,
+        val error: String? = null,
+        val durationMs: Long = 0
+    )
+
+    /**
+     * 带缓存的搜索结果（主链路使用）：
+     * 1. 去重检查：同 query（规范化）在最近 KEEP_ROUNDS 内已搜过 → 命中缓存，不重复调博查
+     * 2. 未命中 → 正常搜索 → 完整结果写 SearchResultCache → 生成摘要视图
+     *
+     * @param round 当前轮次（用于 ref 命名 ws-<round>-<n>）
+     */
+    data class CachedSearchResult(
+        val success: Boolean,
+        val summaryText: String,      // 摘要视图（仅本轮注入，不入工作区）
+        val hitCache: Boolean,        // 是否命中缓存
+        val hitRound: Int?,           // 命中轮次（未命中为 null）
+        val refs: List<String>,       // 本轮缓存条目 ref 列表
+        val durationMs: Long = 0,     // 实际搜索耗时（缓存命中为 0）
+        val error: String? = null
+    )
+
     private val fastClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
             .connectTimeout(CONNECT_TIMEOUT_S, TimeUnit.SECONDS)
@@ -62,28 +87,111 @@ object WebSearchService {
     private val jsonMediaType = "application/json".toMediaType()
 
     /**
-     * 统一搜索入口：自动选择引擎。
-     * - 配置了 BOCHA_API_KEY → 博查（速度快、AI 优化）
-     * - 未配置 → DuckDuckGo（免费兜底）
+     * 统一搜索入口（兼容旧调用方）：自动选择引擎，返回格式化文本。
+     * 注意：主链路请使用 [searchWithCache]（带去重+缓存+摘要视图）。
      */
     suspend fun search(query: String, count: Int = 5): ToolCallResult = withContext(Dispatchers.IO) {
         if (query.isBlank()) {
             return@withContext ToolCallResult("web_search", success = false, error = "查询词不能为空")
         }
-
         val bochaKey = KVUtils.getBochaApiKey()
-        if (bochaKey.isNotEmpty()) {
+        val outcome = if (bochaKey.isNotEmpty()) {
             Log.d(TAG, "使用博查引擎搜索: query=$query, count=$count")
             searchViaBocha(query, count, bochaKey)
         } else {
             Log.d(TAG, "未配置博查Key，使用 DuckDuckGo 兜底: query=$query, count=$count")
             searchViaDuckDuckGo(query, count)
         }
+        if (!outcome.success) {
+            ToolCallResult("web_search", success = false, error = outcome.error, durationMs = outcome.durationMs)
+        } else {
+            ToolCallResult(
+                "web_search", success = true,
+                content = formatResults(outcome.result!!),
+                durationMs = outcome.durationMs
+            )
+        }
     }
+
+    /**
+     * 主链路搜索入口：去重 → 搜索 → 完整缓存 → 摘要视图。
+     * 1. 同 query（规范化）在最近 KEEP_ROUNDS 内已缓存 → 直接复用缓存摘要，不重复调博查
+     * 2. 未命中 → 调搜索引擎 → 完整结果写 SearchResultCache（全字段不截断）
+     * 3. 返回摘要视图（仅本轮注入，不入工作区），模型可按 ref 调 WEB_SEARCH_FETCH 取回原文
+     *
+     * @param round 当前轮次（ref 命名 ws-<round>-<n>）
+     */
+    suspend fun searchWithCache(query: String, count: Int = 5, round: Int): CachedSearchResult =
+        withContext(Dispatchers.IO) {
+            if (query.isBlank()) {
+                return@withContext CachedSearchResult(
+                    success = false, summaryText = "", hitCache = false, hitRound = null, refs = emptyList(),
+                    error = "查询词不能为空"
+                )
+            }
+
+            // 1. 去重检查：规范化 query 命中缓存则直接复用
+            val hit = SearchResultCache.hitRound(query)
+            if (hit != null) {
+                Log.d(TAG, "搜索缓存命中 round=$hit: query=${query.take(60)}")
+                val entries = readEntries(hit)
+                if (entries.isNotEmpty()) {
+                    return@withContext CachedSearchResult(
+                        success = true,
+                        summaryText = buildCachedSummaryHeader(query, hit) + "\n" +
+                            SearchResultCache.buildSummary(query, entries),
+                        hitCache = true,
+                        hitRound = hit,
+                        refs = entries.map { it.ref }
+                    )
+                }
+            }
+
+            // 2. 未命中 → 正常搜索（结构化）
+            val bochaKey = KVUtils.getBochaApiKey()
+            val outcome = if (bochaKey.isNotEmpty()) {
+                searchViaBocha(query, count, bochaKey)
+            } else {
+                searchViaDuckDuckGo(query, count)
+            }
+            if (!outcome.success) {
+                return@withContext CachedSearchResult(
+                    success = false, summaryText = "", hitCache = false, hitRound = null, refs = emptyList(),
+                    durationMs = outcome.durationMs, error = outcome.error
+                )
+            }
+
+            // 3. 完整结果写缓存（全字段），再生成摘要视图
+            val cached = SearchResultCache.putSearch(round, query, outcome.result!!.results)
+            if (cached.isEmpty()) {
+                // 缓存写失败：回退旧逻辑（格式化全文），保证不破坏主流程
+                return@withContext CachedSearchResult(
+                    success = true,
+                    summaryText = formatResults(outcome.result),
+                    hitCache = false, hitRound = null, refs = emptyList(),
+                    durationMs = outcome.durationMs
+                )
+            }
+            CachedSearchResult(
+                success = true,
+                summaryText = SearchResultCache.buildSummary(query, cached),
+                hitCache = false,
+                hitRound = null,
+                refs = cached.map { it.ref },
+                durationMs = outcome.durationMs
+            )
+        }
+
+    /** 读取某轮缓存条目（供命中后复用摘要） */
+    private fun readEntries(round: Int): List<SearchResultCache.CachedEntry> =
+        SearchResultCache.readEntries(round) ?: emptyList()
+
+    private fun buildCachedSummaryHeader(query: String, round: Int): String =
+        "【搜索结果摘要】查询: $query | 缓存命中 round $round（如需最新结果可用新关键词重搜）"
 
     // ==================== 博查 Bocha AI Search ====================
 
-    private suspend fun searchViaBocha(query: String, count: Int, apiKey: String): ToolCallResult {
+    private suspend fun searchViaBocha(query: String, count: Int, apiKey: String): SearchOutcome {
         val startMs = System.currentTimeMillis()
         val requestBody = buildString {
             append("{")
@@ -106,38 +214,34 @@ object WebSearchService {
                 val body = resp.body?.string()
                 if (!resp.isSuccessful) {
                     Log.w(TAG, "博查搜索HTTP失败: code=${resp.code}, body=$body, elapsed=${elapsedMs}ms")
-                    return@use ToolCallResult(
-                        "web_search", success = false,
+                    return@use SearchOutcome(
+                        success = false,
                         error = "博查HTTP ${resp.code}: ${body?.take(200) ?: "无响应体"}",
                         durationMs = elapsedMs
                     )
                 }
                 if (body.isNullOrBlank()) {
-                    return@use ToolCallResult(
-                        "web_search", success = false,
+                    return@use SearchOutcome(
+                        success = false,
                         error = "博查返回空响应体",
                         durationMs = elapsedMs
                     )
                 }
                 val result = parseBochaResponse(query, body, elapsedMs)
                 if (result == null) {
-                    ToolCallResult("web_search", success = false, error = "博查响应解析失败", durationMs = elapsedMs)
+                    SearchOutcome(success = false, error = "博查响应解析失败", durationMs = elapsedMs)
                 } else {
-                    ToolCallResult(
-                        "web_search", success = true,
-                        content = formatResults(result),
-                        durationMs = elapsedMs
-                    )
+                    SearchOutcome(success = true, result = result, durationMs = elapsedMs)
                 }
             }
         } catch (e: SocketTimeoutException) {
             val elapsedMs = System.currentTimeMillis() - startMs
             Log.w(TAG, "博查搜索超时: ${e.message}, elapsed=${elapsedMs}ms")
-            ToolCallResult("web_search", success = false, error = "博查搜索超时（${elapsedMs}ms）", durationMs = elapsedMs)
+            SearchOutcome(success = false, error = "博查搜索超时（${elapsedMs}ms）", durationMs = elapsedMs)
         } catch (e: Exception) {
             val elapsedMs = System.currentTimeMillis() - startMs
             Log.e(TAG, "博查搜索异常: ${e.message}", e)
-            ToolCallResult("web_search", success = false, error = "博查搜索异常: ${e.message}", durationMs = elapsedMs)
+            SearchOutcome(success = false, error = "博查搜索异常: ${e.message}", durationMs = elapsedMs)
         }
     }
 
@@ -166,7 +270,7 @@ object WebSearchService {
 
     // ==================== DuckDuckGo HTML 抓取（兜底） ====================
 
-    private suspend fun searchViaDuckDuckGo(query: String, count: Int): ToolCallResult {
+    private suspend fun searchViaDuckDuckGo(query: String, count: Int): SearchOutcome {
         val startMs = System.currentTimeMillis()
         val encodedQuery = URLEncoder.encode(query, "UTF-8")
         val req = Request.Builder()
@@ -182,8 +286,8 @@ object WebSearchService {
                 val body = resp.body?.string()
                 if (!resp.isSuccessful || body.isNullOrBlank()) {
                     Log.w(TAG, "DuckDuckGo搜索HTTP失败: code=${resp.code}, elapsed=${elapsedMs}ms")
-                    return@use ToolCallResult(
-                        "web_search", success = false,
+                    return@use SearchOutcome(
+                        success = false,
                         error = "DuckDuckGo HTTP ${resp.code}",
                         durationMs = elapsedMs
                     )
@@ -191,19 +295,19 @@ object WebSearchService {
                 val items = parseDuckDuckGoHtml(body, count)
                 val result = WebSearchResult(query = query, engine = "duckduckgo", answer = null, results = items, elapsedMs = elapsedMs)
                 if (items.isEmpty()) {
-                    ToolCallResult("web_search", success = false, error = "DuckDuckGo 未返回有效结果", durationMs = elapsedMs)
+                    SearchOutcome(success = false, error = "DuckDuckGo 未返回有效结果", durationMs = elapsedMs)
                 } else {
-                    ToolCallResult("web_search", success = true, content = formatResults(result), durationMs = elapsedMs)
+                    SearchOutcome(success = true, result = result, durationMs = elapsedMs)
                 }
             }
         } catch (e: SocketTimeoutException) {
             val elapsedMs = System.currentTimeMillis() - startMs
             Log.w(TAG, "DuckDuckGo搜索超时: ${e.message}, elapsed=${elapsedMs}ms")
-            ToolCallResult("web_search", success = false, error = "DuckDuckGo搜索超时（${elapsedMs}ms）", durationMs = elapsedMs)
+            SearchOutcome(success = false, error = "DuckDuckGo搜索超时（${elapsedMs}ms）", durationMs = elapsedMs)
         } catch (e: Exception) {
             val elapsedMs = System.currentTimeMillis() - startMs
             Log.e(TAG, "DuckDuckGo搜索异常: ${e.message}", e)
-            ToolResultLike.error("DuckDuckGo搜索异常: ${e.message}", elapsedMs)
+            SearchOutcome(success = false, error = "DuckDuckGo搜索异常: ${e.message}", durationMs = elapsedMs)
         }
     }
 
@@ -254,11 +358,5 @@ object WebSearchService {
         }
         sb.append("\n（搜索已完成，请基于以上结果给出下一步操作）")
         return sb.toString().trimEnd()
-    }
-
-    // 内部兼容辅助（避免对 ToolCallResult 构造器签名变更的依赖）
-    private object ToolResultLike {
-        fun error(msg: String, elapsedMs: Long): ToolCallResult =
-            ToolCallResult("web_search", success = false, error = msg, durationMs = elapsedMs)
     }
 }

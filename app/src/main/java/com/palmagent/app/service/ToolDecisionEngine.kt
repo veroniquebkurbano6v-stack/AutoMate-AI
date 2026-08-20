@@ -34,7 +34,6 @@ class ToolDecisionEngine(
 
         // 收集 Scratchpad 条目（web_search 动作触发时写入）
         val scratchpadEntries = mutableListOf<ScratchpadEntry>()
-        var seq = 0
 
         var action = aiService.generateAction(
             userRequest = userRequest,
@@ -121,29 +120,23 @@ class ToolDecisionEngine(
                     log("AI请求联网搜索: ${query.take(80)}")
                     LiveLogBuffer.append("🔍 模型请求联网搜索: ${query.take(80)}")
 
-                    val searchResult = WebSearchService.search(query, count = 5)
-                    seq++
-                    val entryId = "sp-${round}-${seq}"
-                    val entryContent = (searchResult.content ?: "").take(300)
-                    scratchpadEntries.add(ScratchpadEntry(
-                        id = entryId,
-                        content = entryContent,
-                        source = "web_search: $query",
-                        roundCreated = round
-                    ))
+                    val searchResult = WebSearchService.searchWithCache(query, count = 5, round = round)
 
                     toolResults.add(ToolCallResult(
                         toolName = "web_search",
                         success = searchResult.success,
-                        content = searchResult.content ?: "",
+                        content = searchResult.summaryText,
                         error = searchResult.error,
                         durationMs = searchResult.durationMs
                     ))
 
                     if (searchResult.success) {
                         consecutiveFailures = 0
-                        log("搜索成功: ${entryContent.take(80)}，重新请求AI决策...")
-                        LiveLogBuffer.append("✓ 搜索成功，结果已写入工作记忆")
+                        log("搜索成功（${if (searchResult.hitCache) "缓存命中" else "已缓存"}）: ${searchResult.summaryText.take(80)}，重新请求AI决策...")
+                        LiveLogBuffer.append(
+                            if (searchResult.hitCache) "↩️ 搜索缓存命中(round ${searchResult.hitRound})，摘要已注入本轮"
+                            else "✓ 搜索完成，结果已缓存，可按 ref 取回原文"
+                        )
                     } else {
                         log("搜索失败: ${searchResult.error}")
                         LiveLogBuffer.append("❌ 搜索失败: ${searchResult.error}")
@@ -151,18 +144,90 @@ class ToolDecisionEngine(
                         if (recordToolFailure("web_search: ${searchResult.error}")) break
                     }
 
+                    // 摘要仅本轮注入（模型看后判断需取回的 ref；不写工作区，即看即弃）
                     val combined = buildString {
                         if (contextFromTools.isNotBlank()) {
                             appendLine(contextFromTools)
                             appendLine()
                         }
-                        appendLine("【联网搜索结果 ID=$entryId】query: $query")
                         if (searchResult.success) {
-                            appendLine(entryContent)
+                            appendLine(searchResult.summaryText)
+                            appendLine("请判断哪些搜索结果与任务相关：需要查看某条完整内容时输出 WEB_SEARCH_FETCH(ref)；无关信息不必保留。")
                         } else {
-                            appendLine("搜索失败：${searchResult.error}")
+                            appendLine("【联网搜索】搜索失败：${searchResult.error}")
                             appendLine("请根据当前屏幕信息自行判断下一步操作。")
                         }
+                    }
+                    contextFromTools = combined
+
+                    logToolLoopModelInput(userRequest, combined, round, loopCount)
+                    action = aiService.generateAction(
+                        userRequest = userRequest,
+            screenInfo = screenInfo,
+            knowledgeContext = combined,
+                    )
+                }
+
+                ActionType.WEB_SEARCH_FETCH -> {
+                    val ref = action.text?.takeIf { it.isNotBlank() } ?: action.description
+                    if (ref.isBlank()) {
+                        log("WEB_SEARCH_FETCH 缺少 ref 参数，跳过")
+                        toolResults.add(ToolCallResult(
+                            toolName = "web_search_fetch",
+                            success = false,
+                            error = "ref 参数为空"
+                        ))
+                        return DecisionResult(
+                            finalAction = action,
+                            toolResults = toolResults,
+                            combinedContext = contextFromTools,
+                            scratchpadEntries = scratchpadEntries
+                        )
+                    }
+
+                    log("AI请求取回搜索结果: $ref")
+                    LiveLogBuffer.append("📄 模型取回搜索结果: ${ref.take(40)}")
+
+                    val cached = SearchResultCache.get(ref)
+                    val fetchContent = if (cached != null) {
+                        buildString {
+                            appendLine("【取回搜索结果 ${cached.ref}】${cached.title}")
+                            if (cached.url.isNotBlank()) appendLine("URL: ${cached.url}")
+                            if (cached.snippet.isNotBlank()) appendLine("片段: ${cached.snippet}")
+                            if (!cached.summary.isNullOrBlank()) {
+                                val cut = if (cached.summary.length > 800) "${cached.summary.take(800)}…" else cached.summary
+                                appendLine("原文摘要: $cut")
+                            }
+                            appendLine("（本内容仅供本轮参考，不写入工作记忆；需要保留的要点请自行提炼）")
+                        }
+                    } else {
+                        "【取回失败】ref=$ref 不存在或已清理，请重新搜索"
+                    }
+
+                    toolResults.add(ToolCallResult(
+                        toolName = "web_search_fetch",
+                        success = cached != null,
+                        content = fetchContent,
+                        error = if (cached != null) null else "取回失败: $ref",
+                        durationMs = 0
+                    ))
+                    if (cached != null) {
+                        consecutiveFailures = 0
+                        log("取回成功: ${cached.ref}，重新请求AI决策...")
+                        LiveLogBuffer.append("✓ 已取回 ${cached.ref} 原文")
+                    } else {
+                        log("取回失败: $ref")
+                        LiveLogBuffer.append("❌ 取回失败: $ref")
+                        if (recordToolFailure("web_search_fetch: $ref")) break
+                    }
+
+                    // 取回原文仅本轮注入，不写工作区
+                    val combined = buildString {
+                        if (contextFromTools.isNotBlank()) {
+                            appendLine(contextFromTools)
+                            appendLine()
+                        }
+                        appendLine(fetchContent)
                     }
                     contextFromTools = combined
 
