@@ -1,47 +1,44 @@
 {
   "sop_id": "3e0986e602586ade",
   "original_task_name": "哔哩哔哩上能播放《神医喜来乐》第13集吗？",
-  "task_name": "哔哩哔哩上能播放特定影视第13集吗？",
+  "task_name": "哔哩哔哩上播放目标影视指定集数",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "B站",
-    "特定影视",
+    "哔哩哔哩",
+    "影视",
     "剧集",
-    "播放"
+    "播放",
+    "搜索",
+    "视频"
   ],
   "steps": [
     {
-      "goal": "点击哔哩哔哩应用图标",
-      "expected": "打开哔哩哔哩应用",
+      "goal": "点击B站应用图标，启动哔哩哔哩App",
+      "expected": "B站首页加载完成，显示推荐内容",
       "action_type": "click",
       "step_order": 1
     },
     {
+      "goal": "在首页顶部搜索输入框中输入目标影视名称并进行搜索",
+      "expected": "搜索结果页展示目标影视相关视频列表",
       "action_type": "type",
-      "goal": "在文本输入框中输入'特定影视'",
-      "expected": "文本输入框中显示'特定影视'",
       "step_order": 2
     },
     {
-      "goal": "执行搜索操作以查看“特定影视”的相关结果",
-      "expected": "搜索界面显示搜索结果",
+      "goal": "在搜索结果中点击目标影视的剧集合集入口",
+      "expected": "进入剧集播放页，显示选集列表",
       "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击剧集列表中的第2集",
-      "expected": "进入该集的播放页面",
+      "goal": "在选集列表中点击目标集数对应的数字按钮",
+      "expected": "视频开始播放，进度条正常加载",
       "action_type": "click",
       "step_order": 4
-    },
-    {
-      "goal": "点击数字13",
-      "expected": "界面显示数字13对应的选项",
-      "action_type": "click",
-      "step_order": 5
     }
   ]
 }

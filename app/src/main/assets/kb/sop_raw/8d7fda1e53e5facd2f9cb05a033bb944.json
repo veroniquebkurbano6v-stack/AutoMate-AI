@@ -1,7 +1,7 @@
 {
   "sop_id": "8d7fda1e53e5facd",
   "original_task_name": "使用美团查找南大街附近评分高的川菜餐馆，如果可以线上排队就拿个号",
-  "task_name": "使用美团查找目的地附近评分高的川菜餐馆，如果可以线上排队就拿个号",
+  "task_name": "查找目标地点附近评分高的川菜餐馆并线上取号",
   "app_name": "美团",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -9,106 +9,79 @@
   "keywords": [
     "美团",
     "川菜",
-    "目的地",
     "餐厅",
-    "排队"
+    "排队",
+    "取号",
+    "附近",
+    "评分",
+    "好评"
   ],
   "steps": [
     {
-      "goal": "打开美团App",
-      "expected": "应用图标被点击，进入美团应用界面",
+      "goal": "点击美团App图标打开应用",
+      "expected": "进入美团首页，显示各类服务入口",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击外卖服务图标",
-      "expected": "进入外卖服务页面",
+      "goal": "点击首页中的外卖服务入口图标",
+      "expected": "进入外卖服务页面，显示搜索框和商家列表",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "进入搜索界面以输入商家名称",
-      "expected": "界面处于可输入商家名称的搜索状态",
+      "goal": "点击页面顶部搜索框区域进入搜索状态",
+      "expected": "搜索框获得焦点，界面处于可输入状态",
       "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "在文本输入框中输入'川菜'",
-      "expected": "文本输入框中显示'川菜'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "页面显示目标关键词相关的搜索结果列表",
       "action_type": "type",
       "step_order": 4
     },
     {
-      "goal": "搜索输入框点击操作",
-      "expected": "激活搜索输入框",
+      "goal": "点击筛选栏中的附近或商圈筛选按钮",
+      "expected": "展开位置筛选面板，显示附近和商圈选项",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击'附近'筛选按钮以查看周边餐厅",
-      "expected": "筛选出当前位置周边的川菜餐厅",
+      "goal": "在位置筛选面板中选择目标地点所在商圈",
+      "expected": "筛选条件更新为目标地点，列表刷新显示该区域餐馆",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "选择'商圈'筛选选项以查看相关餐厅",
-      "expected": "筛选出当前所在商圈内的餐厅",
+      "goal": "点击筛选栏中的智能排序按钮展开排序选项",
+      "expected": "展开排序下拉菜单，显示多种排序方式供选择",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "选择商圈为目的地",
-      "expected": "筛选出目的地附近的川菜餐厅",
+      "goal": "在排序菜单中选择好评优先排序方式",
+      "expected": "列表按用户评分从高到低重新排列显示",
       "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "选择目的地作为搜索位置",
-      "expected": "界面显示目的地位置选项已被选中",
+      "goal": "点击列表中评分较高的目标川菜餐馆卡片",
+      "expected": "进入该餐馆详情页面，显示评分和排队信息",
       "action_type": "click",
       "step_order": 9
     },
     {
-      "goal": "选择'目的地'作为搜索区域",
-      "expected": "筛选出目的地范围内的餐厅",
+      "goal": "点击餐馆详情页中的线上排队取号按钮",
+      "expected": "弹出取号确认弹窗，显示当前排队人数和预计等待时间",
       "action_type": "click",
       "step_order": 10
     },
     {
-      "goal": "选择商圈为'目的地'，筛选出该区域的川菜馆",
-      "expected": "界面显示'目的地'作为筛选条件，下方列出该区域的餐馆列表",
+      "goal": "确认取号信息后点击确认取号按钮",
+      "expected": "取号成功，页面显示排队号码和预计等待时间",
       "action_type": "click",
       "step_order": 11
-    },
-    {
-      "goal": "选择“目的地”作为搜索区域",
-      "expected": "筛选出目的地附近的餐厅",
-      "action_type": "click",
-      "step_order": 12
-    },
-    {
-      "goal": "点击'智能排序'按钮以展开排序选项",
-      "expected": "展开排序菜单，显示不同排序方式供选择",
-      "action_type": "click",
-      "step_order": 13
-    },
-    {
-      "goal": "选择排序方式为好评优先",
-      "expected": "界面弹出排序下拉菜单，显示包括距离优先、好评优先、销量优先、低价优先、高价优先在内的排序选项",
-      "action_type": "click",
-      "step_order": 14
-    },
-    {
-      "goal": "点击“好评优先”筛选按钮",
-      "expected": "筛选出按用户评价排序的餐厅列表",
-      "action_type": "click",
-      "step_order": 15
-    },
-    {
-      "goal": "点击餐厅地址信息区域",
-      "expected": "进入餐厅详细地址页面",
-      "action_type": "click",
-      "step_order": 16
     }
   ]
 }

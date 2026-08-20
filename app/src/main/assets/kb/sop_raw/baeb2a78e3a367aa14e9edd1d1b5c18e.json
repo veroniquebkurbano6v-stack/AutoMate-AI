@@ -1,7 +1,7 @@
 {
   "sop_id": "baeb2a78e3a367aa",
   "original_task_name": "小红书搜穿搭博主的视频，播放并分享给微信好友刘浩然",
-  "task_name": "小红书搜穿搭博主的视频，播放并分享给微信联系人",
+  "task_name": "小红书搜索穿搭博主视频并分享给微信联系人",
   "app_name": "小红书",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -11,60 +11,63 @@
     "微信",
     "穿搭博主",
     "视频",
-    "分享"
+    "分享",
+    "搜索",
+    "博主",
+    "穿搭"
   ],
   "steps": [
     {
-      "goal": "打开小红书应用",
-      "expected": "小红书应用图标被选中，应用启动并进入主界面",
+      "goal": "点击小红书应用图标启动应用",
+      "expected": "应用启动成功，进入小红书首页推荐流",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索图标以打开搜索界面",
-      "expected": "界面切换至搜索页面，显示搜索输入框和搜索建议",
+      "goal": "点击首页顶部搜索图标打开搜索界面",
+      "expected": "界面切换至搜索页，显示搜索输入框和热门搜索",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'穿搭博主'",
-      "expected": "文本输入框中显示'穿搭博主'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索完成，页面展示与目标关键词相关的结果列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索界面开始加载，显示搜索结果",
+      "goal": "点击搜索结果中目标博主的头像或昵称区域",
+      "expected": "进入目标博主的个人主页，展示其发布内容",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击用户资料区域进入详情页",
-      "expected": "进入该用户的个人主页",
+      "goal": "点击博主主页中的视频笔记进入播放页",
+      "expected": "视频开始播放，页面显示视频播放器和互动按钮",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击分享按钮",
-      "expected": "分享功能已激活",
+      "goal": "点击视频播放页右下角的分享按钮图标",
+      "expected": "弹出分享面板，显示多种分享渠道选项",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "选择微信好友进行分享",
-      "expected": "分享菜单中微信好友选项被选中",
+      "goal": "在分享面板中选择微信好友分享选项",
+      "expected": "跳转至微信联系人选择界面，显示好友列表",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "选择聊天对话",
-      "expected": "进入该聊天的详情页面",
+      "goal": "在微信联系人列表中选择目标联系人",
+      "expected": "弹出确认分享对话框，显示目标联系人昵称",
       "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "确认分享给联系人",
-      "expected": "确认分享对话框关闭，返回选择一个聊天界面",
+      "goal": "点击确认分享对话框中的发送按钮",
+      "expected": "分享成功，提示已发送或返回小红书界面",
       "action_type": "click",
       "step_order": 9
     }

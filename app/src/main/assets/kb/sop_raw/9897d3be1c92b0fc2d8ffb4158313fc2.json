@@ -1,7 +1,7 @@
 {
   "sop_id": "9897d3be1c92b0fc",
   "original_task_name": "导航到大唐芙蓉园附近的超市",
-  "task_name": "导航到目的地附近的指定场所",
+  "task_name": "导航到目的地附近的超市",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -11,43 +11,39 @@
     "导航",
     "目的地",
     "附近",
-    "搜索"
+    "搜索",
+    "超市",
+    "路线规划"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用图标被选中，进入应用界面",
+      "goal": "点击高德地图应用图标打开应用",
+      "expected": "进入高德地图主界面，显示地图和搜索栏",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入目的地",
+      "goal": "点击主界面顶部的搜索输入框",
+      "expected": "搜索框获得焦点，弹出键盘准备输入",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地附近的指定场所'",
-      "expected": "文本输入框中显示'目的地附近的指定场所'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页展示目标地点附近的场所列表",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索结果页面中显示了多个附近的场所，包括名称、评分、距离等信息",
+      "goal": "点击搜索结果中的超市分类筛选标签",
+      "expected": "列表筛选为超市类别的商家信息",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击'综合超市'筛选标签以调整搜索结果分类",
-      "expected": "筛选出综合超市类别的商家列表",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "点击底部导航栏中的'导航'按钮",
-      "expected": "进入导航功能界面",
+      "goal": "点击目标超市条目右侧的导航按钮",
+      "expected": "进入路线规划页面，显示导航路线",
       "action_type": "click"
     }
   ]

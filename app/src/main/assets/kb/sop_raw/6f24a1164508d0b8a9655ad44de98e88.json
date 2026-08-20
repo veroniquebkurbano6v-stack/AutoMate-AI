@@ -1,7 +1,7 @@
 {
   "sop_id": "6f24a1164508d0b8",
   "original_task_name": "从当前位置使用高德地图导航到最近的便利店",
-  "task_name": "从当前位置使用高德地图导航到最近的目的地",
+  "task_name": "使用高德地图导航到最近的目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,55 +10,51 @@
     "高德地图",
     "导航",
     "目的地",
-    "搜索"
+    "搜索",
+    "路线规划",
+    "距离优先"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用启动",
+      "goal": "点击桌面上的高德地图应用图标",
+      "expected": "高德地图应用启动并显示主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏处于可输入状态",
+      "goal": "点击主界面顶部的搜索输入框",
+      "expected": "搜索输入框激活并弹出键盘",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索界面显示目标关键词相关的结果列表",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "执行搜索操作以查看相关场所结果",
-      "expected": "搜索界面显示搜索结果列表",
+      "goal": "点击搜索结果列表上方的排序选项按钮",
+      "expected": "弹出排序方式选择菜单",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击排序选项以查看不同排序方式",
-      "expected": "进入排序设置界面",
+      "goal": "在排序菜单中选择距离优先选项",
+      "expected": "结果列表按距离从近到远重新排列",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "选择排序方式为距离优先",
-      "expected": "界面弹出的排序下拉菜单中，'距离优先'选项被选中",
+      "goal": "点击排序后列表中最近的目标场所条目",
+      "expected": "进入该目标场所的详细信息页面",
       "action_type": "click"
     },
     {
       "step_order": 7,
-      "goal": "点击'特定场所'的店铺条目",
-      "expected": "进入该店铺的详细信息页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 8,
-      "goal": "点击导航按钮进入路线规划功能",
-      "expected": "进入路线规划界面",
+      "goal": "点击详情页面底部的导航按钮",
+      "expected": "进入路线规划界面并显示导航路线",
       "action_type": "click"
     }
   ]

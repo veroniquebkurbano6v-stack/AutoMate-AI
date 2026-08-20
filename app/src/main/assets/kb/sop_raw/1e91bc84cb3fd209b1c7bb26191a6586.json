@@ -1,7 +1,7 @@
 {
   "sop_id": "1e91bc84cb3fd209",
   "original_task_name": "播放微信好友Ava的最新一条语音消息",
-  "task_name": "播放微信联系人的最新一条语音消息",
+  "task_name": "播放微信联系人的最新语音消息",
   "app_name": "微信",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,31 +10,34 @@
     "微信",
     "联系人",
     "语音",
-    "消息"
+    "消息",
+    "播放",
+    "好友",
+    "聊天记录"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的微信应用图标",
-      "expected": "进入微信主界面，显示聊天列表",
+      "expected": "进入微信主界面，显示聊天列表页面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击微信主界面顶部的搜索框输入'群组或联系人姓名'",
-      "expected": "界面显示匹配的搜索结果条目",
+      "goal": "在微信主界面顶部搜索输入框中输入目标联系人名称并进行搜索",
+      "expected": "界面显示与目标联系人匹配的搜索结果列表",
       "action_type": "type"
     },
     {
       "step_order": 3,
-      "goal": "点击搜索结果中的目标条目",
-      "expected": "进入与目标对象的聊天界面",
+      "goal": "点击搜索结果列表中目标联系人对应的条目",
+      "expected": "进入与目标联系人的聊天详情界面",
       "action_type": "click"
     },
     {
       "step_order": 4,
-      "goal": "点击最新一条语音消息的气泡",
-      "expected": "语音消息开始播放，任务完成",
+      "goal": "点击聊天界面中最新一条语音消息的气泡区域",
+      "expected": "语音消息开始播放，播放状态指示器出现",
       "action_type": "click"
     }
   ],

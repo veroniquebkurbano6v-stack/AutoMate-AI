@@ -1,7 +1,7 @@
 {
   "sop_id": "244212a62a5de298",
   "original_task_name": "打开哔哩哔哩，查看正在进行的萌宠直播。",
-  "task_name": "打开哔哩哔哩，查看正在进行的萌宠直播",
+  "task_name": "查看正在进行的萌宠直播",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,37 +10,27 @@
     "B站",
     "萌宠",
     "直播",
-    "搜索"
+    "搜索",
+    "宠物",
+    "动物"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的B站应用图标",
-      "expected": "应用图标被点击，进入哔哩哔哩应用界面",
+      "expected": "进入B站首页，显示推荐内容信息流",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索栏",
-      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在搜索栏中输入'萌宠'",
-      "expected": "文本输入框中显示'萌宠'",
+      "goal": "在首页顶部搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页展示与目标关键词相关的内容列表",
       "action_type": "type"
     },
     {
-      "step_order": 4,
-      "goal": "点击搜索栏右侧的搜索按钮",
-      "expected": "搜索结果页面显示与'萌宠'相关的视频和内容",
-      "action_type": "click"
-    },
-    {
-      "step_order": 5,
-      "goal": "点击搜索结果中的直播分类标签",
-      "expected": "界面切换至直播分类的内容列表",
+      "step_order": 3,
+      "goal": "点击搜索结果页顶部的直播分类标签",
+      "expected": "界面切换为直播分类，展示相关直播间列表",
       "action_type": "click"
     }
   ]

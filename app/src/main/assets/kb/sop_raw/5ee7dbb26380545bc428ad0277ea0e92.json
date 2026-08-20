@@ -1,7 +1,7 @@
 {
   "sop_id": "5ee7dbb26380545b",
   "original_task_name": "使用百度地图从当前位置导航至太白山国家森林公园  ",
-  "task_name": "使用百度地图从当前位置导航至目的地",
+  "task_name": "使用百度地图从当前位置导航至目标目的地",
   "app_name": "百度地图",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,30 +10,32 @@
     "百度地图",
     "导航",
     "目的地",
-    "路线"
+    "路线",
+    "路线规划",
+    "出行"
   ],
   "steps": [
     {
-      "goal": "打开百度地图应用",
-      "expected": "百度地图应用图标被选中，准备启动应用",
+      "goal": "点击桌面上的百度地图应用图标",
+      "expected": "百度地图应用启动并显示主界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索框中的文字区域",
-      "expected": "激活搜索框，准备输入新的搜索内容",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标目的地并进行搜索",
+      "expected": "搜索结果列表展示目标目的地相关条目",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
+      "goal": "点击搜索结果中的目标目的地条目",
+      "expected": "界面显示目标目的地的详情页面",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击目的地条目",
-      "expected": "界面显示目的地的详细信息",
+      "goal": "点击详情页面底部的导航按钮",
+      "expected": "界面显示从当前位置到目标目的地的导航路线",
       "action_type": "click",
       "step_order": 4
     }

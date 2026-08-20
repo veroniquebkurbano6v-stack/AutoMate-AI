@@ -1,7 +1,7 @@
 {
   "sop_id": "b630386a9d5c20f5",
   "original_task_name": "帮我看看附近有卖生日蛋糕的吗",
-  "task_name": "帮我看看附近有卖生日蛋糕的吗",
+  "task_name": "搜索附近生日蛋糕商家",
   "app_name": "百度地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,38 +10,29 @@
     "百度地图",
     "生日蛋糕",
     "搜索",
-    "附近"
+    "附近",
+    "蛋糕店",
+    "周边",
+    "商家"
   ],
   "steps": [
     {
-      "goal": "打开百度地图应用",
-      "expected": "百度地图应用图标被选中，准备启动应用",
+      "goal": "点击桌面上的百度地图应用图标启动应用",
+      "expected": "百度地图应用启动并进入首页地图界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏区域以激活输入状态",
-      "expected": "搜索栏获得焦点，准备输入搜索关键词",
+      "goal": "点击首页顶部的搜索栏区域激活输入状态",
+      "expected": "搜索栏获得焦点，弹出键盘准备输入内容",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "输入搜索关键词以查找相关商家",
-      "expected": "搜索界面已激活，键盘显示，可输入搜索内容",
-      "action_type": "click",
-      "step_order": 3
-    },
-    {
-      "goal": "在文本输入框中输入'生日蛋糕'",
-      "expected": "文本输入框中显示'生日蛋糕'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "页面显示与目标关键词相关的搜索结果列表",
       "action_type": "type",
-      "step_order": 4
-    },
-    {
-      "goal": "执行搜索操作以查看生日蛋糕相关结果",
-      "expected": "搜索界面显示搜索结果列表",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 3
     }
   ]
 }

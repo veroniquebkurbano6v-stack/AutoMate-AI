@@ -1,7 +1,7 @@
 {
   "sop_id": "7c625c85651458b7",
   "original_task_name": "在大众点评中查找附近评分4星以上的餐厅，将类型限定为川菜。",
-  "task_name": "在大众点评中查找附近评分4星以上的餐厅，将类型限定为川菜。",
+  "task_name": "查找附近高评分川菜餐厅",
   "app_name": "大众点评",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -11,74 +11,65 @@
     "川菜",
     "餐厅",
     "评分",
-    "筛选"
+    "筛选",
+    "附近",
+    "搜索",
+    "高评分"
   ],
   "steps": [
     {
-      "goal": "点击大众点评应用图标",
-      "expected": "打开大众点评应用",
+      "goal": "点击桌面上的大众点评应用图标",
+      "expected": "大众点评应用启动并进入首页",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏区域以激活输入状态",
-      "expected": "搜索栏获得焦点，准备输入搜索内容",
-      "action_type": "click",
+      "goal": "在首页顶部搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页展示目标关键词相关商户列表",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'川菜'",
-      "expected": "文本输入框中显示'川菜'",
-      "action_type": "type",
+      "goal": "点击搜索结果页上方的筛选标签按钮",
+      "expected": "筛选面板展开显示可选筛选条件",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击搜索按钮执行搜索",
-      "expected": "搜索结果列表显示",
+      "goal": "在筛选面板中选择附近位置范围选项",
+      "expected": "附近位置筛选条件被选中并高亮显示",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击筛选标签以展开筛选选项",
-      "expected": "筛选标签区域显示展开状态，提供更多筛选条件",
+      "goal": "点击筛选面板中的商户评分筛选入口",
+      "expected": "展开评分区间选项列表供选择",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "选择附近位置作为搜索范围",
-      "expected": "界面显示附近位置筛选选项已激活",
+      "goal": "选择评分4.8至5.0分的筛选条件选项",
+      "expected": "该评分区间选项被选中并高亮显示",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "点击筛选按钮以展开筛选选项",
-      "expected": "界面弹出筛选菜单",
+      "goal": "选择评分4.5至4.7分的筛选条件选项",
+      "expected": "该评分区间选项被选中并高亮显示",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "选择商户评分4.8-5分的筛选条件",
-      "expected": "筛选出评分在4.8-5分之间的川菜商家",
+      "goal": "选择评分4.0至4.4分的筛选条件选项",
+      "expected": "该评分区间选项被选中并高亮显示",
       "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "选择4.5-4.7分的商户评分筛选条件",
-      "expected": "筛选出评分在4.5-4.7分之间的川菜商家",
+      "goal": "点击筛选面板底部的确认按钮提交筛选",
+      "expected": "结果页展示符合附近高评分条件的商户列表",
       "action_type": "click",
       "step_order": 9
-    },
-    {
-      "goal": "选择4.0-4.4分的商户评分筛选条件",
-      "expected": "筛选出评分在4.0-4.4分之间的川菜商家",
-      "action_type": "click",
-      "step_order": 10
-    },
-    {
-      "goal": "确认筛选条件并返回搜索结果页面",
-      "expected": "筛选条件已应用，搜索结果页面显示筛选后的川菜商家列表",
-      "action_type": "click",
-      "step_order": 11
     }
   ]
 }

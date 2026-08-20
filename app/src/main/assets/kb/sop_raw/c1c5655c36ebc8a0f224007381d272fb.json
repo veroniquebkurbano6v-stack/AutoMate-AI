@@ -1,114 +1,93 @@
 {
   "sop_id": "c1c5655c36ebc8a0",
   "original_task_name": "浏览淘宝上的蕉下官方店铺，把销量第一的摇粒绒打底衫米色L码加入购物车",
-  "task_name": "浏览淘宝上的特定店铺，把销量第一的特定商品加入购物车",
+  "task_name": "浏览目标店铺并将销量第一的目标商品加入购物车",
   "app_name": "淘宝",
   "source": "cagui_auto",
   "difficulty": "L4",
   "domain": "购物",
   "keywords": [
     "淘宝",
-    "特定店铺",
-    "特定商品",
+    "店铺",
+    "商品",
     "购物车",
-    "销量"
+    "销量",
+    "加入购物车",
+    "搜索",
+    "规格选择"
   ],
   "steps": [
     {
-      "goal": "点击淘宝应用图标",
-      "expected": "打开淘宝应用",
+      "goal": "点击淘宝应用图标打开应用",
+      "expected": "淘宝首页加载完成，显示搜索栏和推荐内容",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏中的'特定商品'文字区域",
-      "expected": "搜索栏处于可编辑状态，用户可输入新的搜索内容",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载完成，显示与目标关键词相关的商品列表",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定商品'",
-      "expected": "文本输入框中显示'特定商品'",
-      "action_type": "type",
+      "goal": "点击搜索结果中的店铺标签进入店铺",
+      "expected": "进入目标店铺详情页面，显示店铺信息和商品列表",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索界面提交查询并进入搜索结果页面",
+      "goal": "点击店铺名称区域进入店铺主页",
+      "expected": "进入店铺主页，展示店铺全部商品和分类导航",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击店铺标签以进入店铺详情页",
-      "expected": "进入店铺详情页面，查看店铺整体信息和商品列表",
+      "goal": "点击店铺页面右上角的搜索图标",
+      "expected": "页面进入店内搜索界面，显示搜索输入框",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击店铺名称进入店铺页面",
-      "expected": "进入店铺详情页",
-      "action_type": "click",
+      "goal": "在店内搜索输入框中输入目标关键词并进行搜索",
+      "expected": "店内搜索结果加载完成，显示目标商品列表",
+      "action_type": "type",
       "step_order": 6
     },
     {
-      "goal": "点击页面右上角的搜索图标",
-      "expected": "页面进入搜索界面",
+      "goal": "点击销量第一的目标商品图片进入详情页",
+      "expected": "进入目标商品详情页，展示商品图片和基本信息",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "在文本输入框中输入'特定商品'",
-      "expected": "文本输入框中显示'特定商品'",
-      "action_type": "type",
+      "goal": "点击商品详情页底部的加入购物车按钮",
+      "expected": "弹出商品规格选择面板，显示颜色和尺码选项",
+      "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面加载完成，显示与“特定商品”相关的商品列表",
+      "goal": "在规格面板中点击目标颜色选项",
+      "expected": "目标颜色选项被选中，显示高亮选中状态",
       "action_type": "click",
       "step_order": 9
     },
     {
-      "goal": "点击商品图片进入详情页",
-      "expected": "进入该商品的详细信息页面",
+      "goal": "在规格面板中点击目标尺码选项",
+      "expected": "目标尺码选项被选中，显示高亮选中状态",
       "action_type": "click",
       "step_order": 10
     },
     {
-      "goal": "点击'加入购物车'按钮",
-      "expected": "商品信息区域下方的橙色按钮变为可点击状态，弹出购物车确认提示",
+      "goal": "确认规格选择后点击确定按钮",
+      "expected": "商品配置信息提交成功，显示加入购物车确认提示",
       "action_type": "click",
       "step_order": 11
     },
     {
-      "goal": "选择'特定颜色'颜色选项",
-      "expected": "选择'特定颜色'颜色选项",
+      "goal": "点击确认加入购物车按钮完成操作",
+      "expected": "商品成功加入购物车，页面显示加入成功提示",
       "action_type": "click",
       "step_order": 12
-    },
-    {
-      "goal": "选择'特定颜色'颜色选项",
-      "expected": "特定颜色选项被选中",
-      "action_type": "click",
-      "step_order": 13
-    },
-    {
-      "goal": "选择L码作为商品尺码",
-      "expected": "界面显示尺码选择区域中L码已被选中",
-      "action_type": "click",
-      "step_order": 14
-    },
-    {
-      "goal": "点击'特定规格'选项",
-      "expected": "商品列表中显示该商品的详细规格和价格信息",
-      "action_type": "click",
-      "step_order": 15
-    },
-    {
-      "goal": "点击'加入购物车'按钮",
-      "expected": "商品信息、尺码、数量、服务保障和分期付款选项等配置信息将被提交至购物车",
-      "action_type": "click",
-      "step_order": 16
     }
   ]
 }

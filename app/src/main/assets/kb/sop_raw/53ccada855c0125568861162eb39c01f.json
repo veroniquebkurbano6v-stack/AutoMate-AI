@@ -1,65 +1,44 @@
 {
   "sop_id": "53ccada855c01255",
   "original_task_name": " b 站播放魔法禁书目录的最新一集",
-  "task_name": "b站播放特定影视的最新一集",
+  "task_name": "B站播放目标影视最新一集",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "B站",
-    "特定影视",
+    "哔哩哔哩",
+    "影视",
+    "番剧",
     "最新一集",
-    "播放"
+    "播放",
+    "搜索"
   ],
   "steps": [
     {
-      "goal": "打开哔哩哔哩App",
-      "expected": "哔哩哔哩App启动并显示其界面",
+      "goal": "点击桌面上的B站App图标启动应用",
+      "expected": "B站App启动并显示首页推荐内容界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏以激活输入状态",
-      "expected": "搜索栏获得焦点，准备输入搜索内容",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标影视名称并进行搜索",
+      "expected": "搜索结果页展示与目标影视相关的番剧条目",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定影视'",
-      "expected": "文本输入框中显示'特定影视'",
-      "action_type": "type",
+      "goal": "点击搜索结果中目标影视对应的番剧条目",
+      "expected": "进入目标影视的详情页面显示剧集列表",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索结果列表显示",
+      "goal": "在详情页剧集列表中找到最新一集并点击",
+      "expected": "开始播放目标影视最新一集的视频内容",
       "action_type": "click",
       "step_order": 4
-    },
-    {
-      "goal": "点击搜索结果中的'特定影视 第三季'番剧条目",
-      "expected": "进入该番剧的详情页面",
-      "action_type": "click",
-      "step_order": 5
-    },
-    {
-      "goal": "点击搜索结果中的'特定影视 第三季'条目",
-      "expected": "进入该动画的详情页面",
-      "action_type": "click",
-      "step_order": 6
-    },
-    {
-      "goal": "点击页面右下角的'点击'按钮",
-      "expected": "页面右下角的'点击'按钮被选中，按钮上显示'点击'文字，按钮下方显示数字'2208'。",
-      "action_type": "click",
-      "step_order": 7
-    },
-    {
-      "goal": "点击第26话标题进入详情页",
-      "expected": "进入第26话的播放或信息页面",
-      "action_type": "click",
-      "step_order": 8
     }
   ]
 }

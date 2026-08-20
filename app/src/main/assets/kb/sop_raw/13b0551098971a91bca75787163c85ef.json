@@ -1,7 +1,7 @@
 {
   "sop_id": "13b0551098971a91",
   "original_task_name": "高德地图找附近的免费停车场导航过去",
-  "task_name": "在高德地图找附近的免费停车场并导航过去",
+  "task_name": "在高德地图搜索附近免费停车场并导航前往",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -9,45 +9,47 @@
   "keywords": [
     "高德地图",
     "停车场",
+    "免费停车",
     "导航",
+    "搜索",
     "目的地",
-    "搜索"
+    "驾车"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的高德地图应用图标",
-      "expected": "高德地图应用图标被选中，界面进入高德地图应用状态",
+      "expected": "高德地图应用启动，进入主界面显示地图",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "选择驾车出行模式",
-      "expected": "界面显示驾车选项已被选中",
+      "goal": "点击顶部出行方式栏中的驾车模式选项",
+      "expected": "驾车模式被选中，界面切换为驾车导航面板",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "点击'输入终点'输入框",
-      "expected": "激活输入框，准备输入目的地",
+      "goal": "点击驾车面板顶部的输入终点输入框",
+      "expected": "输入框被激活，弹出键盘准备输入目的地",
       "action_type": "click"
     },
     {
       "step_order": 4,
-      "goal": "在文本输入框中输入'免费停车场'",
-      "expected": "文本输入框中显示'免费停车场'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示附近匹配的停车场信息",
       "action_type": "type"
     },
     {
       "step_order": 5,
-      "goal": "选择列表中的第一个停车地点",
-      "expected": "界面显示已选择第一个停车地点",
+      "goal": "点击搜索结果列表中的第一个停车场条目",
+      "expected": "界面显示该停车场详情及路线规划结果",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "确认导航开始按钮状态",
-      "expected": "导航功能已激活，界面底部显示蓝色的'开始导航'按钮",
+      "goal": "点击界面底部蓝色的开始导航按钮",
+      "expected": "导航已启动，界面进入实时导航引导状态",
       "action_type": "click"
     }
   ]

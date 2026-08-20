@@ -1,53 +1,43 @@
 {
   "sop_id": "b99120cc7bd48c11",
   "original_task_name": "能否在优酷视频上从第5集开始播放秦时明月4？",
-  "task_name": "能否在优酷视频上从第5集开始播放特定影视？",
+  "task_name": "在优酷视频上从指定集数开始播放目标影视作品",
   "app_name": "优酷视频",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "优酷视频",
-    "特定影视",
+    "目标影视作品",
     "播放",
-    "搜索"
+    "搜索",
+    "指定集数",
+    "选集"
   ],
   "steps": [
     {
-      "goal": "打开优酷视频应用",
-      "expected": "优酷视频应用图标被选中，准备进入应用界面",
+      "goal": "点击优酷视频应用图标以打开应用",
+      "expected": "优酷视频应用成功启动并进入首页",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏区域以激活输入状态",
-      "expected": "搜索栏获得焦点，准备输入搜索关键词",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标影视作品的名称并进行搜索",
+      "expected": "搜索结果页面展示目标影视作品的相关内容",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定影视'",
-      "expected": "文本输入框中显示'特定影视'",
-      "action_type": "type",
+      "goal": "点击搜索结果中目标影视作品的封面或标题进入详情页",
+      "expected": "进入目标影视作品的详情页面并显示选集列表",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索结果页面显示",
+      "goal": "在选集列表中点击目标集数编号以开始播放",
+      "expected": "视频从目标集数开始播放，播放器正常显示",
       "action_type": "click",
       "step_order": 4
-    },
-    {
-      "goal": "点击剧集编号'36'以进入该集播放页面",
-      "expected": "进入特定影视的第36集播放页面",
-      "action_type": "click",
-      "step_order": 5
-    },
-    {
-      "goal": "点击日期5号",
-      "expected": "选择5号日期",
-      "action_type": "click",
-      "step_order": 6
     }
   ]
 }

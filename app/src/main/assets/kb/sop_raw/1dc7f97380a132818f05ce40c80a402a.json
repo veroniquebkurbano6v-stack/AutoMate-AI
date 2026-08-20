@@ -1,52 +1,49 @@
 {
   "sop_id": "1dc7f97380a13281",
-  "original_task_name": "网易云音乐搜爸妈并播放",
-  "task_name": "网易云音乐搜特定歌曲并播放",
+  "original_task_name": "网易云音乐搜歌曲并播放",
+  "task_name": "网易云音乐搜索歌曲并播放",
   "app_name": "网易云音乐",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "网易云音乐",
-    "特定歌曲",
+    "歌曲",
     "播放",
-    "搜索"
+    "搜索",
+    "音乐",
+    "听歌",
+    "搜歌"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击手机桌面上的网易云音乐应用图标",
-      "expected": "应用图标被选中，进入应用主界面",
+      "goal": "在手机桌面上找到网易云音乐应用图标并点击打开",
+      "expected": "网易云音乐应用启动，进入首页主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索框",
-      "expected": "搜索框获得焦点，准备输入搜索内容",
+      "goal": "点击首页顶部的搜索栏区域以激活搜索输入框",
+      "expected": "搜索栏被激活，弹出输入键盘，光标定位在搜索输入框内",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在搜索框中输入'爸妈'",
-      "expected": "搜索框中显示'爸妈'",
+      "goal": "在搜索输入框中输入目标歌曲的名称并进行搜索",
+      "expected": "页面跳转至搜索结果页，展示与关键词匹配的歌曲列表",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索框右侧的搜索按钮",
-      "expected": "搜索结果列表显示",
+      "goal": "在搜索结果列表中点击目标歌曲对应的条目",
+      "expected": "进入该歌曲的播放详情页，显示歌曲封面、进度条等信息",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击搜索结果中的歌曲条目",
-      "expected": "进入该歌曲的播放页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "点击播放按钮播放该歌曲",
-      "expected": "歌曲开始播放",
+      "goal": "点击播放详情页中的播放按钮开始播放目标歌曲",
+      "expected": "歌曲开始播放，播放进度条开始移动，状态显示为正在播放",
       "action_type": "click"
     }
   ]

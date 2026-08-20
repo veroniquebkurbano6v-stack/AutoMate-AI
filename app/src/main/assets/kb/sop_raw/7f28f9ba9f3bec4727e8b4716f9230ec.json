@@ -1,7 +1,7 @@
 {
   "sop_id": "7f28f9ba9f3bec47",
   "original_task_name": "搜索B站UP主盗月社食遇记，看他最新的视频",
-  "task_name": "搜索B站UP主联系人，看他的最新视频",
+  "task_name": "搜索B站UP主并观看最新视频",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -9,32 +9,34 @@
   "keywords": [
     "B站",
     "UP主",
-    "联系人",
-    "视频"
+    "搜索",
+    "视频",
+    "最新视频",
+    "个人空间"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的哔哩哔哩应用图标",
-      "expected": "进入哔哩哔哩主界面",
+      "expected": "进入哔哩哔哩主界面，显示推荐信息流",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索框输入'UP主名称'",
-      "expected": "界面显示搜索结果列表",
+      "goal": "在搜索输入框中输入目标UP主名称并进行搜索",
+      "expected": "界面显示与目标UP主相关的搜索结果列表",
       "action_type": "type"
     },
     {
       "step_order": 3,
-      "goal": "点击搜索结果中的UP主条目",
-      "expected": "进入该UP主的个人空间主页",
+      "goal": "点击搜索结果中目标UP主的头像或名称条目",
+      "expected": "进入该UP主的个人空间主页，展示其视频列表",
       "action_type": "click"
     },
     {
       "step_order": 4,
-      "goal": "点击UP主主页中的最新视频",
-      "expected": "该视频开始播放，任务完成",
+      "goal": "点击UP主主页视频列表中排序最前的最新视频",
+      "expected": "该视频开始播放，页面显示视频播放界面",
       "action_type": "click"
     }
   ],

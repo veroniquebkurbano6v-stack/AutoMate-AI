@@ -1,7 +1,7 @@
 {
   "sop_id": "52979d301294d6f4",
   "original_task_name": "高德地图查找苍龙岭",
-  "task_name": "高德地图查找目的地",
+  "task_name": "高德地图搜索目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,31 +10,33 @@
     "高德地图",
     "目的地",
     "查找",
-    "搜索"
+    "搜索",
+    "地点",
+    "导航"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用启动并进入主界面",
+      "goal": "点击高德地图应用图标启动应用",
+      "expected": "高德地图主界面加载完成，显示地图和搜索栏",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏，准备输入地点信息",
-      "expected": "搜索栏处于可输入状态，用户可输入地点、公交、地铁等信息",
+      "goal": "点击顶部搜索栏区域进入输入状态",
+      "expected": "搜索栏激活，弹出键盘，可输入地点关键词",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词匹配的地点",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索结果中的'目的地'地点条目",
-      "expected": "进入该地点详情页面",
+      "goal": "点击搜索结果中目标地点条目",
+      "expected": "进入目标地点详情页面，显示地址和导航选项",
       "action_type": "click"
     }
   ]

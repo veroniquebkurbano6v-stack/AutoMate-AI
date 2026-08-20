@@ -1,7 +1,7 @@
 {
   "sop_id": "c506d9ab17f1e04f",
   "original_task_name": "规划华清池到钟楼的自驾路线  ",
-  "task_name": "规划出发地到目的地的自驾路线  ",
+  "task_name": "规划出发地到目的地的自驾路线",
   "app_name": "地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,51 +10,60 @@
     "地图",
     "导航",
     "自驾",
+    "路线规划",
     "出发地",
-    "目的地"
+    "目的地",
+    "驾车",
+    "路径"
   ],
   "steps": [
     {
-      "goal": "点击地图应用图标以打开应用",
-      "expected": "打开地图应用",
+      "goal": "点击桌面或应用列表中的地图应用图标以打开应用",
+      "expected": "地图应用成功打开，显示主界面地图视图",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索框以激活输入功能",
-      "expected": "搜索框获得焦点，准备输入地点信息",
+      "goal": "点击地图主界面顶部的搜索框以激活输入功能",
+      "expected": "搜索框获得焦点，弹出键盘准备输入地点信息",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标目的地名称并进行搜索",
+      "expected": "搜索结果列表展示与目标目的地匹配的地点条目",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "点击搜索结果中的'目的地'条目",
-      "expected": "界面显示目的地位置详情",
+      "goal": "点击搜索结果列表中目标目的地的对应条目",
+      "expected": "界面跳转至目的地位置详情页，显示地点信息",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "确认起点位置是否已设置为“我的位置”",
-      "expected": "确认起点已更改为“我的位置”",
+      "goal": "点击目的地详情页中的路线规划或到这去按钮",
+      "expected": "进入路线规划页面，显示起点和终点输入区域",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "在文本输入框中输入'出发地'",
-      "expected": "文本输入框中显示'出发地'",
-      "action_type": "type",
+      "goal": "点击路线规划页面中起点输入框以修改出发地",
+      "expected": "起点输入框获得焦点，弹出键盘准备输入出发地",
+      "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "选择出发地作为路线规划的起点",
-      "expected": "界面显示出发地为已选起点",
-      "action_type": "click",
+      "goal": "在起点输入框中输入目标出发地名称并进行搜索",
+      "expected": "搜索结果列表展示与目标出发地匹配的地点条目",
+      "action_type": "type",
       "step_order": 7
+    },
+    {
+      "goal": "点击搜索结果列表中目标出发地的对应条目",
+      "expected": "起点设置为目标出发地，界面显示自驾路线方案",
+      "action_type": "click",
+      "step_order": 8
     }
   ]
 }

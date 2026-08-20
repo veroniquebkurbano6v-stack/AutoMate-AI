@@ -1,7 +1,7 @@
 {
   "sop_id": "375056da0f394083",
   "original_task_name": "从当前位置使用高德地图导航到最近的夜市",
-  "task_name": "从当前位置使用高德地图导航到最近的目的地",
+  "task_name": "使用高德地图导航到最近的目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,56 +10,47 @@
     "高德地图",
     "导航",
     "附近",
+    "最近",
     "目的地",
-    "搜索"
+    "搜索",
+    "路线规划",
+    "距离优先"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击地图应用图标以打开应用",
-      "expected": "打开地图应用",
+      "goal": "点击桌面上的高德地图应用图标以打开应用",
+      "expected": "高德地图主界面加载完成，显示当前定位地图",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索框以激活输入功能",
-      "expected": "搜索框获得焦点，准备输入地点信息",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在文本输入框中输入'夜市'",
-      "expected": "文本输入框中显示'夜市'",
+      "goal": "在顶部搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面显示目标关键词相关地点列表",
       "action_type": "type"
     },
     {
+      "step_order": 3,
+      "goal": "点击搜索结果页的排序选项按钮调整排序方式",
+      "expected": "弹出排序设置面板，显示可选的排序依据选项",
+      "action_type": "click"
+    },
+    {
       "step_order": 4,
-      "goal": "执行搜索操作以查看夜市相关结果",
-      "expected": "搜索结果页面显示夜市相关地点和商家列表",
+      "goal": "在排序设置面板中选择距离优先排序选项",
+      "expected": "距离优先选项被选中高亮，列表按距离重新排列",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击排序选项以调整结果列表的排序方式",
-      "expected": "进入排序设置界面，可选择不同的排序依据",
+      "goal": "点击排序后列表中距离最近的目标地点条目",
+      "expected": "进入该目标地点的详情页面，显示地址和评分",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "选择排序方式为'距离优先'",
-      "expected": "排序下拉菜单中'距离优先'选项被选中并高亮显示",
-      "action_type": "click"
-    },
-    {
-      "step_order": 7,
-      "goal": "点击'目的地'条目以查看详细信息",
-      "expected": "进入该地点的详情页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 8,
-      "goal": "点击'路线'按钮，进入路线规划功能",
-      "expected": "进入路线规划界面",
+      "goal": "点击详情页面底部的路线按钮进入路线规划",
+      "expected": "进入路线规划界面，显示从当前位置到目的地的路线",
       "action_type": "click"
     }
   ]

@@ -1,7 +1,7 @@
 {
   "sop_id": "c4da383d259b8f4a",
   "original_task_name": "用百度搜索一下最近的科技新闻。",
-  "task_name": "用百度搜索一下最近的科技新闻。",
+  "task_name": "搜索科技新闻",
   "app_name": "百度",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -9,32 +9,29 @@
   "keywords": [
     "百度",
     "搜索",
-    "科技新闻"
+    "科技新闻",
+    "科技资讯",
+    "新闻",
+    "查询"
   ],
   "steps": [
     {
-      "goal": "打开百度App",
-      "expected": "百度App图标被选中，准备进入应用",
+      "goal": "点击桌面上的百度App图标",
+      "expected": "百度App启动，显示首页界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏区域以激活输入状态",
-      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "goal": "点击首页顶部的搜索输入框区域",
+      "expected": "搜索框获得焦点，弹出键盘准备输入",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'最近的科技新闻'",
-      "expected": "文本输入框中显示'最近的科技新闻'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载完成，展示相关结果列表",
       "action_type": "type",
       "step_order": 3
-    },
-    {
-      "goal": "点击搜索栏右侧的'搜索'按钮",
-      "expected": "搜索结果列表显示",
-      "action_type": "click",
-      "step_order": 4
     }
   ]
 }

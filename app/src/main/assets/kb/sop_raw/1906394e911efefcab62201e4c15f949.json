@@ -1,52 +1,43 @@
 {
   "sop_id": "1906394e911efefc",
   "original_task_name": "通过哔哩哔哩播放器观看《权利的游戏》第三季第1集。",
-  "task_name": "通过哔哩哔哩播放器观看特定影视第三季第1集。",
+  "task_name": "通过哔哩哔哩播放器观看目标影视第1集",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "B站",
-    "特定影视",
+    "哔哩哔哩",
+    "影视",
     "播放",
-    "观看"
+    "观看",
+    "搜索",
+    "视频"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的哔哩哔哩应用图标",
-      "expected": "哔哩哔哩应用图标被选中，准备启动应用程序",
+      "expected": "哔哩哔哩应用启动，进入首页推荐流页面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索框",
-      "expected": "搜索框获得焦点，准备输入新的搜索内容",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在搜索框中输入'权力的游戏第三季'",
-      "expected": "搜索框中显示'权力的游戏第三季'",
+      "goal": "在首页顶部搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词相关的视频内容",
       "action_type": "type"
     },
     {
+      "step_order": 3,
+      "goal": "点击搜索结果中目标影视对应的视频条目",
+      "expected": "进入目标视频播放页面，显示视频信息和播放控件",
+      "action_type": "click"
+    },
+    {
       "step_order": 4,
-      "goal": "点击搜索框右侧的搜索按钮",
-      "expected": "搜索结果列表显示",
-      "action_type": "click"
-    },
-    {
-      "step_order": 5,
-      "goal": "点击搜索结果中的视频条目",
-      "expected": "进入该视频的播放页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "点击播放列表中的第1集",
-      "expected": "进入第1集的播放页面",
+      "goal": "点击播放列表或选集区域中的第1集选项",
+      "expected": "播放器开始播放目标影视第1集的视频内容",
       "action_type": "click"
     }
   ]

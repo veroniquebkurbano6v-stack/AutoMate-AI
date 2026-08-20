@@ -1,7 +1,7 @@
 {
   "sop_id": "246652778b307723",
   "original_task_name": "百度地图从这里到太乙城购物中心的路线。",
-  "task_name": "百度地图从这里到目的地的路线",
+  "task_name": "百度地图查询到目的地的路线",
   "app_name": "百度地图",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,30 +10,32 @@
     "百度地图",
     "目的地",
     "路线",
-    "导航"
+    "导航",
+    "路径规划",
+    "出行"
   ],
   "steps": [
     {
-      "goal": "点击百度地图应用图标",
-      "expected": "打开百度地图应用",
+      "goal": "点击桌面上的百度地图应用图标",
+      "expected": "百度地图应用启动并进入首页地图界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏区域以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "goal": "点击首页顶部搜索栏区域激活输入",
+      "expected": "搜索栏获得焦点并弹出键盘准备输入",
       "action_type": "click",
       "step_order": 2
     },
     {
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "页面展示目标关键词相关的搜索结果列表",
       "action_type": "type",
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
       "step_order": 3
     },
     {
-      "goal": "点击'目的地'位置信息区域",
-      "expected": "进入该位置详情页面",
+      "goal": "点击搜索结果中目标地点的条目区域",
+      "expected": "进入目标地点详情页并展示位置信息",
       "action_type": "click",
       "step_order": 4
     }

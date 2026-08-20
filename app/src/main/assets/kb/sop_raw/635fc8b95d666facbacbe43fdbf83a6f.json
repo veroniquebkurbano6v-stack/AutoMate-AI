@@ -1,44 +1,46 @@
 {
   "sop_id": "635fc8b95d666fac",
   "original_task_name": "QQ 音乐播放盗将行",
-  "task_name": "QQ 音乐播放特定歌曲",
+  "task_name": "QQ音乐搜索并播放目标歌曲",
   "app_name": "QQ音乐",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "QQ音乐",
-    "特定歌曲",
-    "播放"
+    "歌曲",
+    "播放",
+    "搜索",
+    "音乐"
   ],
   "steps": [
     {
-      "goal": "点击QQ音乐应用图标",
-      "expected": "打开QQ音乐应用",
+      "goal": "点击桌面或应用列表中的QQ音乐应用图标",
+      "expected": "QQ音乐应用成功启动并进入首页",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击顶部导航栏中的'故事'标签",
-      "expected": "进入故事页面",
+      "goal": "点击顶部导航栏中的搜索入口图标",
+      "expected": "进入搜索页面并显示搜索输入框",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定歌曲'",
-      "expected": "文本输入框中显示'特定歌曲'",
+      "goal": "在搜索输入框中输入目标歌曲的名称并进行搜索",
+      "expected": "页面展示与目标歌曲相关的搜索结果列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "点击歌曲信息区域进入详情页",
-      "expected": "进入特定歌曲的详情页面",
+      "goal": "点击搜索结果中目标歌曲对应的歌曲信息区域",
+      "expected": "进入目标歌曲的详情页面并显示歌曲信息",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击特定歌曲的原唱版本以查看该歌曲详情",
-      "expected": "进入特定歌曲的详情页面",
+      "goal": "点击目标歌曲的原唱版本条目以查看歌曲详情",
+      "expected": "进入目标歌曲原唱版本的详情播放页面",
       "action_type": "click",
       "step_order": 5
     }

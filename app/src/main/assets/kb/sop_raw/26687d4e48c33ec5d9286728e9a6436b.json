@@ -1,52 +1,42 @@
 {
   "sop_id": "26687d4e48c33ec5",
   "original_task_name": "看 up 主山城小栗旬的理发日记的最新视频",
-  "task_name": "看特定up主的特定影视的最新视频",
+  "task_name": "查看目标UP主的最新视频",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "B站",
-    "up主",
-    "特定影视",
-    "最新视频"
+    "UP主",
+    "视频",
+    "最新",
+    "搜索",
+    "播放"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的B站应用图标",
-      "expected": "B站应用图标被选中，应用启动并进入主界面",
+      "expected": "B站应用启动并进入首页推荐信息流界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索栏",
-      "expected": "搜索栏获得焦点，准备输入搜索内容",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在搜索栏中输入'山城小栗旬'",
-      "expected": "搜索栏中显示'山城小栗旬'",
+      "goal": "在搜索输入框中输入目标UP主名称并进行搜索",
+      "expected": "搜索结果页展示与目标UP主相关的用户和视频列表",
       "action_type": "type"
     },
     {
+      "step_order": 3,
+      "goal": "点击搜索结果中目标UP主的头像或名称入口",
+      "expected": "页面跳转至目标UP主的个人主页",
+      "action_type": "click"
+    },
+    {
       "step_order": 4,
-      "goal": "点击搜索栏右侧的搜索按钮",
-      "expected": "搜索结果页面显示UP主和视频内容",
-      "action_type": "click"
-    },
-    {
-      "step_order": 5,
-      "goal": "点击搜索结果中的UP主头像",
-      "expected": "进入UP主的个人主页",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "点击UP主主页中的'理发日记'视频",
-      "expected": "进入视频播放页面",
+      "goal": "点击UP主主页中最新发布的视频封面",
+      "expected": "进入视频播放页面，视频开始加载或播放",
       "action_type": "click"
     }
   ]

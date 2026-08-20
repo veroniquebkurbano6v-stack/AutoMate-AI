@@ -1,7 +1,7 @@
 {
   "sop_id": "0b5ac4fde189813f",
   "original_task_name": "高德导航从这到长乐公园的打车路线。",
-  "task_name": "在高德地图导航从当前位置到目的地的打车路线",
+  "task_name": "在高德地图规划从当前位置到目的地的打车路线",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -11,43 +11,45 @@
     "导航",
     "目的地",
     "打车",
-    "路线"
+    "路线",
+    "出行",
+    "路线规划"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的高德地图应用图标",
-      "expected": "高德地图应用图标被选中，应用启动并显示其主界面",
+      "expected": "高德地图启动，显示主界面及地图视图",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏右侧的放大镜图标",
-      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "goal": "点击主界面顶部搜索栏右侧的放大镜图标",
+      "expected": "搜索栏获得焦点，弹出输入键盘等待输入",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词匹配的地点条目",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索结果中的'目的地'条目",
-      "expected": "界面显示目的地的详细信息，包括地址、交通方式和距离等",
+      "goal": "点击搜索结果列表中目标地点的条目",
+      "expected": "界面显示目标地点详情页，含地址和距离信息",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击'路线'按钮，进入路线规划界面",
-      "expected": "进入路线规划页面",
+      "goal": "点击地点详情页中的路线按钮进入路线规划",
+      "expected": "进入路线规划页面，显示出行方式选项卡",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "切换到打车模式",
-      "expected": "界面切换至打车模式，显示打车选项和相关路线信息",
+      "goal": "点击出行方式选项卡中的打车选项切换模式",
+      "expected": "界面切换至打车模式，显示打车路线和预估费用",
       "action_type": "click"
     }
   ]

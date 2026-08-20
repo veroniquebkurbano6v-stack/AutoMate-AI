@@ -1,47 +1,44 @@
 {
   "sop_id": "4625584f458b2de9",
   "original_task_name": "请在QQ音乐上播放那首歌词包含相信爱一天抵过永远的歌曲。",
-  "task_name": "请在QQ音乐上播放那首歌词包含特定歌词的歌曲。",
+  "task_name": "在QQ音乐上通过歌词搜索并播放目标歌曲",
   "app_name": "QQ音乐",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "QQ音乐",
-    "特定歌曲",
     "歌词",
-    "播放"
+    "搜索",
+    "播放",
+    "歌曲",
+    "听歌",
+    "音乐"
   ],
   "steps": [
     {
-      "goal": "打开QQ音乐应用",
-      "expected": "QQ音乐应用图标被选中，进入应用界面",
+      "goal": "点击QQ音乐应用图标打开应用",
+      "expected": "QQ音乐主界面加载完成，显示首页内容",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击顶部导航栏中的'听歌'标签",
-      "expected": "导航栏中的'听歌'标签被选中并高亮显示",
+      "goal": "点击顶部导航栏中的听歌标签",
+      "expected": "听歌标签高亮选中，页面切换至听歌模块",
       "action_type": "click",
       "step_order": 2
     },
     {
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词匹配的歌曲",
       "action_type": "type",
-      "goal": "在文本输入框中输入'特定歌词'",
-      "expected": "文本输入框中显示'特定歌词'",
       "step_order": 3
     },
     {
-      "goal": "执行搜索操作以查找输入内容的匹配结果",
-      "expected": "搜索界面显示输入内容的匹配结果",
+      "goal": "点击搜索结果中目标歌曲的标题区域",
+      "expected": "进入目标歌曲详情页并开始播放",
       "action_type": "click",
       "step_order": 4
-    },
-    {
-      "goal": "点击特定歌曲的标题区域",
-      "expected": "进入该歌曲的详情页面",
-      "action_type": "click",
-      "step_order": 5
     }
   ]
 }

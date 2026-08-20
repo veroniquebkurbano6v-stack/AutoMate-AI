@@ -1,53 +1,49 @@
 {
   "sop_id": "95a46faed978f76c",
   "original_task_name": "在优酷视频上播放《李娜》相关的视频",
-  "task_name": "在优酷视频上播放特定影视相关的视频",
+  "task_name": "在优酷视频上搜索并播放目标影视作品相关视频",
   "app_name": "优酷视频",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "优酷视频",
-    "特定影视",
+    "影视作品",
     "视频",
-    "播放"
+    "播放",
+    "搜索",
+    "影片"
   ],
   "steps": [
     {
-      "goal": "打开优酷视频应用",
-      "expected": "优酷视频应用启动并显示其主界面",
+      "goal": "点击桌面上的优酷视频应用图标启动应用",
+      "expected": "优酷视频应用启动并显示首页主界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "跳过广告，进入主界面",
-      "expected": "广告界面消失，主应用界面显示",
+      "goal": "点击开屏广告右上角的跳过按钮关闭广告",
+      "expected": "广告消失，进入优酷视频首页主界面",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "点击搜索栏区域",
-      "expected": "搜索栏处于可输入状态",
+      "goal": "点击首页顶部的搜索栏区域进入搜索页面",
+      "expected": "搜索页面打开，输入框处于可编辑状态",
       "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "在文本输入框中输入'特定影视相关视频'",
-      "expected": "文本输入框中显示'特定影视相关视频'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载并展示相关视频列表",
       "action_type": "type",
       "step_order": 4
     },
     {
-      "goal": "点击搜索栏右侧的'搜索'按钮",
-      "expected": "搜索栏右侧的'搜索'按钮被激活，界面进入搜索状态",
+      "goal": "点击搜索结果中目标影视作品相关的视频封面",
+      "expected": "视频开始播放，播放器显示目标影视内容",
       "action_type": "click",
       "step_order": 5
-    },
-    {
-      "goal": "点击特定影视相关视频开始播放",
-      "expected": "视频开始播放，显示特定影视相关内容",
-      "action_type": "click",
-      "step_order": 6
     }
   ]
 }

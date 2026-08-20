@@ -1,47 +1,48 @@
 {
   "sop_id": "beb5623214e5f3df",
   "original_task_name": "关闭腾讯会议的声音以确保会议过程不受干扰。",
-  "task_name": "关闭腾讯会议的声音以确保会议过程不受干扰。",
+  "task_name": "加入会议并关闭麦克风",
   "app_name": "腾讯会议",
   "source": "cagui_auto",
   "difficulty": "L1",
   "domain": "工具",
   "keywords": [
     "腾讯会议",
-    "声音",
-    "关闭",
-    "会议"
+    "静音",
+    "关闭麦克风",
+    "加入会议",
+    "会议声音"
   ],
   "steps": [
-   {
-    "goal": "点击手机桌面上的腾讯会议应用图标",
-    "expected": "应用图标被选中，进入腾讯会议界面",
-    "action_type": "click",
-    "step_order": 1
-   },
-   {
-    "goal": "点击页面中的'加入会议'按钮",
-    "expected": "进入会议加入界面",
-    "action_type": "click",
-    "step_order": 2
-   },
-   {
-    "goal": "在会议号输入框中输入'特定会议号'",
-    "expected": "会议号输入框中显示'特定会议号'",
-    "action_type": "type",
-    "step_order": 3
-   },
-   {
-    "goal": "点击'加入会议'按钮以提交并加入会议",
-    "expected": "点击后界面显示会议加入成功提示",
-    "action_type": "click",
-    "step_order": 4
-   },
-   {
-    "goal": "点击会议界面中的静音按钮",
-    "expected": "会议界面中静音按钮状态变为已激活，表示麦克风已关闭",
-    "action_type": "click",
-    "step_order": 5
-   }
+    {
+      "goal": "点击手机桌面上的腾讯会议应用图标",
+      "expected": "应用启动，进入腾讯会议主界面",
+      "action_type": "click",
+      "step_order": 1
+    },
+    {
+      "goal": "点击主界面中的'加入会议'按钮",
+      "expected": "进入会议加入页面，显示会议号输入框",
+      "action_type": "click",
+      "step_order": 2
+    },
+    {
+      "goal": "在会议号输入框中输入目标会议号",
+      "expected": "会议号输入框中显示目标会议号内容",
+      "action_type": "type",
+      "step_order": 3
+    },
+    {
+      "goal": "点击会议加入页面底部的'加入会议'按钮",
+      "expected": "成功加入会议，进入会议进行界面",
+      "action_type": "click",
+      "step_order": 4
+    },
+    {
+      "goal": "点击会议界面底部工具栏的静音按钮",
+      "expected": "静音按钮变为已激活状态，麦克风已关闭",
+      "action_type": "click",
+      "step_order": 5
+    }
   ]
 }

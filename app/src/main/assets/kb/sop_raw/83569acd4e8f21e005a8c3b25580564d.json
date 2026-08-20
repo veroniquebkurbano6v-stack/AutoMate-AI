@@ -1,7 +1,7 @@
 {
   "sop_id": "83569acd4e8f21e0",
   "original_task_name": "使用百度地图从这里到长安大学渭水校区。",
-  "task_name": "使用百度地图从这里到目的地。",
+  "task_name": "使用百度地图导航到目的地",
   "app_name": "百度地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,38 +10,35 @@
     "百度地图",
     "目的地",
     "导航",
-    "路线"
+    "路线",
+    "路线规划",
+    "出行",
+    "驾车导航"
   ],
   "steps": [
     {
-      "goal": "点击百度地图应用图标",
-      "expected": "打开百度地图应用",
+      "goal": "点击百度地图应用图标启动应用",
+      "expected": "百度地图主界面加载完成，显示地图和搜索栏",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏以激活输入状态",
-      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词匹配的地点条目",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
+      "goal": "点击搜索结果中目标地点条目查看详情",
+      "expected": "界面显示该地点的详细信息，包括地址、评分和距离",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击'目的地'条目以查看详细信息",
-      "expected": "界面显示该地点的详细信息，包括评分、地址、交通方式和距离等",
+      "goal": "点击地点详情页中的导航按钮发起路线规划",
+      "expected": "进入导航界面，显示出发地、目的地和推荐路线",
       "action_type": "click",
       "step_order": 4
-    },
-    {
-      "goal": "点击'导航'按钮开始路线规划",
-      "expected": "进入导航界面，显示出发地、目的地和路线规划选项",
-      "action_type": "click",
-      "step_order": 5
     }
   ]
 }

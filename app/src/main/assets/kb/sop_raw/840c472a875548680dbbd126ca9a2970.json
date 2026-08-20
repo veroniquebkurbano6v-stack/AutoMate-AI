@@ -1,7 +1,7 @@
 {
   "sop_id": "840c472a87554868",
   "original_task_name": "高德搜索附近有没有加油站",
-  "task_name": "高德搜索附近的指定场所",
+  "task_name": "高德搜索附近指定场所并按距离排序",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,43 +10,40 @@
     "高德地图",
     "附近",
     "搜索",
-    "距离优先"
+    "距离优先",
+    "排序",
+    "查找",
+    "周边"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击高德地图应用图标",
+      "goal": "点击高德地图应用图标以启动应用",
       "expected": "高德地图应用启动并进入主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入目的地",
+      "goal": "点击主界面顶部搜索栏以激活输入功能",
+      "expected": "搜索栏获得焦点，弹出键盘准备输入",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入需要查找的场所",
-      "expected": "文本输入框中显示对应输入的场所",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面显示相关场所的位置列表",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索按钮以执行场所搜索操作",
-      "expected": "搜索结果页面显示相关场所的位置列表",
+      "goal": "点击搜索结果页上方的排序选项按钮",
+      "expected": "弹出排序选择菜单，显示多种排序方式",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击排序选项以调整场所列表的排序方式",
-      "expected": "进入排序选择界面，可选择不同的排序依据",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "选择排序方式为距离优先",
-      "expected": "排序下拉菜单中显示'距离优先'选项已被选中",
+      "goal": "在排序菜单中点击距离优先选项",
+      "expected": "列表按距离由近到远重新排列并显示结果",
       "action_type": "click"
     }
   ]

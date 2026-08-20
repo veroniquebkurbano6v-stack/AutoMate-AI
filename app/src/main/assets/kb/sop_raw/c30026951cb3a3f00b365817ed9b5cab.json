@@ -1,7 +1,7 @@
 {
   "sop_id": "c30026951cb3a3f0",
   "original_task_name": "导航到钟楼边的面馆，如果要排号，帮我先约个号。",
-  "task_name": "导航到目的地，如果要排号，帮我先约个号",
+  "task_name": "导航到目标餐厅并预约排号",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -11,49 +11,52 @@
     "导航",
     "目的地",
     "搜索",
-    "排号"
+    "排号",
+    "预约",
+    "路线规划",
+    "餐厅"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用启动并进入主界面",
+      "goal": "点击高德地图应用图标启动应用",
+      "expected": "高德地图启动并显示主界面地图",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "goal": "点击顶部搜索栏激活输入状态",
+      "expected": "搜索栏获得焦点并弹出输入键盘",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页展示匹配的地点列表",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面显示对应的地点列表",
+      "goal": "点击搜索结果中目标餐厅的条目",
+      "expected": "进入目标餐厅的详情页面",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击搜索结果中对应的餐厅条目",
-      "expected": "进入该餐厅的详情页面",
+      "goal": "点击详情页底部导航栏的路线按钮",
+      "expected": "进入路线规划界面显示推荐路线",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "点击底部导航栏中的'路线'按钮",
-      "expected": "进入路线规划界面",
+      "goal": "点击开始导航按钮启动实时导航",
+      "expected": "进入导航模式显示路线和预计到达时间",
       "action_type": "click"
     },
     {
       "step_order": 7,
-      "goal": "确认点击'开始导航'按钮以启动路线规划",
-      "expected": "点击'开始导航'按钮后，系统将启动所选路线的实时导航，显示当前位置、预计到达时间及实时路况信息",
+      "goal": "到达后查看餐厅详情页的排号入口并点击",
+      "expected": "显示排号页面可进行预约取号操作",
       "action_type": "click"
     }
   ]

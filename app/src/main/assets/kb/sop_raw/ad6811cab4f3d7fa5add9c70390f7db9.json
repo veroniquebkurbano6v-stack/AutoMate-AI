@@ -1,59 +1,56 @@
 {
   "sop_id": "ad6811cab4f3d7fa",
   "original_task_name": "在京东中搜索美的微波炉，把黑色的加入购物车",
-  "task_name": "在京东中搜索特定商品，把黑色的加入购物车",
+  "task_name": "在京东中搜索目标商品并将指定颜色加入购物车",
   "app_name": "京东",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "购物",
   "keywords": [
     "京东",
-    "特定商品",
+    "搜索",
+    "商品",
     "购物车",
-    "搜索"
+    "加入购物车",
+    "筛选",
+    "颜色"
   ],
   "steps": [
     {
-      "goal": "打开京东App",
-      "expected": "京东App应用图标被选中，准备启动应用程序",
+      "goal": "点击桌面上的京东App图标启动应用",
+      "expected": "京东App启动并显示首页加载界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击首页标签以确认页面状态",
-      "expected": "操作后界面状态：确认首页标签处于选中状态",
+      "goal": "点击底部导航栏的首页标签确认页面状态",
+      "expected": "首页标签处于选中高亮状态，页面展示推荐内容",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定商品'",
-      "expected": "文本输入框中显示'特定商品'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载完成，展示与目标关键词相关的商品列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "点击搜索栏右侧的红色'搜索'按钮",
-      "expected": "搜索结果页面加载完成，显示与'特定商品'相关的搜索结果",
+      "goal": "点击搜索结果页中的颜色筛选项选择目标颜色",
+      "expected": "商品列表刷新，仅展示符合目标颜色条件的商品",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击筛选'黑色星期五活动商品'按钮",
-      "expected": "筛选出符合'黑色星期五活动商品'条件的特定商品",
+      "goal": "点击筛选后目标商品卡片进入商品详情页",
+      "expected": "页面跳转至目标商品详情页，展示商品图片与规格信息",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "将商品加入购物车",
-      "expected": "操作后界面状态：商品信息区域的'加入购物车'按钮被点击，按钮状态变为可点击（如高亮或显示'已加入'提示），购物车数量显示增加1",
+      "goal": "点击商品详情页底部的加入购物车按钮",
+      "expected": "页面提示已加入购物车，购物车图标数量增加1",
       "action_type": "click",
       "step_order": 6
-    },
-    {
-      "goal": "确认选择的特定商品并进入下一步操作",
-      "expected": "操作后界面状态为进入商品详情页",
-      "action_type": "click",
-      "step_order": 7
     }
   ]
 }

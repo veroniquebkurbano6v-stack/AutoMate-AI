@@ -10,86 +10,77 @@
     "小红书",
     "目的地",
     "经济型酒店",
-    "导航"
+    "导航",
+    "路线规划",
+    "周边搜索",
+    "距离排序"
   ],
   "steps": [
     {
-      "goal": "打开小红书应用",
-      "expected": "小红书应用图标被选中，准备进入应用",
+      "goal": "点击手机桌面上的小红书应用图标",
+      "expected": "小红书应用启动，进入首页推荐信息流",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "goal": "点击首页顶部的搜索输入框区域",
+      "expected": "搜索输入框获得焦点，弹出键盘准备输入",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载完成，展示相关笔记列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面显示",
+      "goal": "点击搜索结果中目标景点的信息卡片区域",
+      "expected": "进入目标景点的详情页面，显示景点介绍",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击目的地景点信息区域，进入详情页面",
-      "expected": "进入目的地景点详情页面",
+      "goal": "点击景点详情页底部导航栏中的周边按钮",
+      "expected": "页面切换至周边功能页，展示附近推荐内容",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击底部导航栏中的'周边'按钮",
-      "expected": "进入周边功能页面",
+      "goal": "点击周边页面顶部的搜索输入框区域",
+      "expected": "搜索输入框获得焦点，弹出键盘准备输入",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "点击顶部搜索栏区域",
-      "expected": "搜索栏处于可输入状态",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载完成，展示附近酒店列表",
+      "action_type": "type",
       "step_order": 7
     },
     {
-      "goal": "在文本输入框中输入'经济型酒店'",
-      "expected": "文本输入框中显示'经济型酒店'",
-      "action_type": "type",
+      "goal": "点击搜索结果页顶部的推荐排序选项按钮",
+      "expected": "展开排序方式下拉菜单，显示多种排序选项",
+      "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "点击搜索栏右侧的搜索按钮",
-      "expected": "搜索界面进入，显示搜索结果",
+      "goal": "点击排序下拉菜单中的距离优先选项",
+      "expected": "排序方式切换为距离优先，列表按距离重新排列",
       "action_type": "click",
       "step_order": 9
     },
     {
-      "goal": "点击'推荐排序'选项以展开排序菜单",
-      "expected": "展开推荐排序下拉菜单",
+      "goal": "点击排序后列表中距离最近的目标酒店名称",
+      "expected": "进入目标酒店的详细信息页面，显示预订入口",
       "action_type": "click",
       "step_order": 10
     },
     {
-      "goal": "选择排序方式为距离优先",
-      "expected": "排序下拉菜单中显示“距离优先”选项已被选中",
+      "goal": "点击酒店详情页中的导航按钮",
+      "expected": "进入路线规划页面，显示从当前位置到酒店的路线",
       "action_type": "click",
       "step_order": 11
-    },
-    {
-      "goal": "点击酒店名称进入详情页",
-      "expected": "进入特定酒店的详细预订页面",
-      "action_type": "click",
-      "step_order": 12
-    },
-    {
-      "goal": "点击'导航'按钮，进入路线规划界面",
-      "expected": "进入路线规划页面",
-      "action_type": "click",
-      "step_order": 13
     }
   ]
 }

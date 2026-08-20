@@ -1,77 +1,67 @@
 {
   "sop_id": "128cd6fa5343381e",
   "original_task_name": "大众点评上找苏福记海鲜佬凤城四路店，预订一个后天中午12点的8人桌",
-  "task_name": "大众点评上找特定餐厅，预订一个后天中午12点的8人桌",
+  "task_name": "大众点评搜索目标餐厅并预订指定时间人数的桌位",
   "app_name": "大众点评",
   "source": "cagui_auto",
   "difficulty": "L4",
   "domain": "生活服务",
   "keywords": [
     "大众点评",
-    "特定餐厅",
+    "餐厅",
     "预订",
     "订座",
-    "餐厅"
+    "搜索餐厅",
+    "预约",
+    "订位"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的大众点评应用图标",
-      "expected": "大众点评App图标被选中，应用启动并进入主界面",
+      "expected": "大众点评App启动并进入首页主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索栏",
-      "expected": "搜索栏获得焦点，准备输入搜索内容",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在搜索栏中输入'苏福记海鲜佬凤城四路店'",
-      "expected": "搜索栏中显示'苏福记海鲜佬凤城四路店'",
+      "goal": "在首页顶部搜索输入框中输入目标餐厅名称并进行搜索",
+      "expected": "搜索结果列表展示与目标餐厅相关的条目",
       "action_type": "type"
     },
     {
+      "step_order": 3,
+      "goal": "点击搜索结果列表中目标餐厅对应的条目",
+      "expected": "进入目标餐厅的详情页面，展示餐厅信息",
+      "action_type": "click"
+    },
+    {
       "step_order": 4,
-      "goal": "点击搜索栏右侧的搜索按钮",
-      "expected": "搜索结果列表显示多个相关餐厅",
+      "goal": "点击餐厅详情页面中的订座按钮",
+      "expected": "进入餐厅预订流程页面，展示预订选项",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击搜索结果中的餐厅条目",
-      "expected": "进入该餐厅的详细信息页面",
+      "goal": "在预订页面的日期选择区域点击目标日期",
+      "expected": "目标日期被选中并高亮显示在日期栏中",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "点击餐厅详情页面中的'订座'按钮",
-      "expected": "进入餐厅预订流程",
+      "goal": "在预订页面的时间选择区域点击目标时段",
+      "expected": "目标时段被选中并高亮显示在时间栏中",
       "action_type": "click"
     },
     {
       "step_order": 7,
-      "goal": "选择后天日期作为预订日期",
-      "expected": "界面中显示的日期选择区域被选中",
+      "goal": "在预订页面的人数选择区域点击目标人数选项",
+      "expected": "目标人数选项被选中并高亮显示在人数栏中",
       "action_type": "click"
     },
     {
       "step_order": 8,
-      "goal": "选择中午12点时段",
-      "expected": "界面中显示的时间选择区域被选中",
-      "action_type": "click"
-    },
-    {
-      "step_order": 9,
-      "goal": "选择8人桌位",
-      "expected": "界面中显示的8人桌位选项被选中",
-      "action_type": "click"
-    },
-    {
-      "step_order": 10,
-      "goal": "点击'确认预订'按钮",
-      "expected": "预订信息被确认，完成预订流程",
+      "goal": "点击预订页面底部的确认预订按钮",
+      "expected": "预订信息提交成功，页面显示预订完成状态",
       "action_type": "click"
     }
   ]

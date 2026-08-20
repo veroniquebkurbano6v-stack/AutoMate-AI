@@ -1,65 +1,61 @@
 {
   "sop_id": "942712822c1bbda2",
   "original_task_name": "在京东上找匡威1970s低帮红色38码，然后加到购物车。",
-  "task_name": "在京东上找特定商品，然后加到购物车。",
+  "task_name": "在京东搜索目标商品并加入购物车",
   "app_name": "京东",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "购物",
   "keywords": [
     "京东",
-    "特定商品",
+    "搜索",
+    "商品",
     "购物车",
-    "搜索"
+    "加入购物车",
+    "选购"
   ],
   "steps": [
     {
-      "goal": "打开哔哩哔哩App",
-      "expected": "点击后进入哔哩哔哩应用界面",
+      "goal": "点击京东App首页顶部的搜索输入框",
+      "expected": "搜索输入框获得焦点，弹出键盘可输入",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏以激活输入状态",
-      "expected": "搜索栏获得焦点，可输入搜索关键词",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页加载完成，展示相关商品列表",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定商品'",
-      "expected": "文本输入框中显示'特定商品'",
-      "action_type": "type",
+      "goal": "若出现弹窗广告，点击弹窗右上角关闭按钮",
+      "expected": "弹窗消失，返回商品搜索结果列表界面",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击搜索栏右侧的'搜索'按钮",
-      "expected": "搜索结果页面加载完成，显示与输入内容相关的搜索结果",
+      "goal": "在搜索结果列表中点击目标商品的图片区域",
+      "expected": "进入目标商品的详情页面，展示商品信息",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "关闭弹窗，返回商品列表",
-      "expected": "弹窗消失，返回商品列表界面",
+      "goal": "在商品详情页底部点击加入购物车按钮",
+      "expected": "弹出规格选择面板，显示颜色和尺码选项",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击商品图片进入详情页",
-      "expected": "进入商品详情页面",
+      "goal": "在规格选择面板中点击目标颜色和目标尺码",
+      "expected": "目标颜色和目标尺码被选中高亮显示",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "点击加入购物车按钮",
-      "expected": "将当前商品添加到购物车",
+      "goal": "点击规格面板底部确认加入购物车按钮",
+      "expected": "提示加入购物车成功，购物车图标数量增加",
       "action_type": "click",
       "step_order": 7
-    },
-    {
-      "goal": "选择鞋码43",
-      "expected": "选择酒红色后，界面底部的尺码选择区域中，43码选项被选中",
-      "action_type": "click",
-      "step_order": 8
     }
   ]
 }

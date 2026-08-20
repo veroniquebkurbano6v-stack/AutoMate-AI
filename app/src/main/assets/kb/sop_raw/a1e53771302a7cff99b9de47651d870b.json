@@ -1,7 +1,7 @@
 {
   "sop_id": "a1e53771302a7cff",
   "original_task_name": "请在高德地图上规划从当前位置到西安市碑林区南关正街88号的路线。",
-  "task_name": "请在高德地图上规划从当前位置到目的地的路线",
+  "task_name": "在高德地图上规划从当前位置到目的地的路线",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,43 +10,39 @@
     "高德地图",
     "导航",
     "目的地",
-    "路线"
+    "路线",
+    "路线规划",
+    "地址搜索"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，准备进入应用界面",
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图应用启动并显示主界面地图",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入目的地",
+      "goal": "点击主界面顶部的搜索栏区域",
+      "expected": "搜索栏获得焦点并弹出输入键盘",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标地址并进行搜索",
+      "expected": "搜索结果页面显示与目标地址匹配的地点列表",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面显示相关地点选项",
+      "goal": "点击搜索结果列表中的目标地址条目",
+      "expected": "进入目标地点的详情页面并显示位置信息",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击搜索结果中的'目的地'条目",
-      "expected": "进入该地点的详细信息页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "点击'路线'按钮进入路线规划界面",
-      "expected": "进入路线规划页面",
+      "goal": "点击地点详情页中的路线按钮",
+      "expected": "进入路线规划页面并显示从当前位置到目的地的路线方案",
       "action_type": "click"
     }
   ]

@@ -1,40 +1,36 @@
 {
   "sop_id": "18ef9b22818b6da5",
   "original_task_name": "浏览器搜索电影剧本",
-  "task_name": "浏览器搜索电影剧本",
+  "task_name": "浏览器搜索目标关键词",
   "app_name": "浏览器",
   "source": "cagui_auto",
   "difficulty": "L2",
   "domain": "工具",
   "keywords": [
     "浏览器",
-    "电影剧本",
-    "搜索"
+    "搜索",
+    "查询",
+    "关键词",
+    "检索"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的浏览器应用图标",
-      "expected": "浏览器应用图标被选中，准备进入应用界面",
+      "expected": "浏览器应用启动，显示浏览器首页界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击地址栏/搜索栏",
-      "expected": "搜索栏处于可编辑状态，用户可输入新的搜索内容",
+      "goal": "点击浏览器顶部地址栏/搜索栏区域",
+      "expected": "搜索栏获得焦点，弹出键盘可输入内容",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在搜索栏中输入'电影剧本'",
-      "expected": "搜索栏中显示'电影剧本'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载，展示与目标关键词相关的结果",
       "action_type": "type"
-    },
-    {
-      "step_order": 4,
-      "goal": "点击搜索按钮",
-      "expected": "搜索结果页面显示与电影剧本相关的应用和内容",
-      "action_type": "click"
     }
   ]
 }

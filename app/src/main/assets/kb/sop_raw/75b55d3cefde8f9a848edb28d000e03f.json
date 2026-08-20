@@ -1,96 +1,88 @@
 {
   "sop_id": "75b55d3cefde8f9a",
   "original_task_name": "在美团上寻找朱雀大街北段周边口碑好的卤肉饭餐馆，然后导航过去。",
-  "task_name": "在美团上寻找目的地周边口碑好的卤肉饭餐馆，然后导航过去。",
+  "task_name": "在美团上搜索目标关键词查找周边口碑好的餐馆并导航前往",
   "app_name": "美团",
   "source": "cagui_auto",
   "difficulty": "L4",
   "domain": "生活服务",
   "keywords": [
     "美团",
+    "搜索",
     "餐馆",
     "目的地",
     "导航",
-    "好评"
+    "好评",
+    "口碑",
+    "路线",
+    "到店"
   ],
   "steps": [
     {
-      "goal": "步骤目标：点击美团应用图标以打开应用",
-      "expected": "操作后界面状态：美团应用启动并显示其主界面",
+      "goal": "点击美团应用图标以打开应用",
+      "expected": "美团应用启动并显示主界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击顶部搜索栏区域",
-      "expected": "搜索栏处于可输入状态",
+      "goal": "点击美团首页顶部的搜索栏区域",
+      "expected": "搜索栏获得焦点，处于可输入状态",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'卤肉饭'",
-      "expected": "文本输入框中显示'卤肉饭'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "页面显示与目标关键词相关的搜索结果列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "执行搜索操作，获取与“卤肉饭”相关的搜索结果",
-      "expected": "搜索结果列表显示",
+      "goal": "点击搜索结果页顶部的'到店'标签页",
+      "expected": "界面切换至店铺列表页面，显示可到店的商家",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击'到店'标签页，切换至门店列表页面",
-      "expected": "界面切换至店铺列表页面，显示所有可到店的商家",
+      "goal": "点击店铺列表上方的排序选项按钮",
+      "expected": "展开排序菜单，显示多种排序方式供选择",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击排序选项以展开排序菜单",
-      "expected": "展开排序菜单，显示不同排序方式供选择",
+      "goal": "在排序菜单中选择'好评优先'选项",
+      "expected": "餐厅列表按用户评价从高到低重新排序",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "选择排序方式为“好评优先”，使餐厅列表按用户评价从高到低排列",
-      "expected": "餐厅列表按用户评价从高到低重新排序",
+      "goal": "点击排序后餐厅列表中目标餐厅的条目",
+      "expected": "进入目标餐厅的详细页面",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "点击餐厅列表中的'特定餐厅'条目",
-      "expected": "进入该餐厅的详细页面",
+      "goal": "点击店铺信息区域查看店铺详情",
+      "expected": "显示店铺名称、评分、营业时间、地址等信息",
       "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "点击店铺信息区域，查看店铺详情",
-      "expected": "操作后界面状态为进入店铺详情页，显示店铺名称、评分、营业时间、地址、交通方式及团购优惠信息",
+      "goal": "点击店铺详情页中的'查看路线'按钮",
+      "expected": "进入路线规划界面，显示从当前位置到餐厅的路线",
       "action_type": "click",
       "step_order": 9
     },
     {
-      "goal": "点击'查看路线'按钮，获取该餐厅的导航路线信息",
-      "expected": "进入路线规划界面，显示从当前位置到餐厅的导航路线",
+      "goal": "在地图选择弹窗中点击目标导航应用选项",
+      "expected": "确认选择导航应用并进入导航准备界面",
       "action_type": "click",
       "step_order": 10
     },
     {
-      "goal": "确认导航开始按钮状态",
-      "expected": "点击后确认导航已启动",
+      "goal": "点击导航界面底部的'开始导航'按钮",
+      "expected": "导航启动，屏幕显示实时路线和预计到达时间",
       "action_type": "click",
       "step_order": 11
-    },
-    {
-      "goal": "选择百度地图作为导航应用",
-      "expected": "系统弹出地图选择界面，用户可点击“百度地图(推荐)”选项进行确认",
-      "action_type": "click",
-      "step_order": 12
-    },
-    {
-      "goal": "点击'开始导航'按钮启动路线规划",
-      "expected": "导航开始运行，屏幕显示实时路线和预计到达时间",
-      "action_type": "click",
-      "step_order": 13
     }
   ]
 }

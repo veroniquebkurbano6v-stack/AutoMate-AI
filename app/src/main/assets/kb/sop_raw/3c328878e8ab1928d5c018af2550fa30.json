@@ -1,7 +1,7 @@
 {
   "sop_id": "3c328878e8ab1928",
   "original_task_name": "使用高德导航从当前位置到秦始皇兵马俑博物馆。",
-  "task_name": "使用高德导航从当前位置到目的地",
+  "task_name": "使用高德地图导航到目标目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,37 +10,39 @@
     "高德地图",
     "导航",
     "目的地",
-    "路线"
+    "路线",
+    "驾车",
+    "出行"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "goal": "点击手机桌面上的高德地图应用图标",
+      "expected": "高德地图启动并进入首页地图界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入目的地",
+      "goal": "点击首页顶部的搜索栏区域",
+      "expected": "搜索栏获得焦点，弹出键盘准备输入",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示目标地点的相关信息",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索栏中的'目的地'文字区域",
-      "expected": "搜索栏内容被选中，准备进行编辑或触发搜索",
+      "goal": "点击搜索结果中目标地点的详情卡片",
+      "expected": "进入目标地点的详情页面，显示地址和路线选项",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击'查看套票详情'按钮",
-      "expected": "进入套票详情页面",
+      "goal": "点击详情页底部的'路线'按钮",
+      "expected": "进入路线规划页面，显示从当前位置到目的地的导航路线",
       "action_type": "click"
     }
   ]

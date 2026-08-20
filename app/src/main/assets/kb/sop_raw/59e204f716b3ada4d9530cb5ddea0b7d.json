@@ -1,7 +1,7 @@
 {
   "sop_id": "59e204f716b3ada4",
   "original_task_name": "哔哩哔哩查找脱口秀",
-  "task_name": "哔哩哔哩查找脱口秀",
+  "task_name": "哔哩哔哩搜索脱口秀视频",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,32 +10,28 @@
     "B站",
     "脱口秀",
     "视频",
-    "搜索"
+    "搜索",
+    "查找",
+    "哔哩哔哩"
   ],
   "steps": [
     {
-      "goal": "打开哔哩哔哩应用",
-      "expected": "应用图标被选中，进入哔哩哔哩应用界面",
+      "goal": "点击桌面或应用列表中的B站应用图标",
+      "expected": "进入B站首页，显示推荐内容信息流",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏中的内容区域",
-      "expected": "搜索栏内容区域被激活，准备输入新的搜索关键词",
+      "goal": "点击首页顶部搜索栏的输入区域",
+      "expected": "搜索输入框被激活，弹出键盘准备输入",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'脱口秀'",
-      "expected": "文本输入框中显示'脱口秀'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "页面展示与目标关键词相关的搜索结果列表",
       "action_type": "type",
       "step_order": 3
-    },
-    {
-      "goal": "执行搜索操作以查看脱口秀相关结果",
-      "expected": "搜索结果列表显示",
-      "action_type": "click",
-      "step_order": 4
     }
   ]
 }

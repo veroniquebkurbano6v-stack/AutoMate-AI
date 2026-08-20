@@ -1,7 +1,7 @@
 {
   "sop_id": "6b8fdef700adf45f",
   "original_task_name": "播放微信群“作业讨论群”的最新一条语音消息",
-  "task_name": "播放微信群组的最新一条语音消息",
+  "task_name": "播放微信群组的最新语音消息",
   "app_name": "微信",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,26 +10,35 @@
     "微信",
     "群组",
     "语音消息",
-    "播放"
+    "播放",
+    "群聊",
+    "语音",
+    "收听"
   ],
   "steps": [
     {
-      "goal": "点击腾讯会议应用图标",
-      "expected": "打开腾讯会议应用",
+      "goal": "点击微信应用图标，打开微信主界面",
+      "expected": "微信应用启动，显示聊天列表页面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击微信顶部的搜索图标",
-      "expected": "搜索图标被激活，界面进入搜索状态",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标群组名称并进行搜索",
+      "expected": "搜索结果中显示目标群组，点击进入群聊",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "点击消息气泡右侧的联系人头像",
-      "expected": "操作后界面状态：联系人头像区域被选中，显示联系人信息",
+      "goal": "点击目标群组进入群聊聊天界面",
+      "expected": "进入群聊页面，显示历史消息列表",
       "action_type": "click",
       "step_order": 3
+    },
+    {
+      "goal": "点击群聊中最新一条语音消息的播放按钮",
+      "expected": "语音消息开始播放，显示播放进度条",
+      "action_type": "click",
+      "step_order": 4
     }
   ]
 }

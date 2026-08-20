@@ -9,51 +9,59 @@
   "keywords": [
     "高德地图",
     "导航",
+    "路线规划",
     "出发地",
     "目的地",
-    "自驾"
+    "自驾",
+    "驾车"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，应用界面即将加载",
+      "goal": "点击高德地图应用图标打开应用",
+      "expected": "高德地图主界面加载完成，显示地图和搜索栏",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入目的地",
+      "goal": "点击主界面顶部的搜索栏区域",
+      "expected": "搜索栏获得焦点，弹出键盘准备输入",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标目的地名称并进行搜索",
+      "expected": "搜索结果列表展示目标目的地相关地点",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索结果中的'目的地'条目",
-      "expected": "进入目的地的详细信息页面",
+      "goal": "点击搜索结果列表中目标目的地的条目",
+      "expected": "进入目标目的地的详情页面，显示路线按钮",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "选择目的地为指定入口",
-      "expected": "目的地选择界面已更新，显示指定入口作为可选目的地",
+      "goal": "点击详情页中的路线按钮设为目的地",
+      "expected": "进入路线规划页面，目的地栏显示目标地点",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "在文本输入框中输入'出发地'",
-      "expected": "文本输入框中显示'出发地'",
-      "action_type": "type"
+      "goal": "点击路线规划页面的出发地输入框",
+      "expected": "出发地输入框获得焦点，弹出键盘准备输入",
+      "action_type": "click"
     },
     {
       "step_order": 7,
-      "goal": "选择搜索结果中的'出发地'地点",
-      "expected": "界面显示已选择'出发地'作为出发地",
+      "goal": "在出发地输入框中输入目标出发地名称并进行搜索",
+      "expected": "搜索结果列表展示目标出发地相关地点",
+      "action_type": "type"
+    },
+    {
+      "step_order": 8,
+      "goal": "点击搜索结果列表中目标出发地的条目",
+      "expected": "出发地栏更新为目标地点，显示自驾路线结果",
       "action_type": "click"
     }
   ]

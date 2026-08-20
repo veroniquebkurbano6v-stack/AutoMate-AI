@@ -1,53 +1,49 @@
 {
   "sop_id": "1644087037fcb474",
   "original_task_name": "用哔哩哔哩播放狐妖小红娘的最新一集",
-  "task_name": "用哔哩哔哩播放特定影视的最新一集",
+  "task_name": "用哔哩哔哩搜索并播放目标影视的最新一集",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "B站",
-    "特定影视",
+    "哔哩哔哩",
+    "影视",
     "播放",
     "最新一集",
-    "搜索"
+    "搜索",
+    "视频"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击手机桌面上的哔哩哔哩应用图标",
-      "expected": "屏幕显示哔哩哔哩应用图标被选中，应用启动界面加载中",
+      "goal": "点击手机桌面上的哔哩哔哩应用图标启动App",
+      "expected": "哔哩哔哩应用启动，进入首页推荐信息流页面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索栏",
-      "expected": "搜索栏获得焦点，准备输入搜索内容",
+      "goal": "点击首页顶部居中的搜索输入框区域",
+      "expected": "搜索输入框获得焦点，弹出键盘准备输入",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在搜索栏中输入'狐妖小红娘'",
-      "expected": "文本输入框中显示'狐妖小红娘'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载完成，展示相关视频列表",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索栏右侧的搜索按钮",
-      "expected": "搜索结果页面加载",
+      "goal": "点击搜索结果中目标影视对应的视频条目",
+      "expected": "进入目标影视的详情页面，显示剧集列表",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击搜索结果中的狐妖小红娘条目",
-      "expected": "进入该作品的详情页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "点击最新一集的播放按钮",
-      "expected": "进入该集的播放页面",
+      "goal": "点击剧集列表中最新一集的播放按钮",
+      "expected": "进入最新一集的播放页面，视频开始播放",
       "action_type": "click"
     }
   ]

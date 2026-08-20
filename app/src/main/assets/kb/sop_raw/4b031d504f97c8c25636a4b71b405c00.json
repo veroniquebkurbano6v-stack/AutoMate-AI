@@ -11,74 +11,65 @@
     "导航",
     "目的地",
     "夜市",
-    "排序"
+    "附近",
+    "排序",
+    "距离优先",
+    "周边搜索"
   ],
   "steps": [
     {
       "goal": "点击地图应用图标以打开应用",
-      "expected": "打开地图应用",
+      "expected": "地图应用主界面加载完成，显示地图视图",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索框以激活输入功能",
-      "expected": "搜索框变为可输入状态，用户可输入地点、公交、地铁等信息",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词匹配的地点条目",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "action_type": "type",
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "点击搜索结果中目标地点对应的条目",
+      "expected": "进入目标地点的详细信息页面，显示地址和周边入口",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击搜索结果中的'目的地'条目",
-      "expected": "进入目的地的详细信息页面",
+      "goal": "点击地点详情页中的周边按钮查看附近信息",
+      "expected": "界面切换为周边搜索模式，显示附近分类或搜索框",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击'周边'按钮以查看附近商家信息",
-      "expected": "界面显示附近商家列表",
-      "action_type": "click",
+      "goal": "在周边搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面展示多个与目标关键词相关的地点选项",
+      "action_type": "type",
       "step_order": 5
     },
     {
-      "action_type": "type",
-      "goal": "在文本输入框中输入'夜市'",
-      "expected": "文本输入框中显示'夜市'",
+      "goal": "点击排序按钮以展开排序方式选择菜单",
+      "expected": "弹出排序方式选择列表，包含多种排序选项",
+      "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "执行搜索操作，获取与“夜市”相关的地点信息",
-      "expected": "搜索结果页面显示多个地点选项",
+      "goal": "在排序菜单中点击距离优先选项",
+      "expected": "距离优先选项被选中高亮，列表按距离重新排列",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "点击“推荐排序”按钮以展开排序选项菜单",
-      "expected": "点击后弹出排序方式选择列表",
+      "goal": "点击排序后列表中距离最近的目标条目",
+      "expected": "进入该目标地点的详情页面，显示地址和导航入口",
       "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "选择排序方式为距离优先",
-      "expected": "界面弹出的排序下拉菜单中，距离优先选项被选中并高亮显示",
+      "goal": "点击底部导航栏中的导航按钮发起路线规划",
+      "expected": "进入导航界面，显示从当前位置到目标的路线",
       "action_type": "click",
       "step_order": 9
-    },
-    {
-      "goal": "点击特定餐厅的条目",
-      "expected": "进入该餐厅的详情页面",
-      "action_type": "click",
-      "step_order": 10
-    },
-    {
-      "goal": "点击底部导航栏中的'导航'按钮",
-      "expected": "进入导航功能界面",
-      "action_type": "click",
-      "step_order": 11
     }
   ]
 }

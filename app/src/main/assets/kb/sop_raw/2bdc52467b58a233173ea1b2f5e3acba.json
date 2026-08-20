@@ -1,22 +1,24 @@
 {
   "sop_id": "2bdc52467b58a233",
   "original_task_name": "高德把西安大唐西市设置成常去地点",
-  "task_name": "在高德地图把指定地点设置成常去地点",
+  "task_name": "在高德地图设置常去地点",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "导航",
   "keywords": [
     "高德地图",
-    "目的地",
     "常去地点",
-    "设置"
+    "设置",
+    "添加",
+    "收藏地点",
+    "常用地点"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的高德地图应用图标",
-      "expected": "高德地图应用图标被选中，应用启动并显示其界面",
+      "expected": "高德地图应用启动并显示主界面",
       "action_type": "click"
     },
     {
@@ -33,14 +35,14 @@
     },
     {
       "step_order": 4,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在文本输入框中输入目标地点名称",
+      "expected": "输入框中显示目标地点名称文字",
       "action_type": "type"
     },
     {
       "step_order": 5,
-      "goal": "点击'地图选点'按钮，切换到地图视图以查看周边地点",
-      "expected": "界面切换为地图视图，显示目的地周边的停车场和门的位置",
+      "goal": "点击'地图选点'按钮切换到地图视图",
+      "expected": "界面切换为地图视图并显示目标地点周边信息",
       "action_type": "click"
     }
   ]

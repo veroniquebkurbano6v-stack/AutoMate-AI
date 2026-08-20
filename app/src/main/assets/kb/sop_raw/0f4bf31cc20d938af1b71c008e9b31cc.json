@@ -1,7 +1,7 @@
 {
   "sop_id": "0f4bf31cc20d938a",
   "original_task_name": "使用腾讯会议参与下午3点的会议。",
-  "task_name": "使用腾讯会议参与下午3点的会议。",
+  "task_name": "使用腾讯会议加入指定会议",
   "app_name": "腾讯会议",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -9,32 +9,34 @@
   "keywords": [
     "腾讯会议",
     "会议",
+    "加入",
     "参与",
-    "联系人"
+    "入会",
+    "会议号"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的腾讯会议应用图标",
-      "expected": "进入腾讯会议主界面",
+      "expected": "成功打开应用，进入腾讯会议主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击'加入会议'按钮",
-      "expected": "进入加入会议界面，显示会议号输入框",
+      "goal": "点击主界面中的加入会议按钮",
+      "expected": "进入加入会议页面，显示会议号输入框",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "点击会议号输入框输入会议号",
-      "expected": "会议号输入框中显示对应数字",
+      "goal": "在会议号输入框中输入目标会议号",
+      "expected": "输入框中显示已输入的目标会议号数字",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击'加入会议'确认按钮",
-      "expected": "进入会议房间，任务完成",
+      "goal": "点击页面下方的加入会议确认按钮",
+      "expected": "成功进入会议房间，显示会议画面",
       "action_type": "click"
     }
   ],

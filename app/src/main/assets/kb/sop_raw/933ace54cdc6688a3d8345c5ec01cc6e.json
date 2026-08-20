@@ -1,77 +1,73 @@
 {
   "sop_id": "933ace54cdc6688a",
   "original_task_name": "酷狗音乐播带我走并分享到朋友圈",
-  "task_name": "酷狗音乐播特定歌曲并分享到朋友圈",
+  "task_name": "酷狗音乐播放目标歌曲并分享至朋友圈",
   "app_name": "酷狗音乐",
   "source": "cagui_auto",
   "difficulty": "L4",
   "domain": "媒体",
   "keywords": [
     "酷狗音乐",
-    "特定歌曲",
+    "播放歌曲",
     "朋友圈",
-    "分享"
+    "分享",
+    "音乐分享",
+    "微信"
   ],
   "steps": [
     {
-      "goal": "点击酷狗音乐应用图标",
-      "expected": "打开酷狗音乐应用",
+      "goal": "点击桌面上的酷狗音乐应用图标启动应用",
+      "expected": "酷狗音乐应用启动并进入主界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击'AI帮唱'标签页",
-      "expected": "进入AI帮唱功能页面",
+      "goal": "点击顶部导航栏中的AI帮唱标签页",
+      "expected": "页面切换至AI帮唱功能界面",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定歌曲'",
-      "expected": "文本输入框中显示'特定歌曲'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示目标歌曲相关条目",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "执行搜索操作以查看'特定歌曲'相关结果",
-      "expected": "搜索结果列表显示",
+      "goal": "点击搜索结果中目标歌曲条目进入播放页",
+      "expected": "进入目标歌曲的播放详情页面",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击联系人的单曲'特定歌曲'以进入播放页面",
-      "expected": "进入歌曲播放界面",
+      "goal": "点击会员弹窗右上角的关闭按钮",
+      "expected": "弹窗关闭并返回歌曲播放页面",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "关闭会员专属歌曲弹窗",
-      "expected": "返回到上一级页面",
+      "goal": "点击目标歌曲右侧的三点更多菜单按钮",
+      "expected": "弹出歌曲操作菜单面板",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "点击联系人歌曲'特定歌曲'右侧的三点菜单按钮",
-      "expected": "歌曲详情页弹出",
+      "goal": "点击操作菜单中的分享按钮选项",
+      "expected": "弹出分享方式选择面板",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "点击'评论'按钮以查看该歌曲的评论内容",
-      "expected": "弹出评论区界面",
+      "goal": "点击分享面板中的微信朋友圈选项图标",
+      "expected": "跳转至微信朋友圈发布编辑页面",
       "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "选择分享方式中的微信朋友圈选项",
-      "expected": "分享歌曲至微信朋友圈",
+      "goal": "点击微信朋友圈发布页面右上角的发表按钮",
+      "expected": "歌曲成功分享至微信朋友圈",
       "action_type": "click",
       "step_order": 9
-    },
-    {
-      "goal": "发布当前内容",
-      "expected": "进入发布界面",
-      "action_type": "click",
-      "step_order": 10
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "sop_id": "a84ca78fa20a9ec4",
   "original_task_name": "打开百度地图搜索附近游艇俱乐部",
-  "task_name": "打开百度地图搜索附近游艇俱乐部",
+  "task_name": "搜索附近游艇俱乐部",
   "app_name": "百度地图",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -9,32 +9,29 @@
   "keywords": [
     "百度地图",
     "游艇俱乐部",
-    "搜索"
+    "搜索",
+    "附近",
+    "查找",
+    "游艇"
   ],
   "steps": [
     {
-      "goal": "点击百度地图应用图标",
-      "expected": "打开百度地图应用",
+      "goal": "点击桌面或应用列表中的百度地图应用图标",
+      "expected": "百度地图应用启动并显示主界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索框区域以激活输入功能",
-      "expected": "搜索框获得焦点，准备输入搜索内容",
+      "goal": "点击主界面顶部的搜索框区域以激活输入",
+      "expected": "搜索框获得焦点，弹出键盘准备输入",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'游艇俱乐部'",
-      "expected": "文本输入框中显示'游艇俱乐部'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面显示目标关键词相关的地点列表",
       "action_type": "type",
       "step_order": 3
-    },
-    {
-      "goal": "执行搜索操作以查看游艇俱乐部的详细信息",
-      "expected": "搜索结果页面显示游艇俱乐部的详细信息和位置",
-      "action_type": "click",
-      "step_order": 4
     }
   ]
 }

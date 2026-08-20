@@ -1,59 +1,55 @@
 {
   "sop_id": "b62b6c7700db8fd7",
   "original_task_name": "优酷视频播放电影死亡的告白",
-  "task_name": "优酷视频播放特定影视",
+  "task_name": "优酷视频搜索并播放目标影视作品",
   "app_name": "优酷视频",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "优酷视频",
-    "特定影视",
+    "影视",
+    "电影",
     "播放",
-    "搜索"
+    "搜索",
+    "视频"
   ],
   "steps": [
     {
-      "goal": "打开优酷视频应用",
-      "expected": "优酷视频应用图标被选中，进入应用界面",
+      "goal": "点击优酷视频应用图标打开应用",
+      "expected": "应用启动成功，进入优酷视频首页",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏中的文本区域",
-      "expected": "搜索栏处于可输入状态",
+      "goal": "点击首页顶部搜索栏的文本输入区域",
+      "expected": "搜索输入框获得焦点，弹出键盘可输入",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定影视'",
-      "expected": "文本输入框中显示'特定影视'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页展示与目标影视作品相关的视频列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "执行搜索操作以查看“特定影视”相关结果",
-      "expected": "搜索结果页面显示与“特定影视”相关的搜索结果",
+      "goal": "在搜索结果列表中点击目标影视作品的外站播放按钮",
+      "expected": "跳转至该影视作品的外站播放详情页",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击电影《特定影视》的外站播放按钮",
-      "expected": "进入该电影的外站播放页面",
+      "goal": "点击播放源按钮以查看或选择视频播放源",
+      "expected": "弹出播放源选择面板，显示可用播放源列表",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击播放源按钮以查看或选择视频播放源",
-      "expected": "进入播放源选择界面",
+      "goal": "点击视频播放区域中央的播放按钮开始播放",
+      "expected": "视频开始加载并进入播放状态，画面正常显示",
       "action_type": "click",
       "step_order": 6
-    },
-    {
-      "goal": "点击视频播放区域的播放按钮开始播放视频",
-      "expected": "视频开始播放",
-      "action_type": "click",
-      "step_order": 7
     }
   ]
 }

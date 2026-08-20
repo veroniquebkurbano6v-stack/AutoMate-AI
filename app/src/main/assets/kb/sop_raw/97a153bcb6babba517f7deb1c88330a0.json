@@ -1,7 +1,7 @@
 {
   "sop_id": "97a153bcb6babba5",
   "original_task_name": "我需要百度地图导航到西长安街，从这里开始。",
-  "task_name": "我需要百度地图导航到目的地，从这里开始。",
+  "task_name": "百度地图导航到目标地点",
   "app_name": "百度地图",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,30 +10,33 @@
     "百度地图",
     "导航",
     "目的地",
-    "路线"
+    "路线",
+    "目标地点",
+    "路径规划",
+    "出行"
   ],
   "steps": [
     {
-      "goal": "点击百度地图应用图标",
-      "expected": "打开百度地图应用",
+      "goal": "点击手机桌面上的百度地图应用图标",
+      "expected": "成功打开百度地图，显示首页地图界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏区域以激活输入状态",
-      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标地点并进行搜索",
+      "expected": "搜索结果列表展示与目标地点相关的条目",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
-      "action_type": "type",
+      "goal": "点击搜索结果列表中目标地点的条目",
+      "expected": "界面跳转至目标地点详情页显示相关信息",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击搜索结果中的'目的地'条目",
-      "expected": "界面显示该地点的详细信息，包括距离、评分和附近服务选项",
+      "goal": "点击地点详情页底部的开始导航按钮",
+      "expected": "进入导航模式，显示规划好的路线信息",
       "action_type": "click",
       "step_order": 4
     }

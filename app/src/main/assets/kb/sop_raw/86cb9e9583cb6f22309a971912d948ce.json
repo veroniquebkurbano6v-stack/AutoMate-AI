@@ -1,7 +1,7 @@
 {
   "sop_id": "86cb9e9583cb6f22",
   "original_task_name": "高德地图查找杜邑遗址公园并导航过去",
-  "task_name": "高德地图查找目的地并导航过去",
+  "task_name": "高德地图搜索目的地并导航",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,37 +10,39 @@
     "高德地图",
     "目的地",
     "导航",
-    "搜索"
+    "搜索",
+    "路线",
+    "地点"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，进入应用界面",
+      "goal": "点击桌面上的高德地图应用图标",
+      "expected": "高德地图启动，显示首页地图界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏以激活输入功能",
-      "expected": "搜索栏获得焦点，准备输入目的地",
+      "goal": "点击首页顶部的搜索输入框",
+      "expected": "搜索框获得焦点，弹出键盘准备输入",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示，显示匹配的地点条目",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索结果中的第一个条目'目的地'，以进入该地点的详细信息页面",
-      "expected": "进入'目的地'的详细信息页面，显示包括地址、交通方式和距离等具体信息",
+      "goal": "点击搜索结果列表中第一个目标地点条目",
+      "expected": "进入地点详情页，显示地址、距离等信息",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击底部导航栏中的'导航'按钮",
-      "expected": "进入导航界面",
+      "goal": "点击地点详情页底部的导航按钮",
+      "expected": "进入导航规划界面，显示路线和预计时间",
       "action_type": "click"
     }
   ]

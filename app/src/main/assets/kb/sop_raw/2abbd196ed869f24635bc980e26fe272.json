@@ -1,52 +1,43 @@
 {
   "sop_id": "2abbd196ed869f24",
   "original_task_name": "小红书搜富士相机测评的视频，并播放",
-  "task_name": "小红书搜特定商品测评的视频，并播放",
+  "task_name": "小红书搜索商品测评视频并播放",
   "app_name": "小红书",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "小红书",
-    "特定商品",
+    "搜索",
+    "商品",
+    "测评",
     "视频",
-    "播放"
+    "播放",
+    "查找"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击手机桌面上的小红书应用图标",
-      "expected": "小红书应用图标被选中，应用启动并进入主界面",
+      "goal": "点击手机桌面上小红书应用图标启动应用",
+      "expected": "小红书启动成功，进入首页推荐信息流界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索框",
-      "expected": "界面切换至搜索页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在搜索框中输入'富士相机测评'",
-      "expected": "搜索框中显示'富士相机测评'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页展示与目标关键词相关的多条内容",
       "action_type": "type"
     },
     {
+      "step_order": 3,
+      "goal": "点击搜索结果列表中带有视频标识的目标笔记",
+      "expected": "进入目标笔记详情页，视频内容加载完成",
+      "action_type": "click"
+    },
+    {
       "step_order": 4,
-      "goal": "点击搜索框右侧的搜索按钮",
-      "expected": "搜索结果页面显示多个相关内容",
-      "action_type": "click"
-    },
-    {
-      "step_order": 5,
-      "goal": "点击搜索结果中的视频内容",
-      "expected": "进入该视频的播放页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "点击视频播放界面中的播放按钮",
-      "expected": "视频开始播放",
+      "goal": "点击视频播放区域中央的播放按钮开始播放",
+      "expected": "视频开始正常播放，进度条开始移动",
       "action_type": "click"
     }
   ]

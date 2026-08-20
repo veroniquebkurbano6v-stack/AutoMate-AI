@@ -1,38 +1,41 @@
 {
   "sop_id": "628b2ad2c45e0c98",
   "original_task_name": "QQ 音乐播放芒种",
-  "task_name": "QQ 音乐播放特定歌曲",
+  "task_name": "QQ音乐播放目标歌曲",
   "app_name": "QQ音乐",
   "source": "cagui_auto",
   "difficulty": "L2",
   "domain": "媒体",
   "keywords": [
     "QQ音乐",
-    "特定歌曲",
-    "播放"
+    "播放",
+    "歌曲",
+    "音乐",
+    "搜索",
+    "听歌"
   ],
   "steps": [
     {
-      "goal": "打开QQ音乐应用",
-      "expected": "QQ音乐应用图标被选中，应用启动并进入主界面",
+      "goal": "点击桌面或应用列表中的QQ音乐应用图标",
+      "expected": "QQ音乐启动并进入首页主界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击顶部导航栏中的'故事'标签",
-      "expected": "进入故事页面",
+      "goal": "点击顶部导航栏中的搜索入口图标",
+      "expected": "进入搜索页面并显示搜索输入框",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定歌曲'",
-      "expected": "文本输入框中显示'特定歌曲'",
+      "goal": "在搜索输入框中输入目标歌曲的名称并进行搜索",
+      "expected": "页面展示与目标歌曲相关的搜索结果列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "点击搜索结果中的单曲条目",
-      "expected": "进入单曲详情页面",
+      "goal": "点击搜索结果列表中目标歌曲对应的单曲条目",
+      "expected": "开始播放目标歌曲并进入播放详情页",
       "action_type": "click",
       "step_order": 4
     }

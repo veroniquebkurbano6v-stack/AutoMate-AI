@@ -1,53 +1,49 @@
 {
   "sop_id": "588517785e4ea976",
   "original_task_name": "打开qq音乐，请播放我是证人的主题曲。",
-  "task_name": "打开qq音乐，请播放特定歌曲。",
+  "task_name": "打开QQ音乐播放目标歌曲",
   "app_name": "QQ音乐",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "QQ音乐",
-    "特定歌曲",
+    "目标歌曲",
     "播放",
-    "搜索"
+    "搜索",
+    "音乐",
+    "听歌"
   ],
   "steps": [
     {
-      "goal": "打开QQ音乐应用",
-      "expected": "QQ音乐应用图标被选中，应用启动并加载",
+      "goal": "点击桌面上的QQ音乐应用图标启动应用",
+      "expected": "QQ音乐应用启动并进入主界面加载状态",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "跳过特定商品的广告",
+      "goal": "点击广告弹窗右上角的关闭按钮跳过广告",
       "expected": "广告弹窗关闭，返回QQ音乐主界面",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "点击'乐馆'标签进入音乐分类页面",
-      "expected": "导航至音乐分类页面",
+      "goal": "点击底部导航栏中的乐馆标签进入音乐页面",
+      "expected": "页面切换至乐馆音乐分类页面",
       "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "在文本输入框中输入'特定歌曲'",
-      "expected": "文本输入框中显示'特定歌曲'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面展示与目标关键词相关的歌曲列表",
       "action_type": "type",
       "step_order": 4
     },
     {
-      "goal": "执行点击操作以触发搜索功能",
-      "expected": "搜索框内容被确认并触发搜索",
+      "goal": "点击搜索结果中目标歌曲的标题区域进行播放",
+      "expected": "目标歌曲开始播放，底部显示播放控制栏",
       "action_type": "click",
       "step_order": 5
-    },
-    {
-      "goal": "点击特定歌曲的标题区域",
-      "expected": "歌曲信息卡片弹出，显示歌曲详情",
-      "action_type": "click",
-      "step_order": 6
     }
   ]
 }

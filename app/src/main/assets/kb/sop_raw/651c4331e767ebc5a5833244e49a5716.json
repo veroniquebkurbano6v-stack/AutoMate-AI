@@ -1,83 +1,67 @@
 {
   "sop_id": "651c4331e767ebc5",
   "original_task_name": "高德，怎么从西安高新区步行到木塔寨地铁站",
-  "task_name": "高德，怎么从出发地步行到目的地",
+  "task_name": "高德地图步行导航从出发地到目的地",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L4",
   "domain": "导航",
   "keywords": [
     "高德地图",
+    "步行",
+    "导航",
     "出发地",
     "目的地",
-    "步行",
-    "导航"
+    "路线规划",
+    "步行导航"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击高德地图应用图标以启动应用程序",
-      "expected": "高德地图应用图标被选中，进入应用界面",
+      "expected": "高德地图主界面加载完成，显示地图和搜索栏",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏中的'打卡'按钮",
-      "expected": "搜索栏内容变为'特定影视打卡'",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词相关的地点信息",
       "action_type": "type"
     },
     {
+      "step_order": 3,
+      "goal": "点击搜索结果中的目标地点进入详情页",
+      "expected": "显示目标地点详情页面，包含路线规划按钮",
+      "action_type": "click"
+    },
+    {
       "step_order": 4,
-      "goal": "点击打车按钮",
-      "expected": "打车服务按钮被激活，显示打车选项",
+      "goal": "点击路线规划按钮进入路线规划界面",
+      "expected": "显示路线规划界面，包含起点和终点输入框",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击起点位置字段以修改出发地",
-      "expected": "界面将显示输入框，用户可输入新的出发地点",
+      "goal": "点击起点输入框以修改出发地位置",
+      "expected": "起点输入框获得焦点，显示可编辑状态",
       "action_type": "click"
     },
     {
       "step_order": 6,
-      "goal": "在文本输入框中输入'出发地'",
-      "expected": "文本输入框中显示'出发地'",
+      "goal": "在起点输入框中输入目标出发地名称并确认",
+      "expected": "起点输入框显示目标出发地名称，匹配结果出现",
       "action_type": "type"
     },
     {
       "step_order": 7,
-      "goal": "点击搜索框右侧的'途经点'按钮",
-      "expected": "界面显示途经点设置选项",
+      "goal": "点击出行方式选项栏中的步行选项按钮",
+      "expected": "步行选项高亮选中，界面显示步行路线规划结果",
       "action_type": "click"
     },
     {
       "step_order": 8,
-      "goal": "选择出发地作为起点",
-      "expected": "界面显示起点已选定为出发地",
-      "action_type": "click"
-    },
-    {
-      "step_order": 9,
-      "goal": "选择起点位置",
-      "expected": "界面显示已选择的起点位置",
-      "action_type": "click"
-    },
-    {
-      "step_order": 10,
-      "goal": "添加途经点以扩展路线选择范围",
-      "expected": "界面右上角的途经点按钮被激活，显示可添加途经点的交互状态",
-      "action_type": "click"
-    },
-    {
-      "step_order": 11,
-      "goal": "选择步行出行方式",
-      "expected": "界面显示步行选项已选中",
+      "goal": "点击开始导航按钮启动步行导航",
+      "expected": "进入步行导航界面，显示实时导航指引和路线",
       "action_type": "click"
     }
   ]

@@ -1,7 +1,7 @@
 {
   "sop_id": "0a52f1ea6ac366fc",
   "original_task_name": "打开优酷视频根据我的历史记录播放7天内观看超过60%的短视频。",
-  "task_name": "打开优酷视频根据历史记录播放对应的短视频。",
+  "task_name": "根据历史记录播放目标短视频",
   "app_name": "优酷视频",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -9,32 +9,34 @@
   "keywords": [
     "优酷视频",
     "历史记录",
+    "观看历史",
     "短视频",
-    "播放"
+    "播放",
+    "历史播放"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的优酷视频应用图标",
-      "expected": "进入优酷视频主界面",
+      "expected": "成功打开优酷视频并进入主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击界面底部的'我的'按钮进入个人中心",
-      "expected": "进入个人中心页面",
+      "goal": "点击界面底部导航栏中的'我的'按钮",
+      "expected": "进入个人中心页面，显示用户信息",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "点击'观看历史'入口",
-      "expected": "显示观看历史列表",
+      "goal": "点击个人中心页面中的'观看历史'入口",
+      "expected": "显示观看历史列表，包含历史视频条目",
       "action_type": "click"
     },
     {
       "step_order": 4,
-      "goal": "点击历史列表中的目标视频条目",
-      "expected": "该视频开始播放，任务完成",
+      "goal": "在观看历史列表中找到并点击目标短视频条目",
+      "expected": "目标短视频开始播放，任务完成",
       "action_type": "click"
     }
   ],

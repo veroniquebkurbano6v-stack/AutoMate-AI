@@ -1,51 +1,53 @@
 {
   "sop_id": "81c34442a6d0d05a",
   "original_task_name": "腾讯视频看动漫全职法师第6季， 从最新一集开始播放",
-  "task_name": "腾讯视频看动漫特定影视第6季， 从最新一集开始播放",
+  "task_name": "腾讯视频播放目标动漫最新一集",
   "app_name": "腾讯视频",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "腾讯视频",
-    "特定影视",
     "动漫",
-    "播放"
+    "播放",
+    "最新一集",
+    "搜索",
+    "视频"
   ],
   "steps": [
     {
-      "goal": "打开腾讯视频App",
-      "expected": "应用图标被点击，启动腾讯视频应用",
+      "goal": "点击桌面上的腾讯视频App图标启动应用",
+      "expected": "腾讯视频应用成功启动并显示开屏画面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "跳过广告，进入腾讯视频主界面",
-      "expected": "广告弹窗关闭，返回腾讯视频主界面",
+      "goal": "点击广告弹窗右上角的关闭或跳过按钮",
+      "expected": "广告关闭，进入腾讯视频主界面首页",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "点击顶部搜索栏以激活搜索功能",
-      "expected": "搜索栏获得焦点，可输入搜索关键词",
+      "goal": "点击主界面顶部的搜索栏区域激活搜索",
+      "expected": "搜索输入框获得焦点，弹出键盘可输入",
       "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "在文本输入框中输入'特定影视'",
-      "expected": "文本输入框中显示'特定影视'",
+      "goal": "在搜索输入框中输入目标动漫名称并进行搜索",
+      "expected": "搜索结果页加载完成，展示目标动漫相关内容",
       "action_type": "type",
       "step_order": 4
     },
     {
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面加载完成，显示与“特定影视”相关的搜索结果",
+      "goal": "在搜索结果中点击目标动漫第6季的封面入口",
+      "expected": "进入目标动漫第6季的详情页面",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击VIP标识的第12集按钮",
-      "expected": "进入第12集的播放或下载界面",
+      "goal": "点击选集列表中最新一集的集数按钮开始播放",
+      "expected": "视频开始播放，显示最新一集的播放画面",
       "action_type": "click",
       "step_order": 6
     }

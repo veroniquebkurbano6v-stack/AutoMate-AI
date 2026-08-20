@@ -1,59 +1,48 @@
 {
   "sop_id": "212d77331d2dfc93",
   "original_task_name": "腾讯视频搜电视剧舍不得星星并从第2集开始播放",
-  "task_name": "腾讯视频搜电视剧特定影视并从第2集开始播放",
+  "task_name": "腾讯视频搜索电视剧并从指定集数播放",
   "app_name": "腾讯视频",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "腾讯视频",
-    "特定影视",
+    "搜索",
     "电视剧",
     "播放",
-    "搜索"
+    "剧集",
+    "指定集数"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的腾讯视频应用图标",
-      "expected": "应用图标被点击，启动腾讯视频应用",
+      "expected": "腾讯视频应用启动，进入首页界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击页面顶部的搜索栏",
-      "expected": "搜索栏获得焦点，准备输入搜索内容",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在搜索栏中输入'舍不得星星'",
-      "expected": "搜索栏中显示'舍不得星星'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页加载完成，显示目标电视剧条目",
       "action_type": "type"
     },
     {
+      "step_order": 3,
+      "goal": "点击搜索结果中目标电视剧的封面或标题条目",
+      "expected": "进入目标电视剧的详情页面，显示剧集列表",
+      "action_type": "click"
+    },
+    {
       "step_order": 4,
-      "goal": "点击搜索栏右侧的搜索按钮",
-      "expected": "搜索结果页面加载完成，显示与'舍不得星星'相关的电视剧条目",
+      "goal": "点击剧集列表中的第2集对应按钮",
+      "expected": "第2集被选中，进入播放页面",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击搜索结果中的电视剧条目",
-      "expected": "进入该电视剧的详情页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "点击剧集列表中的第2集",
-      "expected": "进入第2集的播放页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 7,
-      "goal": "点击播放按钮开始播放",
-      "expected": "第2集开始播放",
+      "goal": "点击播放区域中央的播放按钮",
+      "expected": "第2集视频开始正常播放",
       "action_type": "click"
     }
   ]

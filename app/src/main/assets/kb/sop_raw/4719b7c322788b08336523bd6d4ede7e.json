@@ -1,83 +1,68 @@
 {
   "sop_id": "4719b7c322788b08",
   "original_task_name": "大众点评上找中国元素餐厅，预订一个四天后晚上7点的2人桌",
-  "task_name": "大众点评上找特定餐厅，预订一个四天后晚上7点的2人桌",
+  "task_name": "大众点评搜索目标餐厅并预订指定日期时段的2人桌",
   "app_name": "大众点评",
   "source": "cagui_auto",
   "difficulty": "L4",
   "domain": "生活服务",
   "keywords": [
     "大众点评",
-    "特定餐厅",
+    "餐厅",
+    "搜索",
     "预订",
-    "订座"
+    "订座",
+    "订位",
+    "预约"
   ],
   "steps": [
     {
       "goal": "点击大众点评应用图标以打开应用",
-      "expected": "应用启动界面出现",
+      "expected": "应用启动并显示首页界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏区域以激活输入状态",
-      "expected": "搜索栏获得焦点，准备输入搜索内容",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标餐厅名称并进行搜索",
+      "expected": "搜索结果页面展示目标餐厅相关列表",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "action_type": "type",
-      "goal": "在文本输入框中输入'特定餐厅'",
-      "expected": "文本输入框中显示'特定餐厅'",
+      "goal": "点击搜索结果中目标餐厅的图片或名称进入详情页",
+      "expected": "进入目标餐厅详情页面，展示餐厅信息",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索结果页面加载",
+      "goal": "点击详情页中的订座按钮进入预订页面",
+      "expected": "进入餐厅座位预订界面，显示日期时间选项",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击餐厅图片进入详情页",
-      "expected": "进入餐厅详情页面",
+      "goal": "点击日期选择区域中目标预订日期",
+      "expected": "目标预订日期被选中并高亮显示",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击“订座”按钮，进入餐厅座位预订页面",
-      "expected": "进入餐厅座位预订界面",
+      "goal": "点击时间选择区域中晚上7点的时段选项",
+      "expected": "晚上7点时段被选中并高亮显示",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "选择指定日期作为预订日期",
-      "expected": "界面中显示的日期选择区域被选中",
+      "goal": "点击用餐人数选择区域中的2人选项",
+      "expected": "2人用餐选项被选中并高亮显示",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "选择指定日期作为预订日期",
-      "expected": "界面中显示指定日期已被选中",
+      "goal": "点击确认预订按钮提交预订信息",
+      "expected": "预订提交成功，显示预订确认页面",
       "action_type": "click",
       "step_order": 8
-    },
-    {
-      "goal": "选择指定日期指定时段的大厅包间2人时段",
-      "expected": "确认指定日期指定时段大厅2人时段的预订选项",
-      "action_type": "click",
-      "step_order": 9
-    },
-    {
-      "goal": "选择指定日期指定时段的大厅包间进行预订",
-      "expected": "选择指定日期指定时段的大厅包间进行预订",
-      "action_type": "click",
-      "step_order": 10
-    },
-    {
-      "goal": "选择指定日期晚上7点的时段进行预订",
-      "expected": "操作后界面状态：日期选择栏中指定日期被选中，时间选择栏中19:00被选中",
-      "action_type": "click",
-      "step_order": 11
     }
   ]
 }

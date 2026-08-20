@@ -1,7 +1,7 @@
 {
   "sop_id": "bd013e34c7ec3a0c",
   "original_task_name": "在点评上搜曲江池遗址公园，领优惠券",
-  "task_name": "在点评上搜目的地，领优惠券",
+  "task_name": "在大众点评搜索目的地并领取优惠券",
   "app_name": "大众点评",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,36 +10,38 @@
     "大众点评",
     "目的地",
     "优惠券",
-    "搜索"
+    "搜索",
+    "领券",
+    "景点"
   ],
   "steps": [
     {
-      "goal": "打开大众点评App",
-      "expected": "大众点评App图标被选中，准备进入应用",
+      "goal": "点击手机桌面上的大众点评App图标启动应用",
+      "expected": "大众点评App成功打开并显示首页界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏中的文本区域",
-      "expected": "搜索栏获得焦点，准备输入新的搜索内容",
+      "goal": "在首页顶部点击搜索输入框区域",
+      "expected": "搜索输入框获得焦点并弹出键盘",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "页面展示与目标关键词相关的搜索结果列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "确认搜索建议并执行搜索",
-      "expected": "搜索建议列表下方出现搜索结果",
+      "goal": "在搜索结果列表中点击目标目的地条目",
+      "expected": "进入目标目的地的详情页面",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击'目的地'条目，进入详情页面",
-      "expected": "进入目的地的详细信息页面",
+      "goal": "在详情页面中找到并点击优惠券领取按钮",
+      "expected": "优惠券领取成功，页面显示已领取状态",
       "action_type": "click",
       "step_order": 5
     }

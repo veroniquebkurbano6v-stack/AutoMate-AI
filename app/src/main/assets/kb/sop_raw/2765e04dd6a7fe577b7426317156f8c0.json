@@ -10,43 +10,33 @@
     "高德地图",
     "导航",
     "目的地",
-    "搜索"
+    "搜索",
+    "路线规划",
+    "地点查询"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的高德地图应用图标",
-      "expected": "高德地图应用图标被选中，进入应用界面",
+      "expected": "高德地图主界面加载完成，显示地图和搜索框",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索框以启动地点搜索功能",
-      "expected": "搜索框处于可输入状态，准备进行地点、公交、地铁等查询",
-      "action_type": "click"
-    },
-    {
-      "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载完成，显示与目标关键词相关的地点列表",
       "action_type": "type"
     },
     {
+      "step_order": 3,
+      "goal": "点击搜索结果中目标地点的详细信息区域",
+      "expected": "进入目标地点的详细信息页面，显示地址和导航按钮",
+      "action_type": "click"
+    },
+    {
       "step_order": 4,
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索结果页面加载完成，显示与搜索关键词相关的搜索结果",
-      "action_type": "click"
-    },
-    {
-      "step_order": 5,
-      "goal": "点击目的地的详细信息区域",
-      "expected": "进入目的地的详细信息页面",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
       "goal": "点击底部导航栏中的'导航'按钮",
-      "expected": "进入导航功能界面",
+      "expected": "进入导航功能界面，显示路线规划和导航信息",
       "action_type": "click"
     }
   ]

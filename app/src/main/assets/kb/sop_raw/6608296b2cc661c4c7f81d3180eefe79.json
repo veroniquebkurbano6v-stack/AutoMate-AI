@@ -1,7 +1,7 @@
 {
   "sop_id": "6608296b2cc661c4",
   "original_task_name": "高德地图查找长安大剧院餐厅",
-  "task_name": "高德地图查找特定餐厅",
+  "task_name": "高德地图查找目标餐厅",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,31 +10,33 @@
     "高德地图",
     "目的地",
     "餐厅",
-    "搜索"
+    "搜索",
+    "查找",
+    "地点"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击高德地图应用图标",
-      "expected": "高德地图应用图标被选中，进入应用界面",
+      "goal": "点击高德地图应用图标，启动应用",
+      "expected": "高德地图主界面加载完成，显示地图和搜索栏",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击搜索栏激活输入功能",
-      "expected": "搜索栏处于可输入状态",
+      "goal": "点击顶部搜索栏区域，激活输入功能",
+      "expected": "搜索栏获得焦点，弹出键盘，处于可输入状态",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'特定餐厅'",
-      "expected": "文本输入框中显示'特定餐厅'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索完成，页面展示与目标关键词相关的结果列表",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "清除搜索栏内容，准备输入新搜索词",
-      "expected": "搜索栏显示为空，键盘处于待输入状态",
+      "goal": "点击搜索栏右侧清除按钮，清空搜索内容",
+      "expected": "搜索栏内容被清空，键盘保持待输入状态",
       "action_type": "click"
     }
   ]

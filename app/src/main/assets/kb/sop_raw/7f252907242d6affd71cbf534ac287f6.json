@@ -1,46 +1,42 @@
 {
   "sop_id": "7f252907242d6aff",
   "original_task_name": "查找宠物乐园",
-  "task_name": "查找宠物乐园",
+  "task_name": "搜索目标影视作品",
   "app_name": "腾讯视频",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "腾讯视频",
-    "宠物乐园",
-    "搜索"
+    "搜索",
+    "查找",
+    "影视作品",
+    "目标关键词"
   ],
   "steps": [
     {
-      "goal": "打开腾讯视频应用",
-      "expected": "应用图标被选中，进入腾讯视频界面",
+      "goal": "点击桌面上的腾讯视频应用图标启动应用",
+      "expected": "腾讯视频主界面加载完成，显示首页推荐内容",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "返回上一级页面",
-      "expected": "操作后界面状态为返回到上一级页面",
+      "goal": "点击左上角返回按钮回到上一级页面",
+      "expected": "页面返回至首页或上一级导航界面",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "点击搜索栏中的内容",
-      "expected": "搜索栏内容被选中，准备输入新的搜索关键词",
+      "goal": "点击页面顶部的搜索栏区域激活输入状态",
+      "expected": "搜索栏获得焦点，弹出键盘准备输入",
       "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "在文本输入框中输入'宠物乐园'",
-      "expected": "文本输入框中显示'宠物乐园'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词相关的内容",
       "action_type": "type",
       "step_order": 4
-    },
-    {
-      "goal": "执行搜索操作以查看相关结果",
-      "expected": "搜索结果列表出现",
-      "action_type": "click",
-      "step_order": 5
     }
   ]
 }

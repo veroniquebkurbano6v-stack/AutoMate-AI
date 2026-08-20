@@ -1,88 +1,90 @@
 {
   "sop_id": "0ea24bf918fc5e26",
   "original_task_name": "腾讯视频搜综艺哈哈哈哈哈第4季，从第2集开始播放",
-  "task_name": "腾讯视频搜综艺特定影视，从第2集开始播放",
+  "task_name": "腾讯视频搜索综艺并从指定集数开始播放",
   "app_name": "腾讯视频",
   "source": "cagui_auto",
   "difficulty": "L4",
   "domain": "媒体",
   "keywords": [
     "腾讯视频",
-    "特定影视",
     "综艺",
+    "搜索",
     "播放",
-    "搜索"
+    "指定集数",
+    "选集",
+    "视频播放"
   ],
   "steps": [
     {
-      "goal": "打开腾讯视频App",
-      "expected": "应用图标被点击，启动腾讯视频应用",
+      "goal": "点击桌面上的腾讯视频App图标启动应用",
+      "expected": "腾讯视频首页加载完成，显示推荐内容",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "长按搜索栏以触发批量操作或内容选择",
-      "expected": "搜索栏区域出现可选操作的交互提示",
-      "action_type": "long_press",
+      "goal": "点击首页顶部搜索栏区域进入搜索页面",
+      "expected": "进入搜索页面，显示输入框和搜索历史",
+      "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定影视'",
-      "expected": "文本输入框中显示'特定影视'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词相关的综艺条目",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "执行搜索操作以查看特定影视的相关结果",
-      "expected": "搜索结果列表显示与特定影视相关的多个条目",
+      "goal": "点击搜索结果中目标综艺的封面或标题进入详情页",
+      "expected": "进入目标综艺详情页，显示播放按钮和选集列表",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击'立即播放'按钮开始观看视频",
-      "expected": "进入视频播放界面",
+      "goal": "点击详情页中的立即播放按钮开始播放",
+      "expected": "视频开始播放，显示播放器和选集区域",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击第11期加更视频条目",
-      "expected": "进入该期视频的播放页面",
+      "goal": "点击选集列表中第11期加更的视频条目",
+      "expected": "切换至第11期加更内容并开始播放",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "点击第9期加更内容，进入详情页",
-      "expected": "进入第9期加更的详细播放页面",
+      "goal": "点击选集列表中第9期加更的视频条目",
+      "expected": "切换至第9期加更内容并开始播放",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "点击第7期上的视频条目",
-      "expected": "进入该期视频的播放页面",
+      "goal": "点击选集列表中第7期上的视频条目",
+      "expected": "切换至第7期上内容并开始播放",
       "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "点击'第5期下'视频条目",
-      "expected": "进入该期视频的播放页面",
+      "goal": "点击选集列表中第5期下的视频条目",
+      "expected": "切换至第5期下内容并开始播放",
       "action_type": "click",
       "step_order": 9
     },
     {
-      "goal": "点击第3期加更视频条目",
-      "expected": "进入该视频的播放页面",
+      "goal": "点击选集列表中第3期加更的视频条目",
+      "expected": "切换至第3期加更内容并开始播放",
       "action_type": "click",
       "step_order": 10
     },
     {
-      "goal": "点击'特别加更'的视频条目",
-      "expected": "进入该加更内容的播放页面",
+      "goal": "点击选集列表中特别加更的视频条目",
+      "expected": "切换至特别加更内容并开始播放",
       "action_type": "click",
       "step_order": 11
     },
     {
-      "goal": "点击第1期视频条目以进入该视频播放页面",
-      "expected": "进入该期视频的播放界面",
+      "goal": "点击选集列表中第1期的视频条目",
+      "expected": "切换至第1期内容并开始播放",
       "action_type": "click",
       "step_order": 12
     }

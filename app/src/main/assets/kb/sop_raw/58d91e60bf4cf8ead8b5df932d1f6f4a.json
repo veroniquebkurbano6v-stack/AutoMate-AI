@@ -1,7 +1,7 @@
 {
   "sop_id": "58d91e60bf4cf8ea",
   "original_task_name": "在小红书上搜索视频剪辑的笔记，然后给前5篇笔记点个赞。",
-  "task_name": "在小红书上搜索视频剪辑的笔记，然后给前5篇笔记点个赞。",
+  "task_name": "搜索目标关键词笔记并逐篇点赞",
   "app_name": "小红书",
   "source": "cagui_auto",
   "difficulty": "L4",
@@ -11,68 +11,112 @@
     "视频剪辑",
     "笔记",
     "点赞",
-    "搜索"
+    "搜索",
+    "收藏",
+    "内容互动"
   ],
   "steps": [
     {
-      "goal": "打开小红书应用",
-      "expected": "小红书应用图标被选中，应用启动并显示其界面",
+      "goal": "点击手机桌面上的小红书应用图标启动应用",
+      "expected": "小红书应用启动并显示首页推荐信息流界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击屏幕右上角的搜索图标",
-      "expected": "进入搜索界面",
+      "goal": "点击首页右上角的放大镜搜索图标按钮",
+      "expected": "页面跳转至搜索界面，顶部出现搜索输入框",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'视频剪辑'",
-      "expected": "文本输入框中显示'视频剪辑'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页加载完成，展示与目标关键词相关的笔记列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "点击搜索按钮执行搜索操作",
-      "expected": "搜索结果页面加载完成，显示与'视频剪辑'相关的搜索结果",
+      "goal": "点击搜索结果列表中第1篇目标笔记的封面或标题",
+      "expected": "进入第1篇目标笔记的详情页面，显示笔记内容",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击视频标题进入详情页",
-      "expected": "进入该视频的详细播放页面",
+      "goal": "点击第1篇笔记详情页底部的爱心点赞按钮",
+      "expected": "爱心按钮变为红色已点赞状态，点赞数增加1",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击视频内容卡片以查看详细信息",
-      "expected": "进入该视频的详情页面",
+      "goal": "点击左上角返回箭头回到搜索结果列表页面",
+      "expected": "返回搜索结果页，显示与目标关键词相关的笔记列表",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "点击视频缩略图进入教程详情页",
-      "expected": "进入一个包含剪辑教程内容的详情页面",
+      "goal": "点击搜索结果列表中第2篇目标笔记的封面或标题",
+      "expected": "进入第2篇目标笔记的详情页面，显示笔记内容",
       "action_type": "click",
       "step_order": 7
     },
     {
-      "goal": "点击标题为'特定视频'的视频内容",
-      "expected": "进入该视频的播放页面",
+      "goal": "点击第2篇笔记详情页底部的爱心点赞按钮",
+      "expected": "爱心按钮变为红色已点赞状态，点赞数增加1",
       "action_type": "click",
       "step_order": 8
     },
     {
-      "goal": "点击视频剪辑教程标题进入详情页",
-      "expected": "进入该视频教程的详细页面",
+      "goal": "点击左上角返回箭头回到搜索结果列表页面",
+      "expected": "返回搜索结果页，显示与目标关键词相关的笔记列表",
       "action_type": "click",
       "step_order": 9
     },
     {
-      "goal": "点击视频下方的点赞按钮",
-      "expected": "视频下方的点赞按钮变为已点赞状态，显示数字1645",
+      "goal": "点击搜索结果列表中第3篇目标笔记的封面或标题",
+      "expected": "进入第3篇目标笔记的详情页面，显示笔记内容",
       "action_type": "click",
       "step_order": 10
+    },
+    {
+      "goal": "点击第3篇笔记详情页底部的爱心点赞按钮",
+      "expected": "爱心按钮变为红色已点赞状态，点赞数增加1",
+      "action_type": "click",
+      "step_order": 11
+    },
+    {
+      "goal": "点击左上角返回箭头回到搜索结果列表页面",
+      "expected": "返回搜索结果页，显示与目标关键词相关的笔记列表",
+      "action_type": "click",
+      "step_order": 12
+    },
+    {
+      "goal": "点击搜索结果列表中第4篇目标笔记的封面或标题",
+      "expected": "进入第4篇目标笔记的详情页面，显示笔记内容",
+      "action_type": "click",
+      "step_order": 13
+    },
+    {
+      "goal": "点击第4篇笔记详情页底部的爱心点赞按钮",
+      "expected": "爱心按钮变为红色已点赞状态，点赞数增加1",
+      "action_type": "click",
+      "step_order": 14
+    },
+    {
+      "goal": "点击左上角返回箭头回到搜索结果列表页面",
+      "expected": "返回搜索结果页，显示与目标关键词相关的笔记列表",
+      "action_type": "click",
+      "step_order": 15
+    },
+    {
+      "goal": "点击搜索结果列表中第5篇目标笔记的封面或标题",
+      "expected": "进入第5篇目标笔记的详情页面，显示笔记内容",
+      "action_type": "click",
+      "step_order": 16
+    },
+    {
+      "goal": "点击第5篇笔记详情页底部的爱心点赞按钮",
+      "expected": "爱心按钮变为红色已点赞状态，点赞数增加1",
+      "action_type": "click",
+      "step_order": 17
     }
   ]
 }

@@ -1,40 +1,42 @@
 {
   "sop_id": "ad61d72da80435cf",
   "original_task_name": "播放过去一周内在优酷视频上观看的第二部影视剧。",
-  "task_name": "播放过去一周内在优酷视频上观看的第二部影视剧。",
+  "task_name": "播放观看历史中的目标影视剧",
   "app_name": "优酷视频",
   "source": "cagui_auto",
   "difficulty": "L2",
   "domain": "媒体",
   "keywords": [
     "优酷视频",
-    "特定影视",
     "播放",
-    "历史记录"
+    "历史记录",
+    "观看历史",
+    "影视剧",
+    "历史列表"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的优酷视频应用图标",
-      "expected": "进入优酷视频主界面",
+      "expected": "成功打开应用并进入优酷视频主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击界面底部的'我的'按钮进入个人中心",
-      "expected": "进入个人中心页面",
+      "goal": "点击界面底部导航栏中的'我的'按钮",
+      "expected": "跳转至个人中心页面，显示用户信息",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "点击'观看历史'入口",
-      "expected": "显示观看历史列表",
+      "goal": "点击个人中心页面中的'观看历史'入口",
+      "expected": "显示按时间排序的观看历史列表",
       "action_type": "click"
     },
     {
       "step_order": 4,
-      "goal": "点击历史列表中的目标视频条目",
-      "expected": "该视频开始播放，任务完成",
+      "goal": "点击历史列表中第二条目标影视剧条目",
+      "expected": "目标影视剧开始播放，任务完成",
       "action_type": "click"
     }
   ],

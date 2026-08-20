@@ -1,71 +1,62 @@
 {
   "sop_id": "515f03d52c1910c2",
   "original_task_name": " b 站播放罗小黑战记的最新一集",
-  "task_name": "b站播放特定影视的最新一集",
+  "task_name": "B站播放目标影视的最新一集",
   "app_name": "B站",
   "source": "cagui_auto",
   "difficulty": "L4",
   "domain": "媒体",
   "keywords": [
     "B站",
-    "特定影视",
+    "bilibili",
+    "影视",
+    "番剧",
     "最新一集",
-    "播放"
+    "播放",
+    "观看"
   ],
   "steps": [
     {
-      "goal": "打开bilibili应用",
-      "expected": "bilibili应用图标被选中，应用启动并进入主界面",
+      "goal": "点击B站应用图标启动应用",
+      "expected": "B站应用启动并进入首页推荐流界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏中的内容以进入搜索界面",
-      "expected": "搜索栏被激活，显示输入状态",
+      "goal": "点击首页顶部搜索栏区域进入搜索界面",
+      "expected": "搜索页面打开，输入框获得焦点显示光标",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'特定影视'",
-      "expected": "文本输入框中显示'特定影视'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页展示与目标关键词相关的视频列表",
       "action_type": "type",
       "step_order": 3
     },
     {
-      "goal": "执行搜索操作以查看“特定影视”的相关结果",
-      "expected": "搜索结果列表显示",
+      "goal": "点击搜索结果中目标影视的番剧条目卡片",
+      "expected": "进入目标影视的番剧详情页，显示剧集信息",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "点击搜索结果中的'特定影视'番剧条目",
-      "expected": "进入该番剧的详情页面",
+      "goal": "点击详情页中的立即观看按钮开始播放",
+      "expected": "进入目标影视的播放界面，视频开始加载",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击“立即观看”按钮以进入该番剧的播放页面",
-      "expected": "进入《特定影视》的播放界面",
+      "goal": "点击播放页面中的选集按钮展开剧集列表",
+      "expected": "剧集选择面板展开，显示各集编号可点击",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "点击“点击”按钮以查看剧集列表",
-      "expected": "进入剧集选择页面，显示第1话、第2话、第3话等可点击的剧集条目",
+      "goal": "在剧集列表中点击最新一集的集数按钮",
+      "expected": "播放器切换至最新一集，视频开始播放",
       "action_type": "click",
       "step_order": 7
-    },
-    {
-      "goal": "点击第8话按钮开始播放",
-      "expected": "进入第8话播放界面",
-      "action_type": "click",
-      "step_order": 8
-    },
-    {
-      "goal": "点击第38话标题进入该集详情页",
-      "expected": "进入第38话的播放或信息页面",
-      "action_type": "click",
-      "step_order": 9
     }
   ]
 }

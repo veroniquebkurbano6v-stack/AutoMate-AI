@@ -1,40 +1,42 @@
 {
   "sop_id": "64d65624bb4e0239",
   "original_task_name": "QQ 音乐搜珊瑚海并播放",
-  "task_name": "QQ 音乐搜特定歌曲并播放",
+  "task_name": "QQ音乐搜索歌曲并播放",
   "app_name": "QQ音乐",
   "source": "cagui_auto",
   "difficulty": "L2",
   "domain": "音乐",
   "keywords": [
     "QQ音乐",
-    "特定歌曲",
+    "搜索",
+    "歌曲",
     "播放",
-    "搜索"
+    "音乐",
+    "听歌"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "打开QQ音乐应用",
-      "expected": "QQ音乐应用图标被选中，应用启动并进入主界面",
+      "goal": "点击QQ音乐应用图标启动应用",
+      "expected": "应用启动成功，进入QQ音乐主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击顶部导航栏中的'乐馆'标签",
-      "expected": "进入乐馆页面",
+      "goal": "点击顶部导航栏中的乐馆标签",
+      "expected": "页面切换至乐馆页面，显示推荐内容",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'特定歌曲'",
-      "expected": "文本输入框中显示用户指定的歌曲名称",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索完成，页面展示与目标歌曲相关的搜索结果列表",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索结果中的歌曲条目",
-      "expected": "进入该歌曲的播放界面，歌曲开始播放（播放页显示歌名、进度条走动）",
+      "goal": "点击搜索结果列表中目标歌曲的条目",
+      "expected": "进入歌曲播放页面，歌曲开始播放，进度条开始走动",
       "action_type": "click"
     }
   ]

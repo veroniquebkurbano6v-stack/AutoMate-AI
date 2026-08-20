@@ -1,7 +1,7 @@
 {
   "sop_id": "6318c3ed0a3b717c",
   "original_task_name": "在知乎上讨论生物科技",
-  "task_name": "在知乎上讨论生物科技",
+  "task_name": "在知乎发布讨论内容",
   "app_name": "知乎",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,48 +10,51 @@
     "知乎",
     "讨论",
     "生物科技",
-    "发布"
+    "发布",
+    "想法",
+    "创作",
+    "发帖"
   ],
   "steps": [
     {
-      "goal": "打开知乎App",
-      "expected": "知乎应用图标被选中，准备启动应用程序",
+      "goal": "点击知乎App图标启动应用",
+      "expected": "知乎主界面加载完成，显示推荐内容流",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "进入主界面添加新内容",
-      "expected": "操作后界面状态为进入主界面，可添加新内容",
+      "goal": "点击底部中间的加号按钮进入创作入口",
+      "expected": "弹出创作面板，显示发布内容的选项列表",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "进入想法功能模块",
-      "expected": "界面显示包含'提个问题'和'回答问题'选项的创作入口",
+      "goal": "点击想法选项进入想法发布模块",
+      "expected": "进入想法编辑页面，显示文本输入区域",
       "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击文本输入区域以激活编辑状态",
-      "expected": "界面进入可输入标题的编辑模式",
+      "goal": "点击文本输入区域激活编辑光标",
+      "expected": "输入框获得焦点，键盘弹出进入可编辑状态",
       "action_type": "click",
       "step_order": 4
     },
     {
-      "goal": "在文本输入框中输入'讨论生物科技'",
-      "expected": "文本输入框中显示'讨论生物科技'",
+      "goal": "在文本输入框中输入目标讨论内容",
+      "expected": "输入框中显示已输入的目标讨论文本内容",
       "action_type": "type",
       "step_order": 5
     },
     {
-      "goal": "进入创作编辑界面，准备输入内容",
-      "expected": "界面进入编辑状态，键盘显示，可输入标题和内容",
+      "goal": "点击发布按钮提交当前编辑的想法内容",
+      "expected": "内容发布成功，页面跳转回信息流或提示发布完成",
       "action_type": "click",
       "step_order": 6
     },
     {
-      "goal": "关闭创作者奖励弹窗",
-      "expected": "界面弹窗消失，返回关注页面",
+      "goal": "点击关闭按钮关闭创作者奖励弹窗",
+      "expected": "弹窗消失，返回知乎主界面信息流页面",
       "action_type": "click",
       "step_order": 7
     }

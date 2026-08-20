@@ -1,7 +1,7 @@
 {
   "sop_id": "75a59adef74572c5",
   "original_task_name": "在微信群\"日常分享\"里发一条消息：“今天的天气真好，大家出去走走吧！”",
-  "task_name": "在微信群组里发一条消息'特定消息内容'",
+  "task_name": "在微信群组中发送一条消息",
   "app_name": "微信",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -9,37 +9,39 @@
   "keywords": [
     "微信",
     "群组",
+    "群聊",
     "消息",
-    "发送"
+    "发送",
+    "聊天"
   ],
   "steps": [
     {
-      "goal": "打开微信应用",
-      "expected": "微信应用图标被选中，准备进入应用",
+      "goal": "点击桌面上的微信应用图标，打开微信应用",
+      "expected": "微信主界面加载完成，显示聊天列表页面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击微信顶部右上角的加号图标",
-      "expected": "界面进入添加功能入口",
+      "goal": "在聊天列表中找到目标群组并点击进入",
+      "expected": "进入目标群组的聊天界面，显示历史消息",
       "action_type": "click",
       "step_order": 2
     },
     {
       "goal": "点击底部消息输入框以激活输入状态",
-      "expected": "底部消息输入框变为可输入状态",
+      "expected": "底部消息输入框获得焦点，弹出键盘可输入",
       "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "在文本输入框中输入'特定消息内容'",
-      "expected": "文本输入框中显示'特定消息内容'",
+      "goal": "在底部文本输入框中输入目标消息内容",
+      "expected": "输入框中显示目标消息内容的完整文本",
       "action_type": "type",
       "step_order": 4
     },
     {
-      "goal": "发送当前消息",
-      "expected": "消息被成功发送到群聊",
+      "goal": "点击输入框右侧的发送按钮发送消息",
+      "expected": "消息成功发送，聊天界面显示已发送的消息气泡",
       "action_type": "click",
       "step_order": 5
     }

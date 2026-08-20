@@ -1,59 +1,55 @@
 {
   "sop_id": "6b9a983a9b718ddc",
   "original_task_name": "在优酷视频中搜索三国演义，从第32集开始播放。",
-  "task_name": "在优酷视频中搜索特定影视，从第32集开始播放。",
+  "task_name": "在优酷视频中搜索目标影视作品并从指定集数播放",
   "app_name": "优酷视频",
   "source": "cagui_auto",
   "difficulty": "L3",
   "domain": "媒体",
   "keywords": [
     "优酷视频",
-    "特定影视",
     "搜索",
-    "播放"
+    "播放",
+    "影视作品",
+    "剧集",
+    "指定集数"
   ],
   "steps": [
     {
-      "goal": "打开优酷视频应用",
-      "expected": "优酷视频应用图标被选中，应用启动并显示其主界面",
+      "goal": "点击优酷视频应用图标启动应用",
+      "expected": "应用启动并显示优酷视频主界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "跳过广告",
-      "expected": "广告弹窗消失，返回优酷主界面",
+      "goal": "点击广告弹窗右上角的关闭按钮",
+      "expected": "广告弹窗消失，返回优酷视频主界面",
       "action_type": "click",
       "step_order": 2
     },
     {
-      "goal": "进入搜索功能页面",
-      "expected": "点击顶部搜索栏触发搜索界面弹出",
+      "goal": "点击主界面顶部的搜索栏入口",
+      "expected": "搜索界面弹出，显示文本输入框和搜索按钮",
       "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "在文本输入框中输入'特定影视'",
-      "expected": "文本输入框中显示'特定影视'",
+      "goal": "在搜索输入框中输入目标影视作品名称并进行搜索",
+      "expected": "搜索结果页面展示目标影视作品的相关内容",
       "action_type": "type",
       "step_order": 4
     },
     {
-      "goal": "点击搜索栏右侧的'点击'按钮",
-      "expected": "点击操作后，搜索栏右侧的'点击'按钮被激活，界面状态保持不变，但点击操作已完成。",
+      "goal": "点击搜索结果中目标影视作品的封面或标题",
+      "expected": "进入目标影视作品的详情页面，显示剧集列表",
       "action_type": "click",
       "step_order": 5
     },
     {
-      "goal": "点击剧集列表中的第6集按钮",
-      "expected": "剧集列表中第6集的播放按钮变为可点击状态",
+      "goal": "在剧集列表中点击第32集对应的集数按钮",
+      "expected": "第32集开始播放，播放器显示播放进度条",
       "action_type": "click",
       "step_order": 6
-    },
-    {
-      "goal": "点击第32关按钮",
-      "expected": "进入第32关游戏",
-      "action_type": "click",
-      "step_order": 7
     }
   ]
 }

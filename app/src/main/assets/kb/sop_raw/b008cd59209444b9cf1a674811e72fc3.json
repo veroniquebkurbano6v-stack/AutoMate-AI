@@ -1,7 +1,7 @@
 {
   "sop_id": "b008cd59209444b9",
   "original_task_name": "打开高德地图查找五台古镇并进行导航",
-  "task_name": "打开高德地图查找目的地并进行导航",
+  "task_name": "在高德地图中搜索目的地并发起导航",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,43 +10,39 @@
     "高德地图",
     "搜索",
     "目的地",
-    "导航"
+    "导航",
+    "路线规划",
+    "地点查询"
   ],
   "steps": [
     {
       "step_order": 1,
-      "goal": "点击地图应用图标以打开应用",
-      "expected": "打开地图应用",
+      "goal": "点击桌面上的高德地图应用图标以启动应用",
+      "expected": "高德地图应用成功启动并显示地图主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击地图中心区域以调整视图位置",
-      "expected": "地图视图发生移动，中心位置发生偏移",
+      "goal": "点击地图主界面顶部的搜索输入框区域",
+      "expected": "搜索输入框获得焦点并弹出键盘输入面板",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果列表展示与目标关键词相关的地点信息",
       "action_type": "type"
     },
     {
       "step_order": 4,
-      "goal": "点击搜索按钮以执行目的地的搜索操作",
-      "expected": "搜索结果页面显示目的地及其相关地点信息",
+      "goal": "点击搜索结果列表中目标地点的名称条目",
+      "expected": "进入目标地点的详情页面并显示地点信息",
       "action_type": "click"
     },
     {
       "step_order": 5,
-      "goal": "点击目的地详情页的'点击'按钮",
-      "expected": "进入目的地详情页",
-      "action_type": "click"
-    },
-    {
-      "step_order": 6,
-      "goal": "点击底部导航栏中的'导航'按钮",
-      "expected": "进入导航功能界面",
+      "goal": "点击地点详情页底部的蓝色导航按钮",
+      "expected": "进入路线规划界面并显示导航路线方案",
       "action_type": "click"
     }
   ]

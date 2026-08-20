@@ -1,7 +1,7 @@
 {
   "sop_id": "bbe2377b7b6c689c",
   "original_task_name": "根据个人会议号在腾讯会议开启一个快速会议。",
-  "task_name": "根据个人会议号在腾讯会议开启一个快速会议。",
+  "task_name": "在腾讯会议开启快速会议",
   "app_name": "腾讯会议",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,25 +10,27 @@
     "腾讯会议",
     "快速会议",
     "会议号",
-    "开启"
+    "开启",
+    "发起会议",
+    "创建会议"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的腾讯会议应用图标",
-      "expected": "进入腾讯会议主界面",
+      "expected": "成功打开应用并进入腾讯会议主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击'快速会议'按钮",
-      "expected": "弹出快速会议确认弹窗",
+      "goal": "点击主界面中部的快速会议按钮",
+      "expected": "弹出快速会议确认弹窗显示会议信息",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "点击弹窗中的'进入会议'按钮",
-      "expected": "快速会议已开启并进入，任务完成",
+      "goal": "点击弹窗底部的进入会议按钮",
+      "expected": "快速会议已开启并成功进入会议房间",
       "action_type": "click"
     }
   ],

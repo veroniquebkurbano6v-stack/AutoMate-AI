@@ -1,7 +1,7 @@
 {
   "sop_id": "971a94b470dcfde6",
   "original_task_name": "在淘宝上找一件价格低于200元的外套。",
-  "task_name": "在淘宝上找一件价格低于200元的外套。",
+  "task_name": "在淘宝搜索并筛选低价外套",
   "app_name": "淘宝",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -9,39 +9,35 @@
   "keywords": [
     "淘宝",
     "外套",
-    "价格",
-    "搜索"
+    "价格筛选",
+    "搜索",
+    "低价",
+    "商品"
   ],
   "steps": [
     {
-      "goal": "打开高德地图应用",
-      "expected": "高德地图应用图标被选中，准备启动应用",
+      "goal": "点击桌面上的淘宝应用图标启动应用",
+      "expected": "淘宝应用成功启动并显示首页界面",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏中的'运动鞋'文字区域",
-      "expected": "搜索栏处于可编辑状态，用户可输入新的搜索关键词",
-      "action_type": "click",
+      "goal": "在首页顶部搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面加载并展示相关商品列表",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "goal": "在文本输入框中输入'外套'",
-      "expected": "文本输入框中显示'外套'",
-      "action_type": "type",
+      "goal": "点击搜索结果页中的价格筛选或排序选项",
+      "expected": "商品列表按价格条件重新排列展示",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "点击搜索按钮以执行搜索操作",
-      "expected": "搜索结果页面加载",
+      "goal": "点击符合价格条件的目标商品卡片",
+      "expected": "进入该商品的详情页面展示商品信息",
       "action_type": "click",
       "step_order": 4
-    },
-    {
-      "goal": "点击商品列表中的'特定商品'商品卡片",
-      "expected": "进入该商品的详情页面",
-      "action_type": "click",
-      "step_order": 5
     }
   ]
 }

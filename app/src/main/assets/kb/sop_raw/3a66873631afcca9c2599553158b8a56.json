@@ -1,90 +1,87 @@
 {
   "sop_id": "3a66873631afcca9",
   "original_task_name": "在小红书上找一些美容护肤的笔记，并且给我点赞前三篇。",
-  "task_name": "在小红书上找到对应的笔记，并且帮用户点赞。",
+  "task_name": "小红书搜索笔记并批量点赞",
   "app_name": "小红书",
   "source": "cagui_auto",
   "difficulty": "L4",
   "domain": "媒体",
   "keywords": [
     "小红书",
-    "美容护肤",
     "笔记",
     "点赞",
-    "搜索"
+    "搜索",
+    "美容",
+    "护肤",
+    "内容",
+    "收藏"
   ],
   "steps": [
     {
-      "goal": "点击小红书应用图标",
-      "expected": "进入小红书首页,顶部显示'关注''发现''同城'的导航栏",
-      "action_type": "click",
-      "step_order": 1
+      "step_order": 1,
+      "goal": "在手机桌面上找到小红书应用图标并点击",
+      "expected": "小红书应用启动，进入首页推荐信息流界面",
+      "action_type": "click"
     },
     {
-      "goal": "点击屏幕右上角的搜索图标",
-      "expected": "进入搜索界面,顶部显示文本输入框",
-      "action_type": "click",
-      "step_order": 2
+      "step_order": 2,
+      "goal": "点击首页顶部居中的搜索栏区域",
+      "expected": "搜索栏被激活，弹出输入键盘，光标定位在搜索输入框内",
+      "action_type": "click"
     },
     {
-      "action_type": "type",
-      "goal": "在文本输入框中输入需要搜索的内容",
-      "expected": "文本输入框中显示对应文字",
-      "step_order": 3
+      "step_order": 3,
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "页面跳转至搜索结果页，展示与目标关键词匹配的笔记列表",
+      "action_type": "type"
     },
     {
-      "goal": "点击搜索栏右侧的'搜索'按钮",
-      "expected": "搜索结果页面加载",
-      "action_type": "click",
-      "step_order": 4
+      "step_order": 4,
+      "goal": "在搜索结果列表中点击第一篇目标笔记的封面或标题",
+      "expected": "进入该笔记的详情阅读页面，展示笔记正文内容",
+      "action_type": "click"
     },
     {
-      "goal": "点击标题为'特定笔记'的视频内容",
-      "expected": "进入该视频的播放页面",
-      "action_type": "click",
-      "step_order": 5
+      "step_order": 5,
+      "goal": "点击笔记详情页底部的心形点赞按钮",
+      "expected": "心形图标变为红色填充状态，表示点赞成功",
+      "action_type": "click"
     },
     {
-      "goal": "点击文章底部的心形图标以点赞该内容",
-      "expected": "爱心按钮状态变为已激活",
-      "action_type": "click",
-      "step_order": 6
+      "step_order": 6,
+      "goal": "点击页面左上角的返回箭头按钮",
+      "expected": "退出当前笔记详情页，返回至搜索结果列表页",
+      "action_type": "click"
     },
     {
-      "goal": "点击用户头像进入个人主页",
-      "expected": "进入用户个人主页",
-      "action_type": "click",
-      "step_order": 7
+      "step_order": 7,
+      "goal": "在搜索结果列表中点击第二篇目标笔记的封面或标题",
+      "expected": "进入该笔记的详情阅读页面，展示笔记正文内容",
+      "action_type": "click"
     },
     {
-      "goal": "点击内容卡片进入详情页",
-      "expected": "进入该美容护肤相关内容的详细页面",
-      "action_type": "click",
-      "step_order": 8
+      "step_order": 8,
+      "goal": "点击笔记详情页底部的心形点赞按钮",
+      "expected": "心形图标变为红色填充状态，表示点赞成功",
+      "action_type": "click"
     },
     {
-      "goal": "点击帖子下方的互动按钮",
-      "expected": "帖子下方的互动按钮被激活，显示点赞数和评论数",
-      "action_type": "click",
-      "step_order": 9
+      "step_order": 9,
+      "goal": "点击页面左上角的返回箭头按钮",
+      "expected": "退出当前笔记详情页，返回至搜索结果列表页",
+      "action_type": "click"
     },
     {
-      "goal": "返回上一级页面",
-      "expected": "界面回到上一级页面",
-      "action_type": "click",
-      "step_order": 10
+      "step_order": 10,
+      "goal": "在搜索结果列表中点击第三篇目标笔记的封面或标题",
+      "expected": "进入该笔记的详情阅读页面，展示笔记正文内容",
+      "action_type": "click"
     },
     {
-      "goal": "点击标题为'特定笔记'的护肤视频卡片",
-      "expected": "进入该护肤视频的播放页面",
-      "action_type": "click",
-      "step_order": 11
-    },
-    {
-      "goal": "点击屏幕底部中央的心形图标",
-      "expected": "界面显示点赞数",
-      "action_type": "click",
-      "step_order": 12
+      "step_order": 11,
+      "goal": "点击笔记详情页底部的心形点赞按钮",
+      "expected": "心形图标变为红色填充状态，表示点赞成功",
+      "action_type": "click"
     }
   ]
 }

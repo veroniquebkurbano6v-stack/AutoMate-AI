@@ -1,7 +1,7 @@
 {
   "sop_id": "09b232f3a55deb89",
   "original_task_name": "打开高德搜索附近机场",
-  "task_name": "在高德地图搜索附近的机场",
+  "task_name": "在高德地图搜索附近机场",
   "app_name": "高德地图",
   "source": "cagui_auto",
   "difficulty": "L2",
@@ -10,32 +10,28 @@
     "高德地图",
     "搜索",
     "机场",
-    "附近"
+    "附近",
+    "查找",
+    "周边"
   ],
   "steps": [
     {
       "step_order": 1,
       "goal": "点击手机桌面上的高德地图应用图标",
-      "expected": "高德地图应用图标被选中，应用启动并进入主界面",
+      "expected": "高德地图应用启动并进入主界面",
       "action_type": "click"
     },
     {
       "step_order": 2,
-      "goal": "点击屏幕中间的搜索栏",
-      "expected": "搜索栏获得焦点，准备输入地点信息",
+      "goal": "点击主界面顶部中央的搜索栏区域",
+      "expected": "搜索栏获得焦点并弹出输入键盘",
       "action_type": "click"
     },
     {
       "step_order": 3,
-      "goal": "在文本输入框中输入'机场'",
-      "expected": "搜索栏中显示'机场'",
+      "goal": "在搜索输入框中输入目标关键词并进行搜索",
+      "expected": "搜索结果页面显示附近机场列表",
       "action_type": "type"
-    },
-    {
-      "step_order": 4,
-      "goal": "点击搜索栏右侧的搜索按钮",
-      "expected": "搜索结果页面显示多个机场选项",
-      "action_type": "click"
     }
   ]
 }

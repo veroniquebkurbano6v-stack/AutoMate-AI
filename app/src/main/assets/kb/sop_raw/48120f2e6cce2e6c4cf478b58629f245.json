@@ -1,7 +1,7 @@
 {
   "sop_id": "48120f2e6cce2e6c",
   "original_task_name": "百度地图导航服务：从当前位置到雁塔区政府。",
-  "task_name": "百度地图导航服务：从当前位置到目的地。",
+  "task_name": "百度地图导航至目标地点",
   "app_name": "百度地图",
   "source": "cagui_auto",
   "difficulty": "L3",
@@ -10,38 +10,34 @@
     "百度地图",
     "导航",
     "目的地",
-    "当前位置"
+    "路线规划",
+    "出发",
+    "到达"
   ],
   "steps": [
     {
-      "goal": "打开百度地图应用",
-      "expected": "百度地图应用图标被选中，准备启动应用",
+      "goal": "点击桌面上的百度地图应用图标",
+      "expected": "百度地图主界面加载完成，显示地图和搜索栏",
       "action_type": "click",
       "step_order": 1
     },
     {
-      "goal": "点击搜索栏中的文字区域",
-      "expected": "搜索栏处于可编辑状态，用户可输入新的搜索内容",
-      "action_type": "click",
+      "goal": "在搜索输入框中输入目标地点名称并进行搜索",
+      "expected": "搜索结果列表展示与目标地点相关的条目",
+      "action_type": "type",
       "step_order": 2
     },
     {
-      "action_type": "type",
-      "goal": "在文本输入框中输入'目的地'",
-      "expected": "文本输入框中显示'目的地'",
+      "goal": "点击搜索结果中目标地点对应的条目",
+      "expected": "界面显示目标地点的详情信息页面",
+      "action_type": "click",
       "step_order": 3
     },
     {
-      "goal": "选择搜索结果中的'目的地'条目",
-      "expected": "界面显示已选中'目的地'条目",
+      "goal": "点击地点详情页底部的导航按钮",
+      "expected": "系统开始规划路线并进入导航模式",
       "action_type": "click",
       "step_order": 4
-    },
-    {
-      "goal": "点击导航按钮开始定位到该地点",
-      "expected": "点击导航按钮后，系统将启动导航流程，提供路线规划和实时导航服务",
-      "action_type": "click",
-      "step_order": 5
     }
   ]
 }
